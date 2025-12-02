@@ -1,4 +1,4 @@
-# MicrosoftLinks
+# Software Catalog
 Straight links to Microsoft services without corpo bs\
 Website: https://miguelcarino.github.io/MicrosoftLinks/
 ![image](https://github.com/user-attachments/assets/7ec94bc8-fe4e-496a-b395-5c8848960609)\
