@@ -1,6 +1,13 @@
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
 
+:root {
+    --hovering-color: rgb(255, 255, 255);
+    --bg-hovering: #005a9e;
+    --accent: #005a9e;
+    --fg-secondary: #0078d4;
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -105,8 +112,9 @@ body, html {
     padding: 1em;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background: white;
+    background-color: rgb(255, 255, 255);
     transition: transform 0.3s ease;
+    color: #000000;
 }
 
 .sub-grid-item i {
@@ -116,7 +124,7 @@ body, html {
 
 .sub-grid-item a {
     text-decoration: none;
-    color: #333;
+    color: #000000;
     font-weight: bold;
     text-align: center;
     display: flex;
@@ -128,8 +136,15 @@ body, html {
 
 .sub-grid-item:hover {
     transform: scale(1.05);
+    color: var(--hovering-color);
+    background-color: var(--bg-hovering);
 }
-
+.sub-grid-item:hover a {
+    color: var(--hovering-color);
+}
+.sub-grid-item:hover i {
+    color: var(--hovering-color);
+}
 .description {
     font-size: 16px;
     color: #333;
@@ -156,3 +171,20 @@ body, html {
 .notification.fade-out {
     opacity: 0; /* Fade out effect */
 }
+
+/* BRAND */
+.brand-group { min-width: 220px; align-items: flex-start; }
+.brand-title {
+  font-size: 3.5rem; font-weight: 900; line-height: 0.9; letter-spacing: -0.04em;
+  color: var(--fg-primary); text-shadow: var(--title-glow, none); margin-bottom: 0.5rem;
+}
+.brand-sub { font-size: 0.95rem; color: var(--fg-secondary); margin-bottom: 1.2rem; font-weight: 500; }
+.brand-links { display: flex; gap: 0.8rem; }
+
+.social-btn {
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  background: rgba(125,125,125,0.1); border-radius: 10px; color: var(--fg-secondary);
+  border: 1px solid transparent; transition: 0.2s; margin: 6px ;
+}
+
+.social-btn:hover { transform: translateY(-3px); color: var(--accent); }
