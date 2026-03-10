@@ -1,190 +1,410 @@
-
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
 
+/* 
+   1. CSS Variables & Themes
+    */
+
+/* DEFAULT: Moe Theme */
 :root {
-    --hovering-color: rgb(255, 255, 255);
-    --bg-hovering: #005a9e;
-    --accent: #005a9e;
-    --fg-secondary: #0078d4;
+    --bg-main: #fdf8f8;
+    --bg-sidebar: #ff9a9e;
+    --bg-sidebar-hover: #ff7eb3;
+    --bg-card: #ffffff;
+    --bg-card-hover: #fff0f5;
+    
+    --text-main: #2d3436;
+    --text-light: #ffffff;
+    --text-muted: #636e72;
+    --accent: #ff7eb3;
+    
+    --success: #00b894;
+    --border-color: rgba(0, 0, 0, 0.05);
+    
+    /* Theme-specific dynamic colors for shadows and hovers */
+    --shadow-md-color: rgba(255, 126, 179, 0.15);
+    --border-hover-color: rgba(255, 126, 179, 0.3);
+    --icon-hover-bg: rgba(255, 126, 179, 0.1);
+    
+    /* Shared values */
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 10px 20px var(--shadow-md-color);
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-pill: 50px;
+}
+
+/* BLUE THEME */
+[data-theme="blue"] {
+    --bg-main: #f0f4f8;
+    --bg-sidebar: #4ea8de;
+    --bg-sidebar-hover: #0077b6;
+    --bg-card-hover: #e0fbfc;
+    --accent: #0077b6;
+    --shadow-md-color: rgba(0, 119, 182, 0.15);
+    --border-hover-color: rgba(0, 119, 182, 0.3);
+    --icon-hover-bg: rgba(0, 119, 182, 0.1);
+}
+
+/* GREEN THEME */
+[data-theme="green"] {
+    --bg-main: #f1f8f5;
+    --bg-sidebar: #52b788;
+    --bg-sidebar-hover: #2d6a4f;
+    --bg-card-hover: #e8f5e9;
+    --accent: #2d6a4f;
+    --shadow-md-color: rgba(45, 106, 79, 0.15);
+    --border-hover-color: rgba(45, 106, 79, 0.3);
+    --icon-hover-bg: rgba(45, 106, 79, 0.1);
+}
+
+/* ORANGE THEME */
+[data-theme="orange"] {
+    --bg-main: #fff8f0;
+    --bg-sidebar: #f4a261;
+    --bg-sidebar-hover: #e76f51;
+    --bg-card-hover: #ffefe5;
+    --accent: #e76f51;
+    --shadow-md-color: rgba(231, 111, 81, 0.15);
+    --border-hover-color: rgba(231, 111, 81, 0.3);
+    --icon-hover-bg: rgba(231, 111, 81, 0.1);
+}
+
+/* 
+   2. Base & Reset
+    */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
     height: 100%;
     overflow: hidden;
-    background: #f0f0f0;
-    color: #333;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.5;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 
+   3. Main Layout
+    */
 .container {
     display: flex;
     height: 100vh;
 }
 
+/* 
+   4. Sidebar
+    */
 .sidebar {
-    width: 200px;
-    background-color: #0078d4;
-    color: white;
+    width: 240px;
+    background: linear-gradient(135deg, var(--bg-sidebar) 0%, var(--bg-sidebar-hover) 100%);
+    color: var(--text-light);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 0;
+    padding: 30px 0;
     overflow-y: auto;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.05);
+    z-index: 10;
+}
+
+.sidebar img {
+    border-radius: var(--radius-md);
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar img:hover {
+    transform: scale(1.05);
 }
 
 .sidebar h2 {
-    margin-bottom: 20px;
+    margin: 0 0 25px 0;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
 .sidebar button {
-    width: 100%;
-    background-color: #005a9e;
-    color: white;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
     border: none;
-    padding: 10px;
+    border-radius: var(--radius-md);
+    padding: 12px 20px;
     margin: 5px 0;
     cursor: pointer;
     text-align: left;
-    padding-left: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
 }
 
 .sidebar button:hover,
 .sidebar button.active {
-    background-color: #004578;
+    background-color: var(--text-light);
+    color: var(--bg-sidebar-hover);
+    box-shadow: var(--shadow-sm);
+    transform: translateX(5px);
 }
 
+/* 
+   5. Main Content Area & Search
+    */
 .main-content {
     flex-grow: 1;
-    padding: 20px;
+    padding: 40px;
     overflow-y: auto;
 }
 
 .main-content h2 {
-    margin-top: 0;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
 }
 
 .search-bar {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
 
 .search-bar input {
-    width: 70%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 60%;
+    max-width: 600px;
+    padding: 14px 24px;
+    border: 2px solid transparent;
+    border-radius: var(--radius-pill);
     font-size: 16px;
+    background-color: #ffffff;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
 }
 
-.grid-item {
-    margin-bottom: 20px;
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
 }
 
-.grid-item p {
-    margin: 0 0 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
+/* 
+   6. Software Grid & Cards
+    */
 .sub-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 1rem;
-    padding-bottom: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    padding-bottom: 2rem;
 }
 
-.sub-row {
-    margin-top: 1em;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-}
 .sub-grid-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1em;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: rgb(255, 255, 255);
-    transition: transform 0.3s ease;
-    color: #000000;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-card);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: var(--shadow-sm);
 }
 
-.sub-grid-item i {
-    font-size: 30px;
-    margin-bottom: 0.5rem;
+.sub-grid-item:hover {
+    transform: translateY(-5px);
+    background-color: var(--bg-card-hover);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(255, 126, 179, 0.3);
 }
 
 .sub-grid-item a {
-    text-decoration: none;
-    color: #000000;
-    font-weight: bold;
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100%;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--text-main);
 }
 
 .sub-grid-item:hover {
-    transform: scale(1.05);
-    color: var(--hovering-color);
-    background-color: var(--bg-hovering);
+    transform: translateY(-5px);
+    background-color: var(--bg-card-hover);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-hover-color); /* Updated */
 }
-.sub-grid-item:hover a {
-    color: var(--hovering-color);
+
+.sub-grid-item > i {
+    font-size: 32px;
+    margin-bottom: 12px;
+    color: var(--bg-sidebar-hover);
+    transition: transform 0.3s ease;
 }
-.sub-grid-item:hover i {
-    color: var(--hovering-color);
+
+.sub-grid-item:hover > i {
+    transform: scale(1.1);
 }
-.description {
-    font-size: 16px;
-    color: #333;
-    margin: 10px 0;
-    border-radius: 4px;
-    font-family: Arial, sans-serif;
+
+.sub-grid-item span { /* Targets the service description */
+    font-size: 0.9rem;
+    color: var(--text-muted);
     text-align: center;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Pushes the icons to the bottom */
 }
 
+/* 
+   7. OS Installation Icons & Tooltips
+    */
+.sub-row {
+    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+}
+
+.sub-row i {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+    padding: 6px;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.sub-row i:hover {
+    transform: scale(1.2) translateY(-2px);
+    color: var(--accent);
+    background-color: var(--icon-hover-bg); /* Updated */
+}
+
+/* Custom Tooltip Logic */
+.sub-row i[data-tooltip] {
+    position: relative;
+}
+
+.sub-row i[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--text-main);
+    color: var(--text-light);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, bottom 0.2s ease;
+    z-index: 10;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Little triangle for the tooltip */
+.sub-row i[data-tooltip]::after {
+    content: '';
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--text-main) transparent transparent transparent;
+    opacity: 0;
+    transition: opacity 0.2s ease, bottom 0.2s ease;
+}
+
+.sub-row i[data-tooltip]:hover::before {
+    opacity: 1;
+    bottom: 150%;
+}
+
+.sub-row i[data-tooltip]:hover::after {
+    opacity: 1;
+    bottom: 120%;
+}
+
+/* 
+   8. Utilities & Components (Notifications, Brands)
+    */
 .notification {
-    position: fixed; /* Fixed position to stay in view */
-    bottom: 20px; /* Distance from the top of the viewport */
-    right: 20px; /* Distance from the right of the viewport */
-    background-color: #278136; /* Background color similar to .selected */
-    color: white; /* Text color */
-    padding: 10px 15px; /* Padding for spacing */
-    border-radius: 5px; /* Rounded corners */
-    z-index: 1000; /* Ensure it appears above other elements */
-    transition: opacity 0.5s ease; /* Smooth transition for fading out */
-    opacity: 1; /* Start fully visible */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--success);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius-pill);
+    z-index: 1000;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Optional: Add a fade-out effect */
 .notification.fade-out {
-    opacity: 0; /* Fade out effect */
+    opacity: 0;
+    transform: translateY(10px);
 }
 
-/* BRAND */
-.brand-group { min-width: 220px; align-items: flex-start; }
-.brand-title {
-  font-size: 3.5rem; font-weight: 900; line-height: 0.9; letter-spacing: -0.04em;
-  color: var(--fg-primary); text-shadow: var(--title-glow, none); margin-bottom: 0.5rem;
-}
-.brand-sub { font-size: 0.95rem; color: var(--fg-secondary); margin-bottom: 1.2rem; font-weight: 500; }
-.brand-links { display: flex; gap: 0.8rem; }
-
+/* Social Buttons */
 .social-btn {
-  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-  background: rgba(125,125,125,0.1); border-radius: 10px; color: var(--fg-secondary);
-  border: 1px solid transparent; transition: 0.2s; margin: 6px ;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 50%;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
 }
 
-.social-btn:hover { transform: translateY(-3px); color: var(--accent); }
+.social-btn:hover {
+    transform: translateY(-3px);
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+}
+
+/* Custom Scrollbar for a polished look */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border-hover-color); /* Updated */
+}
