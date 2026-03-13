@@ -408,3 +408,104 @@ a {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--border-hover-color); /* Updated */
 }
+/* 
+   9. Mobile Responsiveness (Media Queries)
+    */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    /* Transform sidebar into a top navigation bar */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 15px 15px 0 15px; /* Removed bottom padding so the buttons sit flush */
+        flex-direction: column;
+        align-items: center; /* Center the logo */
+        overflow: visible; /* CRITICAL: Overrides desktop overflow to prevent clipping */
+        z-index: 20;
+    }
+
+    /* Hide the large title to save vertical space */
+    .sidebar h2 {
+        display: none; 
+    }
+
+    .sidebar img {
+        max-width: 45px !important;
+        margin-bottom: 10px;
+    }
+
+    /* Make the button row a swipeable horizontal carousel */
+    #button-row {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden; /* Prevent vertical clipping */
+        gap: 10px;
+        padding-bottom: 15px; /* Padding for tap targets */
+        margin-top: 5px;
+        -webkit-overflow-scrolling: touch; /* Smooth iOS swipe scrolling */
+        
+        /* Hide the scrollbar for a cleaner UI, but keep it swipeable */
+        scrollbar-width: none; /* Firefox */
+    }
+    
+    #button-row::-webkit-scrollbar {
+        display: none; /* Chrome/Safari/Edge */
+    }
+
+    /* Adjust buttons for horizontal flow */
+    .sidebar button {
+        flex: 0 0 auto; /* CRITICAL: Prevents buttons from squishing to 0 width */
+        width: auto;
+        margin: 0;
+        padding: 10px 18px;
+        white-space: nowrap;
+        font-size: 0.9rem;
+        text-align: center;
+        border-radius: var(--radius-pill); /* Makes them look like modern pill tags */
+    }
+
+    /* Adjust main content area */
+    .main-content {
+        padding: 20px 15px;
+    }
+
+    .main-content h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Make search bar take full width */
+    .search-bar {
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .search-bar input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Stack cards in a single column */
+    .sub-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Disable hover tooltips on mobile since there is no cursor */
+    .sub-row i[data-tooltip]::before,
+    .sub-row i[data-tooltip]::after {
+        display: none;
+    }
+
+    /* Center notifications on small screens */
+    .notification {
+        right: 15px;
+        left: 15px;
+        bottom: 20px;
+        text-align: center;
+    }
+}
