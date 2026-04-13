@@ -69,9 +69,24 @@ let customLinks = loadCustomLinks();
 // ============================================================
 // Main app — runs after JSON is fetched
 // ============================================================
+// ---- Diagnostics ----
+(function checkFA() {
+    const probe = document.createElement('i');
+    probe.className = 'fa-solid fa-circle-check';
+    probe.style.cssText = 'position:fixed;top:-999px;visibility:hidden;font-size:16px';
+    document.body.appendChild(probe);
+    requestAnimationFrame(() => {
+        const w = getComputedStyle(probe).width;
+        console.log('[SoftwareCatalog] Font Awesome probe width:', w,
+            (parseFloat(w) > 0) ? '✓ FA loaded OK' : '✗ FA NOT loaded — all icons will be blank');
+        document.body.removeChild(probe);
+    });
+})();
+
 fetch('assets/json/software.json')
     .then(r => r.json())
     .then(data => {
+        console.log('[SoftwareCatalog] JSON loaded:', data.length, 'services');
         // software.json is a flat array of services; each service declares its own
         // "categories" field (array of category title strings). Build the sidebar
         // categories in insertion order (order of first appearance across services).
@@ -121,7 +136,7 @@ fetch('assets/json/software.json')
             updateURL(searchInput.value || null);
         }
 
-        function toggleCustom(service, cardBtn) {
+        function toggleCustom(service, cardEl) {
             if (isInCustom(service)) {
                 customLinks = customLinks.filter(l => l !== service.link);
             } else {
@@ -129,11 +144,7 @@ fetch('assets/json/software.json')
             }
             saveCustomLinks();
             refreshCustomBtn();
-            if (cardBtn) {
-                const inList = isInCustom(service);
-                cardBtn.dataset.tooltip = inList ? 'Remove from My List' : 'Save to My List';
-                cardBtn.classList.toggle('in-list', inList);
-            }
+            if (cardEl) cardEl.classList.toggle('in-list', isInCustom(service));
         }
 
         function getCustomServices() {
@@ -216,13 +227,13 @@ fetch('assets/json/software.json')
         // Letter monograms used as placeholders for distros not in FA Free —
         // replace the <span> or swap cls to a real icon class when you have one.
         const osDefs = [
-            { key: 'windows', type: 'fa',     icon: 'fab fa-windows',              platform: 'windows', cmd: v => 'winget install -e --id ' + v,  tip: 'Copy Windows install command' },
-            { key: 'macos',   type: 'fa',     icon: 'fab fa-apple',                platform: 'mac',     cmd: v => 'brew install ' + v,            tip: 'Copy Mac install command' },
-            { key: 'debian',  type: 'letter', letter: 'D', cls: 'os-deb',          platform: 'linux',   cmd: v => 'sudo apt install ' + v,        tip: 'Copy Debian/Ubuntu command' },
-            { key: 'fedora',  type: 'letter', letter: 'F', cls: 'os-fed',          platform: 'linux',   cmd: v => 'sudo dnf install ' + v,        tip: 'Copy Fedora command' },
-            { key: 'suse',    type: 'letter', letter: 'S', cls: 'os-suse',         platform: 'linux',   cmd: v => 'sudo zypper install ' + v,     tip: 'Copy openSUSE command' },
-            { key: 'rhel',    type: 'letter', letter: 'R', cls: 'os-rhel',         platform: 'linux',   cmd: v => 'sudo dnf install ' + v,        tip: 'Copy RHEL command' },
-            { key: 'flatpak', type: 'fa',     icon: 'fab fa-linux',                platform: 'linux',   cmd: v => 'flatpak install flathub ' + v, tip: 'Copy Flatpak command' },
+            { key: 'windows', icon: 'fa-brands fa-windows',  platform: 'windows', cmd: v => 'winget install -e --id ' + v,  tip: 'Copy Windows install command'  },
+            { key: 'macos',   icon: 'fa-brands fa-apple',    platform: 'mac',     cmd: v => 'brew install ' + v,            tip: 'Copy macOS install command'    },
+            { key: 'debian',  icon: 'fa-brands fa-debian',   platform: 'linux',   cmd: v => 'sudo apt install ' + v,        tip: 'Copy Debian/Ubuntu command'    },
+            { key: 'fedora',  icon: 'fa-brands fa-fedora',   platform: 'linux',   cmd: v => 'sudo dnf install ' + v,        tip: 'Copy Fedora command'           },
+            { key: 'suse',    icon: 'fa-brands fa-opensuse', platform: 'linux',   cmd: v => 'sudo zypper install ' + v,     tip: 'Copy openSUSE command'         },
+            { key: 'rhel',    icon: 'fa-brands fa-redhat',   platform: 'linux',   cmd: v => 'sudo dnf install ' + v,        tip: 'Copy RHEL command'             },
+            { key: 'flatpak', icon: 'fa-brands fa-linux',    platform: 'linux',   cmd: v => 'flatpak install flathub ' + v, tip: 'Copy Flatpak command'          },
         ];
 
         function buildOsRow(service) {
@@ -235,22 +246,15 @@ fetch('assets/json/software.json')
             webA.href = service.link;
             webA.target = '_blank';
             webA.rel = 'noopener noreferrer';
-            webA.innerHTML = '<i class="fas fa-globe"></i>';
+            webA.innerHTML = '<i class="fa-solid fa-globe"></i>';
             webA.dataset.tooltip = 'Open website';
             webA.addEventListener('click', e => e.stopPropagation());
             row.appendChild(webA);
 
             for (const def of osDefs) {
                 if (service[def.key] && platformAllows(def.platform)) {
-                    let el;
-                    if (def.type === 'fa') {
-                        el = document.createElement('i');
-                        el.className = def.icon + ' os-icon';
-                    } else {
-                        el = document.createElement('span');
-                        el.className = 'os-icon os-letter ' + def.cls;
-                        el.textContent = def.letter;
-                    }
+                    const el = document.createElement('i');
+                    el.className = def.icon + ' os-icon';
                     el.dataset.tooltip = def.tip;
                     const cmd = def.cmd(service[def.key]);
                     el.addEventListener('click', e => { e.stopPropagation(); copyToClipboard(cmd); });
@@ -265,16 +269,12 @@ fetch('assets/json/software.json')
         function buildCard(service) {
             const item = document.createElement('div');
             item.classList.add('sub-grid-item');
+            if (isInCustom(service)) item.classList.add('in-list');
 
-            const addBtn = document.createElement('button');
-            const inList = isInCustom(service);
-            addBtn.className = 'card-add-btn' + (inList ? ' in-list' : '');
-            addBtn.innerHTML = '<i class="fas fa-bookmark"></i>';
-            addBtn.dataset.tooltip = inList ? 'Remove from My List' : 'Save to My List';
-            addBtn.addEventListener('click', e => {
-                e.preventDefault();
-                e.stopPropagation();
-                toggleCustom(service, addBtn);
+            // Clicking the card itself (not a link or OS icon) toggles bookmark.
+            item.addEventListener('click', e => {
+                if (e.target.closest('a, .sub-row')) return;
+                toggleCustom(service, item);
             });
 
             const icon = document.createElement('i');
@@ -289,7 +289,6 @@ fetch('assets/json/software.json')
             const desc = document.createElement('span');
             desc.textContent = service.description;
 
-            item.appendChild(addBtn);
             item.appendChild(icon);
             item.appendChild(link);
             item.appendChild(desc);

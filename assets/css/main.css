@@ -210,7 +210,6 @@ a {
 }
 
 .sub-grid-item {
-    position: relative; /* needed for the absolute-positioned + button */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -220,6 +219,17 @@ a {
     background-color: var(--bg-card);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    user-select: none;
+}
+
+.sub-grid-item.in-list {
+    background: linear-gradient(135deg, rgba(244, 162, 97, 0.35) 0%, rgba(231, 111, 81, 0.35) 100%);
+    border-color: rgba(244, 162, 97, 0.6);
+}
+
+.sub-grid-item.in-list:hover {
+    background: linear-gradient(135deg, rgba(244, 162, 97, 0.55) 0%, rgba(231, 111, 81, 0.55) 100%);
 }
 
 .sub-grid-item a {
@@ -242,7 +252,6 @@ a {
 
 .sub-grid-item > i {
     font-size: 32px;
-    margin-top: 12px; /* push icon below the absolute-positioned bookmark button */
     margin-bottom: 12px;
     color: var(--bg-sidebar-hover);
     transition: transform 0.3s ease;
@@ -299,19 +308,6 @@ a {
     color: var(--accent);
     background-color: var(--icon-hover-bg);
 }
-
-/* Letter monograms for distros not in Font Awesome Free.
-   Replace the <span> element or swap the icon class when you have a real icon. */
-.os-letter {
-    font-size: 0.55rem;
-    font-weight: 900;
-    letter-spacing: 0;
-}
-
-.os-deb.os-letter:hover  { color: #d70a53; background: rgba(215, 10, 83, 0.1); }
-.os-fed.os-letter:hover  { color: #294172; background: rgba(41, 65, 114, 0.1); }
-.os-suse.os-letter:hover { color: #4a8200; background: rgba(73, 130, 0, 0.1); }
-.os-rhel.os-letter:hover { color: #cc0000; background: rgba(204, 0, 0, 0.1); }
 
 /* Website link icon */
 .os-icon.os-web { font-size: 1rem; }
@@ -411,50 +407,6 @@ a {
 .plat-mac { color: #1d1d1f; border-color: rgba(29, 29, 31, 0.35); }
 .plat-lnx { color: #e8820c; border-color: rgba(232, 130, 12, 0.35); }
 .plat-all { color: var(--text-muted); }
-
-/*
-   10. Card Bookmark Button — top-right corner icon
-    */
-.card-add-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: none;
-    background: transparent;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    padding: 0;
-    opacity: 0.2; /* faint hint, not hidden */
-}
-
-.sub-grid-item:hover .card-add-btn {
-    opacity: 0.55;
-}
-
-.card-add-btn:hover {
-    opacity: 1;
-    color: var(--accent);
-    background: var(--icon-hover-bg);
-    transform: scale(1.1);
-}
-
-.card-add-btn.in-list {
-    color: var(--success);
-    opacity: 1; /* always fully visible when saved */
-}
-
-.card-add-btn.in-list:hover {
-    color: #e74c3c;
-    background: rgba(231, 76, 60, 0.1);
-}
 
 /*
    11. Custom Category Button (sidebar, orange)
