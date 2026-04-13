@@ -210,6 +210,7 @@ a {
 }
 
 .sub-grid-item {
+    position: relative; /* needed for the absolute-positioned + button */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -219,13 +220,6 @@ a {
     background-color: var(--bg-card);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: var(--shadow-sm);
-}
-
-.sub-grid-item:hover {
-    transform: translateY(-5px);
-    background-color: var(--bg-card-hover);
-    box-shadow: var(--shadow-md);
-    border-color: rgba(255, 126, 179, 0.3);
 }
 
 .sub-grid-item a {
@@ -265,8 +259,8 @@ a {
     flex-grow: 1; /* Pushes the icons to the bottom */
 }
 
-/* 
-   7. OS Installation Icons & Tooltips
+/*
+   7. OS Install Row & Badge Placeholders
     */
 .sub-row {
     margin-top: auto;
@@ -274,34 +268,66 @@ a {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
     padding-top: 15px;
     border-top: 1px solid var(--border-color);
     width: 100%;
 }
 
-.sub-row i {
-    font-size: 1.5rem;
-    color: var(--text-muted);
+/* OS icon base — neutral icon slot, no button chrome */
+.os-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-style: normal; /* keep <span> upright */
     cursor: pointer;
-    transition: transform 0.2s ease, color 0.2s ease;
-    padding: 6px;
-    border-radius: 50%;
-    background-color: transparent;
+    text-decoration: none;
+    color: var(--text-muted);
+    background: transparent;
+    transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+    user-select: none;
 }
 
-.sub-row i:hover {
+.os-icon:hover {
     transform: scale(1.2) translateY(-2px);
     color: var(--accent);
-    background-color: var(--icon-hover-bg); /* Updated */
+    background-color: var(--icon-hover-bg);
 }
 
-/* Custom Tooltip Logic */
-.sub-row i[data-tooltip] {
+/* Letter monograms for distros not in Font Awesome Free.
+   Replace the <span> element or swap the icon class when you have a real icon. */
+.os-letter {
+    font-size: 0.55rem;
+    font-weight: 900;
+    letter-spacing: 0;
+}
+
+.os-deb.os-letter:hover  { color: #d70a53; background: rgba(215, 10, 83, 0.1); }
+.os-fed.os-letter:hover  { color: #294172; background: rgba(41, 65, 114, 0.1); }
+.os-suse.os-letter:hover { color: #4a8200; background: rgba(73, 130, 0, 0.1); }
+.os-rhel.os-letter:hover { color: #cc0000; background: rgba(204, 0, 0, 0.1); }
+
+/* Website link icon */
+.os-icon.os-web { font-size: 1rem; }
+
+/*
+   8. Shared Tooltip Logic
+   Covers: os-badge in sub-row, platform button, card add button
+    */
+.sub-row [data-tooltip],
+.platform-btn[data-tooltip],
+.card-add-btn[data-tooltip] {
     position: relative;
 }
 
-.sub-row i[data-tooltip]::before {
+.sub-row [data-tooltip]::before,
+.platform-btn[data-tooltip]::before,
+.card-add-btn[data-tooltip]::before {
     content: attr(data-tooltip);
     position: absolute;
     bottom: 130%;
@@ -317,12 +343,13 @@ a {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease, bottom 0.2s ease;
-    z-index: 10;
+    z-index: 100;
     box-shadow: var(--shadow-sm);
 }
 
-/* Little triangle for the tooltip */
-.sub-row i[data-tooltip]::after {
+.sub-row [data-tooltip]::after,
+.platform-btn[data-tooltip]::after,
+.card-add-btn[data-tooltip]::after {
     content: '';
     position: absolute;
     bottom: 110%;
@@ -333,20 +360,143 @@ a {
     border-color: var(--text-main) transparent transparent transparent;
     opacity: 0;
     transition: opacity 0.2s ease, bottom 0.2s ease;
+    z-index: 100;
 }
 
-.sub-row i[data-tooltip]:hover::before {
+.sub-row [data-tooltip]:hover::before,
+.platform-btn[data-tooltip]:hover::before,
+.card-add-btn[data-tooltip]:hover::before {
     opacity: 1;
     bottom: 150%;
 }
 
-.sub-row i[data-tooltip]:hover::after {
+.sub-row [data-tooltip]:hover::after,
+.platform-btn[data-tooltip]:hover::after,
+.card-add-btn[data-tooltip]:hover::after {
     opacity: 1;
     bottom: 120%;
 }
 
+/*
+   9. Platform Button (in search bar) — circular icon like the social buttons
+    */
+.platform-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.platform-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.platform-btn:disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
+/* Platform-specific icon tints */
+.plat-win { color: #0078d4; border-color: rgba(0, 120, 212, 0.35); }
+.plat-mac { color: #1d1d1f; border-color: rgba(29, 29, 31, 0.35); }
+.plat-lnx { color: #e8820c; border-color: rgba(232, 130, 12, 0.35); }
+.plat-all { color: var(--text-muted); }
+
+/*
+   10. Card Bookmark Button — top-right corner icon
+    */
+.card-add-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    padding: 0;
+    opacity: 0.2; /* faint hint, not hidden */
+}
+
+.sub-grid-item:hover .card-add-btn {
+    opacity: 0.55;
+}
+
+.card-add-btn:hover {
+    opacity: 1;
+    color: var(--accent);
+    background: var(--icon-hover-bg);
+    transform: scale(1.1);
+}
+
+.card-add-btn.in-list {
+    color: var(--success);
+    opacity: 1; /* always fully visible when saved */
+}
+
+.card-add-btn.in-list:hover {
+    color: #e74c3c;
+    background: rgba(231, 76, 60, 0.1);
+}
+
+/*
+   11. Custom Category Button (sidebar, orange)
+    */
+.custom-cat-btn {
+    width: 90%;
+    color: var(--text-light);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-md);
+    padding: 12px 20px;
+    margin: 5px 0;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    /* Orange accent to distinguish from regular categories */
+    background: linear-gradient(135deg, rgba(244, 162, 97, 0.35) 0%, rgba(231, 111, 81, 0.35) 100%);
+    border-color: rgba(244, 162, 97, 0.6);
+}
+
+.custom-cat-btn:hover,
+.custom-cat-btn.active {
+    background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: var(--shadow-sm);
+    transform: translateX(5px);
+}
+
+/*
+   12. Empty list message
+    */
+.empty-list-msg {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 3rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
 /* 
-   8. Utilities & Components (Notifications, Brands)
+   13. Utilities & Components (Notifications, Brands)
     */
 .notification {
     position: fixed;
@@ -495,10 +645,33 @@ a {
         gap: 15px;
     }
 
-    /* Disable hover tooltips on mobile since there is no cursor */
-    .sub-row i[data-tooltip]::before,
-    .sub-row i[data-tooltip]::after {
+    /* Disable hover tooltips on mobile — no cursor to hover with */
+    .sub-row [data-tooltip]::before,
+    .sub-row [data-tooltip]::after,
+    .platform-btn[data-tooltip]::before,
+    .platform-btn[data-tooltip]::after,
+    .card-add-btn[data-tooltip]::before,
+    .card-add-btn[data-tooltip]::after {
         display: none;
+    }
+
+    /* Keep bookmark button always visible on mobile (no hover state) */
+    .card-add-btn { opacity: 0.4; }
+    .card-add-btn.in-list { opacity: 1; }
+
+    /* Custom cat button in mobile carousel */
+    .custom-cat-btn {
+        flex: 0 0 auto;
+        width: auto;
+        margin: 0;
+        padding: 10px 18px;
+        white-space: nowrap;
+        font-size: 0.9rem;
+        text-align: center;
+        border-radius: var(--radius-pill);
+        background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+        border-color: transparent;
+        color: #fff;
     }
 
     /* Center notifications on small screens */

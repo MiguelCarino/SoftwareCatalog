@@ -1,250 +1,402 @@
+// ============================================================
+// Platform detection
+// ============================================================
+function detectPlatform() {
+    // Modern API (Chrome 90+, Edge)
+    if (navigator.userAgentData && navigator.userAgentData.platform) {
+        const p = navigator.userAgentData.platform.toLowerCase();
+        if (p.startsWith('win')) return 'windows';
+        if (p === 'macos') return 'mac';
+        if (p === 'linux') return 'linux';
+    }
+    // Fallback for Firefox and older browsers that don't support userAgentData.
+    // navigator.platform is deprecated but still the best cross-browser fallback here.
+    // eslint-disable-next-line no-restricted-globals
+    const p = (navigator.platform || '').toLowerCase();
+    if (p.startsWith('win')) return 'windows';
+    if (p.startsWith('mac') || p === 'iphone' || p === 'ipad') return 'mac';
+    if (p.startsWith('linux') || p === 'android') return 'linux';
+    return 'unknown';
+}
+
+const detectedPlatform = detectPlatform();
+let allPlatformsMode = (detectedPlatform === 'unknown');
+
+function platformAllows(platform) {
+    if (allPlatformsMode) return true;
+    return detectedPlatform === platform;
+}
+
+// ============================================================
+// Custom list (My List) — localStorage + URL persistence
+// ============================================================
+const STORAGE_KEY = 'sc_custom';
+
+// Parse URL once at startup; both loadCustomLinks and loadInitialSearch read from this.
+const initialParams = new URLSearchParams(window.location.search);
+
+function encodeLinks(links) {
+    try {
+        const bytes = new TextEncoder().encode(JSON.stringify(links));
+        return btoa(String.fromCharCode(...bytes));
+    } catch (e) { return ''; }
+}
+
+function decodeLinks(encoded) {
+    try {
+        const bytes = Uint8Array.from(atob(encoded), c => c.charCodeAt(0));
+        return JSON.parse(new TextDecoder().decode(bytes));
+    } catch (e) { return null; }
+}
+
+function loadCustomLinks() {
+    const encoded = initialParams.get('mylist');
+    if (encoded) {
+        const links = decodeLinks(encoded);
+        if (Array.isArray(links)) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
+            return links;
+        }
+    }
+    try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        return stored ? JSON.parse(stored) : [];
+    } catch (e) { return []; }
+}
+
+let customLinks = loadCustomLinks();
+
+// ============================================================
+// Main app — runs after JSON is fetched
+// ============================================================
 fetch('assets/json/software.json')
-    .then(response => response.json())
+    .then(r => r.json())
     .then(data => {
-        const categories = data; // Assign the parsed JSON data to the `categories` variable
+        const categories = data;
+        const allServices = categories.reduce((acc, c) => acc.concat(c.services), []);
 
-        var allServices = categories.reduce((acc, category) => acc.concat(category.services), []);
-        var mainGrid = document.getElementById('main-grid');
-        var buttonRow = document.getElementById('button-row');
-        var categoryTitle = document.getElementById('category-title');
-        var searchInput = document.getElementById('search-input');
-        var activeButton = null;
+        const mainGrid      = document.getElementById('main-grid');
+        const buttonRow     = document.getElementById('button-row');
+        const categoryTitle = document.getElementById('category-title');
+        const searchInput   = document.getElementById('search-input');
+        const platformBtn   = document.getElementById('platform-btn');
 
-        function createButton(category, index) {
-            var button = document.createElement('button');
-            button.textContent = category.title;
-            button.addEventListener('click', function() {
-                showCategory(index);
-                highlightButton(button);
-                // Clear search when a category is clicked
-                searchInput.value = '';
-                updateURL(null);
-            });
-            return button;
-        }
+        let activeButton = null;
+        // Track current view for re-render on platform toggle.
+        // index -1 = search, -2 = My List, ≥0 = category.
+        // currentSearchQuery is only meaningful when currentViewIndex === -1.
+        let currentViewIndex   = 0;
+        let currentSearchQuery = '';
 
-        function highlightButton(button) {
-            if (activeButton) {
-                activeButton.classList.remove('active');
-            }
-            button.classList.add('active');
-            activeButton = button;
-        }
-
-        function showCategory(index, services = null) {
-            mainGrid.innerHTML = '';
-            var category = index === -1 ? { title: 'All Links', services: services || allServices } : categories[index];
-            categoryTitle.textContent = category.title;
-            var subGrid = document.createElement('div');
-            subGrid.classList.add('sub-grid');
-            
-            // Function to show a notification
-            function showNotification(message) {
-                const notification = document.createElement('div');
-                notification.className = 'notification';
-                notification.innerText = message;
-                document.body.appendChild(notification);
-                notification.style.display = 'block';
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                    document.body.removeChild(notification);
-                }, 3000); // Display time of 3 seconds
-            }
-
-            // Function to copy text to clipboard
-            function copyToClipboard(text) {
-                navigator.clipboard.writeText(text).then(function() {
-                    showNotification(`${text} has been copied to the clipboard!`);
-                }, function(err) {
-                    console.error('Could not copy text: ', err);
-                });
-            }
-            category.services.forEach(function(service) {
-                var subGridItem = document.createElement('div');
-                subGridItem.classList.add('sub-grid-item');
-            
-                // Create a link for the service name
-                var serviceLink = document.createElement('a');
-                serviceLink.href = service.link; // Link to the service
-                serviceLink.textContent = service.name; // Set the link text to the service name
-                
-                var serviceText = document.createElement('span');
-                serviceText.textContent = service.description; // Set the link text to the service name
-            
-                var serviceIcon = document.createElement('i');
-                serviceIcon.className = service.icon;
-            
-                // Create a new div for the OS icons and apply the .sub-row class
-                var osIconsContainer = document.createElement('div');
-                osIconsContainer.classList.add('sub-row');
-            
-                // Create OS icons and add click event listeners
-                var serviceWindows = document.createElement('i');
-                serviceWindows.className = service.windows ? 'fab fa-windows' : 'fab fa-windows'; // Default to Windows icon if not provided
-                serviceWindows.dataset.value = "winget install -e --id " + service.windows; // Set the value to copy from JSON
-                serviceWindows.title = "Install winget package" + (service.windows || '');
-                if (service.windows) { // Only add click event if windows is present
-                    serviceWindows.addEventListener('click', function(event) {
-                        event.stopPropagation(); // Prevent the click from bubbling up to the service link
-                        copyToClipboard(serviceWindows.dataset.value);
-                    });
-                } else {
-                    serviceWindows.style.display = 'none';
-                }
-            
-                var serviceMacos = document.createElement('i');
-                serviceMacos.className = service.macos ? 'fab fa-apple' : 'fab fa-apple'; // Default to MacOS icon if not provided
-                serviceMacos.title = "Install homebrew package";
-                serviceMacos.dataset.value = "brew install " + (service.macos || ''); // Set the value to copy from JSON
-
-                if (service.macos) { // Only add click event if macos is present
-                    serviceMacos.addEventListener('click', function(event) {
-                        event.stopPropagation(); // Prevent the click from bubbling up to the service link
-                        copyToClipboard(serviceMacos.dataset.value);
-                    });
-                } else {
-                    serviceMacos.style.display = 'none'; // Hide the icon if macos is not present
-                }
-
-                var serviceDebian = document.createElement('i');
-                serviceDebian.className = service.linux || 'fab fa-debian'; // Default to Linux icon if not provided
-                serviceDebian.dataset.value = "sudo apt install " + service.debian; // Set the value to copy from JSON
-                serviceDebian.title = "Install Debian package";
-                if (service.debian) { // Only add click event if debian is present
-                    serviceDebian.addEventListener('click', function(event) {
-                        event.stopPropagation(); // Prevent the click from bubbling up to the service link
-                        copyToClipboard(serviceDebian.dataset.value);
-                    });
-                } else {
-                    serviceDebian.style.display = 'none';
-                }
-
-                var serviceFedora = document.createElement('i');
-                serviceFedora.className = service.linux || 'fab fa-fedora'; // Default to Linux icon if not provided
-                serviceFedora.dataset.value = "sudo dnf install " + service.fedora; // Set the value to copy from JSON
-                serviceFedora.title = "Install Fedora package";
-                if (service.fedora) { // Only add click event if fedora is present
-                    serviceFedora.addEventListener('click', function(event) {
-                        event.stopPropagation(); // Prevent the click from bubbling up to the service link
-                        copyToClipboard(serviceFedora.dataset.value);
-                    });
-                } else {
-                    serviceFedora.style.display = 'none';
-                }
-
-                var serviceSuse = document.createElement('i');
-                serviceSuse.className = service.linux || 'fab fa-suse'; // Default to Linux icon if not provided
-                serviceSuse.dataset.value = "sudo zypper install " + service.suse; // Set the value to copy from JSON
-                serviceSuse.title = "Install SUSE package";
-                if (service.suse) { // Only add click event if suse is present
-                    serviceSuse.addEventListener('click', function(event) {
-                        event.stopPropagation(); // Prevent the click from bubbling up to the service link
-                        copyToClipboard(serviceSuse.dataset.value);
-                    });
-                } else {
-                    serviceSuse.style.display = 'none';
-                }
-
-                var serviceRedhat = document.createElement('i');
-                serviceRedhat.className = service.linux || 'fab fa-redhat'; // Default to Linux icon if not provided
-                serviceRedhat.dataset.value = "sudo dnf install " + service.rhel; // Set the value to copy from JSON
-                serviceRedhat.title = "Install RHEL package";
-                if (service.rhel) { // Only add click event if rhel is present
-                    serviceRedhat.addEventListener('click', function(event) {
-                        event.stopPropagation(); // Prevent the click from bubbling up to the service link
-                        copyToClipboard(serviceRedhat.dataset.value);
-                    });
-                } else {
-                    serviceRedhat.style.display = 'none';
-                }
-
-                var serviceFlatpak = document.createElement('i');
-                serviceFlatpak.className = service.linux || 'fab fa-linux'; // Default to Linux icon if not provided
-                serviceFlatpak.title = "Install Flatpak package";
-                serviceFlatpak.dataset.value = "flatpak install flathub " + service.flatpak; // Set the value to copy from JSON
-                if (service.flatpak) { // Only add click event if flatpak is present
-                    serviceFlatpak.addEventListener('click', function(event) {
-                        event.stopPropagation(); // Prevent the click from bubbling up to the service link
-                        copyToClipboard(serviceFlatpak.dataset.value);
-                    });
-                } else {
-                    serviceFlatpak.style.display = 'none';
-                }
-            
-                // Append the OS icons to the osIconsContainer
-                osIconsContainer.appendChild(serviceWindows);
-                osIconsContainer.appendChild(serviceMacos);
-                osIconsContainer.appendChild(serviceDebian);
-                osIconsContainer.appendChild(serviceFedora);
-                osIconsContainer.appendChild(serviceSuse);
-                osIconsContainer.appendChild(serviceRedhat);
-                osIconsContainer.appendChild(serviceFlatpak);
-
-                // Append the service icon to the subGridItem (not part of the link)
-                subGridItem.appendChild(serviceIcon);
-                
-                // Append the service link to the subGridItem
-                subGridItem.appendChild(serviceLink);
-                
-                // Append the service text
-                subGridItem.appendChild(serviceText);
-
-                // Append the osIconsContainer to the subGridItem (not part of the link)
-                subGridItem.appendChild(osIconsContainer);
-            
-                // Append the subGridItem to the subGrid
-                subGrid.appendChild(subGridItem);
-            });            
-        
-            mainGrid.appendChild(subGrid);
-        }
-        
-
-        function filterLinks(query) {
-            var seen = new Set();
-            var filteredServices = allServices.filter(function(service) {
-                if (seen.has(service.link)) return false;
-                seen.add(service.link);
-                return service.value.toLowerCase().includes(query.toLowerCase());
-            });
-            showCategory(-1, filteredServices);
-            updateURL(query);
-        }
-
+        // ---- URL sync ----
         function updateURL(query) {
             const url = new URL(window.location);
-            if (query) {
-                url.searchParams.set('search', query);
+            if (query) { url.searchParams.set('search', query); }
+            else        { url.searchParams.delete('search'); }
+            if (customLinks.length > 0) {
+                url.searchParams.set('mylist', encodeLinks(customLinks));
             } else {
-                url.searchParams.delete('search');
+                url.searchParams.delete('mylist');
             }
             window.history.replaceState({}, '', url);
         }
 
-        function loadInitialSearch() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchQuery = urlParams.get('search');
-            if (searchQuery) {
-                searchInput.value = searchQuery;
-                filterLinks(searchQuery);
+        // ---- Custom list helpers ----
+        function isInCustom(service) {
+            return customLinks.includes(service.link);
+        }
+
+        function saveCustomLinks() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(customLinks));
+            updateURL(searchInput.value || null);
+        }
+
+        function toggleCustom(service, cardBtn) {
+            if (isInCustom(service)) {
+                customLinks = customLinks.filter(l => l !== service.link);
+            } else {
+                customLinks.push(service.link);
+            }
+            saveCustomLinks();
+            refreshCustomBtn();
+            if (cardBtn) {
+                const inList = isInCustom(service);
+                cardBtn.dataset.tooltip = inList ? 'Remove from My List' : 'Save to My List';
+                cardBtn.classList.toggle('in-list', inList);
             }
         }
 
-        // Show the Basic category by default
-        categories.forEach(function(category, index) {
-            var button = createButton(category, index);
-            buttonRow.appendChild(button);
-            if (index === 0) {
-                highlightButton(button);
+        function getCustomServices() {
+            const seen = new Set();
+            return allServices.filter(s => {
+                if (!customLinks.includes(s.link) || seen.has(s.link)) return false;
+                seen.add(s.link);
+                return true;
+            });
+        }
+
+        // ---- Platform button ----
+        // 'all' key: user toggled all-platforms on a known OS.
+        // 'unknown' key: detection failed — same display but non-interactive.
+        const platformMeta = {
+            windows: { cls: 'plat-win', tip: 'Showing Windows only — click for all platforms' },
+            mac:     { cls: 'plat-mac', tip: 'Showing macOS only — click for all platforms' },
+            linux:   { cls: 'plat-lnx', tip: 'Showing Linux only — click for all platforms' },
+            unknown: { cls: 'plat-all', tip: 'Showing all platforms' },
+            all:     { cls: 'plat-all', tip: 'All platforms — click to filter by your OS' },
+        };
+
+        const platformIcons = {
+            windows: 'fab fa-windows',
+            mac:     'fab fa-apple',
+            linux:   'fab fa-linux',
+            unknown: 'fas fa-globe',
+            all:     'fas fa-globe',
+        };
+
+        function refreshPlatformBtn() {
+            if (!platformBtn) return;
+            const key = detectedPlatform === 'unknown' ? 'unknown'
+                      : allPlatformsMode               ? 'all'
+                      : detectedPlatform;
+            const meta = platformMeta[key];
+            platformBtn.innerHTML       = '<i class="' + platformIcons[key] + '"></i>';
+            platformBtn.className       = 'platform-btn ' + meta.cls;
+            platformBtn.dataset.tooltip = meta.tip;
+            platformBtn.disabled        = (detectedPlatform === 'unknown');
+        }
+
+        if (platformBtn) {
+            refreshPlatformBtn();
+            platformBtn.addEventListener('click', function () {
+                if (detectedPlatform === 'unknown') return;
+                allPlatformsMode = !allPlatformsMode;
+                refreshPlatformBtn();
+                // Re-render current view with updated platform filter.
+                // For search, re-run the filter so results reflect the new platform.
+                if (currentViewIndex === -1) {
+                    filterLinks(currentSearchQuery);
+                } else {
+                    showCategory(currentViewIndex);
+                }
+            });
+        }
+
+        // ---- Notification ----
+        function showNotification(msg) {
+            const n = document.createElement('div');
+            n.className = 'notification';
+            n.innerText = msg;
+            document.body.appendChild(n);
+            setTimeout(() => {
+                n.classList.add('fade-out');
+                setTimeout(() => { if (n.parentNode) n.parentNode.removeChild(n); }, 400);
+            }, 2600);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(
+                ()  => showNotification('Install command copied! Paste it in your terminal.'),
+                ()  => showNotification('Could not copy to clipboard.')
+            );
+        }
+
+        // ---- OS install icons ----
+        // FA icons used where Font Awesome Free has the brand icon.
+        // Letter monograms used as placeholders for distros not in FA Free —
+        // replace the <span> or swap cls to a real icon class when you have one.
+        const osDefs = [
+            { key: 'windows', type: 'fa',     icon: 'fab fa-windows',              platform: 'windows', cmd: v => 'winget install -e --id ' + v,  tip: 'Copy Windows install command' },
+            { key: 'macos',   type: 'fa',     icon: 'fab fa-apple',                platform: 'mac',     cmd: v => 'brew install ' + v,            tip: 'Copy Mac install command' },
+            { key: 'debian',  type: 'letter', letter: 'D', cls: 'os-deb',          platform: 'linux',   cmd: v => 'sudo apt install ' + v,        tip: 'Copy Debian/Ubuntu command' },
+            { key: 'fedora',  type: 'letter', letter: 'F', cls: 'os-fed',          platform: 'linux',   cmd: v => 'sudo dnf install ' + v,        tip: 'Copy Fedora command' },
+            { key: 'suse',    type: 'letter', letter: 'S', cls: 'os-suse',         platform: 'linux',   cmd: v => 'sudo zypper install ' + v,     tip: 'Copy openSUSE command' },
+            { key: 'rhel',    type: 'letter', letter: 'R', cls: 'os-rhel',         platform: 'linux',   cmd: v => 'sudo dnf install ' + v,        tip: 'Copy RHEL command' },
+            { key: 'flatpak', type: 'fa',     icon: 'fab fa-linux',                platform: 'linux',   cmd: v => 'flatpak install flathub ' + v, tip: 'Copy Flatpak command' },
+        ];
+
+        function buildOsRow(service) {
+            const row = document.createElement('div');
+            row.classList.add('sub-row');
+
+            // Website link is always first
+            const webA = document.createElement('a');
+            webA.className = 'os-icon os-web';
+            webA.href = service.link;
+            webA.target = '_blank';
+            webA.rel = 'noopener noreferrer';
+            webA.innerHTML = '<i class="fas fa-globe"></i>';
+            webA.dataset.tooltip = 'Open website';
+            webA.addEventListener('click', e => e.stopPropagation());
+            row.appendChild(webA);
+
+            for (const def of osDefs) {
+                if (service[def.key] && platformAllows(def.platform)) {
+                    let el;
+                    if (def.type === 'fa') {
+                        el = document.createElement('i');
+                        el.className = def.icon + ' os-icon';
+                    } else {
+                        el = document.createElement('span');
+                        el.className = 'os-icon os-letter ' + def.cls;
+                        el.textContent = def.letter;
+                    }
+                    el.dataset.tooltip = def.tip;
+                    const cmd = def.cmd(service[def.key]);
+                    el.addEventListener('click', e => { e.stopPropagation(); copyToClipboard(cmd); });
+                    row.appendChild(el);
+                }
             }
+
+            return row;
+        }
+
+        // ---- Card builder ----
+        function buildCard(service) {
+            const item = document.createElement('div');
+            item.classList.add('sub-grid-item');
+
+            const addBtn = document.createElement('button');
+            const inList = isInCustom(service);
+            addBtn.className = 'card-add-btn' + (inList ? ' in-list' : '');
+            addBtn.innerHTML = '<i class="fas fa-bookmark"></i>';
+            addBtn.dataset.tooltip = inList ? 'Remove from My List' : 'Save to My List';
+            addBtn.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleCustom(service, addBtn);
+            });
+
+            const icon = document.createElement('i');
+            icon.className = service.icon;
+
+            const link = document.createElement('a');
+            link.href = service.link;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = service.name;
+
+            const desc = document.createElement('span');
+            desc.textContent = service.description;
+
+            item.appendChild(addBtn);
+            item.appendChild(icon);
+            item.appendChild(link);
+            item.appendChild(desc);
+            item.appendChild(buildOsRow(service));
+
+            return item;
+        }
+
+        // ---- Category rendering ----
+        function showCategory(index, services = null) {
+            currentViewIndex = index;
+            mainGrid.innerHTML = '';
+
+            let cat;
+            if (index === -1) {
+                cat = { title: 'Search Results', services: services || allServices };
+            } else if (index === -2) {
+                cat = { title: 'My List', services: getCustomServices() };
+            } else {
+                cat = categories[index];
+            }
+
+            categoryTitle.textContent = cat.title;
+
+            if (index === -2 && cat.services.length === 0) {
+                const msg = document.createElement('p');
+                msg.className = 'empty-list-msg';
+                msg.textContent = 'Your list is empty. Click the + on any software card to save it here.';
+                mainGrid.appendChild(msg);
+                return;
+            }
+
+            const grid = document.createElement('div');
+            grid.classList.add('sub-grid');
+            cat.services.forEach(s => grid.appendChild(buildCard(s)));
+            mainGrid.appendChild(grid);
+        }
+
+        // ---- Sidebar buttons ----
+        function highlightButton(btn) {
+            if (activeButton) activeButton.classList.remove('active');
+            btn.classList.add('active');
+            activeButton = btn;
+        }
+
+        function createButton(category, index) {
+            const btn = document.createElement('button');
+            btn.textContent = category.title;
+            btn.addEventListener('click', () => {
+                showCategory(index);
+                highlightButton(btn);
+                searchInput.value = '';
+                updateURL(null);
+            });
+            return btn;
+        }
+
+        // ---- Custom category button (orange, inserted after index 0) ----
+        let customCatBtn = null;
+
+        function refreshCustomBtn() {
+            if (!customCatBtn) return;
+            const n = customLinks.length;
+            customCatBtn.textContent = 'My List' + (n > 0 ? ' (' + n + ')' : '');
+        }
+
+        function createCustomCatBtn() {
+            customCatBtn = document.createElement('button');
+            customCatBtn.className = 'custom-cat-btn';
+            refreshCustomBtn();
+            customCatBtn.addEventListener('click', () => {
+                showCategory(-2);
+                highlightButton(customCatBtn);
+                searchInput.value = '';
+                currentSearchQuery = '';
+                updateURL(null);
+            });
+            // Place right after "Curated Highlights" (first button)
+            const first = buttonRow.children[0];
+            if (first && first.nextSibling) {
+                buttonRow.insertBefore(customCatBtn, first.nextSibling);
+            } else {
+                buttonRow.appendChild(customCatBtn);
+            }
+        }
+
+        // ---- Search ----
+        function filterLinks(query) {
+            currentViewIndex   = -1;
+            currentSearchQuery = query;
+            const seen = new Set();
+            const results = allServices.filter(s => {
+                if (seen.has(s.link)) return false;
+                seen.add(s.link);
+                return s.value.toLowerCase().includes(query.toLowerCase());
+            });
+            showCategory(-1, results);
+            updateURL(query);
+        }
+
+        function loadInitialSearch() {
+            const q = initialParams.get('search');
+            if (q) { searchInput.value = q; filterLinks(q); }
+        }
+
+        // ---- Init ----
+        categories.forEach((cat, i) => {
+            const btn = createButton(cat, i);
+            buttonRow.appendChild(btn);
+            if (i === 0) highlightButton(btn);
         });
 
-        searchInput.addEventListener('input', function() {
-            filterLinks(searchInput.value);
-        });
+        createCustomCatBtn();
 
-        // Ensure the grid is displayed first, then apply the search if needed
+        searchInput.addEventListener('input', () => filterLinks(searchInput.value));
+
         showCategory(0);
         loadInitialSearch();
     })
-    .catch(error => console.error('Error loading or parsing main.json:', error));
+    .catch(err => console.error('Error loading software catalog:', err));
