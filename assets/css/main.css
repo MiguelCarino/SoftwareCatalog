@@ -242,6 +242,7 @@ a {
 
 .sub-grid-item > i {
     font-size: 32px;
+    margin-top: 12px; /* push icon below the absolute-positioned bookmark button */
     margin-bottom: 12px;
     color: var(--bg-sidebar-hover);
     transition: transform 0.3s ease;

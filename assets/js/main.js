@@ -72,8 +72,18 @@ let customLinks = loadCustomLinks();
 fetch('assets/json/software.json')
     .then(r => r.json())
     .then(data => {
-        const categories = data;
-        const allServices = categories.reduce((acc, c) => acc.concat(c.services), []);
+        // software.json is a flat array of services; each service declares its own
+        // "categories" field (array of category title strings). Build the sidebar
+        // categories in insertion order (order of first appearance across services).
+        const allServices = data;
+        const categoryMap = new Map();
+        allServices.forEach(service => {
+            (service.categories || []).forEach(title => {
+                if (!categoryMap.has(title)) categoryMap.set(title, []);
+                categoryMap.get(title).push(service);
+            });
+        });
+        const categories = Array.from(categoryMap, ([title, services]) => ({ title, services }));
 
         const mainGrid      = document.getElementById('main-grid');
         const buttonRow     = document.getElementById('button-row');
@@ -344,6 +354,13 @@ fetch('assets/json/software.json')
             if (!customCatBtn) return;
             const n = customLinks.length;
             customCatBtn.textContent = 'My List' + (n > 0 ? ' (' + n + ')' : '');
+            customCatBtn.style.display = n > 0 ? '' : 'none';
+            // If the user is viewing My List and just removed the last item, go back.
+            if (n === 0 && currentViewIndex === -2) {
+                showCategory(0);
+                const firstCatBtn = buttonRow.children[0];
+                if (firstCatBtn) highlightButton(firstCatBtn);
+            }
         }
 
         function createCustomCatBtn() {
