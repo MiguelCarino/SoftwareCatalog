@@ -251,16 +251,22 @@ fetch('assets/json/software.json')
             webA.addEventListener('click', e => e.stopPropagation());
             row.appendChild(webA);
 
+            let iconsAdded = 0;
             for (const def of osDefs) {
                 if (service[def.key] && platformAllows(def.platform)) {
-                    const el = document.createElement('i');
-                    el.className = def.icon + ' os-icon';
-                    el.dataset.tooltip = def.tip;
+                    // Wrap the <i> in a <button> so FA renders inline-block inside
+                    // an inline-flex container (same pattern as the globe <a> above).
+                    const btn = document.createElement('button');
+                    btn.className = 'os-icon';
+                    btn.innerHTML = '<i class="' + def.icon + '"></i>';
+                    btn.dataset.tooltip = def.tip;
                     const cmd = def.cmd(service[def.key]);
-                    el.addEventListener('click', e => { e.stopPropagation(); copyToClipboard(cmd); });
-                    row.appendChild(el);
+                    btn.addEventListener('click', e => { e.stopPropagation(); copyToClipboard(cmd); });
+                    row.appendChild(btn);
+                    iconsAdded++;
                 }
             }
+            console.log('[OSRow]', service.name, '→', iconsAdded, 'install icons | platform:', detectedPlatform, '| allMode:', allPlatformsMode);
 
             return row;
         }
