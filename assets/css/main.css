@@ -1,211 +1,400 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
 
-/* 
-   1. CSS Variables & Themes
-    */
+/* ── 1. CSS VARIABLES & THEMES ─────────────────────────────── */
 
-/* DEFAULT: Moe Theme */
 :root {
-    --bg-main: #fdf8f8;
-    --bg-sidebar: #ff9a9e;
-    --bg-sidebar-hover: #ff7eb3;
-    --bg-card: #ffffff;
-    --bg-card-hover: #fff0f5;
-    
-    --text-main: #2d3436;
-    --text-light: #ffffff;
-    --text-muted: #636e72;
-    --accent: #ff7eb3;
-    
-    --success: #00b894;
-    --border-color: rgba(0, 0, 0, 0.05);
-    
-    /* Theme-specific dynamic colors for shadows and hovers */
-    --shadow-md-color: rgba(255, 126, 179, 0.15);
+    --bg-main:          #fdf8f8;
+    --bg-card:          #ffffff;
+    --bg-card-hover:    #fff0f5;
+    --bg-input:         #ffffff;
+    --bg-btn:           #ffffff;
+
+    --text-main:        #2d3436;
+    --text-light:       #ffffff;
+    --text-muted:       #636e72;
+    --accent:           #ff7eb3;
+
+    --success:          #00b894;
+    --border-color:     rgba(0, 0, 0, 0.08);
+
+    --shadow-md-color:    rgba(255, 126, 179, 0.15);
     --border-hover-color: rgba(255, 126, 179, 0.3);
-    --icon-hover-bg: rgba(255, 126, 179, 0.1);
-    
-    /* Shared values */
-    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.04);
-    --shadow-md: 0 10px 20px var(--shadow-md-color);
-    --radius-md: 12px;
-    --radius-lg: 16px;
+    --icon-hover-bg:      rgba(255, 126, 179, 0.1);
+
+    --shadow-sm:  0 4px 6px rgba(0, 0, 0, 0.04);
+    --shadow-md:  0 10px 20px var(--shadow-md-color);
+    --radius-md:  12px;
+    --radius-lg:  16px;
     --radius-pill: 50px;
 }
 
-/* BLUE THEME */
 [data-theme="blue"] {
-    --bg-main: #f0f4f8;
-    --bg-sidebar: #4ea8de;
-    --bg-sidebar-hover: #0077b6;
-    --bg-card-hover: #e0fbfc;
-    --accent: #0077b6;
-    --shadow-md-color: rgba(0, 119, 182, 0.15);
+    --bg-main:          #f0f4f8;
+    --bg-card-hover:    #e0fbfc;
+    --accent:           #0077b6;
+    --shadow-md-color:    rgba(0, 119, 182, 0.15);
     --border-hover-color: rgba(0, 119, 182, 0.3);
-    --icon-hover-bg: rgba(0, 119, 182, 0.1);
+    --icon-hover-bg:      rgba(0, 119, 182, 0.1);
 }
 
-/* GREEN THEME */
 [data-theme="green"] {
-    --bg-main: #f1f8f5;
-    --bg-sidebar: #52b788;
-    --bg-sidebar-hover: #2d6a4f;
-    --bg-card-hover: #e8f5e9;
-    --accent: #2d6a4f;
-    --shadow-md-color: rgba(45, 106, 79, 0.15);
+    --bg-main:          #f1f8f5;
+    --bg-card-hover:    #e8f5e9;
+    --accent:           #2d6a4f;
+    --shadow-md-color:    rgba(45, 106, 79, 0.15);
     --border-hover-color: rgba(45, 106, 79, 0.3);
-    --icon-hover-bg: rgba(45, 106, 79, 0.1);
+    --icon-hover-bg:      rgba(45, 106, 79, 0.1);
 }
 
-/* ORANGE THEME */
 [data-theme="orange"] {
-    --bg-main: #fff8f0;
-    --bg-sidebar: #f4a261;
-    --bg-sidebar-hover: #e76f51;
-    --bg-card-hover: #ffefe5;
-    --accent: #e76f51;
-    --shadow-md-color: rgba(231, 111, 81, 0.15);
+    --bg-main:          #fff8f0;
+    --bg-card-hover:    #ffefe5;
+    --accent:           #e76f51;
+    --shadow-md-color:    rgba(231, 111, 81, 0.15);
     --border-hover-color: rgba(231, 111, 81, 0.3);
-    --icon-hover-bg: rgba(231, 111, 81, 0.1);
+    --icon-hover-bg:      rgba(231, 111, 81, 0.1);
 }
 
-/* 
-   2. Base & Reset
-    */
-*, *::before, *::after {
-    box-sizing: border-box;
+/* CARINO SYSTEMS THEME — near-black bg, dark navy cards, gold accent */
+[data-theme="carino"] {
+    --bg-main:          #050505;
+    --bg-card:          #012d54;
+    --bg-card-hover:    #0a2a4a;
+    --bg-input:         #0f0f0f;
+    --bg-btn:           #0f0f0f;
+
+    --text-main:        #ffffff;
+    --text-light:       #ffffff;
+    --text-muted:       #a3a3a3;
+    --accent:           #eab308;
+
+    --border-color:       #262626;
+    --shadow-md-color:    rgba(234, 179, 8, 0.12);
+    --border-hover-color: rgba(234, 179, 8, 0.4);
+    --icon-hover-bg:      rgba(234, 179, 8, 0.08);
 }
 
-body, html {
-    margin: 0;
-    padding: 0;
+/* ── 2. BASE & RESET ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
     height: 100%;
     overflow: hidden;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'IBM Plex Sans', 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.5;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
+a { text-decoration: none; color: inherit; }
 
-/* 
-   3. Main Layout
-    */
-.container {
+/* ── 3. TOP HEADER ───────────────────────────────────────────── */
+.top-header {
+    height: 60px;
+    flex-shrink: 0;
+    background: linear-gradient(180deg, #0f0f0f 0%, #050505 100%);
+    border-bottom: 1px solid var(--border-color);
     display: flex;
-    height: 100vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    gap: 16px;
+    z-index: 100;
+    position: relative;
 }
 
-/* 
-   4. Sidebar
-    */
-.sidebar {
-    width: 240px;
-    background: linear-gradient(135deg, var(--bg-sidebar) 0%, var(--bg-sidebar-hover) 100%);
-    color: var(--text-light);
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.brand-logo { display: flex; align-items: center; }
+.brand-logo img {
+    height: 30px;
+    border-radius: 6px;
+    transition: transform 0.2s;
+}
+.brand-logo:hover img { transform: scale(1.05); }
+
+.brand-name {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--text-main);
+    white-space: nowrap;
+    cursor: default;
+}
+
+[data-theme="carino"] .brand-name {
+    background: linear-gradient(130deg, #fef08a 0%, #eab308 50%, #b45309 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header-search {
+    flex: 1;
+    max-width: 480px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-search input {
+    flex: 1;
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    font-size: 0.875rem;
+    background: var(--bg-input);
+    color: var(--text-main);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+}
+
+.header-search input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--icon-hover-bg);
+}
+
+.header-search input::placeholder { color: var(--text-muted); }
+
+.header-right { display: flex; align-items: center; flex-shrink: 0; }
+.social-row   { display: flex; gap: 6px; }
+
+.icon-btn {
+    width: 32px; height: 32px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted);
+    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+}
+
+.icon-btn:hover {
+    border-color: var(--accent);
+    color: var(--bg-main);
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+.icon-btn svg { width: 14px; height: 14px; }
+
+.my-list-count {
+    position: absolute;
+    top: -5px; right: -5px;
+    background: var(--accent);
+    color: var(--bg-main);
+    font-size: 0.6rem; font-weight: 700;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    display: none;
+    align-items: center; justify-content: center;
+    pointer-events: none;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.my-list-count.visible { display: flex; }
+
+/* ── 4. WORKSPACE ───────────────────────────────────────────── */
+.workspace {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 30px 0;
-    overflow-y: auto;
-    box-shadow: 4px 0 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+/* ── 5. SLICE MENU ──────────────────────────────────────────── */
+.slice-menu {
+    display: flex;
+    flex: 1 1 auto;
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
+    border-bottom: 1px solid transparent;
     z-index: 10;
 }
 
-.sidebar img {
-    border-radius: var(--radius-md);
-    margin-bottom: 10px;
-    transition: transform 0.3s ease;
+body.state-selected .slice-menu {
+    flex: 0 0 70px;
+    border-bottom-color: var(--border-color);
 }
 
-.sidebar img:hover {
-    transform: scale(1.05);
-}
-
-.sidebar h2 {
-    margin: 0 0 25px 0;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
-
-.sidebar button {
-    width: 90%;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--text-light);
-    border: none;
-    border-radius: var(--radius-md);
-    padding: 12px 20px;
-    margin: 5px 0;
+.slice {
+    flex: 1;
+    border-right: 1px solid var(--border-color);
+    position: relative;
     cursor: pointer;
-    text-align: left;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.sidebar button:hover,
-.sidebar button.active {
-    background-color: var(--text-light);
-    color: var(--bg-sidebar-hover);
-    box-shadow: var(--shadow-sm);
-    transform: translateX(5px);
-}
-
-/* 
-   5. Main Content Area & Search
-    */
-.main-content {
-    flex-grow: 1;
-    padding: 40px;
-    overflow-y: auto;
-}
-
-.main-content h2 {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--text-main);
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
-}
-
-.search-bar {
-    margin-bottom: 30px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 15px;
+    justify-content: center;
+    overflow: hidden;
+    transition: flex 0.4s ease, background 0.3s ease;
+    background: var(--bg-card);
 }
 
-.search-bar input {
-    width: 60%;
-    max-width: 600px;
-    padding: 14px 24px;
-    border: 2px solid transparent;
-    border-radius: var(--radius-pill);
-    font-size: 16px;
-    background-color: #ffffff;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
+.slice:last-child { border-right: none; }
+
+body:not(.state-selected) .slice:hover { flex: 1.3; }
+body:not(.state-selected) .slice:hover .slice-bg { opacity: 1; transform: scale(1.05); }
+
+.slice-bg {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    background: radial-gradient(circle at center, var(--icon-hover-bg) 0%, transparent 65%);
+    pointer-events: none;
 }
 
-.search-bar input:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: var(--shadow-md);
+/* Large state — full height */
+.slice-large {
+    position: absolute;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 0.3s ease;
 }
 
-/* 
-   6. Software Grid & Cards
-    */
+.slice-num-lg {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 4rem; font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+    margin-bottom: 14px;
+    user-select: none;
+}
+
+.slice-text-lg {
+    writing-mode: vertical-rl;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1.7rem; font-weight: 900;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+/* Icon — hidden on desktop, visible on mobile */
+.slice-icon { display: none; }
+
+/* Small state — thin bar */
+.slice-small {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    transition: opacity 0.3s ease;
+    padding: 0 4px;
+}
+
+.slice-text-sm {
+    font-size: 0.7rem; font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-family: 'IBM Plex Sans', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* State transitions */
+body.state-selected .slice-large { opacity: 0; pointer-events: none; }
+body.state-selected .slice-small { opacity: 1; pointer-events: auto; }
+
+body.state-selected .slice.active {
+    background: var(--bg-main);
+    border-top: 3px solid var(--accent);
+}
+
+body.state-selected .slice.active .slice-text-sm { color: var(--accent); }
+
+body.state-selected .slice:not(.active):hover { background: var(--bg-card-hover); }
+
+/* ── 6. STAGE ───────────────────────────────────────────────── */
+.stage {
+    flex: 0 0 0;
+    opacity: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+}
+
+body.state-selected .stage {
+    flex: 1 1 auto;
+    opacity: 1;
+    padding: 32px 48px;
+}
+
+.stage::-webkit-scrollbar { width: 6px; }
+.stage::-webkit-scrollbar-track { background: transparent; }
+.stage::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: var(--radius-pill); }
+.stage::-webkit-scrollbar-thumb:hover { background: var(--border-hover-color); }
+
+/* ── 7. PANELS ──────────────────────────────────────────────── */
+.panel { display: none; }
+.panel.active { display: block; animation: fadeUp 0.4s ease forwards; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.panel-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.panel-title {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 2rem; font-weight: 900;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.panel-num {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 3.5rem; font-weight: 900;
+    color: rgba(255, 255, 255, 0.04);
+    line-height: 0.8;
+    user-select: none;
+}
+
+/* ── 8. SUBCATEGORY DIVIDER ─────────────────────────────────── */
+.subcat-divider {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+    margin: 28px 0 14px;
+    opacity: 0.6;
+}
+
+.subcat-divider:first-child { margin-top: 0; }
+
+/* ── 9. SOFTWARE GRID & CARDS ──────────────────────────────── */
 .sub-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
     padding-bottom: 2rem;
 }
 
@@ -213,7 +402,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 24px;
+    padding: 20px;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     background-color: var(--bg-card);
@@ -238,40 +427,36 @@ a {
     align-items: center;
     width: 100%;
     font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 8px;
+    font-size: 1rem;
+    margin-bottom: 6px;
     color: var(--text-main);
 }
 
 .sub-grid-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     background-color: var(--bg-card-hover);
     box-shadow: var(--shadow-md);
-    border-color: var(--border-hover-color); /* Updated */
+    border-color: var(--border-hover-color);
 }
 
 .sub-grid-item > i {
-    font-size: 32px;
-    margin-bottom: 12px;
-    color: var(--bg-sidebar-hover);
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: var(--accent);
     transition: transform 0.3s ease;
 }
 
-.sub-grid-item:hover > i {
-    transform: scale(1.1);
-}
+.sub-grid-item:hover > i { transform: scale(1.1); }
 
-.sub-grid-item span { /* Targets the service description */
-    font-size: 0.9rem;
+.sub-grid-item span {
+    font-size: 0.875rem;
     color: var(--text-muted);
     text-align: center;
-    margin-bottom: 15px;
-    flex-grow: 1; /* Pushes the icons to the bottom */
+    margin-bottom: 12px;
+    flex-grow: 1;
 }
 
-/*
-   7. OS Install Row & Badge Placeholders
-    */
+/* ── 10. OS INSTALL ROW ────────────────────────────────────── */
 .sub-row {
     margin-top: auto;
     display: flex;
@@ -279,28 +464,28 @@ a {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 8px;
-    padding-top: 15px;
+    gap: 6px;
+    padding-top: 12px;
     border-top: 1px solid var(--border-color);
     width: 100%;
 }
 
-/* OS icon base — neutral icon slot, no button chrome */
 .os-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.8rem; height: 1.8rem;
     border-radius: 6px;
-    font-size: 1.2rem;
-    font-style: normal; /* keep <span> upright */
+    font-size: 1.1rem;
+    font-style: normal;
     cursor: pointer;
     text-decoration: none;
     color: var(--text-muted);
     background: transparent;
     transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
     user-select: none;
+    border: none;
+    padding: 0;
 }
 
 .os-icon:hover {
@@ -309,39 +494,31 @@ a {
     background-color: var(--icon-hover-bg);
 }
 
-/* Website link icon */
 .os-icon.os-web { font-size: 1rem; }
 
-/*
-   8. Shared Tooltip Logic
-   Covers: os-badge in sub-row, platform button, card add button
-    */
+/* ── 11. TOOLTIPS (fixed colors — work on any theme) ────────── */
 .sub-row [data-tooltip],
 .platform-btn[data-tooltip],
-.card-add-btn[data-tooltip] {
-    position: relative;
-}
+.card-add-btn[data-tooltip] { position: relative; }
 
 .sub-row [data-tooltip]::before,
 .platform-btn[data-tooltip]::before,
 .card-add-btn[data-tooltip]::before {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: 130%;
-    left: 50%;
+    bottom: 130%; left: 50%;
     transform: translateX(-50%);
-    background-color: var(--text-main);
-    color: var(--text-light);
-    padding: 6px 10px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 5px 9px;
     border-radius: 6px;
-    font-size: 11px;
-    font-weight: 600;
+    font-size: 11px; font-weight: 600;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease, bottom 0.2s ease;
-    z-index: 100;
-    box-shadow: var(--shadow-sm);
+    z-index: 200;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .sub-row [data-tooltip]::after,
@@ -349,97 +526,56 @@ a {
 .card-add-btn[data-tooltip]::after {
     content: '';
     position: absolute;
-    bottom: 110%;
-    left: 50%;
+    bottom: 110%; left: 50%;
     transform: translateX(-50%);
-    border-width: 5px;
-    border-style: solid;
-    border-color: var(--text-main) transparent transparent transparent;
+    border-width: 5px; border-style: solid;
+    border-color: #1a1a1a transparent transparent transparent;
     opacity: 0;
     transition: opacity 0.2s ease, bottom 0.2s ease;
-    z-index: 100;
+    z-index: 200;
 }
 
 .sub-row [data-tooltip]:hover::before,
 .platform-btn[data-tooltip]:hover::before,
-.card-add-btn[data-tooltip]:hover::before {
-    opacity: 1;
-    bottom: 150%;
-}
+.card-add-btn[data-tooltip]:hover::before { opacity: 1; bottom: 150%; }
 
 .sub-row [data-tooltip]:hover::after,
 .platform-btn[data-tooltip]:hover::after,
-.card-add-btn[data-tooltip]:hover::after {
-    opacity: 1;
-    bottom: 120%;
-}
+.card-add-btn[data-tooltip]:hover::after { opacity: 1; bottom: 120%; }
 
-/*
-   9. Platform Button (in search bar) — circular icon like the social buttons
-    */
+/* ── 12. PLATFORM BUTTON ────────────────────────────────────── */
 .platform-btn {
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg-btn);
     border-radius: 50%;
     border: 1px solid var(--border-color);
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    color: var(--text-muted);
 }
 
-.platform-btn:hover:not(:disabled) {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-}
+.platform-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.platform-btn:disabled { cursor: default; opacity: 0.6; }
 
-.platform-btn:disabled {
-    cursor: default;
-    opacity: 0.7;
-}
-
-/* Platform-specific icon tints */
 .plat-win { color: #0078d4; border-color: rgba(0, 120, 212, 0.35); }
-.plat-mac { color: #1d1d1f; border-color: rgba(29, 29, 31, 0.35); }
+.plat-mac { color: #888888; border-color: rgba(136, 136, 136, 0.35); }
 .plat-lnx { color: #e8820c; border-color: rgba(232, 130, 12, 0.35); }
 .plat-all { color: var(--text-muted); }
 
-/*
-   11. Custom Category Button (sidebar, orange)
-    */
-.custom-cat-btn {
-    width: 90%;
-    color: var(--text-light);
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
-    border-radius: var(--radius-md);
-    padding: 12px 20px;
-    margin: 5px 0;
-    cursor: pointer;
-    text-align: left;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    /* Orange accent to distinguish from regular categories */
-    background: linear-gradient(135deg, rgba(244, 162, 97, 0.35) 0%, rgba(231, 111, 81, 0.35) 100%);
-    border-color: rgba(244, 162, 97, 0.6);
+/* ── 13. CARINO THEME OVERRIDES ─────────────────────────────── */
+[data-theme="carino"] .sub-grid-item.in-list {
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.12) 0%, rgba(234, 179, 8, 0.06) 100%);
+    border-color: rgba(234, 179, 8, 0.4);
 }
 
-.custom-cat-btn:hover,
-.custom-cat-btn.active {
-    background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
-    color: #fff;
-    border-color: transparent;
-    box-shadow: var(--shadow-sm);
-    transform: translateX(5px);
+[data-theme="carino"] .sub-grid-item.in-list:hover {
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.22) 0%, rgba(234, 179, 8, 0.12) 100%);
 }
 
-/*
-   12. Empty list message
-    */
+/* ── 14. MISC: EMPTY MSG / NOTIFICATION ─────────────────────── */
 .empty-list-msg {
     color: var(--text-muted);
     text-align: center;
@@ -448,190 +584,64 @@ a {
     line-height: 1.6;
 }
 
-/* 
-   13. Utilities & Components (Notifications, Brands)
-    */
 .notification {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 24px; right: 24px;
     background-color: var(--success);
     color: white;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: var(--radius-pill);
     z-index: 1000;
     font-weight: 600;
+    font-size: 0.875rem;
     box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4);
     transition: opacity 0.4s ease, transform 0.4s ease;
-    opacity: 1;
-    transform: translateY(0);
 }
 
-.notification.fade-out {
-    opacity: 0;
-    transform: translateY(10px);
-}
+.notification.fade-out { opacity: 0; transform: translateY(8px); }
 
-/* Social Buttons */
-.social-btn {
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
-    border-radius: 50%;
-    color: var(--text-muted);
-    border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-sm);
-}
+/* ── 15. MOBILE ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .top-header { padding: 0 14px; gap: 10px; height: 54px; }
+    .brand-name { display: none; }
+    .header-search { max-width: none; }
 
-.social-btn:hover {
-    transform: translateY(-3px);
-    color: var(--accent);
-    border-color: var(--accent);
-    box-shadow: var(--shadow-md);
-}
+    body.state-selected .slice-menu { flex: 0 0 56px; }
+    body.state-selected .stage { padding: 20px 14px; }
 
-/* Custom Scrollbar for a polished look */
-::-webkit-scrollbar {
-    width: 8px;
-}
+    /* Slices: hide text, show FA icons */
+    .slice-num-lg,
+    .slice-text-lg  { display: none; }
+    .slice-text-sm  { display: none; }
 
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: var(--radius-pill);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--border-hover-color); /* Updated */
-}
-/* 
-   9. Mobile Responsiveness (Media Queries)
-    */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
+    .slice-icon {
+        display: block;
+        color: var(--text-muted);
+        transition: color 0.2s ease, transform 0.2s ease;
     }
 
-    /* Transform sidebar into a top navigation bar */
-    .sidebar {
-        width: 100%;
-        height: auto;
-        padding: 15px 15px 0 15px; /* Removed bottom padding so the buttons sit flush */
-        flex-direction: column;
-        align-items: center; /* Center the logo */
-        overflow: visible; /* CRITICAL: Overrides desktop overflow to prevent clipping */
-        z-index: 20;
+    body:not(.state-selected) .slice-large .slice-icon { font-size: 1.8rem; }
+    body:not(.state-selected) .slice:hover .slice-large .slice-icon {
+        color: var(--text-main);
+        transform: scale(1.1);
     }
 
-    /* Hide the large title to save vertical space */
-    .sidebar h2 {
-        display: none; 
-    }
+    body.state-selected .slice-small .slice-icon { font-size: 1.1rem; }
+    body.state-selected .slice.active .slice-small .slice-icon { color: var(--accent); }
 
-    .sidebar img {
-        max-width: 45px !important;
-        margin-bottom: 10px;
-    }
+    /* Cards: single column */
+    .sub-grid { grid-template-columns: 1fr; gap: 12px; }
 
-    /* Make the button row a swipeable horizontal carousel */
-    #button-row {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden; /* Prevent vertical clipping */
-        gap: 10px;
-        padding-bottom: 15px; /* Padding for tap targets */
-        margin-top: 5px;
-        -webkit-overflow-scrolling: touch; /* Smooth iOS swipe scrolling */
-        
-        /* Hide the scrollbar for a cleaner UI, but keep it swipeable */
-        scrollbar-width: none; /* Firefox */
-    }
-    
-    #button-row::-webkit-scrollbar {
-        display: none; /* Chrome/Safari/Edge */
-    }
-
-    /* Adjust buttons for horizontal flow */
-    .sidebar button {
-        flex: 0 0 auto; /* CRITICAL: Prevents buttons from squishing to 0 width */
-        width: auto;
-        margin: 0;
-        padding: 10px 18px;
-        white-space: nowrap;
-        font-size: 0.9rem;
-        text-align: center;
-        border-radius: var(--radius-pill); /* Makes them look like modern pill tags */
-    }
-
-    /* Adjust main content area */
-    .main-content {
-        padding: 20px 15px;
-    }
-
-    .main-content h2 {
-        font-size: 1.5rem;
-    }
-
-    /* Make search bar take full width */
-    .search-bar {
-        width: 100%;
-        margin-top: 10px;
-    }
-    
-    .search-bar input {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    /* Stack cards in a single column */
-    .sub-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    /* Disable hover tooltips on mobile — no cursor to hover with */
+    /* Disable hover tooltips */
     .sub-row [data-tooltip]::before,
     .sub-row [data-tooltip]::after,
     .platform-btn[data-tooltip]::before,
     .platform-btn[data-tooltip]::after,
     .card-add-btn[data-tooltip]::before,
-    .card-add-btn[data-tooltip]::after {
-        display: none;
-    }
+    .card-add-btn[data-tooltip]::after { display: none; }
 
-    /* Keep bookmark button always visible on mobile (no hover state) */
     .card-add-btn { opacity: 0.4; }
     .card-add-btn.in-list { opacity: 1; }
 
-    /* Custom cat button in mobile carousel */
-    .custom-cat-btn {
-        flex: 0 0 auto;
-        width: auto;
-        margin: 0;
-        padding: 10px 18px;
-        white-space: nowrap;
-        font-size: 0.9rem;
-        text-align: center;
-        border-radius: var(--radius-pill);
-        background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
-        border-color: transparent;
-        color: #fff;
-    }
-
-    /* Center notifications on small screens */
-    .notification {
-        right: 15px;
-        left: 15px;
-        bottom: 20px;
-        text-align: center;
-    }
+    .notification { right: 12px; left: 12px; bottom: 16px; text-align: center; }
 }

@@ -1,40 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="blue">
+<html lang="en" data-theme="carino">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Software Catalog</title>
     <link rel="icon" type="image/x-icon" href="assets/images/logo.webp">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=IBM+Plex+Sans:wght@300;400;500;700&family=Red+Hat+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <a href="https://carino.systems"><img style="max-width: 7vh;" src="assets/images/logo.webp" alt="Microsoft Logo"></a>
-            <h2>Software</h2>
-            <div id="button-row">
-                <!-- Buttons will be injected here by JavaScript -->
-            </div>
-        </div>
-        <div class="main-content">
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search for software...">
-                <!-- Platform badge: set and toggled by main.js based on detected OS -->
-                <button id="platform-btn" class="platform-btn" aria-label="Platform filter"></button>
-                <a href="https://github.com/MiguelCarino/SoftwareCatalog" target="_blank" class="social-btn" aria-label="GitHub">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/miguelcarino94/" target="_blank" class="social-btn" aria-label="LinkedIn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                </a>
-            </div>
-            <h2 id="category-title">Basic</h2>
-            <div class="main-grid" id="main-grid">
-                <!-- Grid items will be injected here by JavaScript -->
-            </div>
+
+<header class="top-header">
+    <div class="header-left">
+        <a href="https://carino.systems" class="brand-logo" title="Carino Systems">
+            <img src="assets/images/logo.webp" alt="Carino Systems">
+        </a>
+        <span class="brand-name">Software<span>Catalog</span></span>
+    </div>
+    <div class="header-search">
+        <input type="text" id="search-input" placeholder="Search software...">
+        <button id="platform-btn" class="platform-btn" aria-label="Platform filter"></button>
+    </div>
+    <div class="header-right">
+        <div class="social-row">
+            <button id="my-list-btn" class="icon-btn" title="My List" aria-label="My List">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                <span class="my-list-count" id="my-list-count"></span>
+            </button>
+            <a href="https://github.com/MiguelCarino/SoftwareCatalog" target="_blank" class="icon-btn" title="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/miguelcarino94/" target="_blank" class="icon-btn" title="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
         </div>
     </div>
-    <script src="/assets/json/software.json" type="application/json"></script>
-    <script src="assets/js/main.js"></script>
+</header>
+
+<div class="workspace">
+    <nav class="slice-menu" id="sliceMenu"></nav>
+    <main class="stage" id="stage"></main>
+</div>
+
+<script src="assets/js/main.js"></script>
 </body>
 </html>
