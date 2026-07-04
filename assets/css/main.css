@@ -94,7 +94,7 @@ body {
 a { text-decoration: none; color: inherit; }
 
 /* ── 3. TOP HEADER ───────────────────────────────────────────── */
-.top-header {
+.sc-toolbar {
     height: 60px;
     flex-shrink: 0;
     background: linear-gradient(180deg, #0f0f0f 0%, #050505 100%);
@@ -602,7 +602,7 @@ body.state-selected .stage {
 
 /* ── 15. MOBILE ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
-    .top-header { padding: 0 14px; gap: 10px; height: 54px; }
+    .sc-toolbar { padding: 0 14px; gap: 10px; height: 54px; }
     .brand-name { display: none; }
     .header-search { max-width: none; }
 
