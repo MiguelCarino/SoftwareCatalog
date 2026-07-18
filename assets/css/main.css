@@ -1,77 +1,37 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
-
-/* ── 1. CSS VARIABLES & THEMES ─────────────────────────────── */
+/* ── 1. CSS VARIABLES ──────────────────────────────────────────
+   Single Carino Systems theme — mirrors carino-branding.css tokens.
+   Near-black surfaces, one gold accent. No alternate/off-brand themes. */
 
 :root {
-    --bg-main:          #fdf8f8;
-    --bg-card:          #ffffff;
-    --bg-card-hover:    #fff0f5;
-    --bg-input:         #ffffff;
-    --bg-btn:           #ffffff;
-
-    --text-main:        #2d3436;
-    --text-light:       #ffffff;
-    --text-muted:       #636e72;
-    --accent:           #ff7eb3;
-
-    --success:          #00b894;
-    --border-color:     rgba(0, 0, 0, 0.08);
-
-    --shadow-md-color:    rgba(255, 126, 179, 0.15);
-    --border-hover-color: rgba(255, 126, 179, 0.3);
-    --icon-hover-bg:      rgba(255, 126, 179, 0.1);
-
-    --shadow-sm:  0 4px 6px rgba(0, 0, 0, 0.04);
-    --shadow-md:  0 10px 20px var(--shadow-md-color);
-    --radius-md:  12px;
-    --radius-lg:  16px;
-    --radius-pill: 50px;
-}
-
-[data-theme="blue"] {
-    --bg-main:          #f0f4f8;
-    --bg-card-hover:    #e0fbfc;
-    --accent:           #0077b6;
-    --shadow-md-color:    rgba(0, 119, 182, 0.15);
-    --border-hover-color: rgba(0, 119, 182, 0.3);
-    --icon-hover-bg:      rgba(0, 119, 182, 0.1);
-}
-
-[data-theme="green"] {
-    --bg-main:          #f1f8f5;
-    --bg-card-hover:    #e8f5e9;
-    --accent:           #2d6a4f;
-    --shadow-md-color:    rgba(45, 106, 79, 0.15);
-    --border-hover-color: rgba(45, 106, 79, 0.3);
-    --icon-hover-bg:      rgba(45, 106, 79, 0.1);
-}
-
-[data-theme="orange"] {
-    --bg-main:          #fff8f0;
-    --bg-card-hover:    #ffefe5;
-    --accent:           #e76f51;
-    --shadow-md-color:    rgba(231, 111, 81, 0.15);
-    --border-hover-color: rgba(231, 111, 81, 0.3);
-    --icon-hover-bg:      rgba(231, 111, 81, 0.1);
-}
-
-/* CARINO SYSTEMS THEME — near-black bg, dark navy cards, gold accent */
-[data-theme="carino"] {
-    --bg-main:          #050505;
-    --bg-card:          #012d54;
-    --bg-card-hover:    #0a2a4a;
-    --bg-input:         #0f0f0f;
-    --bg-btn:           #0f0f0f;
+    --bg-main:          #050505;   /* near-black page background       */
+    --bg-card:          #0b0b0b;   /* card / panel background (was navy)*/
+    --bg-card-hover:    #17120a;   /* warm near-black on hover          */
+    --bg-elev:          #0d0d0d;   /* elevated surface (inputs, code)   */
+    --bg-input:         #0d0d0d;
+    --bg-btn:           #0d0d0d;
 
     --text-main:        #ffffff;
     --text-light:       #ffffff;
-    --text-muted:       #a3a3a3;
-    --accent:           #eab308;
+    --text-sec:         #a3a3a3;
+    --text-muted:       #a3a3a3;   /* kept readable on near-black       */
+    --accent:           #eab308;   /* Sharp Gold — the one accent       */
 
-    --border-color:       #262626;
-    --shadow-md-color:    rgba(234, 179, 8, 0.12);
-    --border-hover-color: rgba(234, 179, 8, 0.4);
+    --success:          #22c55e;
+    --border-color:     #262626;
+
+    --shadow-md-color:    rgba(234, 179, 8, 0.15);
+    --border-hover-color: #eab308;
     --icon-hover-bg:      rgba(234, 179, 8, 0.08);
+
+    --shadow-sm:  0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-md:  0 14px 28px rgba(0, 0, 0, 0.6);
+    --radius-md:  8px;
+    --radius-lg:  12px;
+    --radius-pill: 8px;            /* squared to match Branding inputs  */
+
+    --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --display: 'Red Hat Display', var(--sans);
 }
 
 /* ── 2. BASE & RESET ─────────────────────────────────────────── */
@@ -85,7 +45,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    font-family: 'IBM Plex Sans', 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--sans);
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.5;
@@ -124,7 +84,7 @@ a { text-decoration: none; color: inherit; }
 .brand-logo:hover img { transform: scale(1.05); }
 
 .brand-name {
-    font-family: 'Red Hat Display', sans-serif;
+    font-family: var(--display);
     font-size: 1.1rem;
     font-weight: 900;
     color: var(--text-main);
@@ -203,7 +163,7 @@ a { text-decoration: none; color: inherit; }
     display: none;
     align-items: center; justify-content: center;
     pointer-events: none;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--mono);
 }
 
 .my-list-count.visible { display: flex; }
@@ -264,7 +224,7 @@ body:not(.state-selected) .slice:hover .slice-bg { opacity: 1; transform: scale(
 }
 
 .slice-num-lg {
-    font-family: 'Red Hat Display', sans-serif;
+    font-family: var(--display);
     font-size: 4rem; font-weight: 900;
     color: transparent;
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
@@ -274,7 +234,7 @@ body:not(.state-selected) .slice:hover .slice-bg { opacity: 1; transform: scale(
 
 .slice-text-lg {
     writing-mode: vertical-rl;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: var(--sans);
     font-size: 1.7rem; font-weight: 900;
     color: var(--text-main);
     text-transform: uppercase;
@@ -300,7 +260,7 @@ body:not(.state-selected) .slice:hover .slice-bg { opacity: 1; transform: scale(
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.07em;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: var(--sans);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -337,8 +297,8 @@ body.state-selected .stage {
 
 .stage::-webkit-scrollbar { width: 6px; }
 .stage::-webkit-scrollbar-track { background: transparent; }
-.stage::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: var(--radius-pill); }
-.stage::-webkit-scrollbar-thumb:hover { background: var(--border-hover-color); }
+.stage::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 6px; }
+.stage::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* ── 7. PANELS ──────────────────────────────────────────────── */
 .panel { display: none; }
@@ -359,7 +319,7 @@ body.state-selected .stage {
 }
 
 .panel-title {
-    font-family: 'Red Hat Display', sans-serif;
+    font-family: var(--display);
     font-size: 2rem; font-weight: 900;
     color: var(--text-main);
     text-transform: uppercase;
@@ -368,16 +328,16 @@ body.state-selected .stage {
 }
 
 .panel-num {
-    font-family: 'Red Hat Display', sans-serif;
+    font-family: var(--display);
     font-size: 3.5rem; font-weight: 900;
-    color: rgba(255, 255, 255, 0.04);
+    color: rgba(234, 179, 8, 0.12);
     line-height: 0.8;
     user-select: none;
 }
 
 /* ── 8. SUBCATEGORY DIVIDER ─────────────────────────────────── */
 .subcat-divider {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--mono);
     font-size: 0.68rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -413,12 +373,12 @@ body.state-selected .stage {
 }
 
 .sub-grid-item.in-list {
-    background: linear-gradient(135deg, rgba(244, 162, 97, 0.35) 0%, rgba(231, 111, 81, 0.35) 100%);
-    border-color: rgba(244, 162, 97, 0.6);
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.14) 0%, rgba(234, 179, 8, 0.06) 100%);
+    border-color: rgba(234, 179, 8, 0.4);
 }
 
 .sub-grid-item.in-list:hover {
-    background: linear-gradient(135deg, rgba(244, 162, 97, 0.55) 0%, rgba(231, 111, 81, 0.55) 100%);
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.24) 0%, rgba(234, 179, 8, 0.12) 100%);
 }
 
 .sub-grid-item a {
@@ -564,16 +524,6 @@ body.state-selected .stage {
 .plat-mac { color: #888888; border-color: rgba(136, 136, 136, 0.35); }
 .plat-lnx { color: #e8820c; border-color: rgba(232, 130, 12, 0.35); }
 .plat-all { color: var(--text-muted); }
-
-/* ── 13. CARINO THEME OVERRIDES ─────────────────────────────── */
-[data-theme="carino"] .sub-grid-item.in-list {
-    background: linear-gradient(135deg, rgba(234, 179, 8, 0.12) 0%, rgba(234, 179, 8, 0.06) 100%);
-    border-color: rgba(234, 179, 8, 0.4);
-}
-
-[data-theme="carino"] .sub-grid-item.in-list:hover {
-    background: linear-gradient(135deg, rgba(234, 179, 8, 0.22) 0%, rgba(234, 179, 8, 0.12) 100%);
-}
 
 /* ── 14. MISC: EMPTY MSG / NOTIFICATION ─────────────────────── */
 .empty-list-msg {
