@@ -102,26 +102,10 @@ const SLICES = [
     }
 ];
 
-// ── FA diagnostic ────────────────────────────────────────────
-(function checkFA() {
-    const probe = document.createElement('i');
-    probe.className = 'fa-solid fa-circle-check';
-    probe.style.cssText = 'position:fixed;top:-999px;visibility:hidden;font-size:16px';
-    document.body.appendChild(probe);
-    requestAnimationFrame(() => {
-        const w = getComputedStyle(probe).width;
-        console.log('[SoftwareCatalog] FA probe:', w,
-            parseFloat(w) > 0 ? '✓ loaded' : '✗ NOT loaded');
-        document.body.removeChild(probe);
-    });
-})();
-
 // ── Main app ─────────────────────────────────────────────────
 fetch('assets/json/software.json')
     .then(r => r.json())
     .then(data => {
-        console.log('[SoftwareCatalog] JSON loaded:', data.length, 'items');
-
         const allServices = data;
         const sliceMenu   = document.getElementById('sliceMenu');
         const stage       = document.getElementById('stage');
@@ -331,7 +315,6 @@ fetch('assets/json/software.json')
         // ── Grid builder (with subcategory dividers) ──────────
         function buildGridWithDividers(sliceDef, container) {
             container.innerHTML = '';
-            let first = true;
             for (const catName of sliceDef.categories) {
                 // Collect services for this subcategory
                 const services = allServices.filter(s =>
@@ -343,7 +326,6 @@ fetch('assets/json/software.json')
                 if (sliceDef.categories.length > 1) {
                     const div = document.createElement('div');
                     div.className = 'subcat-divider';
-                    if (first) div.classList.add('subcat-divider--first');
                     div.textContent = catName;
                     container.appendChild(div);
                 }
@@ -352,7 +334,6 @@ fetch('assets/json/software.json')
                 grid.classList.add('sub-grid');
                 services.forEach(s => grid.appendChild(buildCard(s)));
                 container.appendChild(grid);
-                first = false;
             }
         }
 
@@ -518,10 +499,6 @@ fetch('assets/json/software.json')
                 searchInput.value = '';
             });
         }
-
-        // ── Click logo → back to Highlights ──────────────────
-        const brandLogo = document.querySelector('.brand-logo');
-        if (brandLogo) brandLogo.addEventListener('click', () => selectSlice('highlights'));
 
         // ── Search input ──────────────────────────────────────
         if (searchInput) {
