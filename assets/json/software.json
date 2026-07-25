@@ -675,7 +675,7 @@
   {
     "name": "PDF2IMG",
     "description": "Convert PDF to image Offline",
-    "link": "https://pdf2img.carino.systems/",
+    "link": "https://media.carino.systems/",
     "icon": "fas fa-file",
     "value": "Converter pdf files to image Easy Offline",
     "windows": "",
