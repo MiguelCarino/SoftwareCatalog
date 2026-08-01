@@ -1,3 +1,6 @@
+// ── i18n bridge (i18n.js loads deferred, after this file) ────
+function tr(key) { return (typeof window.scT === 'function') ? window.scT(key) : key; }
+
 // ── Platform detection ───────────────────────────────────────
 function detectPlatform() {
     if (navigator.userAgentData && navigator.userAgentData.platform) {
@@ -184,7 +187,7 @@ fetch('assets/json/software.json')
             const meta = platformMeta[key];
             platformBtn.innerHTML       = '<i class="' + platformIcons[key] + '"></i>';
             platformBtn.className       = 'platform-btn ' + meta.cls;
-            platformBtn.dataset.tooltip = meta.tip;
+            platformBtn.dataset.tooltip = tr(meta.tip);
             platformBtn.disabled        = (detectedPlatform === 'unknown');
         }
 
@@ -220,8 +223,8 @@ fetch('assets/json/software.json')
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(
-                ()  => showNotification('Install command copied! Paste it in your terminal.'),
-                ()  => showNotification('Could not copy to clipboard.')
+                ()  => showNotification(tr('Install command copied! Paste it in your terminal.')),
+                ()  => showNotification(tr('Could not copy to clipboard.'))
             );
         }
 
@@ -246,7 +249,7 @@ fetch('assets/json/software.json')
             webA.target = '_blank';
             webA.rel = 'noopener noreferrer';
             webA.innerHTML = '<i class="fa-solid fa-globe"></i>';
-            webA.dataset.tooltip = 'Open website';
+            webA.dataset.tooltip = tr('Open website');
             webA.addEventListener('click', e => e.stopPropagation());
             row.appendChild(webA);
 
@@ -255,7 +258,7 @@ fetch('assets/json/software.json')
                     const btn = document.createElement('button');
                     btn.className = 'os-icon';
                     btn.innerHTML = '<i class="' + def.icon + '"></i>';
-                    btn.dataset.tooltip = def.tip;
+                    btn.dataset.tooltip = tr(def.tip);
                     const cmd = def.cmd(service[def.key]);
                     btn.addEventListener('click', e => { e.stopPropagation(); copyToClipboard(cmd); });
                     row.appendChild(btn);
@@ -302,7 +305,9 @@ fetch('assets/json/software.json')
             if (!services.length) {
                 const msg = document.createElement('p');
                 msg.className = 'empty-list-msg';
-                msg.textContent = 'Nothing here yet.';
+                msg.setAttribute('data-i18n', '');
+                msg.dataset.i18nKey = 'Nothing here yet.';
+                msg.textContent = tr('Nothing here yet.');
                 container.appendChild(msg);
                 return;
             }
@@ -326,7 +331,9 @@ fetch('assets/json/software.json')
                 if (sliceDef.categories.length > 1) {
                     const div = document.createElement('div');
                     div.className = 'subcat-divider';
-                    div.textContent = catName;
+                    div.setAttribute('data-i18n', '');
+                    div.dataset.i18nKey = catName;
+                    div.textContent = tr(catName);
                     container.appendChild(div);
                 }
 
@@ -347,7 +354,7 @@ fetch('assets/json/software.json')
                 const header = document.createElement('div');
                 header.className = 'panel-header';
                 header.innerHTML =
-                    '<div class="panel-title">' + slice.label + '</div>' +
+                    '<div class="panel-title" data-i18n data-i18n-key="' + slice.label + '">' + tr(slice.label) + '</div>' +
                     '<div class="panel-num">'   + slice.num   + '</div>';
                 section.appendChild(header);
 
@@ -363,14 +370,14 @@ fetch('assets/json/software.json')
             const searchPanel = document.createElement('section');
             searchPanel.id = 'panel-search';
             searchPanel.className = 'panel';
-            searchPanel.innerHTML = '<div class="panel-header"><div class="panel-title">Search Results</div></div><div class="panel-body"></div>';
+            searchPanel.innerHTML = '<div class="panel-header"><div class="panel-title">' + tr('Search Results') + '</div></div><div class="panel-body"></div>';
             stage.appendChild(searchPanel);
 
             // My List panel
             const mylistPanel = document.createElement('section');
             mylistPanel.id = 'panel-mylist';
             mylistPanel.className = 'panel';
-            mylistPanel.innerHTML = '<div class="panel-header"><div class="panel-title">My List</div></div><div class="panel-body"></div>';
+            mylistPanel.innerHTML = '<div class="panel-header"><div class="panel-title" data-i18n data-i18n-key="My List">' + tr('My List') + '</div></div><div class="panel-body"></div>';
             stage.appendChild(mylistPanel);
         }
 
@@ -392,11 +399,11 @@ fetch('assets/json/software.json')
                     '<div class="slice-bg"></div>' +
                     '<div class="slice-large">' +
                         '<span class="slice-num-lg">' + slice.num + '</span>' +
-                        '<h2 class="slice-text-lg">'  + slice.label + '</h2>' +
+                        '<h2 class="slice-text-lg" data-i18n data-i18n-key="' + slice.label + '">'  + tr(slice.label) + '</h2>' +
                         '<i class="' + slice.icon + ' slice-icon"></i>' +
                     '</div>' +
                     '<div class="slice-small">' +
-                        '<span class="slice-text-sm">' + slice.label + '</span>' +
+                        '<span class="slice-text-sm" data-i18n data-i18n-key="' + slice.label + '">' + tr(slice.label) + '</span>' +
                         '<i class="' + slice.icon + ' slice-icon"></i>' +
                     '</div>';
 
@@ -468,8 +475,8 @@ fetch('assets/json/software.json')
 
             const header = panel.querySelector('.panel-title');
             header.textContent = results.length
-                ? 'Search Results (' + results.length + ')'
-                : 'No Results';
+                ? tr('Search Results') + ' (' + results.length + ')'
+                : tr('No Results');
 
             showSpecialPanel('search');
             updateURL(query);
@@ -485,7 +492,9 @@ fetch('assets/json/software.json')
                 body.innerHTML = '';
                 const msg = document.createElement('p');
                 msg.className = 'empty-list-msg';
-                msg.textContent = 'Your list is empty. Click any software card to bookmark it.';
+                msg.setAttribute('data-i18n', '');
+                msg.dataset.i18nKey = 'Your list is empty. Click any software card to bookmark it.';
+                msg.textContent = tr('Your list is empty. Click any software card to bookmark it.');
                 body.appendChild(msg);
             } else {
                 buildGrid(services, body);
