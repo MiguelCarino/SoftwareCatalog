@@ -6,6 +6,10 @@
 
 const I18N = {
     es: {
+        'Late shift.': 'Turno nocturno.',
+        'Good morning.': 'Buenos días.',
+        'Good afternoon.': 'Buenas tardes.',
+        'Good evening.': 'Buenas noches.',
         // Slice menu / panel titles
         'Highlights': 'Destacados',
         'Basic Software': 'Software básico',
@@ -58,6 +62,10 @@ const I18N = {
         'Platform filter': 'Filtro de plataforma',
     },
     'pt-BR': {
+        'Late shift.': 'Turno da noite.',
+        'Good morning.': 'Bom dia.',
+        'Good afternoon.': 'Boa tarde.',
+        'Good evening.': 'Boa noite.',
         'Highlights': 'Destaques',
         'Basic Software': 'Software básico',
         'General Software': 'Software geral',
@@ -103,6 +111,10 @@ const I18N = {
         'Platform filter': 'Filtro de plataforma',
     },
     ja: {
+        'Late shift.': '夜勤お疲れさま。',
+        'Good morning.': 'おはようございます。',
+        'Good afternoon.': 'こんにちは。',
+        'Good evening.': 'こんばんは。',
         'Highlights': 'ハイライト',
         'Basic Software': '基本ソフト',
         'General Software': '一般ソフト',
@@ -148,6 +160,10 @@ const I18N = {
         'Platform filter': 'プラットフォームフィルター',
     },
     ru: {
+        'Late shift.': 'Ночная смена.',
+        'Good morning.': 'Доброе утро.',
+        'Good afternoon.': 'Добрый день.',
+        'Good evening.': 'Добрый вечер.',
         'Highlights': 'Избранное',
         'Basic Software': 'Базовое ПО',
         'General Software': 'Общее ПО',
