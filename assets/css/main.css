@@ -345,52 +345,6 @@ body.state-selected .stage {
 
 .subcat-divider:first-child { margin-top: 0; }
 
-/* ── 8b. CATEGORY RAIL ──────────────────────────────────────── */
-.cat-rail {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    scrollbar-width: thin;
-    padding: 10px 0;
-    margin-bottom: 4px;
-    background: var(--bg-main);
-    border-bottom: 1px solid var(--border-color);
-}
-
-.cat-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-    padding: 5px 11px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-pill);
-    background: var(--bg-card);
-    color: var(--text-muted);
-    font-size: 0.72rem;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: color 0.2s, border-color 0.2s, background 0.2s;
-}
-
-.cat-chip-n {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    opacity: 0.65;
-    font-variant-numeric: tabular-nums;
-}
-
-.cat-chip:hover { color: var(--text-main); border-color: var(--accent); }
-
-.cat-chip.active {
-    color: var(--accent);
-    border-color: var(--accent);
-    background: var(--icon-hover-bg);
-}
-
 /* ── 9. SOFTWARE GRID & CARDS ──────────────────────────────── */
 .sub-grid {
     display: grid;
@@ -440,7 +394,6 @@ body.state-selected .stage {
 
 .star-btn:focus-visible,
 .os-icon:focus-visible,
-.cat-chip:focus-visible,
 .sub-grid-item a:focus-visible,
 .slice:focus-visible {
     outline: 2px solid var(--accent);

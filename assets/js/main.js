@@ -187,7 +187,6 @@ fetch('assets/json/software.json')
         const myListCount = document.getElementById('my-list-count');
 
         let currentView = null; // slice id | 'search' | 'mylist' | null
-        let spy = null;         // scroll listener backing the category rail
 
         // ── Category helpers ──────────────────────────────────
         // The divider icon is whatever icon the category's entries use most, so
@@ -504,12 +503,6 @@ fetch('assets/json/software.json')
                 return;
             }
 
-            // A slice with this many domains is not scannable by scrolling, so
-            // it gets a rail of its own categories that jumps and tracks.
-            if (present.length > 6) {
-                container.appendChild(buildCategoryRail(present));
-            }
-
             for (const entry of present) {
                 const catName = entry.name;
 
@@ -544,105 +537,28 @@ fetch('assets/json/software.json')
             }
         }
 
-        // ── Category rail ─────────────────────────────────────
-        function buildCategoryRail(present) {
-            const rail = document.createElement('nav');
-            rail.className = 'cat-rail';
-            rail.setAttribute('aria-label', tr('Categories'));
-
-            present.forEach(entry => {
-                const chip = document.createElement('a');
-                chip.className = 'cat-chip';
-                chip.href = '#cat-' + slugify(entry.name);
-                chip.dataset.target = 'cat-' + slugify(entry.name);
-
-                // The label carries data-i18n, not the chip: the i18n pass sets
-                // textContent, which would wipe the count if it owned the node.
-                const label = document.createElement('span');
-                label.className = 'cat-chip-label';
-                label.setAttribute('data-i18n', '');
-                label.dataset.i18nKey = entry.name;
-                label.textContent = tr(entry.name);
-
-                const n = document.createElement('span');
-                n.className = 'cat-chip-n';
-                n.textContent = entry.count;
-
-                chip.appendChild(label);
-                chip.appendChild(n);
-
-                chip.addEventListener('click', e => {
-                    e.preventDefault();
-                    jumpToCategory(entry.name);
-                });
-                rail.appendChild(chip);
-            });
-
-            return rail;
-        }
-
-        // Where the sticky rail's bottom edge sits, in viewport coordinates. The
-        // rail sticks to the stage's padding box, so the padding has to be in
-        // here or every jump parks the divider just underneath it.
-        function railBottom(rail) {
+        // Scroll target for a divider. The stage's own top padding has to be in
+        // here or a jump parks the heading just above the fold.
+        function categoryOffset(el) {
             const pad = parseFloat(getComputedStyle(stage).paddingTop) || 0;
-            return stage.getBoundingClientRect().top + pad + (rail ? rail.offsetHeight : 0);
+            return stage.scrollTop + el.getBoundingClientRect().top
+                 - stage.getBoundingClientRect().top - pad - 16;
         }
 
-        // Scroll target for a divider, clearing the sticky rail that sits over it.
-        function categoryOffset(el, rail) {
-            return stage.scrollTop + el.getBoundingClientRect().top - railBottom(rail) - 16;
-        }
-
-        function jumpToCategory(catName) {
+        // The stage opens behind a 0.6s flex transition, and until that finishes
+        // it cannot scroll — assigning scrollTop just silently does nothing. So
+        // retry each frame until the scroll actually takes, rather than guessing
+        // at a delay that would be wrong on a slow load.
+        function jumpWhenReady(catName, tries) {
             const el = document.getElementById('cat-' + slugify(catName));
             if (!el) return;
-            const rail = document.querySelector('.panel.active .cat-rail');
-            stage.scrollTo({ top: Math.max(0, categoryOffset(el, rail)), behavior: 'smooth' });
+            const target = Math.max(0, categoryOffset(el));
+            stage.scrollTop = target;
+            if (Math.abs(stage.scrollTop - target) > 2 && tries > 0) {
+                requestAnimationFrame(() => jumpWhenReady(catName, tries - 1));
+                return;
+            }
             history.replaceState({}, '', '#cat-' + slugify(catName));
-        }
-
-        function detachSpy() {
-            if (spy) { stage.removeEventListener('scroll', spy); spy = null; }
-        }
-
-        // Marks the rail chip for the section you are actually in. Watching for
-        // dividers to intersect a band does not work here — sections are taller
-        // than the viewport, so most scroll positions have no divider on screen
-        // at all. The last divider scrolled past is the honest answer.
-        function attachSpy(panel) {
-            detachSpy();
-            const rail = panel.querySelector('.cat-rail');
-            if (!rail) return;
-            const chips = Array.from(rail.querySelectorAll('.cat-chip'));
-            const dividers = Array.from(panel.querySelectorAll('.subcat-divider'));
-            if (!chips.length || !dividers.length) return;
-
-            let queued = false;
-            const update = () => {
-                queued = false;
-                const cutoff = railBottom(rail) + 12;
-                let activeId = dividers[0].id;
-                for (const d of dividers) {
-                    if (d.getBoundingClientRect().top <= cutoff) activeId = d.id;
-                    else break;
-                }
-                chips.forEach(c => {
-                    const on = c.dataset.target === activeId;
-                    if (on === c.classList.contains('active')) return;
-                    c.classList.toggle('active', on);
-                    // Keep the active chip in view by moving the rail only —
-                    // scrollIntoView here would fight the user's own scrolling.
-                    if (on && (c.offsetLeft < rail.scrollLeft ||
-                               c.offsetLeft + c.offsetWidth > rail.scrollLeft + rail.clientWidth)) {
-                        rail.scrollLeft = c.offsetLeft - (rail.clientWidth - c.offsetWidth) / 2;
-                    }
-                });
-            };
-
-            spy = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
-            stage.addEventListener('scroll', spy, { passive: true });
-            update();
         }
 
         // ── Panels ────────────────────────────────────────────
@@ -702,10 +618,7 @@ fetch('assets/json/software.json')
             });
             if (currentView === 'search')      filterLinks(searchInput.value);
             else if (currentView === 'mylist') renderMyList();
-            else if (currentView) {
-                ensurePanel(currentView);
-                attachSpy(document.getElementById('panel-' + currentView));
-            }
+            else if (currentView) ensurePanel(currentView);
         }
 
         // ── Build slice nav ────────────────────────────────────
@@ -753,14 +666,12 @@ fetch('assets/json/software.json')
             if (panel) {
                 panel.classList.add('active');
                 stage.scrollTop = 0;
-                attachSpy(panel);
             }
         }
 
         function showSpecialPanel(id) {
             currentView = id;
             document.body.classList.add('state-selected');
-            detachSpy();
 
             document.querySelectorAll('.slice').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
@@ -854,7 +765,7 @@ fetch('assets/json/software.json')
                 const hit = sliceCategories(slice).find(c => 'cat-' + slugify(c) === hash);
                 if (hit) {
                     selectSlice(slice.id);
-                    requestAnimationFrame(() => jumpToCategory(hit));
+                    jumpWhenReady(hit, 120);
                     return true;
                 }
             }
