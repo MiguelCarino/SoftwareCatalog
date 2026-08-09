@@ -557,9 +557,9 @@ body.state-selected .stage {
 .lic-mark.lic-source { color: var(--accent); }
 
 /* ── 10c. DENSE PANEL (Reviewing) ───────────────────────────── */
-/* Wave-two entries share one icon per domain, so 30 identical glyphs in a row
-   carry no information — the divider icon says it once instead. */
-.panel.dense .sub-grid-item > i { display: none; }
+/* Entries carry their own icon now rather than their domain's, so the glyph is
+   worth showing again — smaller than elsewhere, to keep the panel dense. */
+.panel.dense .sub-grid-item > i { font-size: 20px; margin-bottom: 7px; }
 .panel.dense .sub-grid-item { padding: 14px 16px; }
 .panel.dense .sub-grid-item a { font-size: 0.94rem; margin-bottom: 4px; }
 .panel.dense .sub-grid-item span { font-size: 0.82rem; margin-bottom: 10px; }
