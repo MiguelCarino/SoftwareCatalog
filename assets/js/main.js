@@ -82,6 +82,15 @@ const LICENCE_TIPS = {
     'closed':    'Proprietary software or hosted product',
     'reference': 'Dataset, portal, standard or organisation — not software',
 };
+// Corner marks, so the card keeps its height whether or not it has a caveat.
+// A glyph can only carry four states, which is exactly how many there are —
+// the words live in the tooltip and the accessible name.
+const LICENCE_ICONS = {
+    'open-core': 'fa-solid fa-circle-half-stroke',
+    'source':    'fa-solid fa-eye',
+    'closed':    'fa-solid fa-lock',
+    'reference': 'fa-solid fa-book',
+};
 
 // ── Slice configuration ──────────────────────────────────────
 // A slice lists explicit `categories`, or names a `status` and derives its
@@ -367,14 +376,6 @@ fetch('assets/json/software.json')
             const row = document.createElement('div');
             row.classList.add('sub-row');
 
-            if (service.licence) {
-                const chip = document.createElement('span');
-                chip.className = 'lic-chip lic-' + service.licence;
-                chip.textContent = tr(LICENCE_LABELS[service.licence] || service.licence);
-                chip.dataset.tooltip = tr(LICENCE_TIPS[service.licence] || '');
-                row.appendChild(chip);
-            }
-
             const webA = document.createElement('a');
             webA.className = 'os-icon os-web';
             webA.href = service.link;
@@ -416,6 +417,20 @@ fetch('assets/json/software.json')
                 if (e.target.closest('a, button, .sub-row')) return;
                 window.open(service.link, '_blank', 'noopener,noreferrer');
             });
+
+            // Opposite corner from the star, absolutely positioned: it states a
+            // fact about the entry without taking a line of the card.
+            if (service.licence) {
+                const label = tr(LICENCE_LABELS[service.licence] || service.licence);
+                const tip   = tr(LICENCE_TIPS[service.licence] || '');
+                const mark  = document.createElement('span');
+                mark.className = 'lic-mark lic-' + service.licence;
+                mark.innerHTML = '<i class="' + (LICENCE_ICONS[service.licence] || 'fa-solid fa-tag') + '"></i>';
+                mark.dataset.tooltip = tip;
+                mark.setAttribute('role', 'img');
+                mark.setAttribute('aria-label', label + ' — ' + tip);
+                item.appendChild(mark);
+            }
 
             const star = document.createElement('button');
             star.type = 'button';
