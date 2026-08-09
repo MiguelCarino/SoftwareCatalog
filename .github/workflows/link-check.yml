@@ -1,0 +1,101 @@
+name: Link check
+
+# The catalog is now over a thousand links, so rot is a maintenance problem
+# rather than an occasional surprise. This sweeps them weekly and files one
+# issue listing whatever broke, instead of waiting for someone to notice.
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Mondays, 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check every catalog link
+        id: check
+        run: |
+          python3 - <<'PY' > report.md
+          import json, subprocess, sys
+          from concurrent.futures import ThreadPoolExecutor
+
+          UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/126 Safari/537.36")
+
+          # Hosts that answer automated requests with 403/429 while being
+          # perfectly fine in a browser. Their codes are not evidence of rot.
+          SOFT = {"403", "406", "429", "503"}
+
+          entries = json.load(open("assets/json/software.json", encoding="utf-8"))
+          seen, targets = set(), []
+          for e in entries:
+              link = e.get("link", "")
+              if not link.startswith("http") or link in seen:
+                  continue
+              seen.add(link)
+              targets.append((e["name"], link))
+
+          def probe(item):
+              name, url = item
+              for attempt in range(2):
+                  p = subprocess.run(
+                      ["curl", "-sS", "-o", "/dev/null", "-w", "%{http_code}",
+                       "-L", "--max-time", "30", "-A", UA, url],
+                      capture_output=True, text=True)
+                  code = (p.stdout or "000").strip()
+                  if code == "200":
+                      return None
+                  if code in SOFT:
+                      return None
+              return (name, url, code)
+
+          with ThreadPoolExecutor(max_workers=12) as pool:
+              results = [r for r in pool.map(probe, targets) if r]
+
+          results.sort(key=lambda r: r[0].lower())
+          print(f"Checked **{len(targets)}** links. **{len(results)}** need attention.")
+          print()
+          if results:
+              print("| Entry | Status | Link |")
+              print("| --- | --- | --- |")
+              for name, url, code in results:
+                  print(f"| {name} | `{code}` | {url} |")
+              print()
+              print("`000` means the host did not resolve or timed out. "
+                    "Codes from bot-blocking hosts (403, 429, 503) are filtered out already.")
+          print(f"::notice::{len(results)} broken", file=sys.stderr)
+          PY
+          if grep -q '^| ' report.md; then
+            echo "broken=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "broken=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open an issue for the failures
+        if: steps.check.outputs.broken == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('report.md', 'utf8');
+            const title = `Broken catalog links — ${new Date().toISOString().slice(0, 10)}`;
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ['link-rot'],
+            });
+
+      - name: Publish the report either way
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-report
+          path: report.md

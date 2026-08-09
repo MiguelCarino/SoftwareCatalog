@@ -129,6 +129,18 @@ a { text-decoration: none; color: inherit; }
 
 .my-list-count.visible { display: flex; }
 
+/* Open-source-only toggle — reads as pressed, not merely hovered. */
+.open-only-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--icon-hover-bg);
+}
+
+.open-only-btn.active:hover {
+    color: var(--bg-main);
+    background: var(--accent);
+}
+
 /* ── 4. WORKSPACE ───────────────────────────────────────────── */
 .workspace {
     flex: 1;
@@ -297,7 +309,12 @@ body.state-selected .stage {
 }
 
 /* ── 8. SUBCATEGORY DIVIDER ─────────────────────────────────── */
+/* Landmarks, not whispers: with 56 of them in one panel they have to be
+   scannable, so the icon labels the group and the count sets expectations. */
 .subcat-divider {
+    display: flex;
+    align-items: center;
+    gap: 9px;
     font-family: var(--mono);
     font-size: 0.68rem;
     text-transform: uppercase;
@@ -305,11 +322,74 @@ body.state-selected .stage {
     color: var(--text-muted);
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 5px;
-    margin: 28px 0 14px;
-    opacity: 0.6;
+    margin: 32px 0 14px;
+    scroll-margin-top: 12px;
+}
+
+.subcat-divider > i {
+    color: var(--accent);
+    font-size: 0.85rem;
+    width: 1em;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.subcat-count {
+    margin-left: auto;
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
 }
 
 .subcat-divider:first-child { margin-top: 0; }
+
+/* ── 8b. CATEGORY RAIL ──────────────────────────────────────── */
+.cat-rail {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    padding: 10px 0;
+    margin-bottom: 4px;
+    background: var(--bg-main);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    padding: 5px 11px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.cat-chip-n {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    opacity: 0.65;
+    font-variant-numeric: tabular-nums;
+}
+
+.cat-chip:hover { color: var(--text-main); border-color: var(--accent); }
+
+.cat-chip.active {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--icon-hover-bg);
+}
 
 /* ── 9. SOFTWARE GRID & CARDS ──────────────────────────────── */
 .sub-grid {
@@ -320,6 +400,7 @@ body.state-selected .stage {
 }
 
 .sub-grid-item {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -331,6 +412,40 @@ body.state-selected .stage {
     box-shadow: var(--shadow-sm);
     cursor: pointer;
     user-select: none;
+}
+
+/* Bookmarking is its own control so it can be reached with a keyboard. */
+.star-btn {
+    position: absolute;
+    top: 8px; right: 8px;
+    width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--border-color);
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.2s, color 0.2s, background 0.2s;
+}
+
+.sub-grid-item:hover .star-btn,
+.star-btn:focus-visible,
+.star-btn[aria-pressed="true"] { opacity: 1; }
+
+.star-btn:hover { color: var(--accent); background: var(--icon-hover-bg); }
+.star-btn[aria-pressed="true"] { color: var(--accent); }
+
+.star-btn:focus-visible,
+.os-icon:focus-visible,
+.cat-chip:focus-visible,
+.sub-grid-item a:focus-visible,
+.slice:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 .sub-grid-item.in-list {
@@ -417,11 +532,47 @@ body.state-selected .stage {
 
 .os-icon.os-web { font-size: 1rem; }
 
+/* ── 10b. LICENCE CHIP ──────────────────────────────────────── */
+/* Only entries with a caveat carry one, so an unmarked card means plain open
+   source. Monochrome on purpose — the palette has exactly one accent. */
+.lic-chip {
+    margin-right: auto;
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 2px 6px;
+    white-space: nowrap;
+    position: relative;
+    cursor: help;
+}
+
+.lic-chip.lic-closed {
+    color: #d98a8a;
+    border-color: rgba(239, 68, 68, 0.35);
+}
+
+.sub-grid-item:hover .lic-chip { border-color: var(--text-muted); }
+
+/* ── 10c. DENSE PANEL (Reviewing) ───────────────────────────── */
+/* Wave-two entries share one icon per domain, so 30 identical glyphs in a row
+   carry no information — the divider icon says it once instead. */
+.panel.dense .sub-grid-item > i { display: none; }
+.panel.dense .sub-grid-item { padding: 14px 16px; }
+.panel.dense .sub-grid-item a { font-size: 0.94rem; margin-bottom: 4px; }
+.panel.dense .sub-grid-item span { font-size: 0.82rem; margin-bottom: 10px; }
+.panel.dense .sub-grid { gap: 14px; }
+
 /* ── 11. TOOLTIPS (fixed colors — work on any theme) ────────── */
 .sub-row [data-tooltip],
+.star-btn[data-tooltip],
 .platform-btn[data-tooltip] { position: relative; }
 
 .sub-row [data-tooltip]::before,
+.star-btn[data-tooltip]::before,
 .platform-btn[data-tooltip]::before {
     content: attr(data-tooltip);
     position: absolute;
@@ -441,6 +592,7 @@ body.state-selected .stage {
 }
 
 .sub-row [data-tooltip]::after,
+.star-btn[data-tooltip]::after,
 .platform-btn[data-tooltip]::after {
     content: '';
     position: absolute;
@@ -454,9 +606,11 @@ body.state-selected .stage {
 }
 
 .sub-row [data-tooltip]:hover::before,
+.star-btn[data-tooltip]:hover::before,
 .platform-btn[data-tooltip]:hover::before { opacity: 1; bottom: 150%; }
 
 .sub-row [data-tooltip]:hover::after,
+.star-btn[data-tooltip]:hover::after,
 .platform-btn[data-tooltip]:hover::after { opacity: 1; bottom: 120%; }
 
 /* ── 12. PLATFORM BUTTON ────────────────────────────────────── */
@@ -544,4 +698,23 @@ body.state-selected .stage {
     .platform-btn[data-tooltip]::after { display: none; }
 
     .notification { right: 12px; left: 12px; bottom: 16px; text-align: center; }
+}
+
+/* ── 15. SEARCH MATCH HIGHLIGHT ─────────────────────────────── */
+.sub-grid-item mark {
+    background: var(--icon-hover-bg);
+    color: var(--accent);
+    border-radius: 2px;
+    padding: 0 1px;
+}
+
+/* ── 16. REDUCED MOTION ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .sub-grid-item:hover { transform: none; }
 }

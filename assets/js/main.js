@@ -26,6 +26,7 @@ function platformAllows(platform) {
 
 // ── Custom list (My List) — localStorage + URL ───────────────
 const STORAGE_KEY  = 'sc_custom';
+const OPEN_KEY     = 'sc_open_only';
 const initialParams = new URLSearchParams(window.location.search);
 
 function encodeLinks(links) {
@@ -59,7 +60,33 @@ function loadCustomLinks() {
 
 let customLinks = loadCustomLinks();
 
+// Hide everything carrying a licence caveat. Persisted, because it is a stance
+// about what belongs in the catalog rather than a per-visit filter.
+let openOnlyMode = (() => {
+    try { return localStorage.getItem(OPEN_KEY) === '1'; } catch (e) { return false; }
+})();
+
+// ── Licence classes ──────────────────────────────────────────
+// An entry with no `licence` is plain open source and shows no chip: most of
+// the catalog is open, so a badge on all of it would be noise. The chip only
+// ever means "there is something here to read before you commit".
+const LICENCE_LABELS = {
+    'open-core': 'Open core',
+    'source':    'Source available',
+    'closed':    'Closed',
+    'reference': 'Reference',
+};
+const LICENCE_TIPS = {
+    'open-core': 'Open base with proprietary paid tiers',
+    'source':    'Source available under a non-commercial or academic licence',
+    'closed':    'Proprietary software or hosted product',
+    'reference': 'Dataset, portal, standard or organisation — not software',
+};
+
 // ── Slice configuration ──────────────────────────────────────
+// A slice lists explicit `categories`, or names a `status` and derives its
+// categories from the data — which keeps the 56 Reviewing domains in one place
+// (the JSON) instead of duplicated here.
 const SLICES = [
     {
         id: 'highlights',
@@ -104,35 +131,38 @@ const SLICES = [
         categories: ['(Cyber)Security']
     },
     {
-        // Staging ground: industry and science tooling the catalog was missing.
-        // Entries land here first, then graduate into the slices above once
-        // they have been vetted and given install commands.
+        // Staging ground: entries land here first and graduate into the slices
+        // above once vetted. Membership is the `status` field on the entry, so
+        // promoting one is a single-word edit.
         id: 'reviewing',
         label: 'Reviewing',
         icon: 'fa-solid fa-flask',
         num: '07',
-        categories: [
-            'CAD and Manufacturing',
-            'Electronics and EDA',
-            'Simulation and Analysis',
-            'Industrial Automation',
-            'Energy and Power',
-            'Civil, AEC and Surveying',
-            'Geoscience and Environment',
-            'Transport and Mobility',
-            'Robotics and Aerospace',
-            'Chemistry and Materials',
-            'Life Sciences and Bioinformatics',
-            'Health Informatics',
-            'Medical Physics and Imaging',
-            'Physics and Astronomy',
-            'Radio and Signals',
-            'Numerical and Scientific Computing',
-            'Lab Informatics and Research',
-            'Industry Operations'
-        ]
+        status: 'reviewing',
+        dense: true
     }
 ];
+
+// ── Helpers ──────────────────────────────────────────────────
+function escapeHtml(s) {
+    return String(s).replace(/[&<>"]/g, c => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]
+    ));
+}
+
+// Escaped text with the first match of `q` wrapped in <mark>.
+function highlight(text, q) {
+    if (!q) return escapeHtml(text);
+    const i = text.toLowerCase().indexOf(q);
+    if (i < 0) return escapeHtml(text);
+    return escapeHtml(text.slice(0, i)) +
+           '<mark>' + escapeHtml(text.slice(i, i + q.length)) + '</mark>' +
+           escapeHtml(text.slice(i + q.length));
+}
+
+function slugify(s) {
+    return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
 
 // ── Main app ─────────────────────────────────────────────────
 fetch('assets/json/software.json')
@@ -143,10 +173,57 @@ fetch('assets/json/software.json')
         const stage       = document.getElementById('stage');
         const searchInput = document.getElementById('search-input');
         const platformBtn = document.getElementById('platform-btn');
+        const openBtn     = document.getElementById('open-only-btn');
         const myListBtn   = document.getElementById('my-list-btn');
         const myListCount = document.getElementById('my-list-count');
 
         let currentView = null; // slice id | 'search' | 'mylist' | null
+        let spy = null;         // scroll listener backing the category rail
+
+        // ── Category helpers ──────────────────────────────────
+        // The divider icon is whatever icon the category's entries use most, so
+        // it labels the group without a second hardcoded map to keep in sync.
+        const iconCache = {};
+        function categoryIcon(cat) {
+            if (iconCache[cat]) return iconCache[cat];
+            const counts = {};
+            allServices.forEach(s => {
+                if ((s.categories || []).includes(cat)) {
+                    counts[s.icon] = (counts[s.icon] || 0) + 1;
+                }
+            });
+            let best = 'fas fa-tag', top = 0;
+            for (const k in counts) if (counts[k] > top) { top = counts[k]; best = k; }
+            iconCache[cat] = best;
+            return best;
+        }
+
+        const catsCache = {};
+        function sliceCategories(slice) {
+            if (slice.categories) return slice.categories;
+            if (catsCache[slice.id]) return catsCache[slice.id];
+            const out = [], seen = new Set();
+            allServices.forEach(s => {
+                if (s.status !== slice.status) return;
+                (s.categories || []).forEach(c => {
+                    if (!seen.has(c)) { seen.add(c); out.push(c); }
+                });
+            });
+            catsCache[slice.id] = out;
+            return out;
+        }
+
+        function servicesIn(slice, cat) {
+            return allServices.filter(s =>
+                (s.categories || []).includes(cat) &&
+                (!slice.status || s.status === slice.status) &&
+                licenceAllows(s)
+            );
+        }
+
+        function licenceAllows(service) {
+            return !openOnlyMode || !service.licence;
+        }
 
         // ── URL sync ─────────────────────────────────────────
         function updateURL(query) {
@@ -172,7 +249,7 @@ fetch('assets/json/software.json')
             myListCount.classList.toggle('visible', n > 0);
         }
 
-        function toggleCustom(service, cardEl) {
+        function toggleCustom(service, cardEl, starEl) {
             if (isInCustom(service)) {
                 customLinks = customLinks.filter(l => l !== service.link);
             } else {
@@ -180,8 +257,12 @@ fetch('assets/json/software.json')
             }
             saveCustomLinks();
             refreshMyListCount();
-            if (cardEl) cardEl.classList.toggle('in-list', isInCustom(service));
-            // If currently viewing My List, re-render it
+            const on = isInCustom(service);
+            if (cardEl) cardEl.classList.toggle('in-list', on);
+            if (starEl) {
+                starEl.setAttribute('aria-pressed', on ? 'true' : 'false');
+                starEl.dataset.tooltip = tr(on ? 'Remove from My List' : 'Save to My List');
+            }
             if (currentView === 'mylist') renderMyList();
         }
 
@@ -226,15 +307,29 @@ fetch('assets/json/software.json')
                 if (detectedPlatform === 'unknown') return;
                 allPlatformsMode = !allPlatformsMode;
                 refreshPlatformBtn();
-                // Re-render current panel with updated platform filter
-                if (currentView === 'search') {
-                    filterLinks(searchInput.value);
-                } else if (currentView === 'mylist') {
-                    renderMyList();
-                } else if (currentView) {
-                    const panel = document.getElementById('panel-' + currentView);
-                    if (panel) rebuildSlicePanel(currentView, panel);
-                }
+                invalidatePanels();
+            });
+        }
+
+        // ── Open-source-only button ───────────────────────────
+        function refreshOpenBtn() {
+            if (!openBtn) return;
+            openBtn.classList.toggle('active', openOnlyMode);
+            openBtn.setAttribute('aria-pressed', openOnlyMode ? 'true' : 'false');
+            const tip = tr(openOnlyMode
+                ? 'Showing fully open source only — click for everything'
+                : 'Showing everything — click for fully open source only');
+            openBtn.title = tip;
+            openBtn.setAttribute('aria-label', tr('Open source only'));
+        }
+
+        if (openBtn) {
+            refreshOpenBtn();
+            openBtn.addEventListener('click', () => {
+                openOnlyMode = !openOnlyMode;
+                try { localStorage.setItem(OPEN_KEY, openOnlyMode ? '1' : '0'); } catch (e) {}
+                refreshOpenBtn();
+                invalidatePanels();
             });
         }
 
@@ -272,6 +367,14 @@ fetch('assets/json/software.json')
             const row = document.createElement('div');
             row.classList.add('sub-row');
 
+            if (service.licence) {
+                const chip = document.createElement('span');
+                chip.className = 'lic-chip lic-' + service.licence;
+                chip.textContent = tr(LICENCE_LABELS[service.licence] || service.licence);
+                chip.dataset.tooltip = tr(LICENCE_TIPS[service.licence] || '');
+                row.appendChild(chip);
+            }
+
             const webA = document.createElement('a');
             webA.className = 'os-icon os-web';
             webA.href = service.link;
@@ -279,15 +382,18 @@ fetch('assets/json/software.json')
             webA.rel = 'noopener noreferrer';
             webA.innerHTML = '<i class="fa-solid fa-globe"></i>';
             webA.dataset.tooltip = tr('Open website');
+            webA.setAttribute('aria-label', tr('Open website') + ' — ' + service.name);
             webA.addEventListener('click', e => e.stopPropagation());
             row.appendChild(webA);
 
             for (const def of osDefs) {
                 if (service[def.key] && platformAllows(def.platform)) {
                     const btn = document.createElement('button');
+                    btn.type = 'button';
                     btn.className = 'os-icon';
                     btn.innerHTML = '<i class="' + def.icon + '"></i>';
                     btn.dataset.tooltip = tr(def.tip);
+                    btn.setAttribute('aria-label', tr(def.tip) + ' — ' + service.name);
                     const cmd = def.cmd(service[def.key]);
                     btn.addEventListener('click', e => { e.stopPropagation(); copyToClipboard(cmd); });
                     row.appendChild(btn);
@@ -298,27 +404,44 @@ fetch('assets/json/software.json')
         }
 
         // ── Card builder ──────────────────────────────────────
-        function buildCard(service) {
+        // Clicking the card opens the site, which is what a card that looks like
+        // a link should do. Bookmarking is its own focusable control, so it is
+        // reachable by keyboard instead of being mouse-only.
+        function buildCard(service, query) {
             const item = document.createElement('div');
             item.classList.add('sub-grid-item');
             if (isInCustom(service)) item.classList.add('in-list');
 
             item.addEventListener('click', e => {
-                if (e.target.closest('a, .sub-row')) return;
-                toggleCustom(service, item);
+                if (e.target.closest('a, button, .sub-row')) return;
+                window.open(service.link, '_blank', 'noopener,noreferrer');
             });
+
+            const star = document.createElement('button');
+            star.type = 'button';
+            star.className = 'star-btn';
+            star.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
+            star.setAttribute('aria-pressed', isInCustom(service) ? 'true' : 'false');
+            star.setAttribute('aria-label', tr('Save to My List') + ' — ' + service.name);
+            star.dataset.tooltip = tr(isInCustom(service) ? 'Remove from My List' : 'Save to My List');
+            star.addEventListener('click', e => {
+                e.stopPropagation();
+                toggleCustom(service, item, star);
+            });
+            item.appendChild(star);
 
             const icon = document.createElement('i');
             icon.className = service.icon;
+            icon.setAttribute('aria-hidden', 'true');
 
             const link = document.createElement('a');
             link.href = service.link;
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
-            link.textContent = service.name;
+            link.innerHTML = highlight(service.name, query);
 
             const desc = document.createElement('span');
-            desc.textContent = service.description;
+            desc.innerHTML = highlight(service.description, query);
 
             item.appendChild(icon);
             item.appendChild(link);
@@ -329,7 +452,7 @@ fetch('assets/json/software.json')
         }
 
         // ── Grid builder (flat, no dividers) ──────────────────
-        function buildGrid(services, container) {
+        function buildGrid(services, container, query) {
             container.innerHTML = '';
             if (!services.length) {
                 const msg = document.createElement('p');
@@ -342,43 +465,179 @@ fetch('assets/json/software.json')
             }
             const grid = document.createElement('div');
             grid.classList.add('sub-grid');
-            services.forEach(s => grid.appendChild(buildCard(s)));
+            services.forEach(s => grid.appendChild(buildCard(s, query)));
             container.appendChild(grid);
         }
 
         // ── Grid builder (with subcategory dividers) ──────────
         function buildGridWithDividers(sliceDef, container) {
             container.innerHTML = '';
-            for (const catName of sliceDef.categories) {
-                // Collect services for this subcategory
-                const services = allServices.filter(s =>
-                    (s.categories || []).includes(catName)
-                );
-                if (!services.length) continue;
+            const cats = sliceCategories(sliceDef);
+            const present = [];
 
-                // Only add divider if this slice has more than one subcategory
-                if (sliceDef.categories.length > 1) {
+            for (const catName of cats) {
+                const services = servicesIn(sliceDef, catName);
+                if (!services.length) continue;
+                present.push({ name: catName, count: services.length });
+            }
+
+            if (!present.length) {
+                const msg = document.createElement('p');
+                msg.className = 'empty-list-msg';
+                msg.textContent = tr('Nothing here yet.');
+                container.appendChild(msg);
+                return;
+            }
+
+            // A slice with this many domains is not scannable by scrolling, so
+            // it gets a rail of its own categories that jumps and tracks.
+            if (present.length > 6) {
+                container.appendChild(buildCategoryRail(present));
+            }
+
+            for (const entry of present) {
+                const catName = entry.name;
+
+                if (cats.length > 1) {
                     const div = document.createElement('div');
                     div.className = 'subcat-divider';
-                    div.setAttribute('data-i18n', '');
-                    div.dataset.i18nKey = catName;
-                    div.textContent = tr(catName);
+                    div.id = 'cat-' + slugify(catName);
+
+                    const dIcon = document.createElement('i');
+                    dIcon.className = categoryIcon(catName);
+                    dIcon.setAttribute('aria-hidden', 'true');
+
+                    const dLabel = document.createElement('span');
+                    dLabel.setAttribute('data-i18n', '');
+                    dLabel.dataset.i18nKey = catName;
+                    dLabel.textContent = tr(catName);
+
+                    const dCount = document.createElement('span');
+                    dCount.className = 'subcat-count';
+                    dCount.textContent = entry.count;
+
+                    div.appendChild(dIcon);
+                    div.appendChild(dLabel);
+                    div.appendChild(dCount);
                     container.appendChild(div);
                 }
 
                 const grid = document.createElement('div');
                 grid.classList.add('sub-grid');
-                services.forEach(s => grid.appendChild(buildCard(s)));
+                servicesIn(sliceDef, catName).forEach(s => grid.appendChild(buildCard(s)));
                 container.appendChild(grid);
             }
         }
 
-        // ── Build all slice panels in stage (once at init) ────
-        function buildAllPanels() {
+        // ── Category rail ─────────────────────────────────────
+        function buildCategoryRail(present) {
+            const rail = document.createElement('nav');
+            rail.className = 'cat-rail';
+            rail.setAttribute('aria-label', tr('Categories'));
+
+            present.forEach(entry => {
+                const chip = document.createElement('a');
+                chip.className = 'cat-chip';
+                chip.href = '#cat-' + slugify(entry.name);
+                chip.dataset.target = 'cat-' + slugify(entry.name);
+
+                // The label carries data-i18n, not the chip: the i18n pass sets
+                // textContent, which would wipe the count if it owned the node.
+                const label = document.createElement('span');
+                label.className = 'cat-chip-label';
+                label.setAttribute('data-i18n', '');
+                label.dataset.i18nKey = entry.name;
+                label.textContent = tr(entry.name);
+
+                const n = document.createElement('span');
+                n.className = 'cat-chip-n';
+                n.textContent = entry.count;
+
+                chip.appendChild(label);
+                chip.appendChild(n);
+
+                chip.addEventListener('click', e => {
+                    e.preventDefault();
+                    jumpToCategory(entry.name);
+                });
+                rail.appendChild(chip);
+            });
+
+            return rail;
+        }
+
+        // Where the sticky rail's bottom edge sits, in viewport coordinates. The
+        // rail sticks to the stage's padding box, so the padding has to be in
+        // here or every jump parks the divider just underneath it.
+        function railBottom(rail) {
+            const pad = parseFloat(getComputedStyle(stage).paddingTop) || 0;
+            return stage.getBoundingClientRect().top + pad + (rail ? rail.offsetHeight : 0);
+        }
+
+        // Scroll target for a divider, clearing the sticky rail that sits over it.
+        function categoryOffset(el, rail) {
+            return stage.scrollTop + el.getBoundingClientRect().top - railBottom(rail) - 16;
+        }
+
+        function jumpToCategory(catName) {
+            const el = document.getElementById('cat-' + slugify(catName));
+            if (!el) return;
+            const rail = document.querySelector('.panel.active .cat-rail');
+            stage.scrollTo({ top: Math.max(0, categoryOffset(el, rail)), behavior: 'smooth' });
+            history.replaceState({}, '', '#cat-' + slugify(catName));
+        }
+
+        function detachSpy() {
+            if (spy) { stage.removeEventListener('scroll', spy); spy = null; }
+        }
+
+        // Marks the rail chip for the section you are actually in. Watching for
+        // dividers to intersect a band does not work here — sections are taller
+        // than the viewport, so most scroll positions have no divider on screen
+        // at all. The last divider scrolled past is the honest answer.
+        function attachSpy(panel) {
+            detachSpy();
+            const rail = panel.querySelector('.cat-rail');
+            if (!rail) return;
+            const chips = Array.from(rail.querySelectorAll('.cat-chip'));
+            const dividers = Array.from(panel.querySelectorAll('.subcat-divider'));
+            if (!chips.length || !dividers.length) return;
+
+            let queued = false;
+            const update = () => {
+                queued = false;
+                const cutoff = railBottom(rail) + 12;
+                let activeId = dividers[0].id;
+                for (const d of dividers) {
+                    if (d.getBoundingClientRect().top <= cutoff) activeId = d.id;
+                    else break;
+                }
+                chips.forEach(c => {
+                    const on = c.dataset.target === activeId;
+                    if (on === c.classList.contains('active')) return;
+                    c.classList.toggle('active', on);
+                    // Keep the active chip in view by moving the rail only —
+                    // scrollIntoView here would fight the user's own scrolling.
+                    if (on && (c.offsetLeft < rail.scrollLeft ||
+                               c.offsetLeft + c.offsetWidth > rail.scrollLeft + rail.clientWidth)) {
+                        rail.scrollLeft = c.offsetLeft - (rail.clientWidth - c.offsetWidth) / 2;
+                    }
+                });
+            };
+
+            spy = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+            stage.addEventListener('scroll', spy, { passive: true });
+            update();
+        }
+
+        // ── Panels ────────────────────────────────────────────
+        // Shells only at startup. A panel body is built the first time it is
+        // opened, so first paint costs one slice instead of the whole catalog.
+        function buildPanelShells() {
             SLICES.forEach(slice => {
                 const section = document.createElement('section');
                 section.id = 'panel-' + slice.id;
-                section.className = 'panel';
+                section.className = 'panel' + (slice.dense ? ' dense' : '');
 
                 const header = document.createElement('div');
                 header.className = 'panel-header';
@@ -391,18 +650,15 @@ fetch('assets/json/software.json')
                 body.className = 'panel-body';
                 section.appendChild(body);
 
-                buildGridWithDividers(slice, body);
                 stage.appendChild(section);
             });
 
-            // Search results panel
             const searchPanel = document.createElement('section');
             searchPanel.id = 'panel-search';
             searchPanel.className = 'panel';
             searchPanel.innerHTML = '<div class="panel-header"><div class="panel-title">' + tr('Search Results') + '</div></div><div class="panel-body"></div>';
             stage.appendChild(searchPanel);
 
-            // My List panel
             const mylistPanel = document.createElement('section');
             mylistPanel.id = 'panel-mylist';
             mylistPanel.className = 'panel';
@@ -410,12 +666,31 @@ fetch('assets/json/software.json')
             stage.appendChild(mylistPanel);
         }
 
-        // ── Rebuild a single slice panel (after platform toggle) ─
-        function rebuildSlicePanel(sliceId, panelEl) {
+        function ensurePanel(sliceId) {
+            const panel = document.getElementById('panel-' + sliceId);
+            if (!panel || panel.dataset.built === '1') return panel;
             const slice = SLICES.find(s => s.id === sliceId);
-            if (!slice) return;
-            const body = panelEl.querySelector('.panel-body');
-            if (body) buildGridWithDividers(slice, body);
+            if (!slice) return panel;
+            buildGridWithDividers(slice, panel.querySelector('.panel-body'));
+            panel.dataset.built = '1';
+            if (typeof window.scApplyI18n === 'function') window.scApplyI18n();
+            return panel;
+        }
+
+        // Platform or licence filter changed: drop every built body and rebuild
+        // whichever panel is on screen.
+        function invalidatePanels() {
+            document.querySelectorAll('.panel[data-built="1"]').forEach(p => {
+                p.dataset.built = '0';
+                const body = p.querySelector('.panel-body');
+                if (body) body.innerHTML = '';
+            });
+            if (currentView === 'search')      filterLinks(searchInput.value);
+            else if (currentView === 'mylist') renderMyList();
+            else if (currentView) {
+                ensurePanel(currentView);
+                attachSpy(document.getElementById('panel-' + currentView));
+            }
         }
 
         // ── Build slice nav ────────────────────────────────────
@@ -424,6 +699,8 @@ fetch('assets/json/software.json')
                 const el = document.createElement('div');
                 el.className = 'slice';
                 el.dataset.target = slice.id;
+                el.setAttribute('role', 'button');
+                el.setAttribute('tabindex', '0');
                 el.innerHTML =
                     '<div class="slice-bg"></div>' +
                     '<div class="slice-large">' +
@@ -437,6 +714,9 @@ fetch('assets/json/software.json')
                     '</div>';
 
                 el.addEventListener('click', () => selectSlice(slice.id));
+                el.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectSlice(slice.id); }
+                });
                 sliceMenu.appendChild(el);
             });
         }
@@ -449,27 +729,25 @@ fetch('assets/json/software.json')
 
             document.body.classList.add('state-selected');
 
-            // Activate slice tab
             document.querySelectorAll('.slice').forEach(s => {
                 s.classList.toggle('active', s.dataset.target === id);
             });
 
-            // Show panel
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-            const panel = document.getElementById('panel-' + id);
+            const panel = ensurePanel(id);
             if (panel) {
                 panel.classList.add('active');
                 stage.scrollTop = 0;
+                attachSpy(panel);
             }
         }
 
         function showSpecialPanel(id) {
             currentView = id;
             document.body.classList.add('state-selected');
+            detachSpy();
 
-            // Deactivate all slices (My List / Search has no slice)
             document.querySelectorAll('.slice').forEach(s => s.classList.remove('active'));
-
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
             const panel = document.getElementById('panel-' + id);
             if (panel) {
@@ -478,29 +756,21 @@ fetch('assets/json/software.json')
             }
         }
 
-        function resetView() {
-            currentView = null;
-            searchInput.value = '';
-            updateURL(null);
-            document.body.classList.remove('state-selected');
-            document.querySelectorAll('.slice').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-        }
-
         // ── Search ────────────────────────────────────────────
         function filterLinks(query) {
             currentView = 'search';
-            const q = query.toLowerCase();
+            const q = query.trim().toLowerCase();
             const seen = new Set();
             const results = allServices.filter(s => {
                 if (seen.has(s.link)) return false;
+                if (!licenceAllows(s)) return false;
                 seen.add(s.link);
-                return s.value.toLowerCase().includes(q);
+                return (s.value || (s.name + ' ' + s.description)).toLowerCase().includes(q);
             });
 
             const panel = document.getElementById('panel-search');
             const body  = panel.querySelector('.panel-body');
-            buildGrid(results, body);
+            buildGrid(results, body, q);
 
             const header = panel.querySelector('.panel-title');
             header.textContent = results.length
@@ -538,31 +808,52 @@ fetch('assets/json/software.json')
             });
         }
 
-        // ── Search input ──────────────────────────────────────
+        // ── Search input (debounced) ──────────────────────────
         if (searchInput) {
+            let timer = null;
             searchInput.addEventListener('input', () => {
-                const q = searchInput.value.trim();
-                if (q) {
-                    filterLinks(q);
-                } else if (currentView === 'search') {
-                    selectSlice('highlights');
-                }
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    const q = searchInput.value.trim();
+                    if (q) {
+                        filterLinks(q);
+                    } else if (currentView === 'search') {
+                        selectSlice('highlights');
+                    }
+                }, 120);
             });
         }
 
         // ── Init ──────────────────────────────────────────────
         buildSliceMenu();
-        buildAllPanels();
+        buildPanelShells();
         refreshMyListCount();
         refreshPlatformBtn();
+        refreshOpenBtn();
 
-        // Restore from URL or default to Highlights
+        // #cat-<slug> opens whichever slice owns that category and scrolls to it.
+        function openFromHash() {
+            const hash = decodeURIComponent(window.location.hash || '').replace(/^#/, '');
+            if (!hash.startsWith('cat-')) return false;
+            for (const slice of SLICES) {
+                const hit = sliceCategories(slice).find(c => 'cat-' + slugify(c) === hash);
+                if (hit) {
+                    selectSlice(slice.id);
+                    requestAnimationFrame(() => jumpToCategory(hit));
+                    return true;
+                }
+            }
+            return false;
+        }
+
         const urlSearch = initialParams.get('search');
         if (urlSearch) {
             searchInput.value = urlSearch;
             filterLinks(urlSearch);
-        } else {
+        } else if (!openFromHash()) {
             selectSlice('highlights');
         }
+
+        window.addEventListener('hashchange', openFromHash);
     })
     .catch(err => console.error('[SoftwareCatalog] Failed to load JSON:', err));
