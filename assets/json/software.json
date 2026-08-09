@@ -4,7 +4,7 @@
     "description": "Setup Script for Linux and Windows Systems",
     "link": "https://setup.carino.systems/",
     "icon": "fas fa-code",
-    "value": "Simple Setup Script Linux and Windows Systems",
+    "value": "Simple Setup Script Linux Windows macOS system configuration Carino Systems fleet",
     "windows": "upgrade --all; iwr -useb https://setup.carino.systems/setup.ps1 | iex",
     "macos": "",
     "fedora": "wget curl && bash <(curl -s https://setup.carino.systems/setup.sh)",
@@ -13,6 +13,7 @@
     "suse": "wget curl && bash <(curl -s https://setup.carino.systems/setup.sh)",
     "flatpak": "",
     "categories": [
+      "Carino Systems",
       "Curated Highlights",
       "Operating Systems"
     ]
@@ -685,11 +686,11 @@
     ]
   },
   {
-    "name": "PDF2IMG",
-    "description": "Convert PDF to image Offline",
+    "name": "Media Suite",
+    "description": "PDF to image, OCR, signature cleanup, converters and an ffmpeg builder",
     "link": "https://media.carino.systems/",
-    "icon": "fas fa-file",
-    "value": "Converter pdf files to image Easy Offline",
+    "icon": "fas fa-photo-film",
+    "value": "Media Suite PDF2IMG pdf image OCR signature convert audio ffmpeg Carino Systems",
     "windows": "",
     "macos": "",
     "fedora": "",
@@ -698,6 +699,7 @@
     "suse": "",
     "flatpak": "",
     "categories": [
+      "Carino Systems",
       "Multimedia and Design"
     ]
   },
@@ -1340,7 +1342,7 @@
     "description": "Continuous File Synchronization",
     "link": "https://syncthing.net/",
     "icon": "fab fa-s",
-    "value": "#",
+    "value": "Syncthing Continuous File Synchronization",
     "windows": "SyncTrayzor.SyncTrayzor",
     "macos": "syncthing",
     "fedora": "syncthing",
@@ -2683,7 +2685,7 @@
     "description": "Flight Simulator",
     "link": "https://www.flightgear.org",
     "icon": "fab fa-f",
-    "value": "#",
+    "value": "FlightGear Flight Simulator",
     "windows": "FlightGear.FlightGear",
     "macos": "--cask flightgear",
     "fedora": "",
@@ -3289,10 +3291,10 @@
   },
   {
     "name": "Teleprompter",
-    "description": "A simple web teleprompter",
-    "link": "https://miguelcarino.github.io/Teleprompter/",
-    "icon": "fas fa-tv",
-    "value": "simple teleprompter display text",
+    "description": "Speed-controlled script reader for presentations and recordings",
+    "link": "https://teleprompter.carino.systems/",
+    "icon": "fas fa-scroll",
+    "value": "Teleprompter speed controlled script reader presentations recordings Carino Systems fleet",
     "windows": "",
     "macos": "",
     "fedora": "",
@@ -3301,6 +3303,7 @@
     "suse": "",
     "flatpak": "",
     "categories": [
+      "Carino Systems",
       "Gaming and Entertainment"
     ]
   },
@@ -14149,5 +14152,2155 @@
     "categories": [
       "Manufacturing Floor and CNC"
     ]
+  },
+  {
+    "name": "Carino Systems",
+    "description": "The fleet hub — search every Carino tool in one place",
+    "link": "https://carino.systems/",
+    "icon": "fas fa-sitemap",
+    "value": "Carino Systems The fleet hub — search every Carino tool in one place Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Carino PACS",
+    "description": "Self-hosted DICOM gateway that receives, routes and forwards studies",
+    "link": "https://pacs.carino.systems/",
+    "icon": "fas fa-server",
+    "value": "Carino PACS Self-hosted DICOM gateway that receives, routes and forwards studies Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Carino Retina",
+    "description": "Eye exam suite — fundus annotation, cup-to-disc ratio, refraction and dispensing",
+    "link": "https://retina.carino.systems/",
+    "icon": "fas fa-eye",
+    "value": "Carino Retina Eye exam suite — fundus annotation, cup-to-disc ratio, refraction and dispensing Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "DICOM Tag Editor",
+    "description": "Inspect and edit DICOM tags for anonymisation and interoperability",
+    "link": "https://dicom.carino.systems/",
+    "icon": "fas fa-tags",
+    "value": "DICOM Tag Editor Inspect and edit DICOM tags for anonymisation and interoperability Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Carino Learn",
+    "description": "Interactive courses and labs — assembly, Linux, networking, DICOM, HL7, ISO 27001",
+    "link": "https://learn.carino.systems/",
+    "icon": "fas fa-graduation-cap",
+    "value": "Carino Learn Interactive courses and labs — assembly, Linux, networking, DICOM, HL7, ISO 27001 Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Metadata",
+    "description": "Extract, edit and strip metadata from almost any file",
+    "link": "https://metadata.carino.systems/",
+    "icon": "fas fa-file",
+    "value": "Metadata Extract, edit and strip metadata from almost any file Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Hash",
+    "description": "Hashing lab — live SHA-256 visualizer, digests and a Lamport signature demo",
+    "link": "https://hash.carino.systems/",
+    "icon": "fas fa-hashtag",
+    "value": "Hash Hashing lab — live SHA-256 visualizer, digests and a Lamport signature demo Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Password",
+    "description": "Client-side password generator and local vault, with no server contact",
+    "link": "https://password.carino.systems/",
+    "icon": "fas fa-key",
+    "value": "Password Client-side password generator and local vault, with no server contact Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "CVE Database",
+    "description": "Browse and search security vulnerabilities sourced from the NVD",
+    "link": "https://cve.carino.systems/",
+    "icon": "fas fa-bug",
+    "value": "CVE Database Browse and search security vulnerabilities sourced from the NVD Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Hardware",
+    "description": "Decode MAC addresses, reach vendor support pages and size a build",
+    "link": "https://hardware.carino.systems/",
+    "icon": "fas fa-microchip",
+    "value": "Hardware Decode MAC addresses, reach vendor support pages and size a build Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Carino Images",
+    "description": "Fedora bootc images and installer ISOs from one declarative config",
+    "link": "https://images.carino.systems/",
+    "icon": "fab fa-fedora",
+    "value": "Carino Images Fedora bootc images and installer ISOs from one declarative config Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Find Me a Distro",
+    "description": "Answer a few questions and get a matching Linux distribution",
+    "link": "https://distro.carino.systems/",
+    "icon": "fab fa-linux",
+    "value": "Find Me a Distro Answer a few questions and get a matching Linux distribution Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Netplan Configurator",
+    "description": "GUI editor for Linux server network YAML",
+    "link": "https://netplan.carino.systems/",
+    "icon": "fas fa-network-wired",
+    "value": "Netplan Configurator GUI editor for Linux server network YAML Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Topo",
+    "description": "Draw network topologies with devices, links and addressing",
+    "link": "https://topo.carino.systems/",
+    "icon": "fas fa-diagram-project",
+    "value": "Topo Draw network topologies with devices, links and addressing Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Time",
+    "description": "World clock, epoch and ISO conversion, and shareable countdowns",
+    "link": "https://time.carino.systems/",
+    "icon": "fas fa-clock",
+    "value": "Time World clock, epoch and ISO conversion, and shareable countdowns Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Carino Branding",
+    "description": "The fleet design system — tokens, components and copy-ready snippets",
+    "link": "https://branding.carino.systems/",
+    "icon": "fas fa-palette",
+    "value": "Carino Branding The fleet design system — tokens, components and copy-ready snippets Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Carino Fonts",
+    "description": "Draw, kern and export a working TTF or WOFF in the browser",
+    "link": "https://font.carino.systems/",
+    "icon": "fas fa-font",
+    "value": "Carino Fonts Draw, kern and export a working TTF or WOFF in the browser Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Vitae",
+    "description": "Build a print-ready résumé with live editing and PDF export",
+    "link": "https://vitae.carino.systems/",
+    "icon": "fas fa-file-lines",
+    "value": "Vitae Build a print-ready résumé with live editing and PDF export Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Quote",
+    "description": "Build and send service and product quotes to clients",
+    "link": "https://quote.carino.systems/",
+    "icon": "fas fa-file-invoice",
+    "value": "Quote Build and send service and product quotes to clients Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Desk",
+    "description": "Support snippet workspace — search, fill and copy canned replies",
+    "link": "https://desk.carino.systems/",
+    "icon": "fas fa-headset",
+    "value": "Desk Support snippet workspace — search, fill and copy canned replies Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Kanban",
+    "description": "Serverless kanban board for lightweight task tracking",
+    "link": "https://kanban.carino.systems/",
+    "icon": "fas fa-table-columns",
+    "value": "Kanban Serverless kanban board for lightweight task tracking Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Stocks",
+    "description": "Markets watchlist, alerts and portfolio monitoring",
+    "link": "https://stocks.carino.systems/",
+    "icon": "fas fa-chart-line",
+    "value": "Stocks Markets watchlist, alerts and portfolio monitoring Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Carino Currency",
+    "description": "FX trends, movers and national trade balances against any base",
+    "link": "https://currency.carino.systems/",
+    "icon": "fas fa-money-bill-transfer",
+    "value": "Carino Currency FX trends, movers and national trade balances against any base Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Compass",
+    "description": "Twelve-axis political compass measured by intention rather than grading",
+    "link": "https://compass.carino.systems/",
+    "icon": "fas fa-compass",
+    "value": "Compass Twelve-axis political compass measured by intention rather than grading Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Asobi",
+    "description": "Shogi and Hanafuda Koi-Koi in the browser, against a human or an AI",
+    "link": "https://asobi.carino.systems/",
+    "icon": "fas fa-chess",
+    "value": "Asobi Shogi and Hanafuda Koi-Koi in the browser, against a human or an AI Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Music Wall",
+    "description": "Curated music collection shown as an interactive album wall",
+    "link": "https://music.carino.systems/",
+    "icon": "fas fa-record-vinyl",
+    "value": "Music Wall Curated music collection shown as an interactive album wall Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "TV",
+    "description": "Multi-source stream monitoring layout for broadcast operations",
+    "link": "https://tv.carino.systems/",
+    "icon": "fas fa-tv",
+    "value": "TV Multi-source stream monitoring layout for broadcast operations Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Sync Studio",
+    "description": "Re-time, align and correct subtitle tracks for video",
+    "link": "https://subs.carino.systems/",
+    "icon": "fas fa-closed-captioning",
+    "value": "Sync Studio Re-time, align and correct subtitle tracks for video Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "MultiWeb",
+    "description": "Local wall of live iframes that refreshes each project as its files change",
+    "link": "https://github.com/MiguelCarino/MultiWeb",
+    "icon": "fas fa-table-cells",
+    "value": "MultiWeb Local wall of live iframes that refreshes each project as its files change Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Software Catalogue",
+    "description": "This catalogue — system-agnostic app repository for fleet deployments",
+    "link": "https://software.carino.systems/",
+    "icon": "fas fa-list",
+    "value": "Software Catalogue This catalogue — system-agnostic app repository for fleet deployments Carino Systems fleet",
+    "categories": [
+      "Carino Systems"
+    ]
+  },
+  {
+    "name": "Esolang Wiki",
+    "description": "The catalogue of deliberately impractical languages",
+    "link": "https://esolangs.org/",
+    "icon": "fas fa-book-open",
+    "value": "Esolang Wiki The catalogue of deliberately impractical languages Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "INTERCAL",
+    "description": "The 1972 parody language that requires you to say PLEASE",
+    "link": "https://www.catb.org/~esr/intercal/",
+    "icon": "fas fa-face-grin-tongue",
+    "value": "INTERCAL The 1972 parody language that requires you to say PLEASE Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Brainfuck",
+    "description": "Eight instructions, Turing complete, entirely unreadable",
+    "link": "https://esolangs.org/wiki/Brainfuck",
+    "icon": "fas fa-explosion",
+    "value": "Brainfuck Eight instructions, Turing complete, entirely unreadable Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Malbolge",
+    "description": "Designed to be impossible; the first program took two years",
+    "link": "https://esolangs.org/wiki/Malbolge",
+    "icon": "fas fa-skull",
+    "value": "Malbolge Designed to be impossible; the first program took two years Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Whitespace",
+    "description": "Only spaces, tabs and linefeeds are syntax — everything else is comment",
+    "link": "https://esolangs.org/wiki/Whitespace",
+    "icon": "fas fa-ghost",
+    "value": "Whitespace Only spaces, tabs and linefeeds are syntax — everything else is comment Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Befunge",
+    "description": "Source is a two-dimensional grid the instruction pointer wanders around",
+    "link": "https://esolangs.org/wiki/Befunge",
+    "icon": "fas fa-arrows-turn-to-dots",
+    "value": "Befunge Source is a two-dimensional grid the instruction pointer wanders around Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Piet",
+    "description": "Programs are abstract paintings, executed by colour transitions",
+    "link": "https://www.dangermouse.net/esoteric/piet.html",
+    "icon": "fas fa-palette",
+    "value": "Piet Programs are abstract paintings, executed by colour transitions Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Chef",
+    "description": "Programs are valid cooking recipes that should also taste good",
+    "link": "https://www.dangermouse.net/esoteric/chef.html",
+    "icon": "fas fa-utensils",
+    "value": "Chef Programs are valid cooking recipes that should also taste good Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Shakespeare",
+    "description": "Programs are written as Elizabethan stage plays",
+    "link": "http://shakespearelang.sourceforge.net/",
+    "icon": "fas fa-masks-theater",
+    "value": "Shakespeare Programs are written as Elizabethan stage plays Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "LOLCODE",
+    "description": "A language built entirely out of 2007 cat memes",
+    "link": "http://www.lolcode.org/",
+    "icon": "fas fa-cat",
+    "value": "LOLCODE A language built entirely out of 2007 cat memes Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Rockstar",
+    "description": "Valid programs are also plausible power ballad lyrics",
+    "link": "https://codewithrockstar.com/",
+    "icon": "fas fa-guitar",
+    "value": "Rockstar Valid programs are also plausible power ballad lyrics Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "ArnoldC",
+    "description": "Every keyword is an Arnold Schwarzenegger quote",
+    "link": "https://lhartikk.github.io/ArnoldC/",
+    "icon": "fas fa-dumbbell",
+    "value": "ArnoldC Every keyword is an Arnold Schwarzenegger quote Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Emojicode",
+    "description": "A genuinely usable object-oriented language written in emoji",
+    "link": "https://www.emojicode.org/",
+    "icon": "fas fa-face-smile",
+    "value": "Emojicode A genuinely usable object-oriented language written in emoji Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Orca",
+    "description": "A livecoding environment where every letter is a moving operator",
+    "link": "https://100r.co/site/orca.html",
+    "icon": "fas fa-table-cells",
+    "value": "Orca A livecoding environment where every letter is a moving operator Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Uiua",
+    "description": "Stack-based array language written in APL-style glyphs",
+    "link": "https://www.uiua.org/",
+    "icon": "fas fa-superscript",
+    "value": "Uiua Stack-based array language written in APL-style glyphs Esoteric Programming Languages",
+    "categories": [
+      "Esoteric Programming Languages"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "J",
+    "description": "Iverson's successor to APL — dense, wordless, ferociously terse",
+    "link": "https://www.jsoftware.com/",
+    "icon": "fas fa-square-root-variable",
+    "value": "J Iverson's successor to APL — dense, wordless, ferociously terse Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "GNU APL",
+    "description": "The original array language, symbols and all",
+    "link": "https://www.gnu.org/software/apl/",
+    "icon": "fas fa-superscript",
+    "value": "GNU APL The original array language, symbols and all Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "BQN",
+    "description": "A modern array language that kept the glyphs and fixed the rest",
+    "link": "https://mlochbaum.github.io/BQN/",
+    "icon": "fas fa-shapes",
+    "value": "BQN A modern array language that kept the glyphs and fixed the rest Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Factor",
+    "description": "Concatenative programming with a full graphical environment",
+    "link": "https://factorcode.org/",
+    "icon": "fas fa-layer-group",
+    "value": "Factor Concatenative programming with a full graphical environment Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Gforth",
+    "description": "The GNU implementation of Forth, still running on everything",
+    "link": "https://gforth.org/",
+    "icon": "fas fa-terminal",
+    "value": "Gforth The GNU implementation of Forth, still running on everything Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Pharo",
+    "description": "Live Smalltalk where the whole system is editable while running",
+    "link": "https://pharo.org/",
+    "icon": "fas fa-hand-sparkles",
+    "value": "Pharo Live Smalltalk where the whole system is editable while running Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Squeak",
+    "description": "The Smalltalk lineage that taught a generation of children",
+    "link": "https://squeak.org/",
+    "icon": "fas fa-child",
+    "value": "Squeak The Smalltalk lineage that taught a generation of children Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Racket",
+    "description": "A language for making languages",
+    "link": "https://racket-lang.org/",
+    "icon": "fas fa-shapes",
+    "value": "Racket A language for making languages Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Red",
+    "description": "A full-stack descendant of Rebol in a single megabyte binary",
+    "link": "https://www.red-lang.org/",
+    "icon": "fas fa-circle",
+    "value": "Red A full-stack descendant of Rebol in a single megabyte binary Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "SWI-Prolog",
+    "description": "Logic programming that is still quietly excellent",
+    "link": "https://www.swi-prolog.org/",
+    "icon": "fas fa-diagram-project",
+    "value": "SWI-Prolog Logic programming that is still quietly excellent Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Rocq",
+    "description": "The proof assistant formerly called Coq, used to verify real compilers",
+    "link": "https://rocq-prover.org/",
+    "icon": "fas fa-check-double",
+    "value": "Rocq The proof assistant formerly called Coq, used to verify real compilers Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Lean",
+    "description": "Theorem prover that mathematicians actually adopted",
+    "link": "https://lean-lang.org/",
+    "icon": "fas fa-square-root-variable",
+    "value": "Lean Theorem prover that mathematicians actually adopted Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Agda",
+    "description": "Dependently typed language where proofs are programs",
+    "link": "https://wiki.portal.chalmers.se/agda/",
+    "icon": "fas fa-infinity",
+    "value": "Agda Dependently typed language where proofs are programs Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Nim",
+    "description": "Python-looking syntax that compiles to C and thinks it is 1995",
+    "link": "https://nim-lang.org/",
+    "icon": "fas fa-crown",
+    "value": "Nim Python-looking syntax that compiles to C and thinks it is 1995 Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Zig",
+    "description": "A language trying to replace C by being boring on purpose",
+    "link": "https://ziglang.org/",
+    "icon": "fas fa-bolt",
+    "value": "Zig A language trying to replace C by being boring on purpose Languages From Another Timeline",
+    "categories": [
+      "Languages From Another Timeline"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "SerenityOS",
+    "description": "A from-scratch Unix built to look and feel like 1998",
+    "link": "https://serenityos.org/",
+    "icon": "fas fa-desktop",
+    "value": "SerenityOS A from-scratch Unix built to look and feel like 1998 Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Ladybird",
+    "description": "An independent browser engine, written from nothing",
+    "link": "https://ladybird.org/",
+    "icon": "fas fa-globe",
+    "value": "Ladybird An independent browser engine, written from nothing Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Haiku",
+    "description": "The open continuation of BeOS, still shipping releases",
+    "link": "https://www.haiku-os.org/",
+    "icon": "fas fa-leaf",
+    "value": "Haiku The open continuation of BeOS, still shipping releases Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "ReactOS",
+    "description": "A binary-compatible reimplementation of Windows NT",
+    "link": "https://reactos.org/",
+    "icon": "fas fa-window-restore",
+    "value": "ReactOS A binary-compatible reimplementation of Windows NT Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "MenuetOS",
+    "description": "A graphical 64-bit OS written entirely in assembly, fits on a floppy",
+    "link": "https://menuetos.net/",
+    "icon": "fas fa-floppy-disk",
+    "value": "MenuetOS A graphical 64-bit OS written entirely in assembly, fits on a floppy Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "KolibriOS",
+    "description": "Assembly-language OS that boots to a desktop in about a second",
+    "link": "https://kolibrios.org/",
+    "icon": "fas fa-feather",
+    "value": "KolibriOS Assembly-language OS that boots to a desktop in about a second Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Collapse OS",
+    "description": "An OS designed to be rebuilt from scavenged chips after civilisation ends",
+    "link": "https://collapseos.org/",
+    "icon": "fas fa-radiation",
+    "value": "Collapse OS An OS designed to be rebuilt from scavenged chips after civilisation ends Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Dusk OS",
+    "description": "The 32-bit successor to Collapse OS, for the same grim purpose",
+    "link": "https://duskos.org/",
+    "icon": "fas fa-moon",
+    "value": "Dusk OS The 32-bit successor to Collapse OS, for the same grim purpose Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "TempleOS",
+    "description": "One man's 64-bit operating system, written alone over a decade",
+    "link": "https://templeos.org/",
+    "icon": "fas fa-place-of-worship",
+    "value": "TempleOS One man's 64-bit operating system, written alone over a decade Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Project Oberon",
+    "description": "An entire OS, compiler and CPU design in about sixteen thousand lines",
+    "link": "http://www.projectoberon.net/",
+    "icon": "fas fa-cube",
+    "value": "Project Oberon An entire OS, compiler and CPU design in about sixteen thousand lines Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "9front",
+    "description": "A Plan 9 fork with excellent code and unhinged release notes",
+    "link": "http://9front.org/",
+    "icon": "fas fa-ghost",
+    "value": "9front A Plan 9 fork with excellent code and unhinged release notes Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Plan 9 from User Space",
+    "description": "Bell Labs' last operating system, ported into yours",
+    "link": "https://9fans.github.io/plan9port/",
+    "icon": "fas fa-network-wired",
+    "value": "Plan 9 from User Space Bell Labs' last operating system, ported into yours Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Redox OS",
+    "description": "A Unix-like microkernel OS written in Rust",
+    "link": "https://www.redox-os.org/",
+    "icon": "fas fa-gear",
+    "value": "Redox OS A Unix-like microkernel OS written in Rust Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "FreeDOS",
+    "description": "A complete, actively maintained DOS in the year 2026",
+    "link": "https://www.freedos.org/",
+    "icon": "fas fa-terminal",
+    "value": "FreeDOS A complete, actively maintained DOS in the year 2026 Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "RISC OS Open",
+    "description": "The Acorn desktop OS from 1987, still developed",
+    "link": "https://www.riscosopen.org/",
+    "icon": "fas fa-microchip",
+    "value": "RISC OS Open The Acorn desktop OS from 1987, still developed Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Ultibo",
+    "description": "Bare-metal Raspberry Pi development with no OS underneath",
+    "link": "https://ultibo.org/",
+    "icon": "fab fa-raspberry-pi",
+    "value": "Ultibo Bare-metal Raspberry Pi development with no OS underneath Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "suckless",
+    "description": "dwm, st and dmenu — software that removes features on principle",
+    "link": "https://suckless.org/",
+    "icon": "fas fa-minimize",
+    "value": "suckless dwm, st and dmenu — software that removes features on principle Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "GNU Guix",
+    "description": "A package manager and OS where every build is reproducible",
+    "link": "https://guix.gnu.org/",
+    "icon": "fas fa-box",
+    "value": "GNU Guix A package manager and OS where every build is reproducible Operating Systems Nobody Asked For",
+    "categories": [
+      "Operating Systems Nobody Asked For"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "sl",
+    "description": "Runs a steam locomotive across your terminal when you mistype ls",
+    "link": "https://github.com/mtoyoda/sl",
+    "icon": "fas fa-train",
+    "value": "sl Runs a steam locomotive across your terminal when you mistype ls Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "gti",
+    "description": "Drives a little car across the screen when you mistype git",
+    "link": "https://r-wos.org/hacks/gti",
+    "icon": "fas fa-car",
+    "value": "gti Drives a little car across the screen when you mistype git Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "cowsay",
+    "description": "An ASCII cow says whatever you pipe into it",
+    "link": "https://github.com/piuccio/cowsay",
+    "icon": "fas fa-cow",
+    "value": "cowsay An ASCII cow says whatever you pipe into it Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "lolcat",
+    "description": "Rainbow-colours anything printed to standard output",
+    "link": "https://github.com/busyloop/lolcat",
+    "icon": "fas fa-rainbow",
+    "value": "lolcat Rainbow-colours anything printed to standard output Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "cmatrix",
+    "description": "The falling green code from The Matrix, as a screensaver",
+    "link": "https://github.com/abishekvashok/cmatrix",
+    "icon": "fas fa-code",
+    "value": "cmatrix The falling green code from The Matrix, as a screensaver Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "asciiquarium",
+    "description": "A full aquarium, in ASCII, in your terminal",
+    "link": "https://robobunny.com/projects/asciiquarium/",
+    "icon": "fas fa-fish",
+    "value": "asciiquarium A full aquarium, in ASCII, in your terminal Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "cbonsai",
+    "description": "Grows a procedurally generated bonsai tree in the terminal",
+    "link": "https://gitlab.com/jallbrit/cbonsai",
+    "icon": "fas fa-tree",
+    "value": "cbonsai Grows a procedurally generated bonsai tree in the terminal Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "pipes.sh",
+    "description": "The Windows 95 pipes screensaver, rebuilt in shell",
+    "link": "https://github.com/pipeseroni/pipes.sh",
+    "icon": "fas fa-diagram-project",
+    "value": "pipes.sh The Windows 95 pipes screensaver, rebuilt in shell Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "nyancat",
+    "description": "The nyan cat animation, served over telnet since 2011",
+    "link": "https://github.com/klange/nyancat",
+    "icon": "fas fa-cat",
+    "value": "nyancat The nyan cat animation, served over telnet since 2011 Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "oneko",
+    "description": "A cat that chases your mouse cursor around the desktop",
+    "link": "https://github.com/tie/oneko",
+    "icon": "fas fa-paw",
+    "value": "oneko A cat that chases your mouse cursor around the desktop Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "xsnow",
+    "description": "Lets it snow on your desktop windows, since 1984",
+    "link": "https://ratrabbit.nl/ratrabbit/xsnow/",
+    "icon": "fas fa-snowflake",
+    "value": "xsnow Lets it snow on your desktop windows, since 1984 Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "XScreenSaver",
+    "description": "Hundreds of screen hacks, curated for thirty-five years",
+    "link": "https://www.jwz.org/xscreensaver/",
+    "icon": "fas fa-display",
+    "value": "XScreenSaver Hundreds of screen hacks, curated for thirty-five years Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "hollywood",
+    "description": "Fills your terminal with convincing fake hacking",
+    "link": "https://github.com/dustinkirkland/hollywood",
+    "icon": "fas fa-user-secret",
+    "value": "hollywood Fills your terminal with convincing fake hacking Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "genact",
+    "description": "A nonsense activity generator for looking busy",
+    "link": "https://github.com/svenstaro/genact",
+    "icon": "fas fa-bars-progress",
+    "value": "genact A nonsense activity generator for looking busy Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "No More Secrets",
+    "description": "Recreates the decrypting-text effect from the film Sneakers",
+    "link": "https://github.com/bartobri/no-more-secrets",
+    "icon": "fas fa-eye-slash",
+    "value": "No More Secrets Recreates the decrypting-text effect from the film Sneakers Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "thefuck",
+    "description": "Corrects the command you just typed wrong, profanely",
+    "link": "https://github.com/nvbn/thefuck",
+    "icon": "fas fa-hand-middle-finger",
+    "value": "thefuck Corrects the command you just typed wrong, profanely Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "cool-retro-term",
+    "description": "A terminal emulator that simulates a curved, bleeding CRT",
+    "link": "https://github.com/Swordfish90/cool-retro-term",
+    "icon": "fas fa-tv",
+    "value": "cool-retro-term A terminal emulator that simulates a curved, bleeding CRT Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "chafa",
+    "description": "Renders any image as terminal characters, remarkably well",
+    "link": "https://hpjansson.org/chafa/",
+    "icon": "fas fa-image",
+    "value": "chafa Renders any image as terminal characters, remarkably well Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "FIGlet",
+    "description": "Turns text into large letters made of smaller letters",
+    "link": "http://www.figlet.org/",
+    "icon": "fas fa-font",
+    "value": "FIGlet Turns text into large letters made of smaller letters Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "libcaca",
+    "description": "A library for colour ASCII art, including a video player",
+    "link": "http://caca.zoy.org/wiki/libcaca",
+    "icon": "fas fa-braille",
+    "value": "libcaca A library for colour ASCII art, including a video player Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Bastet",
+    "description": "Tetris whose piece generator actively works against you",
+    "link": "https://fph.altervista.org/prog/bastet.html",
+    "icon": "fas fa-shapes",
+    "value": "Bastet Tetris whose piece generator actively works against you Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "fastfetch",
+    "description": "Prints your system specs beside distro art, very quickly",
+    "link": "https://github.com/fastfetch-cli/fastfetch",
+    "icon": "fas fa-circle-info",
+    "value": "fastfetch Prints your system specs beside distro art, very quickly Terminal Toys and Nonsense",
+    "categories": [
+      "Terminal Toys and Nonsense"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "TIC-80",
+    "description": "A fantasy console with deliberate limits and a built-in editor",
+    "link": "https://tic80.com/",
+    "icon": "fas fa-gamepad",
+    "value": "TIC-80 A fantasy console with deliberate limits and a built-in editor Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "WASM-4",
+    "description": "A fantasy console where cartridges are WebAssembly, 64K of memory",
+    "link": "https://wasm4.org/",
+    "icon": "fas fa-microchip",
+    "value": "WASM-4 A fantasy console where cartridges are WebAssembly, 64K of memory Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Pyxel",
+    "description": "A retro game engine for Python with a sixteen-colour palette",
+    "link": "https://github.com/kitao/pyxel",
+    "icon": "fab fa-python",
+    "value": "Pyxel A retro game engine for Python with a sixteen-colour palette Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "LÖVE",
+    "description": "A Lua framework that has quietly powered a decade of odd games",
+    "link": "https://love2d.org/",
+    "icon": "fas fa-heart",
+    "value": "LÖVE A Lua framework that has quietly powered a decade of odd games Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Uxn",
+    "description": "A tiny personal computing stack designed to outlive its hardware",
+    "link": "https://100r.co/site/uxn.html",
+    "icon": "fas fa-cube",
+    "value": "Uxn A tiny personal computing stack designed to outlive its hardware Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Hundred Rabbits",
+    "description": "Two people making software from a sailboat, all of it open",
+    "link": "https://100r.co/",
+    "icon": "fas fa-sailboat",
+    "value": "Hundred Rabbits Two people making software from a sailboat, all of it open Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "LIKO-12",
+    "description": "An open fantasy computer in the PICO-8 mould, Lua all the way down",
+    "link": "https://liko-12.github.io/",
+    "icon": "fas fa-tv",
+    "value": "LIKO-12 An open fantasy computer in the PICO-8 mould, Lua all the way down Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Bitsy",
+    "description": "A tiny editor for making small, sad, beautiful games",
+    "link": "https://ledoux.itch.io/bitsy",
+    "icon": "fas fa-square",
+    "value": "Bitsy A tiny editor for making small, sad, beautiful games Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Decker",
+    "description": "A HyperCard-like environment for making strange multimedia things",
+    "link": "https://internet-janitor.itch.io/decker",
+    "icon": "fas fa-layer-group",
+    "value": "Decker A HyperCard-like environment for making strange multimedia things Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Pixelorama",
+    "description": "A free pixel art editor built in Godot",
+    "link": "https://orama-interactive.itch.io/pixelorama",
+    "icon": "fas fa-paintbrush",
+    "value": "Pixelorama A free pixel art editor built in Godot Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "LibreSprite",
+    "description": "The community fork of Aseprite from when it was still free",
+    "link": "https://libresprite.github.io/",
+    "icon": "fas fa-palette",
+    "value": "LibreSprite The community fork of Aseprite from when it was still free Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Tiled",
+    "description": "The tile map editor almost every 2D game has passed through",
+    "link": "https://www.mapeditor.org/",
+    "icon": "fas fa-border-all",
+    "value": "Tiled The tile map editor almost every 2D game has passed through Fantasy Consoles and Tiny Computing",
+    "categories": [
+      "Fantasy Consoles and Tiny Computing"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "TidalCycles",
+    "description": "Pattern language for livecoding music in front of an audience",
+    "link": "https://tidalcycles.org/",
+    "icon": "fas fa-music",
+    "value": "TidalCycles Pattern language for livecoding music in front of an audience Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Strudel",
+    "description": "TidalCycles in the browser, no install required",
+    "link": "https://strudel.cc/",
+    "icon": "fas fa-headphones",
+    "value": "Strudel TidalCycles in the browser, no install required Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Hydra",
+    "description": "Livecoded video synthesis, networkable between performers",
+    "link": "https://hydra.ojack.xyz/",
+    "icon": "fas fa-video",
+    "value": "Hydra Livecoded video synthesis, networkable between performers Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "ChucK",
+    "description": "A language where time itself is a first-class concept",
+    "link": "https://chuck.stanford.edu/",
+    "icon": "fas fa-clock",
+    "value": "ChucK A language where time itself is a first-class concept Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Bonzomatic",
+    "description": "Live shader coding tool built for head-to-head competitions",
+    "link": "https://github.com/Gargaj/Bonzomatic",
+    "icon": "fas fa-bolt",
+    "value": "Bonzomatic Live shader coding tool built for head-to-head competitions Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Processing",
+    "description": "The sketchbook that taught artists to program",
+    "link": "https://processing.org/",
+    "icon": "fas fa-pen-nib",
+    "value": "Processing The sketchbook that taught artists to program Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "p5.js",
+    "description": "Processing for the web, aggressively welcoming",
+    "link": "https://p5js.org/",
+    "icon": "fas fa-circle-nodes",
+    "value": "p5.js Processing for the web, aggressively welcoming Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "openFrameworks",
+    "description": "A C++ toolkit for creative coding and installations",
+    "link": "https://openframeworks.cc/",
+    "icon": "fas fa-shapes",
+    "value": "openFrameworks A C++ toolkit for creative coding and installations Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Cables",
+    "description": "Node-based visual programming for browser graphics",
+    "link": "https://cables.gl/",
+    "icon": "fas fa-diagram-project",
+    "value": "Cables Node-based visual programming for browser graphics Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Tracery",
+    "description": "Generative grammars for text — the engine behind a thousand bots",
+    "link": "https://tracery.io/",
+    "icon": "fas fa-comment-dots",
+    "value": "Tracery Generative grammars for text — the engine behind a thousand bots Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Farbrausch demo sources",
+    "description": "The released source of legendary 64K demoscene productions",
+    "link": "https://github.com/farbrausch/fr_public",
+    "icon": "fas fa-compact-disc",
+    "value": "Farbrausch demo sources The released source of legendary 64K demoscene productions Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Blender Open Movies",
+    "description": "Every asset and file from the Blender Foundation films",
+    "link": "https://studio.blender.org/films/",
+    "icon": "fas fa-film",
+    "value": "Blender Open Movies Every asset and file from the Blender Foundation films Livecoding and Generative Art",
+    "categories": [
+      "Livecoding and Generative Art"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Twine",
+    "description": "Makes branching stories without writing code",
+    "link": "https://twinery.org/",
+    "icon": "fas fa-code-branch",
+    "value": "Twine Makes branching stories without writing code Interactive Fiction and Word Games",
+    "categories": [
+      "Interactive Fiction and Word Games"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Inform 7",
+    "description": "Write interactive fiction in something close to English prose",
+    "link": "https://ganelson.github.io/inform-website/",
+    "icon": "fas fa-feather-pointed",
+    "value": "Inform 7 Write interactive fiction in something close to English prose Interactive Fiction and Word Games",
+    "categories": [
+      "Interactive Fiction and Word Games"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Ink",
+    "description": "The narrative scripting language behind several award-winning games",
+    "link": "https://www.inklestudios.com/ink/",
+    "icon": "fas fa-pen-fancy",
+    "value": "Ink The narrative scripting language behind several award-winning games Interactive Fiction and Word Games",
+    "categories": [
+      "Interactive Fiction and Word Games"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Frotz",
+    "description": "An interpreter for Infocom's Z-machine, so Zork still runs",
+    "link": "https://davidgriffith.gitlab.io/frotz/",
+    "icon": "fas fa-ghost",
+    "value": "Frotz An interpreter for Infocom's Z-machine, so Zork still runs Interactive Fiction and Word Games",
+    "categories": [
+      "Interactive Fiction and Word Games"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "IFDB",
+    "description": "The interactive fiction database and its archive",
+    "link": "https://ifdb.org/",
+    "icon": "fas fa-database",
+    "value": "IFDB The interactive fiction database and its archive Interactive Fiction and Word Games",
+    "categories": [
+      "Interactive Fiction and Word Games"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Ren'Py",
+    "description": "The visual novel engine behind a startling amount of published work",
+    "link": "https://www.renpy.org/",
+    "icon": "fas fa-comments",
+    "value": "Ren'Py The visual novel engine behind a startling amount of published work Interactive Fiction and Word Games",
+    "categories": [
+      "Interactive Fiction and Word Games"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Dialogic",
+    "description": "Godot addon for branching dialogue and visual novels",
+    "link": "https://dialogic.pro/",
+    "icon": "fas fa-comment",
+    "value": "Dialogic Godot addon for branching dialogue and visual novels Interactive Fiction and Word Games",
+    "categories": [
+      "Interactive Fiction and Word Games"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "MAME",
+    "description": "Documents and emulates arcade hardware as historical preservation",
+    "link": "https://www.mamedev.org/",
+    "icon": "fas fa-gamepad",
+    "value": "MAME Documents and emulates arcade hardware as historical preservation Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "ScummVM",
+    "description": "Runs decades of point-and-click adventures on modern machines",
+    "link": "https://www.scummvm.org/",
+    "icon": "fas fa-hand-pointer",
+    "value": "ScummVM Runs decades of point-and-click adventures on modern machines Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "DOSBox Staging",
+    "description": "The actively developed DOS emulator for old games",
+    "link": "https://dosbox-staging.github.io/",
+    "icon": "fas fa-terminal",
+    "value": "DOSBox Staging The actively developed DOS emulator for old games Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "86Box",
+    "description": "Emulates specific vintage PCs, chipset by chipset",
+    "link": "https://86box.net/",
+    "icon": "fas fa-computer",
+    "value": "86Box Emulates specific vintage PCs, chipset by chipset Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "RetroArch",
+    "description": "One frontend over dozens of emulator cores",
+    "link": "https://www.retroarch.com/",
+    "icon": "fas fa-layer-group",
+    "value": "RetroArch One frontend over dozens of emulator cores Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Open SIMH",
+    "description": "Simulators for the PDP-11, VAX and other historic machines",
+    "link": "https://opensimh.org/",
+    "icon": "fas fa-server",
+    "value": "Open SIMH Simulators for the PDP-11, VAX and other historic machines Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Hercules",
+    "description": "Emulates IBM mainframes well enough to run their real operating systems",
+    "link": "https://sdl-hercules-390.github.io/html/",
+    "icon": "fas fa-building-columns",
+    "value": "Hercules Emulates IBM mainframes well enough to run their real operating systems Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Vice",
+    "description": "The Commodore 64 emulator, maintained since 1993",
+    "link": "https://vice-emu.sourceforge.io/",
+    "icon": "fas fa-tv",
+    "value": "Vice The Commodore 64 emulator, maintained since 1993 Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Internet Archive",
+    "description": "The library trying to keep the whole web",
+    "link": "https://archive.org/",
+    "icon": "fas fa-landmark-dome",
+    "value": "Internet Archive The library trying to keep the whole web Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "ArchiveBox",
+    "description": "Self-hosted archive of everything you have ever bookmarked",
+    "link": "https://archivebox.io/",
+    "icon": "fas fa-box-archive",
+    "value": "ArchiveBox Self-hosted archive of everything you have ever bookmarked Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Wayback Machine",
+    "description": "Snapshots of pages that no longer exist",
+    "link": "https://web.archive.org/",
+    "icon": "fas fa-clock-rotate-left",
+    "value": "Wayback Machine Snapshots of pages that no longer exist Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Freedoom",
+    "description": "A complete free replacement for Doom's commercial game data",
+    "link": "https://freedoom.github.io/",
+    "icon": "fas fa-skull",
+    "value": "Freedoom A complete free replacement for Doom's commercial game data Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Chocolate Doom",
+    "description": "Reproduces the original Doom's bugs on purpose, for accuracy",
+    "link": "https://www.chocolate-doom.org/",
+    "icon": "fas fa-explosion",
+    "value": "Chocolate Doom Reproduces the original Doom's bugs on purpose, for accuracy Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "doomgeneric",
+    "description": "The port layer behind every 'it runs Doom' stunt",
+    "link": "https://github.com/ozkl/doomgeneric",
+    "icon": "fas fa-gun",
+    "value": "doomgeneric The port layer behind every 'it runs Doom' stunt Emulation and Preservation",
+    "categories": [
+      "Emulation and Preservation"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "NetHack",
+    "description": "A roguelike so deep the community says the dev team thinks of everything",
+    "link": "https://www.nethack.org/",
+    "icon": "fas fa-dungeon",
+    "value": "NetHack A roguelike so deep the community says the dev team thinks of everything Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Cataclysm: Dark Days Ahead",
+    "description": "A post-apocalypse simulator of absurd, wonderful detail",
+    "link": "https://cataclysmdda.org/",
+    "icon": "fas fa-biohazard",
+    "value": "Cataclysm: Dark Days Ahead A post-apocalypse simulator of absurd, wonderful detail Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Space Station 13",
+    "description": "A twenty-year-old multiplayer disaster generator; open code, proprietary BYOND engine",
+    "link": "https://github.com/tgstation/tgstation",
+    "icon": "fas fa-user-astronaut",
+    "value": "Space Station 13 A twenty-year-old multiplayer disaster generator; open code, proprietary BYOND engine Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Ultima Ratio Regum",
+    "description": "One person's attempt at a procedurally generated civilisation, in ASCII",
+    "link": "http://www.ultimaratioregum.co.uk/",
+    "icon": "fas fa-chess-rook",
+    "value": "Ultima Ratio Regum One person's attempt at a procedurally generated civilisation, in ASCII Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "OpenTTD",
+    "description": "The transport tycoon rebuild that outgrew the original",
+    "link": "https://www.openttd.org/",
+    "icon": "fas fa-train",
+    "value": "OpenTTD The transport tycoon rebuild that outgrew the original Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "OpenRCT2",
+    "description": "RollerCoaster Tycoon 2, rewritten and extended",
+    "link": "https://openrct2.org/",
+    "icon": "fas fa-cart-flatbed",
+    "value": "OpenRCT2 RollerCoaster Tycoon 2, rewritten and extended Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "OpenRA",
+    "description": "Command & Conquer and Red Alert, modernised",
+    "link": "https://www.openra.net/",
+    "icon": "fas fa-truck-monster",
+    "value": "OpenRA Command & Conquer and Red Alert, modernised Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "0 A.D.",
+    "description": "A historically obsessive real-time strategy game, in development forever",
+    "link": "https://play0ad.com/",
+    "icon": "fas fa-chess-rook",
+    "value": "0 A.D. A historically obsessive real-time strategy game, in development forever Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Luanti",
+    "description": "The voxel engine formerly called Minetest — a platform, not a game",
+    "link": "https://www.luanti.org/",
+    "icon": "fas fa-cube",
+    "value": "Luanti The voxel engine formerly called Minetest — a platform, not a game Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Veloren",
+    "description": "A voxel RPG built openly by volunteers in Rust",
+    "link": "https://veloren.net/",
+    "icon": "fas fa-hat-wizard",
+    "value": "Veloren A voxel RPG built openly by volunteers in Rust Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Endless Sky",
+    "description": "A quiet space trading game with an enormous written world",
+    "link": "https://endless-sky.github.io/",
+    "icon": "fas fa-rocket",
+    "value": "Endless Sky A quiet space trading game with an enormous written world Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Xonotic",
+    "description": "Fast arena shooter keeping the 1999 movement alive",
+    "link": "https://xonotic.org/",
+    "icon": "fas fa-crosshairs",
+    "value": "Xonotic Fast arena shooter keeping the 1999 movement alive Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "SuperTuxKart",
+    "description": "A kart racer with a mascot problem and genuinely good tracks",
+    "link": "https://supertuxkart.net/",
+    "icon": "fas fa-flag-checkered",
+    "value": "SuperTuxKart A kart racer with a mascot problem and genuinely good tracks Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Mindustry",
+    "description": "Factory building and tower defence, fused",
+    "link": "https://mindustrygame.github.io/",
+    "icon": "fas fa-industry",
+    "value": "Mindustry Factory building and tower defence, fused Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Widelands",
+    "description": "A slow, beautiful settlers-style economy game",
+    "link": "https://www.widelands.org/",
+    "icon": "fas fa-wheat-awn",
+    "value": "Widelands A slow, beautiful settlers-style economy game Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "The Battle for Wesnoth",
+    "description": "Turn-based fantasy strategy with two decades of community campaigns",
+    "link": "https://www.wesnoth.org/",
+    "icon": "fas fa-chess-knight",
+    "value": "The Battle for Wesnoth Turn-based fantasy strategy with two decades of community campaigns Games With a Cult Following",
+    "categories": [
+      "Games With a Cult Following"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Gemini Protocol",
+    "description": "A deliberately tiny alternative to the web, no scripts, no tracking",
+    "link": "https://geminiprotocol.net/",
+    "icon": "fas fa-satellite-dish",
+    "value": "Gemini Protocol A deliberately tiny alternative to the web, no scripts, no tracking The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Lagrange",
+    "description": "A beautiful desktop browser for Gemini space",
+    "link": "https://gmi.skyjake.fi/lagrange/",
+    "icon": "fas fa-compass",
+    "value": "Lagrange A beautiful desktop browser for Gemini space The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Tildeverse",
+    "description": "Shared Unix servers where strangers keep public home directories",
+    "link": "https://tildeverse.org/",
+    "icon": "fas fa-users-rectangle",
+    "value": "Tildeverse Shared Unix servers where strangers keep public home directories The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Marginalia Search",
+    "description": "A search engine that deliberately favours obscure, non-commercial pages",
+    "link": "https://search.marginalia.nu/",
+    "icon": "fas fa-magnifying-glass",
+    "value": "Marginalia Search A search engine that deliberately favours obscure, non-commercial pages The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Wiby",
+    "description": "A search engine indexing only old-fashioned, lightweight websites",
+    "link": "https://wiby.me/",
+    "icon": "fas fa-globe",
+    "value": "Wiby A search engine indexing only old-fashioned, lightweight websites The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing",
+    "licence": "source"
+  },
+  {
+    "name": "SearXNG",
+    "description": "A metasearch engine you host yourself",
+    "link": "https://docs.searxng.org/",
+    "icon": "fas fa-magnifying-glass-location",
+    "value": "SearXNG A metasearch engine you host yourself The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "YunoHost",
+    "description": "A distribution whose entire purpose is self-hosting for normal people",
+    "link": "https://yunohost.org/",
+    "icon": "fas fa-house-laptop",
+    "value": "YunoHost A distribution whose entire purpose is self-hosting for normal people The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "The Lounge",
+    "description": "Self-hosted IRC client that keeps you always connected",
+    "link": "https://thelounge.chat/",
+    "icon": "fas fa-hashtag",
+    "value": "The Lounge Self-hosted IRC client that keeps you always connected The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "ntfy",
+    "description": "Push notifications to your phone from a shell script",
+    "link": "https://ntfy.sh/",
+    "icon": "fas fa-bell",
+    "value": "ntfy Push notifications to your phone from a shell script The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Wallabag",
+    "description": "Save articles to read later, on your own server",
+    "link": "https://wallabag.org/",
+    "icon": "fas fa-bookmark",
+    "value": "Wallabag Save articles to read later, on your own server The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Gophernicus",
+    "description": "A modern server for Gopher, a protocol older than the web",
+    "link": "https://github.com/gophernicus/gophernicus",
+    "icon": "fas fa-server",
+    "value": "Gophernicus A modern server for Gopher, a protocol older than the web The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Neocities",
+    "description": "Free static hosting explicitly nostalgic for GeoCities",
+    "link": "https://neocities.org/",
+    "icon": "fas fa-earth-americas",
+    "value": "Neocities Free static hosting explicitly nostalgic for GeoCities The Small Web",
+    "categories": [
+      "The Small Web"
+    ],
+    "status": "reviewing",
+    "licence": "open-core"
+  },
+  {
+    "name": "MNT Reform",
+    "description": "A laptop with open schematics you are expected to repair yourself",
+    "link": "https://mntre.com/reform.html",
+    "icon": "fas fa-laptop",
+    "value": "MNT Reform A laptop with open schematics you are expected to repair yourself Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing",
+    "licence": "open-core"
+  },
+  {
+    "name": "QMK",
+    "description": "The firmware behind most custom mechanical keyboards",
+    "link": "https://qmk.fm/",
+    "icon": "fas fa-keyboard",
+    "value": "QMK The firmware behind most custom mechanical keyboards Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "ZMK",
+    "description": "Wireless-first keyboard firmware",
+    "link": "https://zmk.dev/",
+    "icon": "fas fa-bluetooth",
+    "value": "ZMK Wireless-first keyboard firmware Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Dactyl Keyboard",
+    "description": "A parametric, unsettlingly organic split keyboard you print yourself",
+    "link": "https://github.com/adereth/dactyl-keyboard",
+    "icon": "fas fa-hand",
+    "value": "Dactyl Keyboard A parametric, unsettlingly organic split keyboard you print yourself Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "InfiniTime",
+    "description": "Open firmware that makes the PineTime a real smartwatch",
+    "link": "https://github.com/InfiniTimeOrg/InfiniTime",
+    "icon": "fas fa-stopwatch",
+    "value": "InfiniTime Open firmware that makes the PineTime a real smartwatch Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "WLED",
+    "description": "Controls addressable LED strips over wifi, beloved by makers",
+    "link": "https://kno.wled.ge/",
+    "icon": "fas fa-lightbulb",
+    "value": "WLED Controls addressable LED strips over wifi, beloved by makers Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Glasgow Interface Explorer",
+    "description": "An open tool for talking to almost any digital chip",
+    "link": "https://glasgow-embedded.org/",
+    "icon": "fas fa-plug",
+    "value": "Glasgow Interface Explorer An open tool for talking to almost any digital chip Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "The Open Book",
+    "description": "An e-reader you can build and fully understand",
+    "link": "https://github.com/joeycastillo/The-Open-Book",
+    "icon": "fas fa-book",
+    "value": "The Open Book An e-reader you can build and fully understand Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Flipper Zero Firmware",
+    "description": "Open firmware for the multi-tool that became a moral panic",
+    "link": "https://github.com/flipperdevices/flipperzero-firmware",
+    "icon": "fas fa-fish",
+    "value": "Flipper Zero Firmware Open firmware for the multi-tool that became a moral panic Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "PineTime",
+    "description": "An open smartwatch sold at cost to people who will hack it",
+    "link": "https://pine64.org/devices/pinetime/",
+    "icon": "fas fa-stopwatch",
+    "value": "PineTime An open smartwatch sold at cost to people who will hack it Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Numworks",
+    "description": "A graphing calculator whose firmware you are invited to replace",
+    "link": "https://www.numworks.com/",
+    "icon": "fas fa-calculator",
+    "value": "Numworks A graphing calculator whose firmware you are invited to replace Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing",
+    "licence": "open-core"
+  },
+  {
+    "name": "Precursor",
+    "description": "A pocket device built so you can verify what is inside it",
+    "link": "https://www.crowdsupply.com/sutajio-kosagi/precursor",
+    "icon": "fas fa-shield-halved",
+    "value": "Precursor A pocket device built so you can verify what is inside it Open Hardware Oddities",
+    "categories": [
+      "Open Hardware Oddities"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Logseq",
+    "description": "Outliner where every bullet is a first-class database entry",
+    "link": "https://logseq.com/",
+    "icon": "fas fa-list-ul",
+    "value": "Logseq Outliner where every bullet is a first-class database entry Obsessive Software and Open Databases",
+    "categories": [
+      "Obsessive Software and Open Databases"
+    ],
+    "status": "reviewing",
+    "licence": "open-core"
+  },
+  {
+    "name": "Zettlr",
+    "description": "A markdown editor built for people writing dissertations",
+    "link": "https://www.zettlr.com/",
+    "icon": "fas fa-pen-to-square",
+    "value": "Zettlr A markdown editor built for people writing dissertations Obsessive Software and Open Databases",
+    "categories": [
+      "Obsessive Software and Open Databases"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "MusicBrainz",
+    "description": "A community encyclopedia of music metadata",
+    "link": "https://musicbrainz.org/",
+    "icon": "fas fa-compact-disc",
+    "value": "MusicBrainz A community encyclopedia of music metadata Obsessive Software and Open Databases",
+    "categories": [
+      "Obsessive Software and Open Databases"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Open Library",
+    "description": "One web page for every book ever published",
+    "link": "https://openlibrary.org/",
+    "icon": "fas fa-book-open",
+    "value": "Open Library One web page for every book ever published Obsessive Software and Open Databases",
+    "categories": [
+      "Obsessive Software and Open Databases"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Wikidata",
+    "description": "A structured database underneath all of Wikipedia",
+    "link": "https://www.wikidata.org/",
+    "icon": "fas fa-diagram-project",
+    "value": "Wikidata A structured database underneath all of Wikipedia Obsessive Software and Open Databases",
+    "categories": [
+      "Obsessive Software and Open Databases"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "iNaturalist",
+    "description": "Photograph anything alive and the internet identifies it",
+    "link": "https://www.inaturalist.org/",
+    "icon": "fas fa-leaf",
+    "value": "iNaturalist Photograph anything alive and the internet identifies it Obsessive Software and Open Databases",
+    "categories": [
+      "Obsessive Software and Open Databases"
+    ],
+    "status": "reviewing",
+    "licence": "reference"
+  },
+  {
+    "name": "Overpass Turbo",
+    "description": "Query OpenStreetMap for anything, however strange",
+    "link": "https://overpass-turbo.eu/",
+    "icon": "fas fa-magnifying-glass-location",
+    "value": "Overpass Turbo Query OpenStreetMap for anything, however strange Obsessive Software and Open Databases",
+    "categories": [
+      "Obsessive Software and Open Databases"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Nyxt",
+    "description": "A keyboard-driven browser that thinks it is Emacs",
+    "link": "https://nyxt-browser.com/",
+    "icon": "fas fa-keyboard",
+    "value": "Nyxt A keyboard-driven browser that thinks it is Emacs Obsessive Software and Open Databases",
+    "categories": [
+      "Obsessive Software and Open Databases"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Kakoune",
+    "description": "A modal editor that inverted vim's grammar on purpose",
+    "link": "https://kakoune.org/",
+    "icon": "fas fa-i-cursor",
+    "value": "Kakoune A modal editor that inverted vim's grammar on purpose Obsessive Software and Open Databases",
+    "categories": [
+      "Obsessive Software and Open Databases"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "Helix",
+    "description": "A modal editor with no configuration language and no regrets",
+    "link": "https://helix-editor.com/",
+    "icon": "fas fa-dna",
+    "value": "Helix A modal editor with no configuration language and no regrets Obsessive Software and Open Databases",
+    "categories": [
+      "Obsessive Software and Open Databases"
+    ],
+    "status": "reviewing"
+  },
+  {
+    "name": "GNU Emacs",
+    "description": "An operating system disguised as a text editor since 1976",
+    "link": "https://www.gnu.org/software/emacs/",
+    "icon": "fas fa-infinity",
+    "value": "GNU Emacs An operating system disguised as a text editor since 1976 Obsessive Software and Open Databases",
+    "categories": [
+      "Obsessive Software and Open Databases"
+    ],
+    "status": "reviewing"
   }
 ]

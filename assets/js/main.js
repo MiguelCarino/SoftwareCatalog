@@ -102,7 +102,8 @@ const SLICES = [
         label: 'Highlights',
         icon: 'fa-solid fa-star',
         num: '01',
-        categories: ['Curated Highlights']
+        // The fleet's own tools lead, then the wider picks.
+        categories: ['Carino Systems', 'Curated Highlights']
     },
     {
         id: 'basic',
