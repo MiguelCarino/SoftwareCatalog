@@ -102,6 +102,35 @@ const SLICES = [
         icon: 'fa-solid fa-shield-halved',
         num: '06',
         categories: ['(Cyber)Security']
+    },
+    {
+        // Staging ground: industry and science tooling the catalog was missing.
+        // Entries land here first, then graduate into the slices above once
+        // they have been vetted and given install commands.
+        id: 'reviewing',
+        label: 'Reviewing',
+        icon: 'fa-solid fa-flask',
+        num: '07',
+        categories: [
+            'CAD and Manufacturing',
+            'Electronics and EDA',
+            'Simulation and Analysis',
+            'Industrial Automation',
+            'Energy and Power',
+            'Civil, AEC and Surveying',
+            'Geoscience and Environment',
+            'Transport and Mobility',
+            'Robotics and Aerospace',
+            'Chemistry and Materials',
+            'Life Sciences and Bioinformatics',
+            'Health Informatics',
+            'Medical Physics and Imaging',
+            'Physics and Astronomy',
+            'Radio and Signals',
+            'Numerical and Scientific Computing',
+            'Lab Informatics and Research',
+            'Industry Operations'
+        ]
     }
 ];
 

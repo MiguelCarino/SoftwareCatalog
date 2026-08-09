@@ -4799,5 +4799,3783 @@
     "categories": [
       "Development"
     ]
+  },
+  {
+    "name": "FreeCAD",
+    "description": "Parametric 3D CAD modeler for mechanical design",
+    "link": "https://www.freecad.org/",
+    "icon": "fas fa-compass-drafting",
+    "value": "FreeCAD Parametric 3D CAD modeler for mechanical design CAD and Manufacturing",
+    "windows": "FreeCAD.FreeCAD",
+    "macos": "--cask freecad",
+    "fedora": "freecad",
+    "debian": "freecad",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.freecad.FreeCAD",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenSCAD",
+    "description": "Programmer's solid 3D CAD modeller",
+    "link": "https://openscad.org/",
+    "icon": "fas fa-cube",
+    "value": "OpenSCAD Programmer's solid 3D CAD modeller CAD and Manufacturing",
+    "windows": "OpenSCAD.OpenSCAD",
+    "macos": "--cask openscad",
+    "fedora": "openscad",
+    "debian": "openscad",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.openscad.OpenSCAD",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "LibreCAD",
+    "description": "2D CAD drafting for technical drawings",
+    "link": "https://librecad.org/",
+    "icon": "fas fa-ruler",
+    "value": "LibreCAD 2D CAD drafting for technical drawings CAD and Manufacturing",
+    "windows": "LibreCAD.LibreCAD",
+    "macos": "--cask librecad",
+    "fedora": "librecad",
+    "debian": "librecad",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.librecad.librecad",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SolveSpace",
+    "description": "Parametric constraint-solving 2D and 3D CAD",
+    "link": "https://solvespace.com/",
+    "icon": "fas fa-shapes",
+    "value": "SolveSpace Parametric constraint-solving 2D and 3D CAD CAD and Manufacturing",
+    "windows": "",
+    "macos": "",
+    "fedora": "solvespace",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "com.solvespace.SolveSpace",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "BRL-CAD",
+    "description": "Solid modeling system maintained by the US Army",
+    "link": "https://brlcad.org/",
+    "icon": "fas fa-cubes",
+    "value": "BRL-CAD Solid modeling system maintained by the US Army CAD and Manufacturing",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Open CASCADE Technology",
+    "description": "Geometry kernel behind FreeCAD and SALOME",
+    "link": "https://www.opencascade.com/open-cascade-technology/",
+    "icon": "fas fa-shapes",
+    "value": "Open CASCADE Technology Geometry kernel behind FreeCAD and SALOME CAD and Manufacturing",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "MeshLab",
+    "description": "Mesh processing, cleaning and repair",
+    "link": "https://www.meshlab.net/",
+    "icon": "fas fa-shapes",
+    "value": "MeshLab Mesh processing, cleaning and repair CAD and Manufacturing",
+    "windows": "",
+    "macos": "",
+    "fedora": "meshlab",
+    "debian": "meshlab",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "net.meshlab.MeshLab",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "PrusaSlicer",
+    "description": "G-code slicer for FFF and SLA 3D printers",
+    "link": "https://www.prusa3d.com/page/prusaslicer_424/",
+    "icon": "fas fa-print",
+    "value": "PrusaSlicer G-code slicer for FFF and SLA 3D printers CAD and Manufacturing",
+    "windows": "Prusa3D.PrusaSlicer",
+    "macos": "--cask prusaslicer",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "com.prusa3d.PrusaSlicer",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OrcaSlicer",
+    "description": "Slicer tuned for modern multi-material printers",
+    "link": "https://github.com/SoftFever/OrcaSlicer",
+    "icon": "fas fa-print",
+    "value": "OrcaSlicer Slicer tuned for modern multi-material printers CAD and Manufacturing",
+    "windows": "",
+    "macos": "",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "io.github.softfever.OrcaSlicer",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "UltiMaker Cura",
+    "description": "Slicer for fused filament 3D printing",
+    "link": "https://ultimaker.com/software/ultimaker-cura/",
+    "icon": "fas fa-print",
+    "value": "UltiMaker Cura Slicer for fused filament 3D printing CAD and Manufacturing",
+    "windows": "Ultimaker.Cura",
+    "macos": "--cask ultimaker-cura",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "com.ultimaker.cura",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OctoPrint",
+    "description": "Web interface for monitoring and controlling 3D printers",
+    "link": "https://octoprint.org/",
+    "icon": "fas fa-print",
+    "value": "OctoPrint Web interface for monitoring and controlling 3D printers CAD and Manufacturing",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Klipper",
+    "description": "High-performance firmware for 3D printers",
+    "link": "https://www.klipper3d.org/",
+    "icon": "fas fa-microchip",
+    "value": "Klipper High-performance firmware for 3D printers CAD and Manufacturing",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Marlin",
+    "description": "Firmware for RepRap and desktop 3D printers",
+    "link": "https://marlinfw.org/",
+    "icon": "fas fa-microchip",
+    "value": "Marlin Firmware for RepRap and desktop 3D printers CAD and Manufacturing",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "LinuxCNC",
+    "description": "Real-time controller for CNC machines and robots",
+    "link": "https://linuxcnc.org/",
+    "icon": "fas fa-cogs",
+    "value": "LinuxCNC Real-time controller for CNC machines and robots CAD and Manufacturing",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "CAMotics",
+    "description": "Open source CNC toolpath simulator",
+    "link": "https://camotics.org/",
+    "icon": "fas fa-cogs",
+    "value": "CAMotics Open source CNC toolpath simulator CAD and Manufacturing",
+    "categories": [
+      "CAD and Manufacturing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "KiCad",
+    "description": "Schematic capture and PCB design suite",
+    "link": "https://www.kicad.org/",
+    "icon": "fas fa-microchip",
+    "value": "KiCad Schematic capture and PCB design suite Electronics and EDA",
+    "windows": "KiCad.KiCad",
+    "macos": "--cask kicad",
+    "fedora": "kicad",
+    "debian": "kicad",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.kicad.KiCad",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "LibrePCB",
+    "description": "Straightforward PCB design for makers",
+    "link": "https://librepcb.org/",
+    "icon": "fas fa-microchip",
+    "value": "LibrePCB Straightforward PCB design for makers Electronics and EDA",
+    "windows": "",
+    "macos": "",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.librepcb.LibrePCB",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Horizon EDA",
+    "description": "Modern integrated EDA suite for PCB work",
+    "link": "https://horizon-eda.org/",
+    "icon": "fas fa-microchip",
+    "value": "Horizon EDA Modern integrated EDA suite for PCB work Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Fritzing",
+    "description": "Beginner-friendly circuit prototyping and documentation",
+    "link": "https://fritzing.org/",
+    "icon": "fas fa-microchip",
+    "value": "Fritzing Beginner-friendly circuit prototyping and documentation Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "QElectroTech",
+    "description": "Electrical schematic and control diagram editor",
+    "link": "https://qelectrotech.org/",
+    "icon": "fas fa-plug",
+    "value": "QElectroTech Electrical schematic and control diagram editor Electronics and EDA",
+    "windows": "",
+    "macos": "",
+    "fedora": "qelectrotech",
+    "debian": "qelectrotech",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ngspice",
+    "description": "Mixed-signal and mixed-level circuit simulator",
+    "link": "https://ngspice.sourceforge.io/",
+    "icon": "fas fa-wave-square",
+    "value": "ngspice Mixed-signal and mixed-level circuit simulator Electronics and EDA",
+    "windows": "",
+    "macos": "",
+    "fedora": "ngspice",
+    "debian": "ngspice",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Qucs-S",
+    "description": "Circuit simulation GUI for SPICE engines",
+    "link": "https://ra3xdh.github.io/",
+    "icon": "fas fa-wave-square",
+    "value": "Qucs-S Circuit simulation GUI for SPICE engines Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Falstad Circuit Simulator",
+    "description": "Browser playground for analog and digital circuits",
+    "link": "https://www.falstad.com/circuit/",
+    "icon": "fas fa-wave-square",
+    "value": "Falstad Circuit Simulator Browser playground for analog and digital circuits Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "CircuitVerse",
+    "description": "Browser-based digital logic simulator",
+    "link": "https://circuitverse.org/",
+    "icon": "fas fa-microchip",
+    "value": "CircuitVerse Browser-based digital logic simulator Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Digital",
+    "description": "Desktop digital logic designer and simulator",
+    "link": "https://github.com/hneemann/Digital",
+    "icon": "fas fa-microchip",
+    "value": "Digital Desktop digital logic designer and simulator Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Verilator",
+    "description": "Fast Verilog and SystemVerilog simulator",
+    "link": "https://www.veripool.org/verilator/",
+    "icon": "fas fa-code",
+    "value": "Verilator Fast Verilog and SystemVerilog simulator Electronics and EDA",
+    "windows": "",
+    "macos": "",
+    "fedora": "verilator",
+    "debian": "verilator",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Icarus Verilog",
+    "description": "Verilog compiler and simulation engine",
+    "link": "https://steveicarus.github.io/iverilog/",
+    "icon": "fas fa-code",
+    "value": "Icarus Verilog Verilog compiler and simulation engine Electronics and EDA",
+    "windows": "",
+    "macos": "",
+    "fedora": "iverilog",
+    "debian": "iverilog",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GTKWave",
+    "description": "Waveform viewer for digital simulation traces",
+    "link": "https://gtkwave.sourceforge.net/",
+    "icon": "fas fa-wave-square",
+    "value": "GTKWave Waveform viewer for digital simulation traces Electronics and EDA",
+    "windows": "",
+    "macos": "",
+    "fedora": "gtkwave",
+    "debian": "gtkwave",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Yosys",
+    "description": "Verilog RTL synthesis framework",
+    "link": "https://yosyshq.net/yosys/",
+    "icon": "fas fa-microchip",
+    "value": "Yosys Verilog RTL synthesis framework Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenROAD",
+    "description": "Open RTL-to-GDSII flow for silicon design",
+    "link": "https://theopenroadproject.org/",
+    "icon": "fas fa-microchip",
+    "value": "OpenROAD Open RTL-to-GDSII flow for silicon design Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Xschem",
+    "description": "Schematic capture for custom integrated circuits",
+    "link": "https://xschem.sourceforge.io/stefan/index.html",
+    "icon": "fas fa-microchip",
+    "value": "Xschem Schematic capture for custom integrated circuits Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "sigrok",
+    "description": "Signal analysis suite for logic analyzers and scopes",
+    "link": "https://sigrok.org/",
+    "icon": "fas fa-wave-square",
+    "value": "sigrok Signal analysis suite for logic analyzers and scopes Electronics and EDA",
+    "windows": "",
+    "macos": "",
+    "fedora": "pulseview",
+    "debian": "pulseview",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "gerbv",
+    "description": "Gerber file viewer for PCB fabrication output",
+    "link": "https://gerbv.github.io/",
+    "icon": "fas fa-microchip",
+    "value": "gerbv Gerber file viewer for PCB fabrication output Electronics and EDA",
+    "windows": "",
+    "macos": "",
+    "fedora": "gerbv",
+    "debian": "gerbv",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "KiCanvas",
+    "description": "Web viewer for KiCad schematics and boards",
+    "link": "https://kicanvas.org/",
+    "icon": "fas fa-microchip",
+    "value": "KiCanvas Web viewer for KiCad schematics and boards Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "PlatformIO",
+    "description": "Embedded development platform for many boards",
+    "link": "https://platformio.org/",
+    "icon": "fas fa-microchip",
+    "value": "PlatformIO Embedded development platform for many boards Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Arduino IDE",
+    "description": "Official editor and toolchain for Arduino boards",
+    "link": "https://www.arduino.cc/en/software/",
+    "icon": "fas fa-microchip",
+    "value": "Arduino IDE Official editor and toolchain for Arduino boards Electronics and EDA",
+    "windows": "ArduinoSA.IDE.stable",
+    "macos": "--cask arduino-ide",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "cc.arduino.IDE2",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ESPHome",
+    "description": "Firmware builder for ESP32 and ESP8266 devices",
+    "link": "https://esphome.io/",
+    "icon": "fas fa-microchip",
+    "value": "ESPHome Firmware builder for ESP32 and ESP8266 devices Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Wokwi",
+    "description": "Browser simulator for Arduino, ESP32 and Pi Pico",
+    "link": "https://wokwi.com/",
+    "icon": "fas fa-microchip",
+    "value": "Wokwi Browser simulator for Arduino, ESP32 and Pi Pico Electronics and EDA",
+    "categories": [
+      "Electronics and EDA",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenFOAM",
+    "description": "Computational fluid dynamics toolbox",
+    "link": "https://openfoam.org/",
+    "icon": "fas fa-wind",
+    "value": "OpenFOAM Computational fluid dynamics toolbox Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SU2",
+    "description": "Multiphysics solver and aerodynamic shape optimization",
+    "link": "https://su2code.github.io/",
+    "icon": "fas fa-wind",
+    "value": "SU2 Multiphysics solver and aerodynamic shape optimization Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "CalculiX",
+    "description": "Three-dimensional finite element solver",
+    "link": "http://www.calculix.de/",
+    "icon": "fas fa-shapes",
+    "value": "CalculiX Three-dimensional finite element solver Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "code_aster",
+    "description": "Structural mechanics and thermal analysis solver",
+    "link": "https://code-aster.org/",
+    "icon": "fas fa-shapes",
+    "value": "code_aster Structural mechanics and thermal analysis solver Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Elmer FEM",
+    "description": "Multiphysical finite element simulation software",
+    "link": "https://www.elmerfem.org/",
+    "icon": "fas fa-shapes",
+    "value": "Elmer FEM Multiphysical finite element simulation software Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "FEniCS",
+    "description": "Computing platform for solving partial differential equations",
+    "link": "https://fenicsproject.org/",
+    "icon": "fas fa-square-root-variable",
+    "value": "FEniCS Computing platform for solving partial differential equations Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "deal.II",
+    "description": "Finite element library for differential equations",
+    "link": "https://www.dealii.org/",
+    "icon": "fas fa-square-root-variable",
+    "value": "deal.II Finite element library for differential equations Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "FreeFEM",
+    "description": "PDE solver with its own modelling language",
+    "link": "https://freefem.org/",
+    "icon": "fas fa-square-root-variable",
+    "value": "FreeFEM PDE solver with its own modelling language Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Gmsh",
+    "description": "Finite element mesh generator with CAD engine",
+    "link": "https://gmsh.info/",
+    "icon": "fas fa-shapes",
+    "value": "Gmsh Finite element mesh generator with CAD engine Simulation and Analysis",
+    "windows": "",
+    "macos": "",
+    "fedora": "gmsh",
+    "debian": "gmsh",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ParaView",
+    "description": "Large-scale scientific data analysis and visualization",
+    "link": "https://www.paraview.org/",
+    "icon": "fas fa-chart-line",
+    "value": "ParaView Large-scale scientific data analysis and visualization Simulation and Analysis",
+    "windows": "",
+    "macos": "",
+    "fedora": "paraview",
+    "debian": "paraview",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.paraview.ParaView",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "VisIt",
+    "description": "Parallel visualization for very large simulation data",
+    "link": "https://visit-dav.github.io/visit-website/",
+    "icon": "fas fa-chart-line",
+    "value": "VisIt Parallel visualization for very large simulation data Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SALOME",
+    "description": "Pre- and post-processing platform for numerical simulation",
+    "link": "https://www.salome-platform.org/",
+    "icon": "fas fa-shapes",
+    "value": "SALOME Pre- and post-processing platform for numerical simulation Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenSees",
+    "description": "Earthquake engineering structural simulation framework",
+    "link": "https://opensees.berkeley.edu/",
+    "icon": "fas fa-building-columns",
+    "value": "OpenSees Earthquake engineering structural simulation framework Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Kratos Multiphysics",
+    "description": "Framework for coupled multiphysics analysis",
+    "link": "https://kratosmultiphysics.github.io/Kratos/",
+    "icon": "fas fa-shapes",
+    "value": "Kratos Multiphysics Framework for coupled multiphysics analysis Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "preCICE",
+    "description": "Coupling library for partitioned multiphysics simulation",
+    "link": "https://precice.org/",
+    "icon": "fas fa-diagram-project",
+    "value": "preCICE Coupling library for partitioned multiphysics simulation Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenModelica",
+    "description": "Modelica environment for cyber-physical system simulation",
+    "link": "https://openmodelica.org/",
+    "icon": "fas fa-diagram-project",
+    "value": "OpenModelica Modelica environment for cyber-physical system simulation Simulation and Analysis",
+    "categories": [
+      "Simulation and Analysis",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenPLC",
+    "description": "Open IEC 61131-3 PLC runtime and editor",
+    "link": "https://autonomylogic.com/",
+    "icon": "fas fa-industry",
+    "value": "OpenPLC Open IEC 61131-3 PLC runtime and editor Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Beremiz",
+    "description": "IEC 61131-3 integrated development environment for PLCs",
+    "link": "https://beremiz.org/",
+    "icon": "fas fa-industry",
+    "value": "Beremiz IEC 61131-3 integrated development environment for PLCs Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Eclipse 4diac",
+    "description": "IEC 61499 framework for distributed industrial control",
+    "link": "https://eclipse.dev/4diac/",
+    "icon": "fas fa-industry",
+    "value": "Eclipse 4diac IEC 61499 framework for distributed industrial control Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Node-RED",
+    "description": "Flow-based wiring for IoT and industrial integration",
+    "link": "https://nodered.org/",
+    "icon": "fas fa-diagram-project",
+    "value": "Node-RED Flow-based wiring for IoT and industrial integration Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "FUXA",
+    "description": "Web-based SCADA and HMI for process supervision",
+    "link": "https://github.com/frangoteam/FUXA",
+    "icon": "fas fa-gauge",
+    "value": "FUXA Web-based SCADA and HMI for process supervision Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Rapid SCADA",
+    "description": "Open industrial automation and SCADA platform",
+    "link": "https://rapidscada.org/",
+    "icon": "fas fa-gauge",
+    "value": "Rapid SCADA Open industrial automation and SCADA platform Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "open62541",
+    "description": "OPC UA protocol implementation in C",
+    "link": "https://www.open62541.org/",
+    "icon": "fas fa-network-wired",
+    "value": "open62541 OPC UA protocol implementation in C Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Eclipse Milo",
+    "description": "OPC UA client and server stack for the JVM",
+    "link": "https://projects.eclipse.org/projects/iot.milo",
+    "icon": "fas fa-network-wired",
+    "value": "Eclipse Milo OPC UA client and server stack for the JVM Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Apache PLC4X",
+    "description": "Universal protocol adapters for industrial controllers",
+    "link": "https://plc4x.apache.org/",
+    "icon": "fas fa-network-wired",
+    "value": "Apache PLC4X Universal protocol adapters for industrial controllers Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Eclipse Mosquitto",
+    "description": "Lightweight MQTT broker for device messaging",
+    "link": "https://mosquitto.org/",
+    "icon": "fas fa-tower-broadcast",
+    "value": "Eclipse Mosquitto Lightweight MQTT broker for device messaging Industrial Automation",
+    "windows": "",
+    "macos": "",
+    "fedora": "mosquitto",
+    "debian": "mosquitto",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "EMQX",
+    "description": "Scalable MQTT broker for large IoT deployments",
+    "link": "https://www.emqx.io/",
+    "icon": "fas fa-tower-broadcast",
+    "value": "EMQX Scalable MQTT broker for large IoT deployments Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ThingsBoard",
+    "description": "IoT device management, telemetry and dashboards",
+    "link": "https://thingsboard.io/",
+    "icon": "fas fa-gauge",
+    "value": "ThingsBoard IoT device management, telemetry and dashboards Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Grafana",
+    "description": "Dashboards and alerting for metrics and time series",
+    "link": "https://grafana.com/oss/grafana/",
+    "icon": "fas fa-chart-line",
+    "value": "Grafana Dashboards and alerting for metrics and time series Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "InfluxDB",
+    "description": "Time series database for sensor and process data",
+    "link": "https://www.influxdata.com/",
+    "icon": "fas fa-database",
+    "value": "InfluxDB Time series database for sensor and process data Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "TimescaleDB",
+    "description": "Time series extension for PostgreSQL",
+    "link": "https://www.timescale.com/",
+    "icon": "fas fa-database",
+    "value": "TimescaleDB Time series extension for PostgreSQL Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Telegraf",
+    "description": "Plugin-driven agent for collecting metrics",
+    "link": "https://www.influxdata.com/time-series-platform/telegraf/",
+    "icon": "fas fa-gauge",
+    "value": "Telegraf Plugin-driven agent for collecting metrics Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "QModMaster",
+    "description": "Modbus master simulator and bus testing tool",
+    "link": "https://sourceforge.net/projects/qmodmaster/",
+    "icon": "fas fa-network-wired",
+    "value": "QModMaster Modbus master simulator and bus testing tool Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Zeek",
+    "description": "Network security monitor for IT and OT traffic",
+    "link": "https://zeek.org/",
+    "icon": "fas fa-shield-halved",
+    "value": "Zeek Network security monitor for IT and OT traffic Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Malcolm",
+    "description": "Network traffic analysis suite for ICS from CISA",
+    "link": "https://malcolm.fyi/",
+    "icon": "fas fa-shield-halved",
+    "value": "Malcolm Network traffic analysis suite for ICS from CISA Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Security Onion",
+    "description": "Threat hunting and network monitoring platform",
+    "link": "https://securityonionsolutions.com/",
+    "icon": "fas fa-shield-halved",
+    "value": "Security Onion Threat hunting and network monitoring platform Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Conpot",
+    "description": "Low-interaction ICS and SCADA honeypot",
+    "link": "https://github.com/mushorg/conpot",
+    "icon": "fas fa-shield-halved",
+    "value": "Conpot Low-interaction ICS and SCADA honeypot Industrial Automation",
+    "categories": [
+      "Industrial Automation",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenDSS",
+    "description": "Electric power distribution system simulator",
+    "link": "https://www.epri.com/pages/sa/opendss",
+    "icon": "fas fa-bolt",
+    "value": "OpenDSS Electric power distribution system simulator Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "pandapower",
+    "description": "Power system modelling and analysis in Python",
+    "link": "https://www.pandapower.org/",
+    "icon": "fas fa-bolt",
+    "value": "pandapower Power system modelling and analysis in Python Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "PyPSA",
+    "description": "Toolbox for power system and energy optimisation",
+    "link": "https://pypsa.org/",
+    "icon": "fas fa-bolt",
+    "value": "PyPSA Toolbox for power system and energy optimisation Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GridLAB-D",
+    "description": "Distribution grid simulation environment from PNNL",
+    "link": "https://www.gridlabd.org/",
+    "icon": "fas fa-bolt",
+    "value": "GridLAB-D Distribution grid simulation environment from PNNL Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "PowSyBl",
+    "description": "Java framework for power system analysis",
+    "link": "https://www.powsybl.org/",
+    "icon": "fas fa-bolt",
+    "value": "PowSyBl Java framework for power system analysis Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "EnergyPlus",
+    "description": "Whole-building energy consumption simulation",
+    "link": "https://energyplus.net/",
+    "icon": "fas fa-temperature-half",
+    "value": "EnergyPlus Whole-building energy consumption simulation Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenStudio",
+    "description": "Building energy modelling platform from NREL",
+    "link": "https://openstudio.net/",
+    "icon": "fas fa-temperature-half",
+    "value": "OpenStudio Building energy modelling platform from NREL Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "NREL SAM",
+    "description": "System Advisor Model for renewable energy projects",
+    "link": "https://github.com/NREL/SAM",
+    "icon": "fas fa-solar-panel",
+    "value": "NREL SAM System Advisor Model for renewable energy projects Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "pvlib python",
+    "description": "Photovoltaic system performance modelling library",
+    "link": "https://pvlib-python.readthedocs.io/",
+    "icon": "fas fa-solar-panel",
+    "value": "pvlib python Photovoltaic system performance modelling library Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OSeMOSYS",
+    "description": "Long-run energy system planning model",
+    "link": "https://osemosys.readthedocs.io/",
+    "icon": "fas fa-bolt",
+    "value": "OSeMOSYS Long-run energy system planning model Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Calliope",
+    "description": "Multi-scale energy system modelling framework",
+    "link": "https://calliope.readthedocs.io/",
+    "icon": "fas fa-bolt",
+    "value": "Calliope Multi-scale energy system modelling framework Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenEnergyMonitor",
+    "description": "Open hardware and software for energy monitoring",
+    "link": "https://openenergymonitor.org/",
+    "icon": "fas fa-gauge",
+    "value": "OpenEnergyMonitor Open hardware and software for energy monitoring Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Electricity Maps",
+    "description": "Live map of grid carbon intensity by region",
+    "link": "https://app.electricitymaps.com/map",
+    "icon": "fas fa-earth",
+    "value": "Electricity Maps Live map of grid carbon intensity by region Energy and Power",
+    "categories": [
+      "Energy and Power",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "IfcOpenShell",
+    "description": "Open toolkit for IFC and BIM data",
+    "link": "https://ifcopenshell.org/",
+    "icon": "fas fa-building-columns",
+    "value": "IfcOpenShell Open toolkit for IFC and BIM data Civil, AEC and Surveying",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Bonsai BIM",
+    "description": "Blender-based open BIM authoring environment",
+    "link": "https://bonsaibim.org/",
+    "icon": "fas fa-building-columns",
+    "value": "Bonsai BIM Blender-based open BIM authoring environment Civil, AEC and Surveying",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Sweet Home 3D",
+    "description": "Interior design and floor planning tool",
+    "link": "https://www.sweethome3d.com/",
+    "icon": "fas fa-house",
+    "value": "Sweet Home 3D Interior design and floor planning tool Civil, AEC and Surveying",
+    "windows": "eTeks.SweetHome3D",
+    "macos": "",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "com.sweethome3d.Sweethome3d",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Speckle",
+    "description": "Data platform for AEC model collaboration",
+    "link": "https://speckle.systems/",
+    "icon": "fas fa-diagram-project",
+    "value": "Speckle Data platform for AEC model collaboration Civil, AEC and Surveying",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenDroneMap",
+    "description": "Turns drone imagery into maps and 3D models",
+    "link": "https://opendronemap.org/",
+    "icon": "fas fa-map",
+    "value": "OpenDroneMap Turns drone imagery into maps and 3D models Civil, AEC and Surveying",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "CloudCompare",
+    "description": "Point cloud and mesh processing and comparison",
+    "link": "https://www.cloudcompare.org/",
+    "icon": "fas fa-mountain",
+    "value": "CloudCompare Point cloud and mesh processing and comparison Civil, AEC and Surveying",
+    "windows": "",
+    "macos": "",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.cloudcompare.CloudCompare",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Potree",
+    "description": "Web viewer for very large point clouds",
+    "link": "https://potree.github.io/",
+    "icon": "fas fa-mountain",
+    "value": "Potree Web viewer for very large point clouds Civil, AEC and Surveying",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "PDAL",
+    "description": "Point Data Abstraction Library for lidar processing",
+    "link": "https://pdal.io/",
+    "icon": "fas fa-mountain",
+    "value": "PDAL Point Data Abstraction Library for lidar processing Civil, AEC and Surveying",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Meshroom",
+    "description": "Photogrammetry pipeline built on AliceVision",
+    "link": "https://alicevision.org/",
+    "icon": "fas fa-image",
+    "value": "Meshroom Photogrammetry pipeline built on AliceVision Civil, AEC and Surveying",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "COLMAP",
+    "description": "Structure-from-motion and multi-view stereo pipeline",
+    "link": "https://colmap.github.io/",
+    "icon": "fas fa-image",
+    "value": "COLMAP Structure-from-motion and multi-view stereo pipeline Civil, AEC and Surveying",
+    "windows": "",
+    "macos": "",
+    "fedora": "colmap",
+    "debian": "colmap",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GRASS GIS",
+    "description": "Geospatial analysis and modelling system",
+    "link": "https://grass.osgeo.org/",
+    "icon": "fas fa-map",
+    "value": "GRASS GIS Geospatial analysis and modelling system Civil, AEC and Surveying",
+    "windows": "",
+    "macos": "",
+    "fedora": "grass",
+    "debian": "grass",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.osgeo.grass",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GDAL",
+    "description": "Translator library for raster and vector geodata",
+    "link": "https://gdal.org/",
+    "icon": "fas fa-map",
+    "value": "GDAL Translator library for raster and vector geodata Civil, AEC and Surveying",
+    "windows": "",
+    "macos": "",
+    "fedora": "gdal",
+    "debian": "gdal-bin",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "QField",
+    "description": "QGIS field data collection for mobile devices",
+    "link": "https://qfield.org/",
+    "icon": "fas fa-map",
+    "value": "QField QGIS field data collection for mobile devices Civil, AEC and Surveying",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ODK",
+    "description": "Offline-first toolkit for field data collection",
+    "link": "https://getodk.org/",
+    "icon": "fas fa-clipboard-list",
+    "value": "ODK Offline-first toolkit for field data collection Civil, AEC and Surveying",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "KoboToolbox",
+    "description": "Field survey platform for humanitarian work",
+    "link": "https://www.kobotoolbox.org/",
+    "icon": "fas fa-clipboard-list",
+    "value": "KoboToolbox Field survey platform for humanitarian work Civil, AEC and Surveying",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OSGeo",
+    "description": "Umbrella foundation for open geospatial software",
+    "link": "https://www.osgeo.org/",
+    "icon": "fas fa-map",
+    "value": "OSGeo Umbrella foundation for open geospatial software Civil, AEC and Surveying",
+    "categories": [
+      "Civil, AEC and Surveying",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ObsPy",
+    "description": "Python framework for seismology and seismic data",
+    "link": "https://docs.obspy.org/",
+    "icon": "fas fa-wave-square",
+    "value": "ObsPy Python framework for seismology and seismic data Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SeisComP",
+    "description": "Seismological data acquisition and processing system",
+    "link": "https://www.seiscomp.de/",
+    "icon": "fas fa-wave-square",
+    "value": "SeisComP Seismological data acquisition and processing system Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenQuake",
+    "description": "Global earthquake hazard and risk calculation engine",
+    "link": "https://www.globalquakemodel.org/oq-getting-started",
+    "icon": "fas fa-mountain",
+    "value": "OpenQuake Global earthquake hazard and risk calculation engine Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GemPy",
+    "description": "Three-dimensional structural geological modelling",
+    "link": "https://www.gempy.org/",
+    "icon": "fas fa-mountain",
+    "value": "GemPy Three-dimensional structural geological modelling Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpendTect",
+    "description": "Seismic interpretation and visualization platform",
+    "link": "https://dgbes.com/software/opendtect",
+    "icon": "fas fa-oil-can",
+    "value": "OpendTect Seismic interpretation and visualization platform Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Madagascar",
+    "description": "Reproducible geophysical data processing framework",
+    "link": "https://www.reproducibility.org/",
+    "icon": "fas fa-wave-square",
+    "value": "Madagascar Reproducible geophysical data processing framework Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "PyGMT",
+    "description": "Python interface to the Generic Mapping Tools",
+    "link": "https://www.pygmt.org/",
+    "icon": "fas fa-map",
+    "value": "PyGMT Python interface to the Generic Mapping Tools Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "EPANET",
+    "description": "Water distribution network modelling from the EPA",
+    "link": "https://www.epa.gov/water-research/epanet",
+    "icon": "fas fa-water",
+    "value": "EPANET Water distribution network modelling from the EPA Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SWMM",
+    "description": "Storm water management model from the EPA",
+    "link": "https://www.epa.gov/water-research/storm-water-management-model-swmm",
+    "icon": "fas fa-water",
+    "value": "SWMM Storm water management model from the EPA Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenAQ",
+    "description": "Open global air quality measurement data",
+    "link": "https://openaq.org/",
+    "icon": "fas fa-wind",
+    "value": "OpenAQ Open global air quality measurement data Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Sensor.Community",
+    "description": "Citizen-built air quality sensor network",
+    "link": "https://sensor.community/",
+    "icon": "fas fa-wind",
+    "value": "Sensor.Community Citizen-built air quality sensor network Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "farmOS",
+    "description": "Farm record keeping and management platform",
+    "link": "https://farmos.org/",
+    "icon": "fas fa-seedling",
+    "value": "farmOS Farm record keeping and management platform Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "AgOpenGPS",
+    "description": "Open tractor guidance and autosteer system",
+    "link": "https://github.com/AgOpenGPS-Official/AgOpenGPS",
+    "icon": "fas fa-tractor",
+    "value": "AgOpenGPS Open tractor guidance and autosteer system Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "APSIM",
+    "description": "Agricultural production systems simulator",
+    "link": "https://www.apsim.info/",
+    "icon": "fas fa-seedling",
+    "value": "APSIM Agricultural production systems simulator Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Open Food Facts",
+    "description": "Open collaborative database of food products",
+    "link": "https://world.openfoodfacts.org/",
+    "icon": "fas fa-leaf",
+    "value": "Open Food Facts Open collaborative database of food products Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Global Forest Watch",
+    "description": "Near-real-time forest change monitoring",
+    "link": "https://www.globalforestwatch.org/",
+    "icon": "fas fa-tree",
+    "value": "Global Forest Watch Near-real-time forest change monitoring Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Copernicus Data Space",
+    "description": "Free Sentinel satellite imagery and Earth data",
+    "link": "https://dataspace.copernicus.eu/",
+    "icon": "fas fa-satellite",
+    "value": "Copernicus Data Space Free Sentinel satellite imagery and Earth data Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "USGS EarthExplorer",
+    "description": "Landsat and satellite imagery archive",
+    "link": "https://earthexplorer.usgs.gov/",
+    "icon": "fas fa-satellite",
+    "value": "USGS EarthExplorer Landsat and satellite imagery archive Geoscience and Environment",
+    "categories": [
+      "Geoscience and Environment",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Eclipse SUMO",
+    "description": "Microscopic urban traffic simulation suite",
+    "link": "https://eclipse.dev/sumo/",
+    "icon": "fas fa-road",
+    "value": "Eclipse SUMO Microscopic urban traffic simulation suite Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "MATSim",
+    "description": "Agent-based transport simulation framework",
+    "link": "https://www.matsim.org/",
+    "icon": "fas fa-road",
+    "value": "MATSim Agent-based transport simulation framework Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenTripPlanner",
+    "description": "Multimodal journey planning engine",
+    "link": "https://www.opentripplanner.org/",
+    "icon": "fas fa-route",
+    "value": "OpenTripPlanner Multimodal journey planning engine Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GTFS",
+    "description": "Open specification for public transit schedules",
+    "link": "https://gtfs.org/",
+    "icon": "fas fa-train",
+    "value": "GTFS Open specification for public transit schedules Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Transitland",
+    "description": "Open catalogue of worldwide transit feeds",
+    "link": "https://www.transit.land/",
+    "icon": "fas fa-train",
+    "value": "Transitland Open catalogue of worldwide transit feeds Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OSRM",
+    "description": "Open Source Routing Machine for road networks",
+    "link": "https://project-osrm.org/",
+    "icon": "fas fa-route",
+    "value": "OSRM Open Source Routing Machine for road networks Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Valhalla",
+    "description": "Routing engine for OpenStreetMap data",
+    "link": "https://valhalla.github.io/valhalla/",
+    "icon": "fas fa-route",
+    "value": "Valhalla Routing engine for OpenStreetMap data Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Traccar",
+    "description": "Open GPS tracking and fleet management server",
+    "link": "https://www.traccar.org/",
+    "icon": "fas fa-location-dot",
+    "value": "Traccar Open GPS tracking and fleet management server Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenCPN",
+    "description": "Chart plotter and marine navigation software",
+    "link": "https://opencpn.org/",
+    "icon": "fas fa-ship",
+    "value": "OpenCPN Chart plotter and marine navigation software Transport and Mobility",
+    "windows": "",
+    "macos": "",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.opencpn.OpenCPN",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Signal K",
+    "description": "Open data exchange standard for marine vessels",
+    "link": "https://signalk.org/",
+    "icon": "fas fa-anchor",
+    "value": "Signal K Open data exchange standard for marine vessels Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "AIS-catcher",
+    "description": "Software receiver for vessel AIS transmissions",
+    "link": "https://github.com/jvde-github/AIS-catcher",
+    "icon": "fas fa-ship",
+    "value": "AIS-catcher Software receiver for vessel AIS transmissions Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "openpilot",
+    "description": "Open driver assistance system for supported cars",
+    "link": "https://comma.ai/openpilot",
+    "icon": "fas fa-car",
+    "value": "openpilot Open driver assistance system for supported cars Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "opendbc",
+    "description": "Open database of vehicle CAN bus messages",
+    "link": "https://github.com/commaai/opendbc",
+    "icon": "fas fa-car",
+    "value": "opendbc Open database of vehicle CAN bus messages Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SavvyCAN",
+    "description": "CAN bus capture and reverse engineering tool",
+    "link": "https://savvycan.com/",
+    "icon": "fas fa-car",
+    "value": "SavvyCAN CAN bus capture and reverse engineering tool Transport and Mobility",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "can-utils",
+    "description": "Linux SocketCAN command line utilities",
+    "link": "https://github.com/linux-can/can-utils",
+    "icon": "fas fa-car",
+    "value": "can-utils Linux SocketCAN command line utilities Transport and Mobility",
+    "windows": "",
+    "macos": "",
+    "fedora": "can-utils",
+    "debian": "can-utils",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Transport and Mobility",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ROS 2",
+    "description": "Robot Operating System framework and middleware",
+    "link": "https://www.ros.org/",
+    "icon": "fas fa-robot",
+    "value": "ROS 2 Robot Operating System framework and middleware Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Gazebo",
+    "description": "Robot simulation with physics and sensor models",
+    "link": "https://gazebosim.org/",
+    "icon": "fas fa-robot",
+    "value": "Gazebo Robot simulation with physics and sensor models Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Webots",
+    "description": "Open source robot simulator",
+    "link": "https://cyberbotics.com/",
+    "icon": "fas fa-robot",
+    "value": "Webots Open source robot simulator Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "MoveIt",
+    "description": "Motion planning framework for robotic manipulators",
+    "link": "https://moveit.ai/",
+    "icon": "fas fa-robot",
+    "value": "MoveIt Motion planning framework for robotic manipulators Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "PX4 Autopilot",
+    "description": "Flight control stack for drones and UAVs",
+    "link": "https://px4.io/",
+    "icon": "fas fa-helicopter",
+    "value": "PX4 Autopilot Flight control stack for drones and UAVs Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ArduPilot",
+    "description": "Autopilot for planes, copters, rovers and boats",
+    "link": "https://ardupilot.org/",
+    "icon": "fas fa-helicopter",
+    "value": "ArduPilot Autopilot for planes, copters, rovers and boats Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "QGroundControl",
+    "description": "Ground control station for MAVLink vehicles",
+    "link": "https://qgroundcontrol.com/",
+    "icon": "fas fa-helicopter",
+    "value": "QGroundControl Ground control station for MAVLink vehicles Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "CARLA",
+    "description": "Simulator for autonomous driving research",
+    "link": "https://carla.org/",
+    "icon": "fas fa-car",
+    "value": "CARLA Simulator for autonomous driving research Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Autoware",
+    "description": "Open source autonomous driving software stack",
+    "link": "https://autoware.org/",
+    "icon": "fas fa-car",
+    "value": "Autoware Open source autonomous driving software stack Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "EdgeTX",
+    "description": "Open firmware for RC radio control transmitters",
+    "link": "https://edgetx.org/",
+    "icon": "fas fa-satellite-dish",
+    "value": "EdgeTX Open firmware for RC radio control transmitters Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenRocket",
+    "description": "Model rocket design and flight simulation",
+    "link": "https://openrocket.info/",
+    "icon": "fas fa-rocket",
+    "value": "OpenRocket Model rocket design and flight simulation Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "RocketPy",
+    "description": "Six degree of freedom rocket flight simulation",
+    "link": "https://rocketpy.org/",
+    "icon": "fas fa-rocket",
+    "value": "RocketPy Six degree of freedom rocket flight simulation Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "NASA GMAT",
+    "description": "General Mission Analysis Tool for orbital mechanics",
+    "link": "https://sourceforge.net/projects/gmat/",
+    "icon": "fas fa-space-shuttle",
+    "value": "NASA GMAT General Mission Analysis Tool for orbital mechanics Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Orekit",
+    "description": "Low-level space flight dynamics library",
+    "link": "https://www.orekit.org/",
+    "icon": "fas fa-satellite",
+    "value": "Orekit Low-level space flight dynamics library Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenMDAO",
+    "description": "Multidisciplinary design optimization framework",
+    "link": "https://openmdao.org/",
+    "icon": "fas fa-diagram-project",
+    "value": "OpenMDAO Multidisciplinary design optimization framework Robotics and Aerospace",
+    "categories": [
+      "Robotics and Aerospace",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Avogadro",
+    "description": "Molecular editor and visualizer for chemistry",
+    "link": "https://avogadro.cc/",
+    "icon": "fas fa-atom",
+    "value": "Avogadro Molecular editor and visualizer for chemistry Chemistry and Materials",
+    "windows": "",
+    "macos": "",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.openchemistry.Avogadro2",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Jmol",
+    "description": "Viewer for chemical structures in 3D",
+    "link": "https://jmol.sourceforge.net/",
+    "icon": "fas fa-atom",
+    "value": "Jmol Viewer for chemical structures in 3D Chemistry and Materials",
+    "windows": "",
+    "macos": "",
+    "fedora": "jmol",
+    "debian": "jmol",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Open Babel",
+    "description": "Chemical file format converter and toolbox",
+    "link": "https://openbabel.org/",
+    "icon": "fas fa-flask",
+    "value": "Open Babel Chemical file format converter and toolbox Chemistry and Materials",
+    "windows": "",
+    "macos": "",
+    "fedora": "openbabel",
+    "debian": "openbabel",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "RDKit",
+    "description": "Cheminformatics and machine learning toolkit",
+    "link": "https://www.rdkit.org/",
+    "icon": "fas fa-flask",
+    "value": "RDKit Cheminformatics and machine learning toolkit Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GROMACS",
+    "description": "High-performance molecular dynamics engine",
+    "link": "https://www.gromacs.org/",
+    "icon": "fas fa-atom",
+    "value": "GROMACS High-performance molecular dynamics engine Chemistry and Materials",
+    "windows": "",
+    "macos": "",
+    "fedora": "gromacs",
+    "debian": "gromacs",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "LAMMPS",
+    "description": "Large-scale atomic and molecular dynamics simulator",
+    "link": "https://www.lammps.org/",
+    "icon": "fas fa-atom",
+    "value": "LAMMPS Large-scale atomic and molecular dynamics simulator Chemistry and Materials",
+    "windows": "",
+    "macos": "",
+    "fedora": "lammps",
+    "debian": "lammps",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Quantum ESPRESSO",
+    "description": "Plane-wave density functional theory for materials",
+    "link": "https://www.quantum-espresso.org/",
+    "icon": "fas fa-atom",
+    "value": "Quantum ESPRESSO Plane-wave density functional theory for materials Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "CP2K",
+    "description": "Atomistic simulation of condensed matter systems",
+    "link": "https://www.cp2k.org/",
+    "icon": "fas fa-atom",
+    "value": "CP2K Atomistic simulation of condensed matter systems Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Psi4",
+    "description": "Open source quantum chemistry package",
+    "link": "https://psicode.org/",
+    "icon": "fas fa-atom",
+    "value": "Psi4 Open source quantum chemistry package Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ABINIT",
+    "description": "First-principles electronic structure calculations",
+    "link": "https://www.abinit.org/",
+    "icon": "fas fa-atom",
+    "value": "ABINIT First-principles electronic structure calculations Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ASE",
+    "description": "Atomic Simulation Environment for Python",
+    "link": "https://wiki.fysik.dtu.dk/ase/",
+    "icon": "fas fa-atom",
+    "value": "ASE Atomic Simulation Environment for Python Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "pymatgen",
+    "description": "Python library for materials analysis",
+    "link": "https://pymatgen.org/",
+    "icon": "fas fa-cubes",
+    "value": "pymatgen Python library for materials analysis Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Materials Project",
+    "description": "Open database of computed material properties",
+    "link": "https://materialsproject.org/",
+    "icon": "fas fa-cubes",
+    "value": "Materials Project Open database of computed material properties Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Cantera",
+    "description": "Chemical kinetics, thermodynamics and transport toolkit",
+    "link": "https://cantera.org/",
+    "icon": "fas fa-fire",
+    "value": "Cantera Chemical kinetics, thermodynamics and transport toolkit Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OVITO Basic",
+    "description": "Visualization and analysis for atomistic simulations",
+    "link": "https://www.ovito.org/",
+    "icon": "fas fa-cubes",
+    "value": "OVITO Basic Visualization and analysis for atomistic simulations Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "NIST Chemistry WebBook",
+    "description": "Reference thermochemical and spectral data",
+    "link": "https://webbook.nist.gov/chemistry/",
+    "icon": "fas fa-book",
+    "value": "NIST Chemistry WebBook Reference thermochemical and spectral data Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "PubChem",
+    "description": "Open chemical substance and bioactivity database",
+    "link": "https://pubchem.ncbi.nlm.nih.gov/",
+    "icon": "fas fa-flask",
+    "value": "PubChem Open chemical substance and bioactivity database Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ChEMBL",
+    "description": "Database of bioactive drug-like molecules",
+    "link": "https://www.ebi.ac.uk/chembl/",
+    "icon": "fas fa-pills",
+    "value": "ChEMBL Database of bioactive drug-like molecules Chemistry and Materials",
+    "categories": [
+      "Chemistry and Materials",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Fiji",
+    "description": "ImageJ distribution for scientific image analysis",
+    "link": "https://fiji.sc/",
+    "icon": "fas fa-microscope",
+    "value": "Fiji ImageJ distribution for scientific image analysis Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ImageJ",
+    "description": "Image processing program for scientific imaging",
+    "link": "https://imagej.net/",
+    "icon": "fas fa-microscope",
+    "value": "ImageJ Image processing program for scientific imaging Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "QuPath",
+    "description": "Digital pathology and whole slide image analysis",
+    "link": "https://qupath.github.io/",
+    "icon": "fas fa-microscope",
+    "value": "QuPath Digital pathology and whole slide image analysis Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "CellProfiler",
+    "description": "Automated quantitative biological image analysis",
+    "link": "https://cellprofiler.org/",
+    "icon": "fas fa-microscope",
+    "value": "CellProfiler Automated quantitative biological image analysis Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "napari",
+    "description": "Multidimensional image viewer for Python",
+    "link": "https://napari.org/",
+    "icon": "fas fa-microscope",
+    "value": "napari Multidimensional image viewer for Python Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ilastik",
+    "description": "Interactive machine learning for image segmentation",
+    "link": "https://www.ilastik.org/",
+    "icon": "fas fa-microscope",
+    "value": "ilastik Interactive machine learning for image segmentation Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OMERO",
+    "description": "Image data management for microscopy facilities",
+    "link": "https://www.openmicroscopy.org/omero/",
+    "icon": "fas fa-database",
+    "value": "OMERO Image data management for microscopy facilities Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Galaxy Project",
+    "description": "Web platform for accessible bioinformatics analysis",
+    "link": "https://galaxyproject.org/",
+    "icon": "fas fa-dna",
+    "value": "Galaxy Project Web platform for accessible bioinformatics analysis Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Nextflow",
+    "description": "Reproducible scientific workflow engine",
+    "link": "https://www.nextflow.io/",
+    "icon": "fas fa-diagram-project",
+    "value": "Nextflow Reproducible scientific workflow engine Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "nf-core",
+    "description": "Curated collection of Nextflow analysis pipelines",
+    "link": "https://nf-co.re/",
+    "icon": "fas fa-diagram-project",
+    "value": "nf-core Curated collection of Nextflow analysis pipelines Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Snakemake",
+    "description": "Workflow management system for data analysis",
+    "link": "https://snakemake.github.io/",
+    "icon": "fas fa-diagram-project",
+    "value": "Snakemake Workflow management system for data analysis Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Biopython",
+    "description": "Python tools for computational molecular biology",
+    "link": "https://biopython.org/",
+    "icon": "fas fa-dna",
+    "value": "Biopython Python tools for computational molecular biology Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Bioconductor",
+    "description": "R packages for genomic data analysis",
+    "link": "https://www.bioconductor.org/",
+    "icon": "fas fa-dna",
+    "value": "Bioconductor R packages for genomic data analysis Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SAMtools",
+    "description": "Utilities for high-throughput sequencing data",
+    "link": "https://www.htslib.org/",
+    "icon": "fas fa-dna",
+    "value": "SAMtools Utilities for high-throughput sequencing data Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "IGV",
+    "description": "Integrative Genomics Viewer for genomic datasets",
+    "link": "https://igv.org/",
+    "icon": "fas fa-dna",
+    "value": "IGV Integrative Genomics Viewer for genomic datasets Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Ensembl",
+    "description": "Genome browser for vertebrate and model genomes",
+    "link": "https://www.ensembl.org/",
+    "icon": "fas fa-dna",
+    "value": "Ensembl Genome browser for vertebrate and model genomes Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "UCSC Genome Browser",
+    "description": "Interactive browser for reference genomes",
+    "link": "https://genome.ucsc.edu/",
+    "icon": "fas fa-dna",
+    "value": "UCSC Genome Browser Interactive browser for reference genomes Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "NCBI BLAST",
+    "description": "Sequence similarity search against public databases",
+    "link": "https://blast.ncbi.nlm.nih.gov/",
+    "icon": "fas fa-search",
+    "value": "NCBI BLAST Sequence similarity search against public databases Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "UniProt",
+    "description": "Protein sequence and functional annotation database",
+    "link": "https://www.uniprot.org/",
+    "icon": "fas fa-dna",
+    "value": "UniProt Protein sequence and functional annotation database Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "AlphaFold DB",
+    "description": "Predicted protein structures for whole proteomes",
+    "link": "https://alphafold.ebi.ac.uk/",
+    "icon": "fas fa-atom",
+    "value": "AlphaFold DB Predicted protein structures for whole proteomes Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ColabFold",
+    "description": "Fast and accessible protein structure prediction",
+    "link": "https://github.com/sokrypton/ColabFold",
+    "icon": "fas fa-atom",
+    "value": "ColabFold Fast and accessible protein structure prediction Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Cytoscape",
+    "description": "Network visualization for molecular interaction data",
+    "link": "https://cytoscape.org/",
+    "icon": "fas fa-diagram-project",
+    "value": "Cytoscape Network visualization for molecular interaction data Life Sciences and Bioinformatics",
+    "categories": [
+      "Life Sciences and Bioinformatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "dcm4che",
+    "description": "DICOM toolkit and dcm4chee archive server",
+    "link": "https://www.dcm4che.org/",
+    "icon": "fas fa-server",
+    "value": "dcm4che DICOM toolkit and dcm4chee archive server Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenEMR",
+    "description": "Electronic health records and practice management",
+    "link": "https://www.open-emr.org/",
+    "icon": "fas fa-notes-medical",
+    "value": "OpenEMR Electronic health records and practice management Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenMRS",
+    "description": "Medical record platform for low-resource settings",
+    "link": "https://openmrs.org/",
+    "icon": "fas fa-notes-medical",
+    "value": "OpenMRS Medical record platform for low-resource settings Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GNU Health",
+    "description": "Hospital and health information system",
+    "link": "https://www.gnuhealth.org/",
+    "icon": "fas fa-hospital",
+    "value": "GNU Health Hospital and health information system Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Bahmni",
+    "description": "Hospital system built on OpenMRS and OpenELIS",
+    "link": "https://www.bahmni.org/",
+    "icon": "fas fa-hospital",
+    "value": "Bahmni Hospital system built on OpenMRS and OpenELIS Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "LibreHealth",
+    "description": "Community-driven health IT toolset",
+    "link": "https://librehealth.io/",
+    "icon": "fas fa-hospital",
+    "value": "LibreHealth Community-driven health IT toolset Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "DHIS2",
+    "description": "Health information management platform for countries",
+    "link": "https://dhis2.org/",
+    "icon": "fas fa-chart-line",
+    "value": "DHIS2 Health information management platform for countries Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "HAPI FHIR",
+    "description": "Java implementation of the HL7 FHIR standard",
+    "link": "https://hapifhir.io/",
+    "icon": "fas fa-code",
+    "value": "HAPI FHIR Java implementation of the HL7 FHIR standard Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "HL7 FHIR",
+    "description": "Modern API standard for exchanging health data",
+    "link": "https://hl7.org/fhir/",
+    "icon": "fas fa-code",
+    "value": "HL7 FHIR Modern API standard for exchanging health data Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "HL7 International",
+    "description": "Standards body for health data interoperability",
+    "link": "https://www.hl7.org/",
+    "icon": "fas fa-sitemap",
+    "value": "HL7 International Standards body for health data interoperability Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Mirth Connect",
+    "description": "Healthcare integration engine for HL7 messaging",
+    "link": "https://github.com/nextgenhealthcare/connect",
+    "icon": "fas fa-sitemap",
+    "value": "Mirth Connect Healthcare integration engine for HL7 messaging Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Synthea",
+    "description": "Synthetic patient population generator",
+    "link": "https://synthetichealth.github.io/synthea/",
+    "icon": "fas fa-person",
+    "value": "Synthea Synthetic patient population generator Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenELIS Global",
+    "description": "Laboratory information system for clinical labs",
+    "link": "https://openelis-global.org/",
+    "icon": "fas fa-vial",
+    "value": "OpenELIS Global Laboratory information system for clinical labs Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SENAITE",
+    "description": "Open source laboratory information management system",
+    "link": "https://www.senaite.com/",
+    "icon": "fas fa-vial",
+    "value": "SENAITE Open source laboratory information management system Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OHDSI",
+    "description": "Observational health data science and informatics tools",
+    "link": "https://www.ohdsi.org/software-tools/",
+    "icon": "fas fa-chart-bar",
+    "value": "OHDSI Observational health data science and informatics tools Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Athena",
+    "description": "Browser for OHDSI standardized vocabularies",
+    "link": "https://athena.ohdsi.org/",
+    "icon": "fas fa-book",
+    "value": "Athena Browser for OHDSI standardized vocabularies Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "LOINC",
+    "description": "Universal codes for laboratory and clinical observations",
+    "link": "https://loinc.org/",
+    "icon": "fas fa-vial",
+    "value": "LOINC Universal codes for laboratory and clinical observations Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SNOMED CT Browser",
+    "description": "International clinical terminology browser",
+    "link": "https://browser.ihtsdotools.org/",
+    "icon": "fas fa-book",
+    "value": "SNOMED CT Browser International clinical terminology browser Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "DICOM Standard Browser",
+    "description": "Searchable reference for the DICOM standard",
+    "link": "https://dicom.innolitics.com/",
+    "icon": "fas fa-book",
+    "value": "DICOM Standard Browser Searchable reference for the DICOM standard Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenBoxes",
+    "description": "Supply chain management for health facilities",
+    "link": "https://openboxes.com/",
+    "icon": "fas fa-boxes-stacked",
+    "value": "OpenBoxes Supply chain management for health facilities Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "REDCap",
+    "description": "Secure data capture for clinical and translational research",
+    "link": "https://projectredcap.org/",
+    "icon": "fas fa-clipboard-list",
+    "value": "REDCap Secure data capture for clinical and translational research Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "XNAT",
+    "description": "Imaging informatics platform for research studies",
+    "link": "https://www.xnat.org/",
+    "icon": "fas fa-server",
+    "value": "XNAT Imaging informatics platform for research studies Health Informatics",
+    "categories": [
+      "Health Informatics",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "MONAI",
+    "description": "Deep learning framework for medical imaging",
+    "link": "https://github.com/Project-MONAI/MONAI",
+    "icon": "fas fa-brain",
+    "value": "MONAI Deep learning framework for medical imaging Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ITK",
+    "description": "Insight Toolkit for segmentation and registration",
+    "link": "https://itk.org/",
+    "icon": "fas fa-images",
+    "value": "ITK Insight Toolkit for segmentation and registration Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "VTK",
+    "description": "Visualization Toolkit for 3D graphics and imaging",
+    "link": "https://vtk.org/",
+    "icon": "fas fa-images",
+    "value": "VTK Visualization Toolkit for 3D graphics and imaging Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "MITK",
+    "description": "Medical Imaging Interaction Toolkit",
+    "link": "https://www.mitk.org/",
+    "icon": "fas fa-images",
+    "value": "MITK Medical Imaging Interaction Toolkit Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "nnU-Net",
+    "description": "Self-configuring medical image segmentation",
+    "link": "https://github.com/MIC-DKFZ/nnUNet",
+    "icon": "fas fa-brain",
+    "value": "nnU-Net Self-configuring medical image segmentation Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "pydicom",
+    "description": "Python library for reading and writing DICOM",
+    "link": "https://pydicom.github.io/",
+    "icon": "fas fa-file",
+    "value": "pydicom Python library for reading and writing DICOM Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "dcm2niix",
+    "description": "Converts DICOM series to NIfTI for neuroimaging",
+    "link": "https://github.com/rordenlab/dcm2niix",
+    "icon": "fas fa-file",
+    "value": "dcm2niix Converts DICOM series to NIfTI for neuroimaging Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Cornerstone3D",
+    "description": "Web library for rendering medical images",
+    "link": "https://www.cornerstonejs.org/",
+    "icon": "fas fa-images",
+    "value": "Cornerstone3D Web library for rendering medical images Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "FreeSurfer",
+    "description": "Cortical reconstruction and brain image analysis",
+    "link": "https://surfer.nmr.mgh.harvard.edu/",
+    "icon": "fas fa-brain",
+    "value": "FreeSurfer Cortical reconstruction and brain image analysis Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "FSL",
+    "description": "Brain imaging analysis suite, non-commercial licence",
+    "link": "https://fsl.fmrib.ox.ac.uk/fsl/docs/",
+    "icon": "fas fa-brain",
+    "value": "FSL Brain imaging analysis suite, non-commercial licence Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "MRtrix3",
+    "description": "Diffusion MRI analysis and tractography tools",
+    "link": "https://www.mrtrix.org/",
+    "icon": "fas fa-brain",
+    "value": "MRtrix3 Diffusion MRI analysis and tractography tools Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Geant4",
+    "description": "Monte Carlo simulation of particle transport",
+    "link": "https://geant4.web.cern.ch/",
+    "icon": "fas fa-radiation",
+    "value": "Geant4 Monte Carlo simulation of particle transport Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GATE",
+    "description": "Monte Carlo simulation for imaging and radiotherapy",
+    "link": "https://opengate.readthedocs.io/",
+    "icon": "fas fa-radiation",
+    "value": "GATE Monte Carlo simulation for imaging and radiotherapy Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "TOPAS",
+    "description": "Monte Carlo for radiotherapy, academic licence",
+    "link": "https://www.topasmc.org/",
+    "icon": "fas fa-radiation",
+    "value": "TOPAS Monte Carlo for radiotherapy, academic licence Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Plastimatch",
+    "description": "Medical image registration and radiotherapy tools",
+    "link": "https://plastimatch.org/",
+    "icon": "fas fa-x-ray",
+    "value": "Plastimatch Medical image registration and radiotherapy tools Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "dicompyler",
+    "description": "Radiation therapy treatment plan review",
+    "link": "https://www.dicompyler.com/",
+    "icon": "fas fa-x-ray",
+    "value": "dicompyler Radiation therapy treatment plan review Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SlicerRT",
+    "description": "Radiotherapy research extension for 3D Slicer",
+    "link": "https://slicerrt.github.io/",
+    "icon": "fas fa-radiation",
+    "value": "SlicerRT Radiotherapy research extension for 3D Slicer Medical Physics and Imaging",
+    "categories": [
+      "Medical Physics and Imaging",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ROOT",
+    "description": "CERN framework for large-scale data analysis",
+    "link": "https://root.cern/",
+    "icon": "fas fa-atom",
+    "value": "ROOT CERN framework for large-scale data analysis Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Astropy",
+    "description": "Core Python package for astronomy",
+    "link": "https://www.astropy.org/",
+    "icon": "fas fa-star",
+    "value": "Astropy Core Python package for astronomy Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "TOPCAT",
+    "description": "Interactive tool for astronomical catalogue tables",
+    "link": "https://www.star.bris.ac.uk/mbt/topcat/",
+    "icon": "fas fa-table",
+    "value": "TOPCAT Interactive tool for astronomical catalogue tables Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SAOImage DS9",
+    "description": "FITS image display and astronomical analysis",
+    "link": "https://sites.google.com/cfa.harvard.edu/saoimageds9",
+    "icon": "fas fa-star",
+    "value": "SAOImage DS9 FITS image display and astronomical analysis Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Aladin Sky Atlas",
+    "description": "Interactive sky atlas from CDS Strasbourg",
+    "link": "https://aladin.cds.unistra.fr/",
+    "icon": "fas fa-star",
+    "value": "Aladin Sky Atlas Interactive sky atlas from CDS Strasbourg Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SIMBAD",
+    "description": "Reference database for astronomical objects",
+    "link": "https://simbad.cds.unistra.fr/simbad/",
+    "icon": "fas fa-database",
+    "value": "SIMBAD Reference database for astronomical objects Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "KStars",
+    "description": "Desktop planetarium with telescope control",
+    "link": "https://kstars.kde.org/",
+    "icon": "fas fa-star",
+    "value": "KStars Desktop planetarium with telescope control Physics and Astronomy",
+    "windows": "",
+    "macos": "",
+    "fedora": "kstars",
+    "debian": "kstars",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.kde.kstars",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "INDI Library",
+    "description": "Control protocol for astronomical instruments",
+    "link": "https://indilib.org/",
+    "icon": "fas fa-satellite-dish",
+    "value": "INDI Library Control protocol for astronomical instruments Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Siril",
+    "description": "Astronomical image processing and stacking",
+    "link": "https://siril.org/",
+    "icon": "fas fa-star",
+    "value": "Siril Astronomical image processing and stacking Physics and Astronomy",
+    "windows": "",
+    "macos": "",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.free_astro.siril",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ASTAP",
+    "description": "Plate solver and FITS viewer for astrophotography",
+    "link": "https://www.hnsky.org/astap.htm",
+    "icon": "fas fa-star",
+    "value": "ASTAP Plate solver and FITS viewer for astrophotography Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Celestia",
+    "description": "Real-time 3D space simulator",
+    "link": "https://celestiaproject.space/",
+    "icon": "fas fa-space-shuttle",
+    "value": "Celestia Real-time 3D space simulator Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Gpredict",
+    "description": "Real-time satellite tracking and pass prediction",
+    "link": "http://gpredict.oz9aec.net/",
+    "icon": "fas fa-satellite",
+    "value": "Gpredict Real-time satellite tracking and pass prediction Physics and Astronomy",
+    "windows": "",
+    "macos": "",
+    "fedora": "gpredict",
+    "debian": "gpredict",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "NASA ADS",
+    "description": "Digital library for astrophysics literature",
+    "link": "https://ui.adsabs.harvard.edu/",
+    "icon": "fas fa-book",
+    "value": "NASA ADS Digital library for astrophysics literature Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GWOSC",
+    "description": "Open data from gravitational wave observatories",
+    "link": "https://gwosc.org/",
+    "icon": "fas fa-wave-square",
+    "value": "GWOSC Open data from gravitational wave observatories Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Zooniverse",
+    "description": "People-powered citizen science research platform",
+    "link": "https://www.zooniverse.org/",
+    "icon": "fas fa-users",
+    "value": "Zooniverse People-powered citizen science research platform Physics and Astronomy",
+    "categories": [
+      "Physics and Astronomy",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GNU Radio",
+    "description": "Toolkit for building software defined radios",
+    "link": "https://www.gnuradio.org/",
+    "icon": "fas fa-radio",
+    "value": "GNU Radio Toolkit for building software defined radios Radio and Signals",
+    "windows": "",
+    "macos": "",
+    "fedora": "gnuradio",
+    "debian": "gnuradio",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Radio and Signals",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SDR++",
+    "description": "Cross-platform software defined radio receiver",
+    "link": "https://www.sdrpp.org/",
+    "icon": "fas fa-radio",
+    "value": "SDR++ Cross-platform software defined radio receiver Radio and Signals",
+    "categories": [
+      "Radio and Signals",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SDRangel",
+    "description": "Multi-mode software defined radio transceiver",
+    "link": "https://www.sdrangel.org/",
+    "icon": "fas fa-radio",
+    "value": "SDRangel Multi-mode software defined radio transceiver Radio and Signals",
+    "categories": [
+      "Radio and Signals",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Gqrx",
+    "description": "SDR receiver for RTL-SDR, Airspy and HackRF",
+    "link": "https://www.gqrx.dk/",
+    "icon": "fas fa-radio",
+    "value": "Gqrx SDR receiver for RTL-SDR, Airspy and HackRF Radio and Signals",
+    "windows": "",
+    "macos": "",
+    "fedora": "gqrx",
+    "debian": "gqrx-sdr",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Radio and Signals",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenWebRX",
+    "description": "Web-based multi-user SDR receiver server",
+    "link": "https://www.openwebrx.de/",
+    "icon": "fas fa-tower-broadcast",
+    "value": "OpenWebRX Web-based multi-user SDR receiver server Radio and Signals",
+    "categories": [
+      "Radio and Signals",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "rtl-sdr",
+    "description": "Drivers and tools for RTL2832U radio dongles",
+    "link": "https://osmocom.org/projects/rtl-sdr/wiki",
+    "icon": "fas fa-radio",
+    "value": "rtl-sdr Drivers and tools for RTL2832U radio dongles Radio and Signals",
+    "windows": "",
+    "macos": "",
+    "fedora": "rtl-sdr",
+    "debian": "rtl-sdr",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Radio and Signals",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "WSJT-X",
+    "description": "Weak signal digital modes for amateur radio",
+    "link": "https://wsjt.sourceforge.io/wsjtx.html",
+    "icon": "fas fa-tower-broadcast",
+    "value": "WSJT-X Weak signal digital modes for amateur radio Radio and Signals",
+    "categories": [
+      "Radio and Signals",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Universal Radio Hacker",
+    "description": "Investigation suite for wireless protocols",
+    "link": "https://github.com/jopohl/urh",
+    "icon": "fas fa-satellite-dish",
+    "value": "Universal Radio Hacker Investigation suite for wireless protocols Radio and Signals",
+    "categories": [
+      "Radio and Signals",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "dump1090",
+    "description": "ADS-B decoder for tracking nearby aircraft",
+    "link": "https://github.com/flightaware/dump1090",
+    "icon": "fas fa-plane",
+    "value": "dump1090 ADS-B decoder for tracking nearby aircraft Radio and Signals",
+    "categories": [
+      "Radio and Signals",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SatDump",
+    "description": "Toolkit for decoding satellite downlink data",
+    "link": "https://www.satdump.org/",
+    "icon": "fas fa-satellite",
+    "value": "SatDump Toolkit for decoding satellite downlink data Radio and Signals",
+    "categories": [
+      "Radio and Signals",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Project Jupyter",
+    "description": "Notebooks for interactive scientific computing",
+    "link": "https://jupyter.org/",
+    "icon": "fas fa-book",
+    "value": "Project Jupyter Notebooks for interactive scientific computing Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GNU Octave",
+    "description": "Numerical computing language compatible with MATLAB",
+    "link": "https://octave.org/",
+    "icon": "fas fa-calculator",
+    "value": "GNU Octave Numerical computing language compatible with MATLAB Numerical and Scientific Computing",
+    "windows": "GNU.Octave",
+    "macos": "octave",
+    "fedora": "octave",
+    "debian": "octave",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.octave.Octave",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Scilab",
+    "description": "Numerical computation with Xcos block modelling",
+    "link": "https://www.scilab.org/",
+    "icon": "fas fa-calculator",
+    "value": "Scilab Numerical computation with Xcos block modelling Numerical and Scientific Computing",
+    "windows": "",
+    "macos": "",
+    "fedora": "scilab",
+    "debian": "scilab",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Maxima",
+    "description": "Computer algebra system for symbolic mathematics",
+    "link": "https://maxima.sourceforge.io/",
+    "icon": "fas fa-square-root-variable",
+    "value": "Maxima Computer algebra system for symbolic mathematics Numerical and Scientific Computing",
+    "windows": "",
+    "macos": "",
+    "fedora": "maxima",
+    "debian": "maxima",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SageMath",
+    "description": "Unified open source mathematics software system",
+    "link": "https://www.sagemath.org/",
+    "icon": "fas fa-square-root-variable",
+    "value": "SageMath Unified open source mathematics software system Numerical and Scientific Computing",
+    "windows": "",
+    "macos": "",
+    "fedora": "sagemath",
+    "debian": "sagemath",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "R Project",
+    "description": "Language and environment for statistical computing",
+    "link": "https://www.r-project.org/",
+    "icon": "fas fa-chart-bar",
+    "value": "R Project Language and environment for statistical computing Numerical and Scientific Computing",
+    "windows": "RProject.R",
+    "macos": "",
+    "fedora": "R",
+    "debian": "r-base",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Julia",
+    "description": "High-performance language for technical computing",
+    "link": "https://julialang.org/",
+    "icon": "fas fa-calculator",
+    "value": "Julia High-performance language for technical computing Numerical and Scientific Computing",
+    "windows": "",
+    "macos": "",
+    "fedora": "julia",
+    "debian": "julia",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "NumPy",
+    "description": "Fundamental array computing package for Python",
+    "link": "https://numpy.org/",
+    "icon": "fas fa-calculator",
+    "value": "NumPy Fundamental array computing package for Python Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "SciPy",
+    "description": "Scientific algorithms library for Python",
+    "link": "https://scipy.org/",
+    "icon": "fas fa-square-root-variable",
+    "value": "SciPy Scientific algorithms library for Python Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "pandas",
+    "description": "Data analysis and manipulation library for Python",
+    "link": "https://pandas.pydata.org/",
+    "icon": "fas fa-table",
+    "value": "pandas Data analysis and manipulation library for Python Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Matplotlib",
+    "description": "Plotting and visualization library for Python",
+    "link": "https://matplotlib.org/",
+    "icon": "fas fa-chart-line",
+    "value": "Matplotlib Plotting and visualization library for Python Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Orange",
+    "description": "Visual programming for data mining and machine learning",
+    "link": "https://orangedatamining.com/",
+    "icon": "fas fa-chart-bar",
+    "value": "Orange Visual programming for data mining and machine learning Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "KNIME",
+    "description": "Visual workflow platform for data analytics",
+    "link": "https://www.knime.com/",
+    "icon": "fas fa-diagram-project",
+    "value": "KNIME Visual workflow platform for data analytics Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "gnuplot",
+    "description": "Command-driven scientific plotting program",
+    "link": "http://www.gnuplot.info/",
+    "icon": "fas fa-chart-line",
+    "value": "gnuplot Command-driven scientific plotting program Numerical and Scientific Computing",
+    "windows": "",
+    "macos": "",
+    "fedora": "gnuplot",
+    "debian": "gnuplot",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Veusz",
+    "description": "Scientific plotting and graphing application",
+    "link": "https://veusz.github.io/",
+    "icon": "fas fa-chart-line",
+    "value": "Veusz Scientific plotting and graphing application Numerical and Scientific Computing",
+    "windows": "",
+    "macos": "",
+    "fedora": "veusz",
+    "debian": "veusz",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "LabPlot",
+    "description": "Data visualization and analysis from KDE",
+    "link": "https://labplot.kde.org/",
+    "icon": "fas fa-chart-line",
+    "value": "LabPlot Data visualization and analysis from KDE Numerical and Scientific Computing",
+    "windows": "",
+    "macos": "",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.kde.labplot2",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "LaTeX Project",
+    "description": "Document preparation system for scientific writing",
+    "link": "https://www.latex-project.org/",
+    "icon": "fas fa-file",
+    "value": "LaTeX Project Document preparation system for scientific writing Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GNU Units",
+    "description": "Unit conversion and dimensional analysis calculator",
+    "link": "https://www.gnu.org/software/units/",
+    "icon": "fas fa-scale-balanced",
+    "value": "GNU Units Unit conversion and dimensional analysis calculator Numerical and Scientific Computing",
+    "windows": "",
+    "macos": "",
+    "fedora": "units",
+    "debian": "units",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Desmos",
+    "description": "Browser-based graphing calculator",
+    "link": "https://www.desmos.com/calculator",
+    "icon": "fas fa-chart-line",
+    "value": "Desmos Browser-based graphing calculator Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Wolfram Alpha",
+    "description": "Computational knowledge and answer engine",
+    "link": "https://www.wolframalpha.com/",
+    "icon": "fas fa-brain",
+    "value": "Wolfram Alpha Computational knowledge and answer engine Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Engineering ToolBox",
+    "description": "Reference data and calculators for engineering",
+    "link": "https://www.engineeringtoolbox.com/",
+    "icon": "fas fa-book",
+    "value": "Engineering ToolBox Reference data and calculators for engineering Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Slurm",
+    "description": "Workload manager for high-performance compute clusters",
+    "link": "https://slurm.schedmd.com/",
+    "icon": "fas fa-server",
+    "value": "Slurm Workload manager for high-performance compute clusters Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Spack",
+    "description": "Package manager for supercomputers and clusters",
+    "link": "https://spack.io/",
+    "icon": "fas fa-box",
+    "value": "Spack Package manager for supercomputers and clusters Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Apptainer",
+    "description": "Container platform for HPC workloads",
+    "link": "https://apptainer.org/",
+    "icon": "fas fa-box",
+    "value": "Apptainer Container platform for HPC workloads Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Open OnDemand",
+    "description": "Web portal for access to HPC clusters",
+    "link": "https://openondemand.org/",
+    "icon": "fas fa-server",
+    "value": "Open OnDemand Web portal for access to HPC clusters Numerical and Scientific Computing",
+    "categories": [
+      "Numerical and Scientific Computing",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "eLabFTW",
+    "description": "Electronic lab notebook for research groups",
+    "link": "https://www.elabftw.net/",
+    "icon": "fas fa-book",
+    "value": "eLabFTW Electronic lab notebook for research groups Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Chemotion",
+    "description": "Electronic lab notebook and repository for chemistry",
+    "link": "https://chemotion.net/",
+    "icon": "fas fa-flask",
+    "value": "Chemotion Electronic lab notebook and repository for chemistry Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenSpecimen",
+    "description": "Biobanking and biospecimen management system",
+    "link": "https://www.openspecimen.org/",
+    "icon": "fas fa-vial",
+    "value": "OpenSpecimen Biobanking and biospecimen management system Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Zotero",
+    "description": "Reference manager for collecting and citing research",
+    "link": "https://www.zotero.org/",
+    "icon": "fas fa-book",
+    "value": "Zotero Reference manager for collecting and citing research Lab Informatics and Research",
+    "windows": "Zotero.Zotero",
+    "macos": "--cask zotero",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.zotero.Zotero",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "JabRef",
+    "description": "Open source BibTeX reference manager",
+    "link": "https://www.jabref.org/",
+    "icon": "fas fa-book",
+    "value": "JabRef Open source BibTeX reference manager Lab Informatics and Research",
+    "windows": "JabRef.JabRef",
+    "macos": "--cask jabref",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "org.jabref.jabref",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Zenodo",
+    "description": "Open repository for datasets, software and papers",
+    "link": "https://zenodo.org/",
+    "icon": "fas fa-database",
+    "value": "Zenodo Open repository for datasets, software and papers Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OSF",
+    "description": "Open Science Framework for research project management",
+    "link": "https://osf.io/",
+    "icon": "fas fa-folder",
+    "value": "OSF Open Science Framework for research project management Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ORCID",
+    "description": "Persistent digital identifier for researchers",
+    "link": "https://orcid.org/",
+    "icon": "fas fa-id-card",
+    "value": "ORCID Persistent digital identifier for researchers Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "OpenAlex",
+    "description": "Open catalogue of scholarly works and authors",
+    "link": "https://openalex.org/",
+    "icon": "fas fa-book",
+    "value": "OpenAlex Open catalogue of scholarly works and authors Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Crossref",
+    "description": "DOI registration and scholarly metadata",
+    "link": "https://www.crossref.org/",
+    "icon": "fas fa-link",
+    "value": "Crossref DOI registration and scholarly metadata Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Europe PMC",
+    "description": "Search across life science literature and preprints",
+    "link": "https://europepmc.org/",
+    "icon": "fas fa-book",
+    "value": "Europe PMC Search across life science literature and preprints Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "PubMed",
+    "description": "Biomedical and life sciences literature database",
+    "link": "https://pubmed.ncbi.nlm.nih.gov/",
+    "icon": "fas fa-book",
+    "value": "PubMed Biomedical and life sciences literature database Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "bioRxiv",
+    "description": "Preprint server for the biological sciences",
+    "link": "https://www.biorxiv.org/",
+    "icon": "fas fa-file",
+    "value": "bioRxiv Preprint server for the biological sciences Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "medRxiv",
+    "description": "Preprint server for the health sciences",
+    "link": "https://www.medrxiv.org/",
+    "icon": "fas fa-file",
+    "value": "medRxiv Preprint server for the health sciences Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Unpaywall",
+    "description": "Finds legal open access copies of paywalled papers",
+    "link": "https://unpaywall.org/",
+    "icon": "fas fa-lock-open",
+    "value": "Unpaywall Finds legal open access copies of paywalled papers Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "protocols.io",
+    "description": "Shareable and versioned research protocols",
+    "link": "https://www.protocols.io/",
+    "icon": "fas fa-clipboard-list",
+    "value": "protocols.io Shareable and versioned research protocols Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Dryad",
+    "description": "Open data publishing platform for research data",
+    "link": "https://datadryad.org/",
+    "icon": "fas fa-database",
+    "value": "Dryad Open data publishing platform for research data Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "re3data",
+    "description": "Registry of research data repositories",
+    "link": "https://www.re3data.org/",
+    "icon": "fas fa-database",
+    "value": "re3data Registry of research data repositories Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Software Heritage",
+    "description": "Universal archive of publicly available source code",
+    "link": "https://www.softwareheritage.org/",
+    "icon": "fas fa-code-branch",
+    "value": "Software Heritage Universal archive of publicly available source code Lab Informatics and Research",
+    "categories": [
+      "Lab Informatics and Research",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Odoo Community",
+    "description": "Open ERP suite with manufacturing and inventory",
+    "link": "https://www.odoo.com/page/community",
+    "icon": "fas fa-industry",
+    "value": "Odoo Community Open ERP suite with manufacturing and inventory Industry Operations",
+    "categories": [
+      "Industry Operations",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "ERPNext",
+    "description": "Open ERP with production planning and stock control",
+    "link": "https://erpnext.com/",
+    "icon": "fas fa-industry",
+    "value": "ERPNext Open ERP with production planning and stock control Industry Operations",
+    "categories": [
+      "Industry Operations",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Tryton",
+    "description": "Modular open business application platform",
+    "link": "https://www.tryton.org/",
+    "icon": "fas fa-suitcase",
+    "value": "Tryton Modular open business application platform Industry Operations",
+    "categories": [
+      "Industry Operations",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Dolibarr",
+    "description": "ERP and CRM for small and medium business",
+    "link": "https://www.dolibarr.org/",
+    "icon": "fas fa-suitcase",
+    "value": "Dolibarr ERP and CRM for small and medium business Industry Operations",
+    "categories": [
+      "Industry Operations",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "GLPI",
+    "description": "IT asset management and service desk",
+    "link": "https://glpi-project.org/",
+    "icon": "fas fa-boxes-stacked",
+    "value": "GLPI IT asset management and service desk Industry Operations",
+    "categories": [
+      "Industry Operations",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Snipe-IT",
+    "description": "Open source IT asset management system",
+    "link": "https://snipeitapp.com/",
+    "icon": "fas fa-barcode",
+    "value": "Snipe-IT Open source IT asset management system Industry Operations",
+    "categories": [
+      "Industry Operations",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "openMAINT",
+    "description": "Facility, plant and maintenance management",
+    "link": "https://www.openmaint.org/",
+    "icon": "fas fa-screwdriver-wrench",
+    "value": "openMAINT Facility, plant and maintenance management Industry Operations",
+    "categories": [
+      "Industry Operations",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "CMDBuild",
+    "description": "Configuration and asset management database",
+    "link": "https://www.cmdbuild.org/",
+    "icon": "fas fa-database",
+    "value": "CMDBuild Configuration and asset management database Industry Operations",
+    "categories": [
+      "Industry Operations",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Metabase",
+    "description": "Business intelligence dashboards and queries",
+    "link": "https://www.metabase.com/",
+    "icon": "fas fa-chart-bar",
+    "value": "Metabase Business intelligence dashboards and queries Industry Operations",
+    "categories": [
+      "Industry Operations",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Apache Superset",
+    "description": "Data exploration and visualization platform",
+    "link": "https://superset.apache.org/",
+    "icon": "fas fa-chart-bar",
+    "value": "Apache Superset Data exploration and visualization platform Industry Operations",
+    "categories": [
+      "Industry Operations",
+      "Reviewing"
+    ]
+  },
+  {
+    "name": "Seamly2D",
+    "description": "Pattern making software for textiles and garments",
+    "link": "https://github.com/FashionFreedom/Seamly2D",
+    "icon": "fas fa-shirt",
+    "value": "Seamly2D Pattern making software for textiles and garments Industry Operations",
+    "categories": [
+      "Industry Operations",
+      "Reviewing"
+    ]
   }
 ]
