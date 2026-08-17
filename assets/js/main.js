@@ -141,13 +141,25 @@ const SLICES = [
         categories: ['(Cyber)Security']
     },
     {
+        // The offline stack, shared with offline.carino.systems. Membership is
+        // the `Survives the Outage` category plus an `offline` block on the
+        // entry carrying the rating (full / sync / tethered) and the reasoning;
+        // Offline generates its own list from exactly those entries, so the two
+        // sites cannot disagree about what keeps working with the cable pulled.
+        id: 'offline',
+        label: 'Survives the Outage',
+        icon: 'fa-solid fa-plug-circle-xmark',
+        num: '07',
+        categories: ['Survives the Outage']
+    },
+    {
         // Staging ground: entries land here first and graduate into the slices
         // above once vetted. Membership is the `status` field on the entry, so
         // promoting one is a single-word edit.
         id: 'reviewing',
         label: 'Reviewing',
         icon: 'fa-solid fa-flask',
-        num: '07',
+        num: '08',
         status: 'reviewing',
         dense: true
     }
