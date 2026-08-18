@@ -181,6 +181,7 @@
     "link": "https://keepassxc.org",
     "icon": "fas fa-key",
     "value": "Keepass Advanced Password Manager",
+    "tags": "outage offgrid blackout",
     "windows": "KeePassXCTeam.KeePassXC",
     "macos": "--cask keepassxc",
     "fedora": "",
@@ -189,8 +190,7 @@
     "suse": "",
     "flatpak": "org.keepassxc.KeePassXC",
     "categories": [
-      "Essentials",
-      "Survives the Outage"
+      "Essentials"
     ],
     "licence": "GPL-2.0 / GPL-3.0",
     "offline": {
@@ -610,6 +610,7 @@
     "link": "https://jellyfin.org",
     "icon": "fab fa-j",
     "value": "Jellyfin Media Server",
+    "tags": "outage offgrid blackout",
     "windows": "Jellyfin.Server",
     "macos": "--cask jellyfin",
     "fedora": "",
@@ -618,8 +619,7 @@
     "suse": "",
     "flatpak": "org.jellyfin.JellyfinServer",
     "categories": [
-      "Multimedia and Design",
-      "Survives the Outage"
+      "Multimedia and Design"
     ],
     "licence": "GPL-2.0",
     "offline": {
@@ -1389,6 +1389,7 @@
     "link": "https://syncthing.net",
     "icon": "fab fa-s",
     "value": "Syncthing Continuous File Synchronization",
+    "tags": "outage offgrid blackout",
     "windows": "SyncTrayzor.SyncTrayzor",
     "macos": "syncthing",
     "fedora": "syncthing",
@@ -1397,8 +1398,7 @@
     "suse": "syncthing",
     "flatpak": "",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "MPL-2.0",
     "offline": {
@@ -1449,6 +1449,7 @@
     "link": "https://nextcloud.com",
     "icon": "fab fa-n",
     "value": "Nextcloud Collaborative platform",
+    "tags": "outage offgrid blackout",
     "windows": "Nextcloud.NextcloudDesktop",
     "macos": "--cask nextcloud",
     "fedora": "nextcloud",
@@ -1457,8 +1458,7 @@
     "suse": "nextcloud",
     "flatpak": "",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "AGPL-3.0",
     "offline": {
@@ -1899,6 +1899,7 @@
     "link": "https://kiwix.org",
     "icon": "fab fa-k",
     "value": "Kiwix Offline Web Browser",
+    "tags": "outage offgrid blackout",
     "windows": "Kiwix.KiwixJS",
     "macos": "--cask kiwix",
     "fedora": "",
@@ -1907,8 +1908,7 @@
     "suse": "",
     "flatpak": "org.kiwix.desktop",
     "categories": [
-      "STEM and Research",
-      "Survives the Outage"
+      "STEM and Research"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -2086,6 +2086,7 @@
     "link": "https://www.orthanc-server.com",
     "icon": "fas fa-server",
     "value": "Health Image Radiology Cardiology Imagenology dicom dcm server",
+    "tags": "outage offgrid blackout",
     "windows": "",
     "macos": "",
     "fedora": "",
@@ -2094,8 +2095,7 @@
     "suse": "",
     "flatpak": "",
     "categories": [
-      "STEM and Research",
-      "Survives the Outage"
+      "STEM and Research"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -2127,6 +2127,7 @@
     "link": "https://weasis.org",
     "icon": "fas fa-computer",
     "value": "Weasis Health Image Radiology Cardiology Imagenology dicom dcm viewer",
+    "tags": "outage offgrid blackout",
     "windows": "WeasisTeam.Weasis",
     "macos": "--cask weasis",
     "fedora": "",
@@ -2135,8 +2136,7 @@
     "suse": "",
     "flatpak": "io.github.nroduit.Weasis",
     "categories": [
-      "STEM and Research",
-      "Survives the Outage"
+      "STEM and Research"
     ],
     "licence": "EPL-2.0 / Apache-2.0",
     "offline": {
@@ -2752,6 +2752,17 @@
     "link": "https://opentopography.org/",
     "icon": "fas fa-mountain",
     "value": "OpenTopography Geoscience Tools and Data",
+    "licence": "reference",
+    "categories": [
+      "STEM and Research"
+    ]
+  },
+  {
+    "name": "Mycorrhizal Infrastructure Map",
+    "description": "Predicted density of Earth's underground fungal networks, mapped globally.",
+    "link": "https://a-hidden-infrastructure.spun.earth/",
+    "icon": "fas fa-circle-nodes",
+    "value": "Mycorrhizal Infrastructure Map SPUN a hidden infrastructure underground mycorrhizal fungi hyphal density soil biodiversity carbon globe atlas",
     "licence": "reference",
     "categories": [
       "STEM and Research"
@@ -4203,6 +4214,7 @@
     "link": "https://ollama.com",
     "icon": "fas fa-robot",
     "value": "Easily run large language models on the terminal ollama",
+    "tags": "outage offgrid blackout",
     "windows": "",
     "macos": "",
     "fedora": "",
@@ -4211,8 +4223,7 @@
     "suse": "",
     "flatpak": "",
     "categories": [
-      "AI / Machine learning",
-      "Survives the Outage"
+      "AI / Machine learning"
     ],
     "licence": "MIT",
     "offline": {
@@ -7615,10 +7626,10 @@
     "link": "https://www.open-emr.org",
     "icon": "fas fa-hospital",
     "value": "OpenEMR Electronic health records and practice management Health Informatics",
+    "tags": "outage offgrid blackout",
     "status": "reviewing",
     "categories": [
-      "Health Informatics",
-      "Survives the Outage"
+      "Health Informatics"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -9530,10 +9541,10 @@
     "link": "https://meshtastic.org",
     "icon": "fas fa-tower-broadcast",
     "value": "Meshtastic Off-grid encrypted mesh messaging over LoRa Defense and Situational Awareness",
+    "tags": "outage offgrid blackout",
     "status": "reviewing",
     "categories": [
-      "Defense and Situational Awareness",
-      "Survives the Outage"
+      "Defense and Situational Awareness"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -9733,10 +9744,10 @@
     "link": "https://wazuh.com",
     "icon": "fas fa-desktop",
     "value": "Wazuh Unified XDR and SIEM for endpoints and cloud Security Operations and Forensics",
+    "tags": "outage offgrid blackout",
     "status": "reviewing",
     "categories": [
-      "Security Operations and Forensics",
-      "Survives the Outage"
+      "Security Operations and Forensics"
     ],
     "licence": "GPL-2.0",
     "offline": {
@@ -9879,11 +9890,11 @@
     "link": "https://smallstep.com/docs/step-ca/",
     "icon": "fas fa-key",
     "value": "step-ca Private certificate authority and ACME server Security Operations and Forensics",
+    "tags": "outage offgrid blackout",
     "status": "reviewing",
     "licence": "Apache-2.0",
     "categories": [
-      "Security Operations and Forensics",
-      "Survives the Outage"
+      "Security Operations and Forensics"
     ],
     "offline": {
       "id": "step-ca",
@@ -11793,10 +11804,10 @@
     "link": "https://learningequality.org/kolibri/",
     "icon": "fas fa-download",
     "value": "Kolibri Offline-first learning platform for low connectivity Education and Learning",
+    "tags": "outage offgrid blackout",
     "status": "reviewing",
     "categories": [
-      "Education and Learning",
-      "Survives the Outage"
+      "Education and Learning"
     ],
     "licence": "MIT",
     "offline": {
@@ -12744,10 +12755,10 @@
     "link": "https://openwebui.com",
     "icon": "fas fa-comments",
     "value": "Open WebUI Self-hosted interface for local language models Artificial Intelligence and Data",
+    "tags": "outage offgrid blackout",
     "status": "reviewing",
     "categories": [
-      "Artificial Intelligence and Data",
-      "Survives the Outage"
+      "Artificial Intelligence and Data"
     ],
     "offline": {
       "id": "open-webui",
@@ -12798,10 +12809,10 @@
     "link": "https://github.com/rhasspy/piper",
     "icon": "fas fa-volume-high",
     "value": "Piper Fast local neural text to speech Artificial Intelligence and Data",
+    "tags": "outage offgrid blackout",
     "status": "reviewing",
     "categories": [
-      "Artificial Intelligence and Data",
-      "Survives the Outage"
+      "Artificial Intelligence and Data"
     ],
     "licence": "MIT",
     "offline": {
@@ -14549,9 +14560,9 @@
     "link": "https://github.com/MiguelCarino/Carino-PACS",
     "icon": "fas fa-server",
     "value": "Carino PACS Self-hosted DICOM gateway that receives, routes and forwards studies Carino Systems fleet",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Carino Systems",
-      "Survives the Outage"
+      "Carino Systems"
     ],
     "licence": "AGPL-3.0",
     "offline": {
@@ -16083,9 +16094,9 @@
     "link": "https://archivebox.io",
     "icon": "fas fa-box-archive",
     "value": "ArchiveBox Self-hosted archive of everything you have ever bookmarked Emulation and Preservation",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Emulation and Preservation",
-      "Survives the Outage"
+      "Emulation and Preservation"
     ],
     "status": "reviewing",
     "licence": "MIT",
@@ -16241,9 +16252,9 @@
     "link": "https://play0ad.com",
     "icon": "fas fa-chess-rook",
     "value": "0 A.D. A historically obsessive real-time strategy game, in development forever Games With a Cult Following",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Games With a Cult Following",
-      "Survives the Outage"
+      "Games With a Cult Following"
     ],
     "status": "reviewing",
     "licence": "GPL-2.0 (code), CC-BY-SA (art)",
@@ -16292,9 +16303,9 @@
     "link": "https://www.luanti.org",
     "icon": "fas fa-cube",
     "value": "Luanti The voxel engine formerly called Minetest — a platform, not a game Games With a Cult Following",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Games With a Cult Following",
-      "Survives the Outage"
+      "Games With a Cult Following"
     ],
     "status": "reviewing",
     "licence": "LGPL-2.1",
@@ -16803,9 +16814,9 @@
     "link": "https://technitium.com/dns/",
     "icon": "fa-solid fa-network-wired",
     "value": "Technitium DNS Server Authoritative and recursive DNS with a web GUI, split-horizon zones, DNSSEC signing, DoH/DoT server and block lists. core dns split-horizon dnssec doh authoritative offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -16850,9 +16861,9 @@
     "link": "https://nlnetlabs.nl/projects/unbound/about/",
     "icon": "fa-solid fa-network-wired",
     "value": "Unbound Validating, caching recursive resolver that talks to the root servers directly instead of trusting an upstream. core dns recursive dnssec cache offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "BSD-3-Clause",
     "offline": {
@@ -16885,9 +16896,9 @@
     "link": "https://caddyserver.com",
     "icon": "fa-solid fa-network-wired",
     "value": "Caddy Reverse proxy that obtains and renews TLS certificates automatically, one short block per service. core proxy tls acme http offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "Apache-2.0",
     "offline": {
@@ -16930,9 +16941,9 @@
     "link": "https://chrony-project.org/",
     "icon": "fa-solid fa-network-wired",
     "value": "chrony (+ GPS/PPS) NTP daemon that disciplines the clock, ideally against a local GPS receiver rather than a pool server on the internet. core ntp time gps pps offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "GPL-2.0",
     "offline": {
@@ -16968,9 +16979,9 @@
     "link": "https://www.authelia.com",
     "icon": "fa-solid fa-network-wired",
     "value": "Authelia Authentication portal in front of the reverse proxy: one login, per-service access rules, and TOTP two-factor. core sso auth totp ldap offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "Apache-2.0",
     "offline": {
@@ -17010,9 +17021,9 @@
     "link": "https://www.wireguard.com",
     "icon": "fa-solid fa-network-wired",
     "value": "WireGuard Kernel-level encrypted tunnels between sites and to an offshore relay, keyed by public keys and nothing else. core vpn overlay replication tunnel offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "GPL-2.0",
     "offline": {
@@ -17046,9 +17057,9 @@
     "link": "https://yggdrasil-network.github.io",
     "icon": "fa-solid fa-network-wired",
     "value": "Yggdrasil Self-arranging encrypted IPv6 overlay where every node's address is derived from its public key. core overlay ipv6 mesh censorship offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "LGPL-3.0",
     "offline": {
@@ -17081,9 +17092,9 @@
     "link": "https://www.proxmox.com/en/proxmox-virtual-environment",
     "icon": "fa-solid fa-hard-drive",
     "value": "Proxmox VE Debian-based hypervisor with LXC containers, KVM virtual machines, ZFS, snapshots and built-in replication. storage hypervisor zfs lxc kvm replication offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "AGPL-3.0",
     "offline": {
@@ -17124,9 +17135,9 @@
     "link": "https://openzfs.github.io/openzfs-docs/",
     "icon": "fa-solid fa-hard-drive",
     "value": "OpenZFS Copy-on-write filesystem with checksums, snapshots, native encryption, and send/receive replication. storage filesystem raidz snapshots checksums encryption offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "CDDL-1.0",
     "offline": {
@@ -17167,9 +17178,9 @@
     "link": "https://restic.net",
     "icon": "fa-solid fa-hard-drive",
     "value": "restic Deduplicating, encrypted, incremental backup to a local disk, an external HDD or an SFTP target. storage backup encryption dedup verify offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "BSD-2-Clause",
     "offline": {
@@ -17207,9 +17218,9 @@
     "link": "https://github.com/Parchive/par2cmdline",
     "icon": "fa-solid fa-hard-drive",
     "value": "par2cmdline Generates Reed-Solomon recovery files so a damaged archive can be reconstructed from the surviving bytes. storage sneakernet optical recovery integrity offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "GPL-2.0",
     "offline": {
@@ -17249,9 +17260,9 @@
     "link": "https://devdocs.io",
     "icon": "fa-solid fa-book",
     "value": "DevDocs One searchable local copy of the API documentation for hundreds of languages, libraries and tools. knowledge documentation programming reference search offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "STEM and Research",
-      "Survives the Outage"
+      "STEM and Research"
     ],
     "licence": "MPL-2.0",
     "offline": {
@@ -17294,9 +17305,9 @@
     "link": "https://github.com/janeczku/calibre-web",
     "icon": "fa-solid fa-book",
     "value": "Calibre-Web Browser front end over a Calibre library, with OPDS so e-readers and phone apps can browse and download. knowledge ebooks opds gutenberg library offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "STEM and Research",
-      "Survives the Outage"
+      "STEM and Research"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -17337,9 +17348,9 @@
     "link": "https://docs.paperless-ngx.com",
     "icon": "fa-solid fa-book",
     "value": "Paperless-ngx Scans, OCRs, tags and full-text-indexes every document you own, from invoices to equipment manuals. knowledge documents ocr search archive invoices offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "STEM and Research",
-      "Survives the Outage"
+      "STEM and Research"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -17371,9 +17382,9 @@
     "link": "https://protomaps.com",
     "icon": "fa-solid fa-book",
     "value": "Protomaps / PMTiles Serves vector map tiles for a whole country out of a single static file, readable by MapLibre in any browser. knowledge maps osm vector-tiles pmtiles offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "STEM and Research",
-      "Survives the Outage"
+      "STEM and Research"
     ],
     "offline": {
       "id": "protomaps",
@@ -17414,9 +17425,9 @@
     "link": "https://carino.systems",
     "icon": "fa-solid fa-book",
     "value": "Carino Fleet Offline Edition The whole carino.systems tool fleet — imaging, metadata, hashing, learning, hardware reference and the rest — as a folder you can serve from a USB stick. knowledge fleet static usb self-hosted own-work offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "STEM and Research",
-      "Survives the Outage"
+      "STEM and Research"
     ],
     "licence": "AGPL-3.0",
     "offline": {
@@ -17448,9 +17459,9 @@
     "link": "https://www.navidrome.org",
     "icon": "fa-solid fa-photo-film",
     "value": "Navidrome Music server speaking the Subsonic API, so dozens of existing mobile clients work against it unmodified. media music subsonic streaming lightweight offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Multimedia and Design",
-      "Survives the Outage"
+      "Multimedia and Design"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -17482,9 +17493,9 @@
     "link": "https://immich.app",
     "icon": "fa-solid fa-photo-film",
     "value": "Immich Photo and video backup for phones, with albums, face grouping, and machine-learning search that runs on your hardware. media photos phone-backup faces ml-search offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Multimedia and Design",
-      "Survives the Outage"
+      "Multimedia and Design"
     ],
     "licence": "AGPL-3.0",
     "offline": {
@@ -17519,9 +17530,9 @@
     "link": "https://www.audiobookshelf.org",
     "icon": "fa-solid fa-photo-film",
     "value": "Audiobookshelf Audiobook and podcast server with per-user progress sync and mobile clients that download for listening off-network. media audiobooks podcasts progress-sync mobile offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Multimedia and Design",
-      "Survives the Outage"
+      "Multimedia and Design"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -17551,9 +17562,9 @@
     "link": "https://komga.org",
     "icon": "fa-solid fa-photo-film",
     "value": "Komga Comic, manga and magazine server for CBZ/CBR/PDF, with an OPDS feed and a decent built-in reader. media comics manga opds reader offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Multimedia and Design",
-      "Survives the Outage"
+      "Multimedia and Design"
     ],
     "licence": "MIT",
     "offline": {
@@ -17591,9 +17602,9 @@
     "link": "https://www.plex.tv/media-server-downloads/",
     "icon": "fa-solid fa-photo-film",
     "value": "Plex Polished media server whose clients authenticate through plex.tv before they will play your files. media video cloud-tethered account warning offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Multimedia and Design",
-      "Survives the Outage"
+      "Multimedia and Design"
     ],
     "licence": "proprietary",
     "offline": {
@@ -17630,9 +17641,9 @@
     "link": "https://lancache.net",
     "icon": "fa-solid fa-gamepad",
     "value": "LanCache Transparent caching proxy for game and platform CDNs: one machine downloads a 120 GB game, every other machine on the LAN gets it at line speed. games cache steam cdn bandwidth lan offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Gaming and Entertainment",
-      "Survives the Outage"
+      "Gaming and Entertainment"
     ],
     "offline": {
       "id": "lancache",
@@ -17662,9 +17673,9 @@
     "link": "https://romm.app",
     "icon": "fa-solid fa-gamepad",
     "value": "RomM Catalogues a ROM collection with metadata and box art and plays titles in the browser through a bundled EmulatorJS. games retro emulation browser catalogue offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Gaming and Entertainment",
-      "Survives the Outage"
+      "Gaming and Entertainment"
     ],
     "licence": "AGPL-3.0",
     "offline": {
@@ -17704,9 +17715,9 @@
     "link": "https://factorio.com",
     "icon": "fa-solid fa-gamepad",
     "value": "Factorio (headless server) Dedicated server binary for Factorio, distributed as a plain tarball with no launcher and no runtime licence check. games drm-free dedicated-server lan sandbox offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Gaming and Entertainment",
-      "Survives the Outage"
+      "Gaming and Entertainment"
     ],
     "licence": "proprietary (DRM-free)",
     "offline": {
@@ -17737,9 +17748,9 @@
     "link": "https://www.minecraft.net",
     "icon": "fa-solid fa-gamepad",
     "value": "Minecraft (Java server) The official Java Edition server jar, which can be told to stop checking player identities against Mojang's session servers. games sandbox lan account offline-mode offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Gaming and Entertainment",
-      "Survives the Outage"
+      "Gaming and Entertainment"
     ],
     "licence": "proprietary",
     "offline": {
@@ -17771,9 +17782,9 @@
     "link": "https://store.steampowered.com",
     "icon": "fa-solid fa-gamepad",
     "value": "Steam (Offline Mode) Runs an already-installed library without a connection, provided it was signed in recently and the individual title has no additional DRM. games drm account warning best-effort offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Gaming and Entertainment",
-      "Survives the Outage"
+      "Gaming and Entertainment"
     ],
     "licence": "proprietary",
     "offline": {
@@ -17803,9 +17814,9 @@
     "link": "https://www.gog.com",
     "icon": "fa-solid fa-gamepad",
     "value": "GOG offline installers Sells games as standalone installer files with no DRM, no launcher requirement and no activation. games drm-free purchase archive installers offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Gaming and Entertainment",
-      "Survives the Outage"
+      "Gaming and Entertainment"
     ],
     "offline": {
       "id": "gog-installers",
@@ -17840,9 +17851,9 @@
     "link": "https://www.aptly.info",
     "icon": "fa-solid fa-download",
     "value": "aptly Mirrors, snapshots and publishes Debian and Ubuntu repositories, including your own signed packages. mirrors debian ubuntu apt snapshots offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "MIT",
     "offline": {
@@ -17879,9 +17890,9 @@
     "link": "",
     "icon": "fa-solid fa-download",
     "value": "dnf reposync + createrepo_c Pulls a Fedora, RHEL or Rocky repository to local disk and regenerates the metadata so clients can install from it. mirrors fedora rpm rsync repository offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "GPL-2.0",
     "offline": {
@@ -17910,9 +17921,9 @@
     "link": "https://github.com/devpi/devpi",
     "icon": "fa-solid fa-download",
     "value": "devpi Caching PyPI proxy that stores every package it has ever served and keeps serving it when upstream is unreachable. mirrors pypi python pull-through cache offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "MIT",
     "offline": {
@@ -17943,9 +17954,9 @@
     "link": "https://verdaccio.org",
     "icon": "fa-solid fa-download",
     "value": "Verdaccio Lightweight npm registry that proxies the public registry, caches every tarball it serves, and hosts private packages. mirrors npm javascript pull-through cache offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "MIT",
     "offline": {
@@ -17978,9 +17989,9 @@
     "link": "https://distribution.github.io/distribution/",
     "icon": "fa-solid fa-download",
     "value": "Distribution (registry:2) The reference container registry, which in pull-through mode transparently caches every image pulled through it. mirrors containers docker pull-through images offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "Apache-2.0",
     "offline": {
@@ -18017,9 +18028,9 @@
     "link": "https://matrix.org",
     "icon": "fa-solid fa-comments",
     "value": "Matrix Synapse Reference Matrix homeserver: rooms, history, end-to-end encryption, file transfer, with Element as the client. comms chat matrix e2ee federation offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "AGPL-3.0",
     "offline": {
@@ -18059,9 +18070,9 @@
     "link": "https://www.mumble.info",
     "icon": "fa-solid fa-comments",
     "value": "Mumble Low-latency voice chat server with positional audio and clients on every desktop platform. comms voice low-latency lan lightweight offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "BSD-3-Clause",
     "offline": {
@@ -18093,9 +18104,9 @@
     "link": "https://github.com/docker-mailserver/docker-mailserver",
     "icon": "fa-solid fa-comments",
     "value": "docker-mailserver Postfix, Dovecot, SpamAssassin and the rest assembled into one container, configured through a handful of files. comms email smtp imap internal offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "MIT",
     "offline": {
@@ -18124,9 +18135,9 @@
     "link": "https://pairdrop.net",
     "icon": "fa-solid fa-comments",
     "value": "PairDrop Browser-to-browser file transfer between devices on the same network, with nothing to install on either end. comms file-transfer webrtc lan guests offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "IT and DevOps",
-      "Survives the Outage"
+      "IT and DevOps"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -18156,9 +18167,9 @@
     "link": "https://uptime.kuma.pet",
     "icon": "fa-solid fa-gauge-high",
     "value": "Uptime Kuma Status checks over HTTP, TCP, ICMP and DNS with a status page and notifications to almost anything. ops monitoring status alerts certificates offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Monitoring and Status",
-      "Survives the Outage"
+      "Monitoring and Status"
     ],
     "licence": "MIT",
     "offline": {
@@ -18188,9 +18199,9 @@
     "link": "https://prometheus.io",
     "icon": "fa-solid fa-gauge-high",
     "value": "Prometheus + Grafana Scrapes metrics from node_exporter and friends, stores the time series locally, and draws them. ops metrics dashboards trends smart offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Monitoring and Status",
-      "Survives the Outage"
+      "Monitoring and Status"
     ],
     "licence": "Apache-2.0 (Prometheus), AGPL-3.0 (Grafana)",
     "offline": {
@@ -18221,9 +18232,9 @@
     "link": "https://gethomepage.dev",
     "icon": "fa-solid fa-gauge-high",
     "value": "Homepage Configurable dashboard of links and live service widgets, defined entirely in YAML files. ops dashboard landing-page yaml kiosk offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Monitoring and Status",
-      "Survives the Outage"
+      "Monitoring and Status"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -18259,9 +18270,9 @@
     "link": "https://networkupstools.org",
     "icon": "fa-solid fa-gauge-high",
     "value": "Network UPS Tools Reads the UPS over USB or serial and shuts hosts down cleanly in a defined order when the battery runs low. ops ups power shutdown lifepo4 offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Monitoring and Status",
-      "Survives the Outage"
+      "Monitoring and Status"
     ],
     "licence": "GPL-2.0",
     "offline": {
@@ -18290,9 +18301,9 @@
     "link": "https://forgejo.org",
     "icon": "fa-solid fa-gauge-high",
     "value": "Forgejo Self-hosted Git forge with issues, releases, LFS and a container registry, in a single Go binary. ops git forge lfs mirror bundles offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Monitoring and Status",
-      "Survives the Outage"
+      "Monitoring and Status"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -18330,9 +18341,9 @@
     "link": "https://github.com/dani-garcia/vaultwarden",
     "icon": "fa-solid fa-shield-halved",
     "value": "Vaultwarden Compatible reimplementation of the Bitwarden server in Rust, serving the official Bitwarden clients. security passwords totp bitwarden vault offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "(Cyber)Security",
-      "Survives the Outage"
+      "(Cyber)Security"
     ],
     "licence": "AGPL-3.0",
     "offline": {
@@ -18362,9 +18373,9 @@
     "link": "https://www.crowdsec.net",
     "icon": "fa-solid fa-shield-halved",
     "value": "CrowdSec Parses logs for attack patterns and pushes decisions to a bouncer in the firewall or reverse proxy. security ips logs firewall wan-facing offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "(Cyber)Security",
-      "Survives the Outage"
+      "(Cyber)Security"
     ],
     "licence": "MIT",
     "offline": {
@@ -18403,9 +18414,9 @@
     "link": "https://age-encryption.org",
     "icon": "fa-solid fa-shield-halved",
     "value": "age File encryption with small public keys, one obvious command line and no configuration or key ring to maintain. security encryption archive m-disc keys offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "(Cyber)Security",
-      "Survives the Outage"
+      "(Cyber)Security"
     ],
     "licence": "BSD-3-Clause",
     "offline": {
@@ -18442,9 +18453,9 @@
     "link": "https://github.com/ggml-org/whisper.cpp",
     "icon": "fa-solid fa-brain",
     "value": "whisper.cpp Speech-to-text transcription from a single C++ binary and one model file, on CPU or GPU. ai transcription speech cpu spanish offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Artificial Intelligence and Data",
-      "Survives the Outage"
+      "AI / Machine learning"
     ],
     "licence": "MIT",
     "offline": {
@@ -18476,9 +18487,9 @@
     "link": "https://libretranslate.com",
     "icon": "fa-solid fa-brain",
     "value": "LibreTranslate Self-hosted translation API over Argos Translate models, with an HTTP endpoint and a small web UI. ai translation api argos languages offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Artificial Intelligence and Data",
-      "Survives the Outage"
+      "AI / Machine learning"
     ],
     "licence": "AGPL-3.0",
     "offline": {
@@ -18508,9 +18519,9 @@
     "link": "https://github.com/Comfy-Org/ComfyUI",
     "icon": "fa-solid fa-brain",
     "value": "ComfyUI Node-graph interface for local image diffusion models, with every step of the pipeline exposed. ai diffusion images gpu print offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Artificial Intelligence and Data",
-      "Survives the Outage"
+      "AI / Machine learning"
     ],
     "licence": "GPL-3.0",
     "offline": {
@@ -18542,9 +18553,9 @@
     "link": "https://web.dcm4che.org/",
     "icon": "fa-solid fa-notes-medical",
     "value": "dcm4chee-arc-light Full enterprise DICOM archive: IOCM, HL7 integration, modality worklist, retention policies and audit logging. medical dicom archive hl7 audit enterprise offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Health Informatics",
-      "Survives the Outage"
+      "STEM and Research"
     ],
     "licence": "MPL-1.1 / GPL-2.0 / LGPL-2.1",
     "offline": {
@@ -18575,9 +18586,9 @@
     "link": "https://ohif.org",
     "icon": "fa-solid fa-notes-medical",
     "value": "OHIF Viewer Browser-based DICOM viewer that reads studies from any DICOMweb endpoint, served as static files. medical viewer dicomweb browser static offline self-hosted",
+    "tags": "outage offgrid blackout",
     "categories": [
-      "Health Informatics",
-      "Survives the Outage"
+      "STEM and Research"
     ],
     "licence": "MIT",
     "offline": {

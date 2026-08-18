@@ -66,31 +66,18 @@ let openOnlyMode = (() => {
     try { return localStorage.getItem(OPEN_KEY) === '1'; } catch (e) { return false; }
 })();
 
-// ── Licence classes ──────────────────────────────────────────
-// An entry with no `licence` is plain open source and shows no chip: most of
-// the catalog is open, so a badge on all of it would be noise. The chip only
-// ever means "there is something here to read before you commit".
-const LICENCE_LABELS = {
-    'open-core': 'Open core',
-    'source':    'Source available',
-    'closed':    'Closed',
-    'reference': 'Reference',
-};
-const LICENCE_TIPS = {
-    'open-core': 'Open base with proprietary paid tiers',
-    'source':    'Source available under a non-commercial or academic licence',
-    'closed':    'Proprietary software or hosted product',
-    'reference': 'Dataset, portal, standard or organisation — not software',
-};
-// Corner marks, so the card keeps its height whether or not it has a caveat.
-// A glyph can only carry four states, which is exactly how many there are —
-// the words live in the tooltip and the accessible name.
-const LICENCE_ICONS = {
-    'open-core': 'fa-solid fa-circle-half-stroke',
-    'source':    'fa-solid fa-eye',
-    'closed':    'fa-solid fa-lock',
-    'reference': 'fa-solid fa-book',
-};
+// ── Licence caveats ─────────────────────────────────────────
+// `licence` carries two vocabularies: these four caveat tokens, and free-text
+// SPDX ids (MIT, GPL-3.0, Apache-2.0 …) on the 60 entries that are plainly
+// open. Nothing renders the field any more — it exists only to drive the open
+// source only toggle, so an SPDX id has to read as "open", never as a caveat.
+const LICENCE_CAVEATS = ['open-core', 'source', 'closed', 'reference'];
+
+function isCaveatLicence(licence) {
+    if (!licence) return false;
+    return LICENCE_CAVEATS.indexOf(licence) >= 0 ||
+           licence.toLowerCase().indexOf('proprietary') === 0;
+}
 
 // ── Slice configuration ──────────────────────────────────────
 // A slice lists explicit `categories`, or names a `status` and derives its
@@ -141,25 +128,13 @@ const SLICES = [
         categories: ['(Cyber)Security']
     },
     {
-        // The offline stack, shared with offline.carino.systems. Membership is
-        // the `Survives the Outage` category plus an `offline` block on the
-        // entry carrying the rating (full / sync / tethered) and the reasoning;
-        // Offline generates its own list from exactly those entries, so the two
-        // sites cannot disagree about what keeps working with the cable pulled.
-        id: 'offline',
-        label: 'Survives the Outage',
-        icon: 'fa-solid fa-plug-circle-xmark',
-        num: '07',
-        categories: ['Survives the Outage']
-    },
-    {
         // Staging ground: entries land here first and graduate into the slices
         // above once vetted. Membership is the `status` field on the entry, so
         // promoting one is a single-word edit.
         id: 'reviewing',
         label: 'Reviewing',
         icon: 'fa-solid fa-flask',
-        num: '08',
+        num: '07',
         status: 'reviewing',
         dense: true
     }
@@ -243,7 +218,7 @@ fetch('assets/json/software.json')
         }
 
         function licenceAllows(service) {
-            return !openOnlyMode || !service.licence;
+            return !openOnlyMode || !isCaveatLicence(service.licence);
         }
 
         // ── URL sync ─────────────────────────────────────────
@@ -333,9 +308,10 @@ fetch('assets/json/software.json')
         }
 
         // ── Open-source-only button ───────────────────────────
+        // aria-pressed is the single source of truth: it is what a screen reader
+        // announces and what the filled-gold styling hangs off.
         function refreshOpenBtn() {
             if (!openBtn) return;
-            openBtn.classList.toggle('active', openOnlyMode);
             openBtn.setAttribute('aria-pressed', openOnlyMode ? 'true' : 'false');
             const tip = tr(openOnlyMode
                 ? 'Showing fully open source only — click for everything'
@@ -351,11 +327,23 @@ fetch('assets/json/software.json')
                 try { localStorage.setItem(OPEN_KEY, openOnlyMode ? '1' : '0'); } catch (e) {}
                 refreshOpenBtn();
                 invalidatePanels();
+                // On some panels this hides nothing at all — Highlights is
+                // almost entirely open — so a gold button is not by itself proof
+                // that anything happened. Say what the catalog is showing now.
+                showNotification(tr(openOnlyMode
+                    ? 'Showing fully open source only — click for everything'
+                    : 'Showing everything — click for fully open source only'));
             });
+            // refreshOpenBtn owns the button's title; i18n.js only re-applies
+            // aria-label, so without this the tooltip keeps the old language.
+            window.addEventListener('carino:langchange', refreshOpenBtn);
         }
 
         // ── Notification ──────────────────────────────────────
         function showNotification(msg) {
+            // The open-source toggle can be pressed repeatedly; without this the
+            // toasts stack at the same fixed corner and only the last is legible.
+            document.querySelectorAll('.notification').forEach(el => el.remove());
             const n = document.createElement('div');
             n.className = 'notification';
             n.textContent = msg;
@@ -429,20 +417,6 @@ fetch('assets/json/software.json')
                 if (e.target.closest('a, button, .sub-row')) return;
                 window.open(service.link, '_blank', 'noopener,noreferrer');
             });
-
-            // Opposite corner from the star, absolutely positioned: it states a
-            // fact about the entry without taking a line of the card.
-            if (service.licence) {
-                const label = tr(LICENCE_LABELS[service.licence] || service.licence);
-                const tip   = tr(LICENCE_TIPS[service.licence] || '');
-                const mark  = document.createElement('span');
-                mark.className = 'lic-mark lic-' + service.licence;
-                mark.innerHTML = '<i class="' + (LICENCE_ICONS[service.licence] || 'fa-solid fa-tag') + '"></i>';
-                mark.dataset.tooltip = tip;
-                mark.setAttribute('role', 'img');
-                mark.setAttribute('aria-label', label + ' — ' + tip);
-                item.appendChild(mark);
-            }
 
             const star = document.createElement('button');
             star.type = 'button';
@@ -642,6 +616,7 @@ fetch('assets/json/software.json')
                 el.dataset.target = slice.id;
                 el.setAttribute('role', 'button');
                 el.setAttribute('tabindex', '0');
+                el.title = tr(slice.label);
                 el.innerHTML =
                     '<div class="slice-bg"></div>' +
                     '<div class="slice-large">' +
@@ -665,6 +640,7 @@ fetch('assets/json/software.json')
         // ── Navigation ────────────────────────────────────────
         function selectSlice(id) {
             currentView = id;
+            if (myListBtn) myListBtn.setAttribute('aria-pressed', 'false');
             searchInput.value = '';
             updateURL(null);
 
@@ -698,13 +674,29 @@ fetch('assets/json/software.json')
         // ── Search ────────────────────────────────────────────
         function filterLinks(query) {
             currentView = 'search';
+            if (myListBtn) myListBtn.setAttribute('aria-pressed', 'false');
             const q = query.trim().toLowerCase();
+            // `tags` is the hidden keyword field — it is how the offline stack is
+            // still findable now that it has no slice of its own. It is matched
+            // by WHOLE TOKEN, never by substring: a searchable "outage" sitting
+            // in ordinary text would answer to "out" and to "age" and bury the
+            // catalog under sixty-eight self-hosting tools.
+            const tag = q.replace(/[\s-]/g, '');
             const seen = new Set();
             const results = allServices.filter(s => {
-                if (seen.has(s.link)) return false;
                 if (!licenceAllows(s)) return false;
+                // `value` is set on every entry, so the old `||` fallback never
+                // fired and the name printed on the card was not searchable.
+                const hay = (s.name + ' ' + s.description + ' ' + (s.value || '')).toLowerCase();
+                const hit = hay.includes(q) ||
+                            (s.tags && s.tags.split(' ').indexOf(tag) >= 0);
+                if (!hit) return false;
+                // Two entries can share a link (the same tool listed under two
+                // headings). Dedupe among the MATCHES — claiming the link before
+                // testing the query let a non-matching twin suppress a match.
+                if (seen.has(s.link)) return false;
                 seen.add(s.link);
-                return (s.value || (s.name + ' ' + s.description)).toLowerCase().includes(q);
+                return true;
             });
 
             const panel = document.getElementById('panel-search');
@@ -731,8 +723,8 @@ fetch('assets/json/software.json')
                 const msg = document.createElement('p');
                 msg.className = 'empty-list-msg';
                 msg.setAttribute('data-i18n', '');
-                msg.dataset.i18nKey = 'Your list is empty. Click any software card to bookmark it.';
-                msg.textContent = tr('Your list is empty. Click any software card to bookmark it.');
+                msg.dataset.i18nKey = 'Your list is empty. Tap the bookmark icon on a card to save it here.';
+                msg.textContent = tr('Your list is empty. Tap the bookmark icon on a card to save it here.');
                 body.appendChild(msg);
             } else {
                 buildGrid(services, body);
@@ -743,6 +735,7 @@ fetch('assets/json/software.json')
             myListBtn.addEventListener('click', () => {
                 renderMyList();
                 showSpecialPanel('mylist');
+                myListBtn.setAttribute('aria-pressed', 'true');
                 searchInput.value = '';
             });
         }

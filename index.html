@@ -17,11 +17,12 @@
             <input type="text" id="search-input" placeholder="Search software...">
             <button id="platform-btn" class="platform-btn" aria-label="Platform filter"></button>
         </div>
-        <button id="open-only-btn" class="icon-btn open-only-btn" aria-pressed="false" title="Open source only" aria-label="Open source only">
+        <button id="open-only-btn" class="icon-btn" aria-pressed="false" title="Open source only" aria-label="Open source only">
             <i class="fa-brands fa-osi" aria-hidden="true"></i>
         </button>
-        <button id="my-list-btn" class="icon-btn" title="My List" aria-label="My List">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+        <button id="my-list-btn" class="icon-btn my-list-btn" aria-pressed="false" title="My List" aria-label="My List">
+            <i class="fa-solid fa-bookmark" aria-hidden="true"></i>
+            <span class="my-list-label" data-i18n data-i18n-key="My List">My List</span>
             <span class="my-list-count" id="my-list-count"></span>
         </button>
     </div>

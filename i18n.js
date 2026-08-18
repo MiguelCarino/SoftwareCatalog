@@ -125,19 +125,11 @@ const I18N = {
         'No Results': 'Sin resultados',
         'My List': 'Mi lista',
         'Nothing here yet.': 'Aún no hay nada aquí.',
-        'Your list is empty. Click any software card to bookmark it.': 'Tu lista está vacía. Haz clic en cualquier tarjeta de software para guardarla.',
+        'Your list is empty. Tap the bookmark icon on a card to save it here.': 'Tu lista está vacía. Pulsa el icono de marcador de una tarjeta para guardarla aquí.',
         // Header attributes
         'Search software...': 'Buscar software...',
         'Platform filter': 'Filtro de plataforma',
-        // Licence chips / card controls
-        'Open core': 'Núcleo abierto',
-        'Source available': 'Código disponible',
-        'Closed': 'Cerrado',
-        'Reference': 'Referencia',
-        'Open base with proprietary paid tiers': 'Base abierta con niveles de pago propietarios',
-        'Source available under a non-commercial or academic licence': 'Código disponible bajo licencia no comercial o académica',
-        'Proprietary software or hosted product': 'Software propietario o producto alojado',
-        'Dataset, portal, standard or organisation — not software': 'Conjunto de datos, portal, estándar u organización: no es software',
+        // Card controls
         'Save to My List': 'Guardar en Mi lista',
         'Remove from My List': 'Quitar de Mi lista',
         'Open source only': 'Solo código abierto',
@@ -258,18 +250,10 @@ const I18N = {
         'No Results': 'Nenhum resultado',
         'My List': 'Minha lista',
         'Nothing here yet.': 'Nada por aqui ainda.',
-        'Your list is empty. Click any software card to bookmark it.': 'Sua lista está vazia. Clique em qualquer card de software para salvá-lo.',
+        'Your list is empty. Tap the bookmark icon on a card to save it here.': 'Sua lista está vazia. Toque no ícone de marcador de um card para salvá-lo aqui.',
         'Search software...': 'Buscar software...',
         'Platform filter': 'Filtro de plataforma',
-        // Licence chips / card controls
-        'Open core': 'Núcleo aberto',
-        'Source available': 'Código disponível',
-        'Closed': 'Fechado',
-        'Reference': 'Referência',
-        'Open base with proprietary paid tiers': 'Base aberta com camadas pagas proprietárias',
-        'Source available under a non-commercial or academic licence': 'Código disponível sob licença não comercial ou acadêmica',
-        'Proprietary software or hosted product': 'Software proprietário ou produto hospedado',
-        'Dataset, portal, standard or organisation — not software': 'Conjunto de dados, portal, padrão ou organização: não é software',
+        // Card controls
         'Save to My List': 'Salvar na Minha lista',
         'Remove from My List': 'Remover da Minha lista',
         'Open source only': 'Somente código aberto',
@@ -390,18 +374,10 @@ const I18N = {
         'No Results': '該当なし',
         'My List': 'マイリスト',
         'Nothing here yet.': 'まだ何もありません。',
-        'Your list is empty. Click any software card to bookmark it.': 'リストは空です。ソフトのカードをクリックするとブックマークできます。',
+        'Your list is empty. Tap the bookmark icon on a card to save it here.': 'リストは空です。カードのブックマークアイコンを押すと保存されます。',
         'Search software...': 'ソフトを検索...',
         'Platform filter': 'プラットフォームフィルター',
-        // Licence chips / card controls
-        'Open core': 'オープンコア',
-        'Source available': 'ソース公開',
-        'Closed': 'クローズド',
-        'Reference': 'リファレンス',
-        'Open base with proprietary paid tiers': '基盤はオープン、上位は有償の独自ライセンス',
-        'Source available under a non-commercial or academic licence': '非商用・学術ライセンスでソース公開',
-        'Proprietary software or hosted product': '独自ソフトウェアまたはホスト型サービス',
-        'Dataset, portal, standard or organisation — not software': 'データセット・ポータル・規格・団体 — ソフトウェアではありません',
+        // Card controls
         'Save to My List': 'マイリストに保存',
         'Remove from My List': 'マイリストから削除',
         'Open source only': 'オープンソースのみ',
@@ -522,18 +498,10 @@ const I18N = {
         'No Results': 'Ничего не найдено',
         'My List': 'Мой список',
         'Nothing here yet.': 'Здесь пока пусто.',
-        'Your list is empty. Click any software card to bookmark it.': 'Ваш список пуст. Нажмите на карточку программы, чтобы добавить её в закладки.',
+        'Your list is empty. Tap the bookmark icon on a card to save it here.': 'Ваш список пуст. Нажмите значок закладки на карточке, чтобы сохранить её здесь.',
         'Search software...': 'Поиск программ...',
         'Platform filter': 'Фильтр платформ',
-        // Licence chips / card controls
-        'Open core': 'Открытое ядро',
-        'Source available': 'Исходный код доступен',
-        'Closed': 'Закрытое',
-        'Reference': 'Справочник',
-        'Open base with proprietary paid tiers': 'Открытая основа с платными проприетарными уровнями',
-        'Source available under a non-commercial or academic licence': 'Исходный код под некоммерческой или академической лицензией',
-        'Proprietary software or hosted product': 'Проприетарная программа или облачный продукт',
-        'Dataset, portal, standard or organisation — not software': 'Набор данных, портал, стандарт или организация — не программа',
+        // Card controls
         'Save to My List': 'Сохранить в Мой список',
         'Remove from My List': 'Убрать из Моего списка',
         'Open source only': 'Только открытый код',
@@ -571,6 +539,7 @@ function applyAttrI18n() {
     const search = document.getElementById('search-input');
     if (search) search.placeholder = t('Search software...');
     const myList = document.getElementById('my-list-btn');
+    // The title carries the name at <=900px, where the visible label is hidden.
     if (myList) {
         myList.title = t('My List');
         myList.setAttribute('aria-label', t('My List'));
@@ -579,6 +548,12 @@ function applyAttrI18n() {
     if (platform) platform.setAttribute('aria-label', t('Platform filter'));
     const openOnly = document.getElementById('open-only-btn');
     if (openOnly) openOnly.setAttribute('aria-label', t('Open source only'));
+    // The slice rail truncates its label on narrow desktops and drops to a bare
+    // icon on mobile, so each cell carries its name as a title too.
+    document.querySelectorAll('.slice').forEach((el) => {
+        const label = el.querySelector('.slice-text-sm');
+        if (label && label.dataset.i18nKey) el.title = t(label.dataset.i18nKey);
+    });
 }
 
 function applyI18n() {
