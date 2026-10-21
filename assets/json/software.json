@@ -14557,7 +14557,7 @@
   {
     "name": "Carino PACS",
     "description": "Store-and-forward DICOM gateway: receives studies, auto-forwards from watched folders, serves a worklist, takes HL7 orders and holds everything when the primary archive is unreachable.",
-    "link": "https://github.com/MiguelCarino/Carino-PACS",
+    "link": "https://github.com/MiguelCarino/Carino-DICOM",
     "icon": "fas fa-server",
     "value": "Carino PACS Self-hosted DICOM gateway that receives, routes and forwards studies Carino Systems fleet",
     "tags": "outage offgrid blackout",
@@ -14579,7 +14579,7 @@
         "macos"
       ],
       "ram": "1 GB",
-      "install": "git clone https://github.com/MiguelCarino/Carino-PACS && docker compose up -d",
+      "install": "git clone https://github.com/MiguelCarino/Carino-DICOM && cd Carino-DICOM && docker compose up -d",
       "tags": [
         "dicom",
         "gateway",
