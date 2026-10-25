@@ -39,7 +39,7 @@
   {
     "name": "Only Office",
     "description": "Office Suite",
-    "link": "https://www.libreoffice.org/download/download-libreoffice/",
+    "link": "https://www.onlyoffice.com/download-desktop",
     "icon": "fas fa-file",
     "value": "Only Office Suite",
     "windows": "ONLYOFFICE.DesktopEditors",
@@ -71,7 +71,7 @@
   },
   {
     "name": "MPV Media Player",
-    "description": "",
+    "description": "Minimal, keyboard-driven media player that plays almost anything",
     "link": "https://mpv.io/installation/",
     "icon": "fas fa-play",
     "value": "MPV Media Player",
@@ -556,7 +556,7 @@
   {
     "name": "Krita",
     "description": "Graphics Editor",
-    "link": "https://krita.org/'",
+    "link": "https://krita.org/",
     "icon": "fab fa-k",
     "value": "Krita Graphics Editor",
     "windows": "KDE.Krita",
@@ -824,7 +824,7 @@
   {
     "name": "int10h.org",
     "description": "Old Computer Font Catalog",
-    "link": "#",
+    "link": "https://int10h.org/oldschool-pc-fonts/",
     "icon": "fab fa-font",
     "value": "Old Computer Font Catalog",
     "windows": "",
@@ -1048,7 +1048,7 @@
   },
   {
     "name": ".NET",
-    "description": "",
+    "description": "Microsoft’s open-source runtime and SDK for C#, F# and VB apps",
     "link": "https://dotnet.microsoft.com/en-us/download",
     "icon": "fas fa-dot-circle",
     "value": "dotnet,.net",
@@ -1101,7 +1101,7 @@
   },
   {
     "name": "Powershell",
-    "description": "",
+    "description": "Cross-platform command shell and scripting language",
     "link": "https://github.com/PowerShell/PowerShell",
     "icon": "fas fa-terminal",
     "value": "Powershell",
@@ -1114,7 +1114,7 @@
   },
   {
     "name": ".NET Framework",
-    "description": "",
+    "description": "The Windows-only .NET runtime that older desktop apps need",
     "link": "https://dotnet.microsoft.com/en-us/download/dotnet-framework",
     "icon": "fas fa-cogs",
     "value": "dotnet,.net,framework",
@@ -1125,7 +1125,7 @@
   },
   {
     "name": "C++ Build Tools",
-    "description": "",
+    "description": "Microsoft’s C and C++ compilers without the full Visual Studio",
     "link": "https://visualstudio.microsoft.com/visual-cpp-build-tools/",
     "icon": "fas fa-tools",
     "value": "C++ Build Tools",
@@ -1136,7 +1136,7 @@
   },
   {
     "name": "Microsoft Power BI",
-    "description": "",
+    "description": "Reports and dashboards over your data",
     "link": "https://powerbi.microsoft.com",
     "icon": "fas fa-chart-bar",
     "value": "Microsoft Power BI",
@@ -1147,7 +1147,7 @@
   },
   {
     "name": "SQL Server Management Studio",
-    "description": "",
+    "description": "Manage and query Microsoft SQL Server databases",
     "link": "https://www.microsoft.com/en-us/sql-server/sql-server-downloads",
     "icon": "fas fa-database",
     "value": "Microsoft SQL Server Management Studio",
@@ -1234,7 +1234,7 @@
   },
   {
     "name": "GitHub",
-    "description": "",
+    "description": "Hosting for Git repositories, issues and pull requests",
     "link": "https://github.com",
     "icon": "fab fa-github",
     "value": "GitHub",
@@ -1583,13 +1583,13 @@
     "link": "https://www.cpubenchmark.net/",
     "icon": "fas fa-tools",
     "value": "Hardware Benchmarks",
-    "windows": "#",
-    "macos": "#",
+    "windows": "",
+    "macos": "",
     "fedora": "",
     "debian": "",
     "rhel": "",
     "suse": "",
-    "flatpak": "#",
+    "flatpak": "",
     "licence": "closed",
     "categories": [
       "IT and DevOps"
@@ -1601,13 +1601,13 @@
     "link": "https://temp-mail.org/",
     "icon": "fas fa-clock",
     "value": "Temporal email address",
-    "windows": "#",
-    "macos": "#",
+    "windows": "",
+    "macos": "",
     "fedora": "",
     "debian": "",
     "rhel": "",
     "suse": "",
-    "flatpak": "#",
+    "flatpak": "",
     "licence": "closed",
     "categories": [
       "IT and DevOps"
@@ -2360,7 +2360,7 @@
   {
     "name": "Muscle Wiki",
     "description": "Muscle and Workout Wiki",
-    "link": "https://musclewiki.com/'",
+    "link": "https://musclewiki.com/",
     "icon": "fas fa-book",
     "value": "Muscle and Workout Wiki",
     "windows": "",
@@ -3519,7 +3519,7 @@
     "icon": "fab fa-windows",
     "value": "Autopsy SleuthKit Digital Forensics Platform",
     "windows": "SleuthKit.Autopsy",
-    "macos": "#",
+    "macos": "",
     "fedora": "",
     "debian": "",
     "rhel": "",
@@ -3872,7 +3872,7 @@
   },
   {
     "name": "Microsoft Update Catalog",
-    "description": "",
+    "description": "Download individual Windows updates and drivers by KB number",
     "link": "https://www.catalog.update.microsoft.com",
     "icon": "fas fa-download",
     "value": "Microsoft Update Catalog",
@@ -4078,7 +4078,7 @@
   },
   {
     "name": "Copilot",
-    "description": "",
+    "description": "Microsoft’s AI chat assistant",
     "link": "https://copilot.microsoft.com/",
     "icon": "fas fa-robot",
     "value": "Copilot",
@@ -4089,7 +4089,7 @@
   },
   {
     "name": "Copilot Notebook",
-    "description": "",
+    "description": "Copilot with a longer prompt editor for drafts and code",
     "link": "https://copilot.microsoft.com/?showntbk=1",
     "icon": "fas fa-robot",
     "value": "Copilot Notebook",
@@ -4100,7 +4100,7 @@
   },
   {
     "name": "Bing Image Creator",
-    "description": "",
+    "description": "Make images from a text prompt",
     "link": "https://www.bing.com/images/create",
     "icon": "fas fa-images",
     "value": "Bing Image Creator",
@@ -4111,7 +4111,7 @@
   },
   {
     "name": "Azure AI Studio",
-    "description": "",
+    "description": "Build and test AI models and apps on Azure",
     "link": "https://ai.azure.com",
     "icon": "fab fa-microsoft",
     "value": "Azure AI Studio",
@@ -4276,7 +4276,7 @@
   },
   {
     "name": "Microsoft Service health status Microsoft 365, Azure, Power Platform",
-    "description": "",
+    "description": "Current outages and incidents across Microsoft cloud services",
     "link": "https://status.cloud.microsoft",
     "icon": "fas fa-heartbeat",
     "value": "Microsoft Service health status Microsoft 365, Azure, Power Platform",
@@ -4287,7 +4287,7 @@
   },
   {
     "name": "Azure DevOps - Status",
-    "description": "",
+    "description": "Live status of Azure DevOps services",
     "link": "https://status.dev.azure.com",
     "icon": "fas fa-heartbeat",
     "value": "Azure DevOps - Status",
@@ -4298,7 +4298,7 @@
   },
   {
     "name": "Windows release health",
-    "description": "",
+    "description": "Known issues and status for each Windows release",
     "link": "https://learn.microsoft.com/windows/release-health/",
     "icon": "fas fa-heartbeat",
     "value": "Windows release health",
@@ -4847,7 +4847,7 @@
   {
     "name": "Windows 11 LTSC / IoT Enterprise",
     "description": "Long-term servicing channel: no Store, minimal bundled apps, extended support.",
-    "link": "https://www.microsoft.com/en-us/evalcenter/evaluate-windows-11-enterprise-ltsc",
+    "link": "https://www.microsoft.com/en-us/evalcenter/evaluate-windows-11-enterprise",
     "icon": "fab fa-windows",
     "value": "Windows 11 LTSC / IoT Enterprise microsoft ltsc iot enterprise stable",
     "licence": "closed",
@@ -17929,7 +17929,7 @@
   {
     "name": "dnf reposync + createrepo_c",
     "description": "Pulls a Fedora, RHEL or Rocky repository to local disk and regenerates the metadata so clients can install from it.",
-    "link": "",
+    "link": "https://dnf-plugins-core.readthedocs.io/en/latest/reposync.html",
     "icon": "fa-solid fa-download",
     "value": "dnf reposync + createrepo_c Pulls a Fedora, RHEL or Rocky repository to local disk and regenerates the metadata so clients can install from it. mirrors fedora rpm rsync repository offline self-hosted",
     "tags": "outage offgrid blackout",

@@ -28,21 +28,16 @@
     <!-- /carino:head -->
     <link rel="icon" type="image/x-icon" href="assets/images/logo.webp">
     <link rel="stylesheet" href="fonts/carino-fonts.css">
+    <link rel="stylesheet" href="carino-ui.css">
     <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 
-<header class="sc-toolbar" data-carino-strip>
-    <div data-carino-actions style="display:flex;align-items:center;gap:12px;min-width:0">
-        <div class="header-search">
-            <input type="text" id="search-input" placeholder="Search software...">
-            <button id="platform-btn" class="platform-btn" aria-label="Platform filter"></button>
-        </div>
-        <button id="open-only-btn" class="icon-btn" aria-pressed="false" title="Open source only" aria-label="Open source only">
-            <i class="fa-brands fa-osi" aria-hidden="true"></i>
-        </button>
-        <button id="my-list-btn" class="icon-btn my-list-btn" aria-pressed="false" title="My List" aria-label="My List">
+<!-- carino-navbar.js moves [data-carino-actions] into the shared top bar. -->
+<header data-carino-strip style="display:none">
+    <div data-carino-actions>
+        <button id="my-list-btn" class="icon-btn my-list-btn" aria-pressed="false" title="My List" aria-label="My List" data-priority="1">
             <i class="fa-solid fa-bookmark" aria-hidden="true"></i>
             <span class="my-list-label" data-i18n data-i18n-key="My List">My List</span>
             <span class="my-list-count" id="my-list-count"></span>
@@ -50,12 +45,31 @@
     </div>
 </header>
 
-<div class="workspace">
-    <nav class="slice-menu" id="sliceMenu"></nav>
-    <main class="stage" id="stage"></main>
-</div>
+<header class="landing-hero">
+    <div class="lh-wrap">
+        <div class="lh-mark" aria-hidden="true"><img class="mark" src="assets/images/logo.svg" alt="" width="100" height="100"></div>
+        <h1><span data-i18n>Software and install commands,</span><br><span class="gold" data-i18n>straight from the source.</span></h1>
+        <p class="lh-lede"><strong>Carino Software</strong> <span data-i18n>lists programs for Windows, macOS and Linux with a link to each one’s own site and a command you can copy to install it.</span></p>
+        <p class="lh-stats" id="heroStats">&nbsp;</p>
+    </div>
+</header>
 
-<script src="assets/js/main.js"></script>
+<main class="wrap">
+    <div class="fchips" id="chips" role="toolbar"></div>
+    <div class="alert err" id="loadErr" role="alert" hidden></div>
+    <div id="results"></div>
+</main>
+
+<footer class="site-foot">
+    <div class="sf-links">
+        <a href="https://github.com/MiguelCarino/SoftwareCatalog" target="_blank" rel="noopener" data-i18n>Source</a>
+        <a href="https://github.com/MiguelCarino/SoftwareCatalog/issues" target="_blank" rel="noopener" data-i18n>Report a dead link</a>
+        <a href="https://carino.systems/legal.html" data-i18n>Legal &amp; privacy</a>
+    </div>
+    <div class="sf-line" id="footLine">Runs entirely in your browser. Every entry links to its source.</div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
 <script src="carino-navbar.js" data-app="Software" data-repo="SoftwareCatalog" defer></script>
 <script src="carino-lang.js" defer></script>
 <script src="i18n.js" defer></script>

@@ -6,6 +6,17 @@ Website: https://software.carino.systems
 Searching updates page url, which can be shared and show the results of its query.\
 <img width="1364" height="853" alt="image" src="https://github.com/user-attachments/assets/d6d92ed3-31a8-4113-826e-baf3e9be1339" />
 
+## Data checks
+
+`assets/json/software.json` stays one array (Offline/tools/sync-software.py reads it in that
+shape); `assets/json/meta.json` holds the month the links were last checked, which every card
+prints in its source line.
+
+```
+python3 tools/validate.py      # schema, vocabulary, placeholder install ids
+python3 tools/linkcheck.py     # fetch every link; BLOCKED (bot walls) is not a failure
+```
+
 ## Licensing
 
 **Mine — GNU Affero General Public License v3.0 or later.** Everything in this

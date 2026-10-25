@@ -1,29 +1,6 @@
 // ── i18n bridge (i18n.js loads deferred, after this file) ────
 function tr(key) { return (typeof window.scT === 'function') ? window.scT(key) : key; }
 
-// ── Platform detection ───────────────────────────────────────
-function detectPlatform() {
-    if (navigator.userAgentData && navigator.userAgentData.platform) {
-        const p = navigator.userAgentData.platform.toLowerCase();
-        if (p.startsWith('win')) return 'windows';
-        if (p === 'macos')       return 'mac';
-        if (p === 'linux')       return 'linux';
-    }
-    const p = (navigator.platform || '').toLowerCase();
-    if (p.startsWith('win'))                              return 'windows';
-    if (p.startsWith('mac') || p === 'iphone' || p === 'ipad') return 'mac';
-    if (p.startsWith('linux') || p === 'android')         return 'linux';
-    return 'unknown';
-}
-
-const detectedPlatform = detectPlatform();
-let allPlatformsMode = (detectedPlatform === 'unknown');
-
-function platformAllows(platform) {
-    if (allPlatformsMode) return true;
-    return detectedPlatform === platform;
-}
-
 // ── Custom list (My List) — localStorage + URL ───────────────
 const STORAGE_KEY  = 'sc_custom';
 const OPEN_KEY     = 'sc_open_only';
@@ -48,7 +25,7 @@ function loadCustomLinks() {
     if (encoded) {
         const links = decodeLinks(encoded);
         if (Array.isArray(links)) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(links)); } catch (e) {}
             return links;
         }
     }
@@ -162,630 +139,438 @@ function slugify(s) {
 }
 
 // ── Main app ─────────────────────────────────────────────────
-fetch('assets/json/software.json')
-    .then(r => r.json())
-    .then(data => {
-        const allServices = data;
-        const sliceMenu   = document.getElementById('sliceMenu');
-        const stage       = document.getElementById('stage');
-        const searchInput = document.getElementById('search-input');
-        const platformBtn = document.getElementById('platform-btn');
-        const openBtn     = document.getElementById('open-only-btn');
-        const myListBtn   = document.getElementById('my-list-btn');
-        const myListCount = document.getElementById('my-list-count');
+// A Reference page (Branding #pagetypes): hero, then a sticky bar of facet
+// chips — Category, Platform, Open source — with a Find after them for the
+// 1,300-odd entries, then the cards, each ending in its source line.
+const DATA_FILE = 'assets/json/software.json';
+const META_FILE = 'assets/json/meta.json';
+const PAGE = 120;   // cards drawn at once when no category narrows the list
 
-        let currentView = null; // slice id | 'search' | 'mylist' | null
+const PLATFORMS = [
+    { id: 'windows', label: 'Windows', keys: ['windows'] },
+    { id: 'mac',     label: 'macOS',   keys: ['macos'] },
+    { id: 'linux',   label: 'Linux',   keys: ['fedora', 'debian', 'rhel', 'suse', 'flatpak'] },
+];
 
-        // ── Category helpers ──────────────────────────────────
-        // The divider icon is whatever icon the category's entries use most, so
-        // it labels the group without a second hardcoded map to keep in sync.
-        const iconCache = {};
-        function categoryIcon(cat) {
-            if (iconCache[cat]) return iconCache[cat];
-            const counts = {};
-            allServices.forEach(s => {
-                if ((s.categories || []).includes(cat)) {
-                    counts[s.icon] = (counts[s.icon] || 0) + 1;
-                }
-            });
-            let best = 'fas fa-tag', top = 0;
-            for (const k in counts) if (counts[k] > top) { top = counts[k]; best = k; }
-            iconCache[cat] = best;
-            return best;
+// Install ids per platform; `platform` ties each to a Platform chip.
+const osDefs = [
+    { key: 'windows', icon: 'fa-brands fa-windows',  platform: 'windows', cmd: v => 'winget install -e --id ' + v,  tip: 'Copy Windows install command' },
+    { key: 'macos',   icon: 'fa-brands fa-apple',    platform: 'mac',     cmd: v => 'brew install ' + v,            tip: 'Copy macOS install command'   },
+    { key: 'debian',  icon: 'fa-brands fa-debian',   platform: 'linux',   cmd: v => 'sudo apt install ' + v,        tip: 'Copy Debian/Ubuntu command'   },
+    { key: 'fedora',  icon: 'fa-brands fa-fedora',   platform: 'linux',   cmd: v => 'sudo dnf install ' + v,        tip: 'Copy Fedora command'          },
+    { key: 'suse',    icon: 'fa-brands fa-opensuse', platform: 'linux',   cmd: v => 'sudo zypper install ' + v,     tip: 'Copy openSUSE command'        },
+    { key: 'rhel',    icon: 'fa-brands fa-redhat',   platform: 'linux',   cmd: v => 'sudo dnf install ' + v,        tip: 'Copy RHEL command'            },
+    { key: 'flatpak', icon: 'fa-brands fa-linux',    platform: 'linux',   cmd: v => 'flatpak install flathub ' + v, tip: 'Copy Flatpak command'         },
+];
+
+function domainOf(url) {
+    try { return new URL(url).hostname.replace(/^www\./, ''); } catch (e) { return url; }
+}
+
+function showLoadError(file) {
+    const el = document.getElementById('loadErr');
+    el.innerHTML = escapeHtml(tr('Could not load')) + ' <code>' + escapeHtml(file) + '</code>. ' +
+        escapeHtml(tr('Serve this folder over http:// or check that the data/ directory is intact.')) +
+        ' <code>python3 -m http.server</code>';
+    el.hidden = false;
+    document.getElementById('chips').hidden = true;
+}
+
+Promise.all([
+    fetch(DATA_FILE).then(r => { if (!r.ok) throw new Error(DATA_FILE); return r.json().catch(() => { throw new Error(DATA_FILE); }); }),
+    // The checked date is optional: without meta.json the cards simply omit it.
+    fetch(META_FILE).then(r => r.ok ? r.json() : {}).catch(() => ({})),
+])
+    .then(([data, meta]) => start(data, meta || {}))
+    .catch(err => showLoadError(err && /^assets\//.test(err.message) ? err.message : DATA_FILE));
+
+function start(allServices, meta) {
+    const UPDATED   = meta.updated || '';
+    const chipsEl   = document.getElementById('chips');
+    const results   = document.getElementById('results');
+    const myListBtn = document.getElementById('my-list-btn');
+    const myListCount = document.getElementById('my-list-count');
+
+    // One choice per facet; `open` is persisted (a stance, not a per-visit
+    // filter), the rest start fresh. Category opens on Highlights.
+    const F = { cat: 'highlights', plat: null, open: openOnlyMode, find: '', mylist: false };
+    let limit = PAGE;
+    let findOpen = false;
+
+    // ── Category helpers ──────────────────────────────────
+    // The divider icon is whatever icon the category's entries use most, so
+    // it labels the group without a second hardcoded map to keep in sync.
+    const iconCache = {};
+    function categoryIcon(cat) {
+        if (iconCache[cat]) return iconCache[cat];
+        const counts = {};
+        allServices.forEach(s => {
+            if ((s.categories || []).includes(cat)) counts[s.icon] = (counts[s.icon] || 0) + 1;
+        });
+        let best = 'fas fa-tag', top = 0;
+        for (const k in counts) if (counts[k] > top) { top = counts[k]; best = k; }
+        return (iconCache[cat] = best);
+    }
+
+    const catsCache = {};
+    function sliceCategories(slice) {
+        if (slice.categories) return slice.categories;
+        if (catsCache[slice.id]) return catsCache[slice.id];
+        const out = [], seen = new Set();
+        allServices.forEach(s => {
+            if (s.status !== slice.status) return;
+            (s.categories || []).forEach(c => { if (!seen.has(c)) { seen.add(c); out.push(c); } });
+        });
+        return (catsCache[slice.id] = out);
+    }
+
+    function inSlice(slice, s) {
+        if (slice.status && s.status !== slice.status) return false;
+        return (s.categories || []).some(c => sliceCategories(slice).includes(c));
+    }
+
+    // ── Facets ────────────────────────────────────────────
+    function passPlatform(s) {
+        if (!F.plat) return true;
+        const p = PLATFORMS.find(x => x.id === F.plat);
+        return p.keys.some(k => s[k]);
+    }
+    function passOpen(s) { return !F.open || !isCaveatLicence(s.licence); }
+    function passFind(s, q) {
+        if (!q) return true;
+        // `tags` is the hidden keyword field — how the offline stack stays
+        // findable. Matched by WHOLE TOKEN: a substring match would let "out"
+        // and "age" hit every entry tagged "outage".
+        const hay = (s.name + ' ' + s.description + ' ' + (s.value || '')).toLowerCase();
+        return hay.includes(q) || !!(s.tags && s.tags.split(' ').indexOf(q.replace(/[\s-]/g, '')) >= 0);
+    }
+    function passAll(s) {
+        const slice = F.cat && SLICES.find(x => x.id === F.cat);
+        return (!slice || inSlice(slice, s)) && passPlatform(s) && passOpen(s) && passFind(s, F.find);
+    }
+    // Two entries can share a link (one tool under two headings): show it once.
+    function dedupe(list) {
+        const seen = new Set();
+        return list.filter(s => { if (seen.has(s.link)) return false; seen.add(s.link); return true; });
+    }
+
+    // ── URL sync ─────────────────────────────────────────
+    function updateURL() {
+        const url = new URL(window.location);
+        if (F.find)             url.searchParams.set('search', F.find); else url.searchParams.delete('search');
+        if (customLinks.length) url.searchParams.set('mylist', encodeLinks(customLinks)); else url.searchParams.delete('mylist');
+        window.history.replaceState({}, '', url);
+    }
+
+    // ── My List ───────────────────────────────────────────
+    function isInCustom(service) { return customLinks.includes(service.link); }
+    function saveCustomLinks() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(customLinks)); } catch (e) {}
+        updateURL();
+    }
+    function refreshMyListCount() {
+        const n = customLinks.length;
+        myListCount.textContent = n > 9 ? '9+' : n;
+        myListCount.classList.toggle('visible', n > 0);
+        myListBtn.setAttribute('aria-pressed', F.mylist ? 'true' : 'false');
+    }
+    function toggleCustom(service, cardEl, starEl) {
+        if (isInCustom(service)) customLinks = customLinks.filter(l => l !== service.link);
+        else customLinks.push(service.link);
+        saveCustomLinks();
+        refreshMyListCount();
+        const on = isInCustom(service);
+        cardEl.classList.toggle('in-list', on);
+        starEl.setAttribute('aria-pressed', on ? 'true' : 'false');
+        starEl.dataset.tooltip = tr(on ? 'Remove from My List' : 'Save to My List');
+        if (F.mylist) render();
+    }
+
+    // ── Notification (Branding .toast) ────────────────────
+    function showNotification(msg) {
+        document.querySelectorAll('.notification').forEach(el => el.remove());
+        const n = document.createElement('div');
+        n.className = 'notification';
+        n.setAttribute('role', 'status');
+        n.textContent = msg;
+        document.body.appendChild(n);
+        setTimeout(() => {
+            n.classList.add('fade-out');
+            setTimeout(() => { if (n.parentNode) n.parentNode.removeChild(n); }, 400);
+        }, 2600);
+    }
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(
+            () => showNotification(tr('Install command copied! Paste it in your terminal.')),
+            () => showNotification(tr('Could not copy to clipboard.'))
+        );
+    }
+
+    // ── Card (carino-ui.css .card.entry) ─────────────────
+    // Clicking the card opens the site; the bookmark and install buttons are
+    // their own controls, and the source line names where the link goes.
+    function buildOsRow(service) {
+        const row = document.createElement('div');
+        row.className = 'sub-row';
+        for (const def of osDefs) {
+            if (!service[def.key] || (F.plat && F.plat !== def.platform)) continue;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'os-icon';
+            btn.innerHTML = '<i class="' + def.icon + '"></i>';
+            btn.dataset.tooltip = tr(def.tip);
+            btn.setAttribute('aria-label', tr(def.tip) + ' — ' + service.name);
+            const cmd = def.cmd(service[def.key]);
+            btn.addEventListener('click', e => { e.stopPropagation(); copyToClipboard(cmd); });
+            row.appendChild(btn);
         }
+        return row;
+    }
 
-        const catsCache = {};
-        function sliceCategories(slice) {
-            if (slice.categories) return slice.categories;
-            if (catsCache[slice.id]) return catsCache[slice.id];
-            const out = [], seen = new Set();
-            allServices.forEach(s => {
-                if (s.status !== slice.status) return;
-                (s.categories || []).forEach(c => {
-                    if (!seen.has(c)) { seen.add(c); out.push(c); }
-                });
-            });
-            catsCache[slice.id] = out;
-            return out;
+    function buildCard(service, query) {
+        const item = document.createElement('article');
+        item.className = 'card entry sw' + (isInCustom(service) ? ' in-list' : '');
+        item.addEventListener('click', e => {
+            if (e.target.closest('a, button')) return;
+            window.open(service.link, '_blank', 'noopener,noreferrer');
+        });
+
+        const head = document.createElement('div');
+        head.className = 'sw-head';
+        const icon = document.createElement('i');
+        icon.className = service.icon + ' sw-icon';
+        icon.setAttribute('aria-hidden', 'true');
+        const link = document.createElement('a');
+        link.className = 'e-title';
+        link.href = service.link;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.innerHTML = highlight(service.name, query);
+        const star = document.createElement('button');
+        star.type = 'button';
+        star.className = 'star-btn';
+        star.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
+        star.setAttribute('aria-pressed', isInCustom(service) ? 'true' : 'false');
+        star.setAttribute('aria-label', tr('Save to My List') + ' — ' + service.name);
+        star.dataset.tooltip = tr(isInCustom(service) ? 'Remove from My List' : 'Save to My List');
+        star.addEventListener('click', e => { e.stopPropagation(); toggleCustom(service, item, star); });
+        head.append(icon, link, star);
+
+        const desc = document.createElement('p');
+        desc.className = 'e-desc';
+        desc.innerHTML = highlight(service.description, query);
+
+        const src = document.createElement('div');
+        src.className = 'src-line';
+        const when = service.updated || UPDATED;
+        src.innerHTML = '<span>' + escapeHtml(tr('Source:')) + '</span><a href="' + escapeHtml(service.link) +
+            '" target="_blank" rel="noopener noreferrer">' + escapeHtml(domainOf(service.link)) + ' ↗</a>' +
+            (when ? '<span class="src-date">' + escapeHtml(tr('checked')) + ' ' + escapeHtml(when) + '</span>' : '');
+
+        item.append(head, desc);
+        const row = buildOsRow(service);
+        if (row.childNodes.length) item.appendChild(row);
+        item.appendChild(src);
+        return item;
+    }
+
+    function grid(list, query) {
+        const g = document.createElement('div');
+        g.className = 'sub-grid';
+        list.forEach(s => g.appendChild(buildCard(s, query)));
+        return g;
+    }
+
+    function emptyMsg(text, withClear) {
+        const p = document.createElement('p');
+        p.className = 'empty-list-msg';
+        p.textContent = tr(text);
+        if (withClear) {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'fchip clear';
+            b.dataset.clear = '1';
+            b.textContent = tr('Clear filters');
+            p.appendChild(b);
         }
+        return p;
+    }
 
-        function servicesIn(slice, cat) {
-            return allServices.filter(s =>
-                (s.categories || []).includes(cat) &&
-                (!slice.status || s.status === slice.status) &&
-                licenceAllows(s)
-            );
+    // ── Chips ─────────────────────────────────────────────
+    function chip(facet, val, on, label) {
+        return '<button type="button" class="fchip' + (on ? ' active' : '') + '" aria-pressed="' + on +
+            '" data-facet="' + facet + '" data-val="' + escapeHtml(val) + '">' + label + '</button>';
+    }
+    function anyOn() { return !!(F.cat || F.plat || F.open || F.find); }
+
+    function renderChips(shown) {
+        let h = '<span class="fchip-lbl">' + escapeHtml(tr('Category')) + '</span>';
+        SLICES.forEach(s => { h += chip('cat', s.id, F.cat === s.id, escapeHtml(tr(s.label))); });
+        h += '<span class="fchip-sep"></span><span class="fchip-lbl">' + escapeHtml(tr('Platform')) + '</span>';
+        PLATFORMS.forEach(p => { h += chip('plat', p.id, F.plat === p.id, p.label); });
+        h += '<span class="fchip-sep"></span>' + chip('open', '1', F.open, escapeHtml(tr('Open source only')));
+        h += '<span class="fchip-sep"></span>';
+        // Find comes after the chips, never first: a chip that opens into a
+        // field (also the "/" key). It searches every category.
+        h += findOpen || F.find
+            ? '<input type="search" id="find" class="input find-input" value="' + escapeHtml(F.find) + '" placeholder="' +
+              escapeHtml(tr('Find software')) + '" aria-label="' + escapeHtml(tr('Find software')) + '">'
+            : '<button type="button" class="fchip find-chip" data-find="1"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> ' +
+              escapeHtml(tr('Find')) + ' <span class="kbd">/</span></button>';
+        if (anyOn()) h += '<button type="button" class="fchip clear" data-clear="1">' + escapeHtml(tr('Clear')) + '</button>';
+        h += '<span class="fchips-count">' + shown + ' ' + escapeHtml(tr('shown')) + '</span>';
+        const hadFocus = document.activeElement && document.activeElement.id === 'find';
+        const caret = hadFocus ? document.activeElement.selectionStart : null;
+        chipsEl.innerHTML = h;
+        const input = document.getElementById('find');
+        if (input) {
+            input.addEventListener('input', onFind);
+            input.addEventListener('keydown', e => { if (e.key === 'Escape') { F.find = ''; findOpen = false; render(); } });
+            if (hadFocus || (findOpen && !F.find)) { input.focus(); if (caret != null) input.setSelectionRange(caret, caret); }
         }
+    }
 
-        function licenceAllows(service) {
-            return !openOnlyMode || !isCaveatLicence(service.licence);
-        }
+    let findTimer = null;
+    function onFind(e) {
+        const v = e.target.value.trim().toLowerCase();
+        clearTimeout(findTimer);
+        findTimer = setTimeout(() => {
+            // a typed query searches the whole catalogue; a category chip can narrow it again
+            if (v && !F.find) F.cat = null;
+            F.find = v;
+            limit = PAGE;
+            updateURL();
+            render();
+        }, 140);
+    }
 
-        // ── URL sync ─────────────────────────────────────────
-        function updateURL(query) {
-            const url = new URL(window.location);
-            if (query)              { url.searchParams.set('search', query); }
-            else                    { url.searchParams.delete('search'); }
-            if (customLinks.length) { url.searchParams.set('mylist', encodeLinks(customLinks)); }
-            else                    { url.searchParams.delete('mylist'); }
-            window.history.replaceState({}, '', url);
-        }
-
-        // ── Custom list helpers ───────────────────────────────
-        function isInCustom(service)  { return customLinks.includes(service.link); }
-
-        function saveCustomLinks() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(customLinks));
-            updateURL(searchInput.value || null);
-        }
-
-        function refreshMyListCount() {
-            const n = customLinks.length;
-            myListCount.textContent = n > 9 ? '9+' : n;
-            myListCount.classList.toggle('visible', n > 0);
-        }
-
-        function toggleCustom(service, cardEl, starEl) {
-            if (isInCustom(service)) {
-                customLinks = customLinks.filter(l => l !== service.link);
-            } else {
-                customLinks.push(service.link);
-            }
-            saveCustomLinks();
-            refreshMyListCount();
-            const on = isInCustom(service);
-            if (cardEl) cardEl.classList.toggle('in-list', on);
-            if (starEl) {
-                starEl.setAttribute('aria-pressed', on ? 'true' : 'false');
-                starEl.dataset.tooltip = tr(on ? 'Remove from My List' : 'Save to My List');
-            }
-            if (currentView === 'mylist') renderMyList();
-        }
-
-        function getCustomServices() {
+    // ── Render ────────────────────────────────────────────
+    function render() {
+        results.innerHTML = '';
+        let shown = 0;
+        if (F.mylist) {
+            const saved = dedupe(allServices.filter(s => customLinks.includes(s.link)));
+            shown = saved.length;
+            const h = document.createElement('h2');
+            h.className = 'panel-title';
+            h.textContent = tr('My List');
+            results.appendChild(h);
+            results.appendChild(saved.length ? grid(saved)
+                : emptyMsg('Your list is empty. Tap the bookmark icon on a card to save it here.'));
+        } else if (F.cat && !F.find) {
+            // One category: its subcategories as dividers, as the slices had them.
+            const slice = SLICES.find(x => x.id === F.cat);
+            const cats = sliceCategories(slice);
             const seen = new Set();
-            return allServices.filter(s => {
-                if (!customLinks.includes(s.link) || seen.has(s.link)) return false;
-                seen.add(s.link);
-                return true;
-            });
-        }
-
-        // ── Platform button ───────────────────────────────────
-        const platformMeta = {
-            windows: { cls: 'plat-win', tip: 'Showing Windows only — click for all' },
-            mac:     { cls: 'plat-mac', tip: 'Showing macOS only — click for all'   },
-            linux:   { cls: 'plat-lnx', tip: 'Showing Linux only — click for all'   },
-            unknown: { cls: 'plat-all', tip: 'Showing all platforms'                 },
-            all:     { cls: 'plat-all', tip: 'All platforms — click to filter by OS' },
-        };
-        const platformIcons = {
-            windows: 'fab fa-windows',
-            mac:     'fab fa-apple',
-            linux:   'fab fa-linux',
-            unknown: 'fas fa-globe',
-            all:     'fas fa-globe',
-        };
-
-        function refreshPlatformBtn() {
-            if (!platformBtn) return;
-            const key  = detectedPlatform === 'unknown' ? 'unknown' : allPlatformsMode ? 'all' : detectedPlatform;
-            const meta = platformMeta[key];
-            platformBtn.innerHTML       = '<i class="' + platformIcons[key] + '"></i>';
-            platformBtn.className       = 'platform-btn ' + meta.cls;
-            platformBtn.dataset.tooltip = tr(meta.tip);
-            platformBtn.disabled        = (detectedPlatform === 'unknown');
-        }
-
-        if (platformBtn) {
-            refreshPlatformBtn();
-            platformBtn.addEventListener('click', () => {
-                if (detectedPlatform === 'unknown') return;
-                allPlatformsMode = !allPlatformsMode;
-                refreshPlatformBtn();
-                invalidatePanels();
-            });
-        }
-
-        // ── Open-source-only button ───────────────────────────
-        // aria-pressed is the single source of truth: it is what a screen reader
-        // announces and what the filled-gold styling hangs off.
-        function refreshOpenBtn() {
-            if (!openBtn) return;
-            openBtn.setAttribute('aria-pressed', openOnlyMode ? 'true' : 'false');
-            const tip = tr(openOnlyMode
-                ? 'Showing fully open source only — click for everything'
-                : 'Showing everything — click for fully open source only');
-            openBtn.title = tip;
-            openBtn.setAttribute('aria-label', tr('Open source only'));
-        }
-
-        if (openBtn) {
-            refreshOpenBtn();
-            openBtn.addEventListener('click', () => {
-                openOnlyMode = !openOnlyMode;
-                try { localStorage.setItem(OPEN_KEY, openOnlyMode ? '1' : '0'); } catch (e) {}
-                refreshOpenBtn();
-                invalidatePanels();
-                // On some panels this hides nothing at all — Highlights is
-                // almost entirely open — so a gold button is not by itself proof
-                // that anything happened. Say what the catalog is showing now.
-                showNotification(tr(openOnlyMode
-                    ? 'Showing fully open source only — click for everything'
-                    : 'Showing everything — click for fully open source only'));
-            });
-            // refreshOpenBtn owns the button's title; i18n.js only re-applies
-            // aria-label, so without this the tooltip keeps the old language.
-            window.addEventListener('carino:langchange', refreshOpenBtn);
-        }
-
-        // ── Notification ──────────────────────────────────────
-        function showNotification(msg) {
-            // The open-source toggle can be pressed repeatedly; without this the
-            // toasts stack at the same fixed corner and only the last is legible.
-            document.querySelectorAll('.notification').forEach(el => el.remove());
-            const n = document.createElement('div');
-            n.className = 'notification';
-            n.textContent = msg;
-            document.body.appendChild(n);
-            setTimeout(() => {
-                n.classList.add('fade-out');
-                setTimeout(() => { if (n.parentNode) n.parentNode.removeChild(n); }, 400);
-            }, 2600);
-        }
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(
-                ()  => showNotification(tr('Install command copied! Paste it in your terminal.')),
-                ()  => showNotification(tr('Could not copy to clipboard.'))
-            );
-        }
-
-        // ── OS install row ────────────────────────────────────
-        const osDefs = [
-            { key: 'windows', icon: 'fa-brands fa-windows',  platform: 'windows', cmd: v => 'winget install -e --id ' + v,  tip: 'Copy Windows install command' },
-            { key: 'macos',   icon: 'fa-brands fa-apple',    platform: 'mac',     cmd: v => 'brew install ' + v,            tip: 'Copy macOS install command'   },
-            { key: 'debian',  icon: 'fa-brands fa-debian',   platform: 'linux',   cmd: v => 'sudo apt install ' + v,        tip: 'Copy Debian/Ubuntu command'   },
-            { key: 'fedora',  icon: 'fa-brands fa-fedora',   platform: 'linux',   cmd: v => 'sudo dnf install ' + v,        tip: 'Copy Fedora command'          },
-            { key: 'suse',    icon: 'fa-brands fa-opensuse', platform: 'linux',   cmd: v => 'sudo zypper install ' + v,     tip: 'Copy openSUSE command'        },
-            { key: 'rhel',    icon: 'fa-brands fa-redhat',   platform: 'linux',   cmd: v => 'sudo dnf install ' + v,        tip: 'Copy RHEL command'            },
-            { key: 'flatpak', icon: 'fa-brands fa-linux',    platform: 'linux',   cmd: v => 'flatpak install flathub ' + v, tip: 'Copy Flatpak command'         },
-        ];
-
-        function buildOsRow(service) {
-            const row = document.createElement('div');
-            row.classList.add('sub-row');
-
-            const webA = document.createElement('a');
-            webA.className = 'os-icon os-web';
-            webA.href = service.link;
-            webA.target = '_blank';
-            webA.rel = 'noopener noreferrer';
-            webA.innerHTML = '<i class="fa-solid fa-globe"></i>';
-            webA.dataset.tooltip = tr('Open website');
-            webA.setAttribute('aria-label', tr('Open website') + ' — ' + service.name);
-            webA.addEventListener('click', e => e.stopPropagation());
-            row.appendChild(webA);
-
-            for (const def of osDefs) {
-                if (service[def.key] && platformAllows(def.platform)) {
-                    const btn = document.createElement('button');
-                    btn.type = 'button';
-                    btn.className = 'os-icon';
-                    btn.innerHTML = '<i class="' + def.icon + '"></i>';
-                    btn.dataset.tooltip = tr(def.tip);
-                    btn.setAttribute('aria-label', tr(def.tip) + ' — ' + service.name);
-                    const cmd = def.cmd(service[def.key]);
-                    btn.addEventListener('click', e => { e.stopPropagation(); copyToClipboard(cmd); });
-                    row.appendChild(btn);
-                }
-            }
-
-            return row;
-        }
-
-        // ── Card builder ──────────────────────────────────────
-        // Clicking the card opens the site, which is what a card that looks like
-        // a link should do. Bookmarking is its own focusable control, so it is
-        // reachable by keyboard instead of being mouse-only.
-        function buildCard(service, query) {
-            const item = document.createElement('div');
-            item.classList.add('sub-grid-item');
-            if (isInCustom(service)) item.classList.add('in-list');
-
-            item.addEventListener('click', e => {
-                if (e.target.closest('a, button, .sub-row')) return;
-                window.open(service.link, '_blank', 'noopener,noreferrer');
-            });
-
-            const star = document.createElement('button');
-            star.type = 'button';
-            star.className = 'star-btn';
-            star.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
-            star.setAttribute('aria-pressed', isInCustom(service) ? 'true' : 'false');
-            star.setAttribute('aria-label', tr('Save to My List') + ' — ' + service.name);
-            star.dataset.tooltip = tr(isInCustom(service) ? 'Remove from My List' : 'Save to My List');
-            star.addEventListener('click', e => {
-                e.stopPropagation();
-                toggleCustom(service, item, star);
-            });
-            item.appendChild(star);
-
-            const icon = document.createElement('i');
-            icon.className = service.icon;
-            icon.setAttribute('aria-hidden', 'true');
-
-            const link = document.createElement('a');
-            link.href = service.link;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            link.innerHTML = highlight(service.name, query);
-
-            const desc = document.createElement('span');
-            desc.innerHTML = highlight(service.description, query);
-
-            item.appendChild(icon);
-            item.appendChild(link);
-            item.appendChild(desc);
-            item.appendChild(buildOsRow(service));
-
-            return item;
-        }
-
-        // ── Grid builder (flat, no dividers) ──────────────────
-        function buildGrid(services, container, query) {
-            container.innerHTML = '';
-            if (!services.length) {
-                const msg = document.createElement('p');
-                msg.className = 'empty-list-msg';
-                msg.setAttribute('data-i18n', '');
-                msg.dataset.i18nKey = 'Nothing here yet.';
-                msg.textContent = tr('Nothing here yet.');
-                container.appendChild(msg);
-                return;
-            }
-            const grid = document.createElement('div');
-            grid.classList.add('sub-grid');
-            services.forEach(s => grid.appendChild(buildCard(s, query)));
-            container.appendChild(grid);
-        }
-
-        // ── Grid builder (with subcategory dividers) ──────────
-        function buildGridWithDividers(sliceDef, container) {
-            container.innerHTML = '';
-            const cats = sliceCategories(sliceDef);
-            const present = [];
-
-            for (const catName of cats) {
-                const services = servicesIn(sliceDef, catName);
-                if (!services.length) continue;
-                present.push({ name: catName, count: services.length });
-            }
-
-            if (!present.length) {
-                const msg = document.createElement('p');
-                msg.className = 'empty-list-msg';
-                msg.textContent = tr('Nothing here yet.');
-                container.appendChild(msg);
-                return;
-            }
-
-            for (const entry of present) {
-                const catName = entry.name;
-
+            cats.forEach(catName => {
+                const list = allServices.filter(s => (s.categories || []).includes(catName) && passAll(s));
+                if (!list.length) return;
+                list.forEach(s => seen.add(s.link));
                 if (cats.length > 1) {
                     const div = document.createElement('div');
                     div.className = 'subcat-divider';
                     div.id = 'cat-' + slugify(catName);
-
-                    const dIcon = document.createElement('i');
-                    dIcon.className = categoryIcon(catName);
-                    dIcon.setAttribute('aria-hidden', 'true');
-
-                    const dLabel = document.createElement('span');
-                    dLabel.setAttribute('data-i18n', '');
-                    dLabel.dataset.i18nKey = catName;
-                    dLabel.textContent = tr(catName);
-
-                    const dCount = document.createElement('span');
-                    dCount.className = 'subcat-count';
-                    dCount.textContent = entry.count;
-
-                    div.appendChild(dIcon);
-                    div.appendChild(dLabel);
-                    div.appendChild(dCount);
-                    container.appendChild(div);
+                    div.innerHTML = '<i class="' + categoryIcon(catName) + '" aria-hidden="true"></i><span>' +
+                        escapeHtml(tr(catName)) + '</span><span class="subcat-count">' + list.length + '</span>';
+                    results.appendChild(div);
                 }
-
-                const grid = document.createElement('div');
-                grid.classList.add('sub-grid');
-                servicesIn(sliceDef, catName).forEach(s => grid.appendChild(buildCard(s)));
-                container.appendChild(grid);
+                results.appendChild(grid(list));
+            });
+            shown = seen.size;
+            if (!shown) results.appendChild(emptyMsg('Nothing matches these filters.', true));
+        } else {
+            const list = dedupe(allServices.filter(passAll));
+            shown = list.length;
+            if (!shown) results.appendChild(emptyMsg('Nothing matches these filters.', true));
+            else {
+                results.appendChild(grid(list.slice(0, limit), F.find));
+                if (list.length > limit) {
+                    const more = document.createElement('button');
+                    more.type = 'button';
+                    more.className = 'btn show-more';
+                    more.dataset.more = '1';
+                    more.textContent = tr('Show more') + ' (' + (list.length - limit) + ')';
+                    results.appendChild(more);
+                }
             }
         }
-
-        // Scroll target for a divider. The stage's own top padding has to be in
-        // here or a jump parks the heading just above the fold.
-        function categoryOffset(el) {
-            const pad = parseFloat(getComputedStyle(stage).paddingTop) || 0;
-            return stage.scrollTop + el.getBoundingClientRect().top
-                 - stage.getBoundingClientRect().top - pad - 16;
-        }
-
-        // The stage opens behind a 0.6s flex transition, and until that finishes
-        // it cannot scroll — assigning scrollTop just silently does nothing. So
-        // retry each frame until the scroll actually takes, rather than guessing
-        // at a delay that would be wrong on a slow load.
-        function jumpWhenReady(catName, tries) {
-            const el = document.getElementById('cat-' + slugify(catName));
-            if (!el) return;
-            const target = Math.max(0, categoryOffset(el));
-            stage.scrollTop = target;
-            if (Math.abs(stage.scrollTop - target) > 2 && tries > 0) {
-                requestAnimationFrame(() => jumpWhenReady(catName, tries - 1));
-                return;
-            }
-            history.replaceState({}, '', '#cat-' + slugify(catName));
-        }
-
-        // ── Panels ────────────────────────────────────────────
-        // Shells only at startup. A panel body is built the first time it is
-        // opened, so first paint costs one slice instead of the whole catalog.
-        function buildPanelShells() {
-            SLICES.forEach(slice => {
-                const section = document.createElement('section');
-                section.id = 'panel-' + slice.id;
-                section.className = 'panel' + (slice.dense ? ' dense' : '');
-
-                const header = document.createElement('div');
-                header.className = 'panel-header';
-                header.innerHTML =
-                    '<div class="panel-title" data-i18n data-i18n-key="' + slice.label + '">' + tr(slice.label) + '</div>' +
-                    '<div class="panel-num">'   + slice.num   + '</div>';
-                section.appendChild(header);
-
-                const body = document.createElement('div');
-                body.className = 'panel-body';
-                section.appendChild(body);
-
-                stage.appendChild(section);
-            });
-
-            const searchPanel = document.createElement('section');
-            searchPanel.id = 'panel-search';
-            searchPanel.className = 'panel';
-            searchPanel.innerHTML = '<div class="panel-header"><div class="panel-title">' + tr('Search Results') + '</div></div><div class="panel-body"></div>';
-            stage.appendChild(searchPanel);
-
-            const mylistPanel = document.createElement('section');
-            mylistPanel.id = 'panel-mylist';
-            mylistPanel.className = 'panel';
-            mylistPanel.innerHTML = '<div class="panel-header"><div class="panel-title" data-i18n data-i18n-key="My List">' + tr('My List') + '</div></div><div class="panel-body"></div>';
-            stage.appendChild(mylistPanel);
-        }
-
-        function ensurePanel(sliceId) {
-            const panel = document.getElementById('panel-' + sliceId);
-            if (!panel || panel.dataset.built === '1') return panel;
-            const slice = SLICES.find(s => s.id === sliceId);
-            if (!slice) return panel;
-            buildGridWithDividers(slice, panel.querySelector('.panel-body'));
-            panel.dataset.built = '1';
-            if (typeof window.scApplyI18n === 'function') window.scApplyI18n();
-            return panel;
-        }
-
-        // Platform or licence filter changed: drop every built body and rebuild
-        // whichever panel is on screen.
-        function invalidatePanels() {
-            document.querySelectorAll('.panel[data-built="1"]').forEach(p => {
-                p.dataset.built = '0';
-                const body = p.querySelector('.panel-body');
-                if (body) body.innerHTML = '';
-            });
-            if (currentView === 'search')      filterLinks(searchInput.value);
-            else if (currentView === 'mylist') renderMyList();
-            else if (currentView) ensurePanel(currentView);
-        }
-
-        // ── Build slice nav ────────────────────────────────────
-        function buildSliceMenu() {
-            SLICES.forEach(slice => {
-                const el = document.createElement('div');
-                el.className = 'slice';
-                el.dataset.target = slice.id;
-                el.setAttribute('role', 'button');
-                el.setAttribute('tabindex', '0');
-                el.title = tr(slice.label);
-                el.innerHTML =
-                    '<div class="slice-bg"></div>' +
-                    '<div class="slice-large">' +
-                        '<span class="slice-num-lg">' + slice.num + '</span>' +
-                        '<h2 class="slice-text-lg" data-i18n data-i18n-key="' + slice.label + '">'  + tr(slice.label) + '</h2>' +
-                        '<i class="' + slice.icon + ' slice-icon"></i>' +
-                    '</div>' +
-                    '<div class="slice-small">' +
-                        '<span class="slice-text-sm" data-i18n data-i18n-key="' + slice.label + '">' + tr(slice.label) + '</span>' +
-                        '<i class="' + slice.icon + ' slice-icon"></i>' +
-                    '</div>';
-
-                el.addEventListener('click', () => selectSlice(slice.id));
-                el.addEventListener('keydown', e => {
-                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectSlice(slice.id); }
-                });
-                sliceMenu.appendChild(el);
-            });
-        }
-
-        // ── Navigation ────────────────────────────────────────
-        function selectSlice(id) {
-            currentView = id;
-            if (myListBtn) myListBtn.setAttribute('aria-pressed', 'false');
-            searchInput.value = '';
-            updateURL(null);
-
-            document.body.classList.add('state-selected');
-
-            document.querySelectorAll('.slice').forEach(s => {
-                s.classList.toggle('active', s.dataset.target === id);
-            });
-
-            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-            const panel = ensurePanel(id);
-            if (panel) {
-                panel.classList.add('active');
-                stage.scrollTop = 0;
-            }
-        }
-
-        function showSpecialPanel(id) {
-            currentView = id;
-            document.body.classList.add('state-selected');
-
-            document.querySelectorAll('.slice').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-            const panel = document.getElementById('panel-' + id);
-            if (panel) {
-                panel.classList.add('active');
-                stage.scrollTop = 0;
-            }
-        }
-
-        // ── Search ────────────────────────────────────────────
-        function filterLinks(query) {
-            currentView = 'search';
-            if (myListBtn) myListBtn.setAttribute('aria-pressed', 'false');
-            const q = query.trim().toLowerCase();
-            // `tags` is the hidden keyword field — it is how the offline stack is
-            // still findable now that it has no slice of its own. It is matched
-            // by WHOLE TOKEN, never by substring: a searchable "outage" sitting
-            // in ordinary text would answer to "out" and to "age" and bury the
-            // catalog under sixty-eight self-hosting tools.
-            const tag = q.replace(/[\s-]/g, '');
-            const seen = new Set();
-            const results = allServices.filter(s => {
-                if (!licenceAllows(s)) return false;
-                // `value` is set on every entry, so the old `||` fallback never
-                // fired and the name printed on the card was not searchable.
-                const hay = (s.name + ' ' + s.description + ' ' + (s.value || '')).toLowerCase();
-                const hit = hay.includes(q) ||
-                            (s.tags && s.tags.split(' ').indexOf(tag) >= 0);
-                if (!hit) return false;
-                // Two entries can share a link (the same tool listed under two
-                // headings). Dedupe among the MATCHES — claiming the link before
-                // testing the query let a non-matching twin suppress a match.
-                if (seen.has(s.link)) return false;
-                seen.add(s.link);
-                return true;
-            });
-
-            const panel = document.getElementById('panel-search');
-            const body  = panel.querySelector('.panel-body');
-            buildGrid(results, body, q);
-
-            const header = panel.querySelector('.panel-title');
-            header.textContent = results.length
-                ? tr('Search Results') + ' (' + results.length + ')'
-                : tr('No Results');
-
-            showSpecialPanel('search');
-            updateURL(query);
-        }
-
-        // ── My List ───────────────────────────────────────────
-        function renderMyList() {
-            const panel = document.getElementById('panel-mylist');
-            const body  = panel.querySelector('.panel-body');
-            const services = getCustomServices();
-
-            if (!services.length) {
-                body.innerHTML = '';
-                const msg = document.createElement('p');
-                msg.className = 'empty-list-msg';
-                msg.setAttribute('data-i18n', '');
-                msg.dataset.i18nKey = 'Your list is empty. Tap the bookmark icon on a card to save it here.';
-                msg.textContent = tr('Your list is empty. Tap the bookmark icon on a card to save it here.');
-                body.appendChild(msg);
-            } else {
-                buildGrid(services, body);
-            }
-        }
-
-        if (myListBtn) {
-            myListBtn.addEventListener('click', () => {
-                renderMyList();
-                showSpecialPanel('mylist');
-                myListBtn.setAttribute('aria-pressed', 'true');
-                searchInput.value = '';
-            });
-        }
-
-        // ── Search input (debounced) ──────────────────────────
-        if (searchInput) {
-            let timer = null;
-            searchInput.addEventListener('input', () => {
-                clearTimeout(timer);
-                timer = setTimeout(() => {
-                    const q = searchInput.value.trim();
-                    if (q) {
-                        filterLinks(q);
-                    } else if (currentView === 'search') {
-                        selectSlice('highlights');
-                    }
-                }, 120);
-            });
-        }
-
-        // ── Init ──────────────────────────────────────────────
-        buildSliceMenu();
-        buildPanelShells();
+        renderChips(shown);
         refreshMyListCount();
-        refreshPlatformBtn();
-        refreshOpenBtn();
+    }
 
-        // #cat-<slug> opens whichever slice owns that category and scrolls to it.
-        function openFromHash() {
-            const hash = decodeURIComponent(window.location.hash || '').replace(/^#/, '');
-            if (!hash.startsWith('cat-')) return false;
-            for (const slice of SLICES) {
-                const hit = sliceCategories(slice).find(c => 'cat-' + slugify(c) === hash);
-                if (hit) {
-                    selectSlice(slice.id);
-                    jumpWhenReady(hit, 120);
-                    return true;
-                }
+    // ── Hero counts and the footer line ───────────────────
+    function renderMeta() {
+        const n = dedupe(allServices).length;
+        document.getElementById('heroStats').textContent = n + ' ' + tr('programs') + ' · ' + SLICES.length + ' ' +
+            tr('categories') + (UPDATED ? ' · ' + tr('reviewed') + ' ' + UPDATED : '');
+        document.getElementById('footLine').textContent =
+            tr('Runs entirely in your browser. Every entry links to its source; checked {date}.').replace('{date}', UPDATED);
+    }
+
+    // ── Events ────────────────────────────────────────────
+    chipsEl.addEventListener('click', e => {
+        const b = e.target.closest('.fchip');
+        if (!b) return;
+        F.mylist = false;
+        if (b.dataset.find) { findOpen = true; render(); return; }
+        if (b.dataset.clear) return;   // handled below, with the empty-state button
+        const k = b.dataset.facet, v = b.dataset.val;
+        if (k === 'open') {
+            F.open = !F.open;
+            openOnlyMode = F.open;
+            try { localStorage.setItem(OPEN_KEY, F.open ? '1' : '0'); } catch (err) {}
+        } else {
+            F[k] = F[k] === v ? null : v;
+        }
+        limit = PAGE;
+        render();
+        if (k === 'cat') history.replaceState({}, '', location.pathname + location.search + (F.cat ? '#' + F.cat : ''));
+    });
+    document.addEventListener('click', e => {
+        if (e.target.closest('[data-clear]')) {
+            F.cat = F.plat = null; F.open = false; F.find = ''; F.mylist = false; findOpen = false;
+            openOnlyMode = false;
+            try { localStorage.setItem(OPEN_KEY, '0'); } catch (err) {}
+            limit = PAGE; updateURL(); render();
+        } else if (e.target.closest('[data-more]')) {
+            limit += PAGE * 2; render();
+        }
+    });
+    myListBtn.addEventListener('click', () => { F.mylist = !F.mylist; render(); window.scrollTo(0, 0); });
+    // "/" opens Find from anywhere that is not already a text field.
+    document.addEventListener('keydown', e => {
+        if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return;
+        if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement && document.activeElement.tagName)) return;
+        e.preventDefault();
+        F.mylist = false; findOpen = true; render();
+        const input = document.getElementById('find');
+        if (input) input.focus();
+    });
+    window.addEventListener('carino:langchange', () => { render(); renderMeta(); });
+
+    // #<slice> picks a category; #cat-<slug> picks the slice owning that
+    // subcategory and scrolls to its divider.
+    function openFromHash() {
+        const hash = decodeURIComponent(window.location.hash || '').replace(/^#/, '');
+        if (!hash) return false;
+        if (SLICES.some(s => s.id === hash)) { F.cat = hash; F.find = ''; render(); return true; }
+        if (!hash.startsWith('cat-')) return false;
+        for (const slice of SLICES) {
+            const hit = sliceCategories(slice).find(c => 'cat-' + slugify(c) === hash);
+            if (hit) {
+                F.cat = slice.id; F.find = ''; render();
+                const el = document.getElementById(hash);
+                if (el) el.scrollIntoView();
+                return true;
             }
-            return false;
         }
+        return false;
+    }
 
-        const urlSearch = initialParams.get('search');
-        if (urlSearch) {
-            searchInput.value = urlSearch;
-            filterLinks(urlSearch);
-        } else if (!openFromHash()) {
-            selectSlice('highlights');
-        }
-
-        window.addEventListener('hashchange', openFromHash);
-    })
-    .catch(err => console.error('[SoftwareCatalog] Failed to load JSON:', err));
+    // ── Init ──────────────────────────────────────────────
+    renderMeta();
+    const urlSearch = initialParams.get('search');
+    if (urlSearch) { F.find = urlSearch.trim().toLowerCase(); F.cat = null; render(); }
+    else if (!openFromHash()) render();
+    window.addEventListener('hashchange', openFromHash);
+}

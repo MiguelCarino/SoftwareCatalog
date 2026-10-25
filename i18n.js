@@ -135,6 +135,31 @@ const I18N = {
         'Open source only': 'Solo código abierto',
         'Showing fully open source only — click for everything': 'Mostrando solo código abierto: clic para ver todo',
         'Showing everything — click for fully open source only': 'Mostrando todo: clic para ver solo código abierto',
+        // Hero, filter bar, source lines and footer
+        'Source': 'Código fuente',
+        'Report a dead link': 'Reportar un enlace roto',
+        'Legal & privacy': 'Aviso legal y privacidad',
+        'Could not load': 'No se pudo cargar',
+        'Serve this folder over http:// or check that the data/ directory is intact.': 'Sirve esta carpeta por http:// o comprueba que el directorio data/ esté completo.',
+        'Source:': 'Fuente:',
+        'checked': 'revisado',
+        'reviewed': 'revisado',
+        'Clear': 'Limpiar',
+        'Clear filters': 'Quitar filtros',
+        'Nothing matches these filters.': 'Nada coincide con estos filtros.',
+        'Runs entirely in your browser. Every entry links to its source; checked {date}.': 'Funciona por completo en tu navegador. Cada entrada enlaza a su fuente; revisado {date}.',
+        'shown': 'visibles',
+        'Runs in your browser. Nothing you add here is uploaded.': 'Funciona en tu navegador. Nada de lo que agregues aquí se sube.',
+        'Software and install commands,': 'Software y comandos de instalación,',
+        'straight from the source.': 'directo de la fuente.',
+        'lists programs for Windows, macOS and Linux with a link to each one’s own site and a command you can copy to install it.': 'reúne programas para Windows, macOS y Linux con un enlace al sitio de cada uno y un comando que puedes copiar para instalarlo.',
+        'Category': 'Categoría',
+        'Platform': 'Plataforma',
+        'Find': 'Buscar',
+        'Find software': 'Buscar software',
+        'Show more': 'Mostrar más',
+        'programs': 'programas',
+        'categories': 'categorías',
     },
     'pt-BR': {
         'Late shift.': 'Turno da noite.',
@@ -259,6 +284,31 @@ const I18N = {
         'Open source only': 'Somente código aberto',
         'Showing fully open source only — click for everything': 'Mostrando só código aberto: clique para ver tudo',
         'Showing everything — click for fully open source only': 'Mostrando tudo: clique para ver só código aberto',
+        // Hero, filter bar, source lines and footer
+        'Source': 'Código-fonte',
+        'Report a dead link': 'Informar link quebrado',
+        'Legal & privacy': 'Aviso legal e privacidade',
+        'Could not load': 'Não foi possível carregar',
+        'Serve this folder over http:// or check that the data/ directory is intact.': 'Sirva esta pasta por http:// ou verifique se o diretório data/ está completo.',
+        'Source:': 'Fonte:',
+        'checked': 'verificado',
+        'reviewed': 'revisado',
+        'Clear': 'Limpar',
+        'Clear filters': 'Limpar filtros',
+        'Nothing matches these filters.': 'Nada corresponde a esses filtros.',
+        'Runs entirely in your browser. Every entry links to its source; checked {date}.': 'Funciona inteiramente no seu navegador. Cada item tem link para a fonte; verificado em {date}.',
+        'shown': 'exibidos',
+        'Runs in your browser. Nothing you add here is uploaded.': 'Funciona no seu navegador. Nada do que você adicionar aqui é enviado.',
+        'Software and install commands,': 'Software e comandos de instalação,',
+        'straight from the source.': 'direto da fonte.',
+        'lists programs for Windows, macOS and Linux with a link to each one’s own site and a command you can copy to install it.': 'reúne programas para Windows, macOS e Linux com um link para o site de cada um e um comando que você pode copiar para instalá-lo.',
+        'Category': 'Categoria',
+        'Platform': 'Plataforma',
+        'Find': 'Buscar',
+        'Find software': 'Buscar software',
+        'Show more': 'Mostrar mais',
+        'programs': 'programas',
+        'categories': 'categorias',
     },
     ja: {
         'Late shift.': '夜勤お疲れさま。',
@@ -383,6 +433,31 @@ const I18N = {
         'Open source only': 'オープンソースのみ',
         'Showing fully open source only — click for everything': 'オープンソースのみ表示中 — クリックで全表示',
         'Showing everything — click for fully open source only': 'すべて表示中 — クリックでオープンソースのみ',
+        // Hero, filter bar, source lines and footer
+        'Source': 'ソースコード',
+        'Report a dead link': 'リンク切れを報告',
+        'Legal & privacy': '法的情報とプライバシー',
+        'Could not load': '読み込めませんでした:',
+        'Serve this folder over http:// or check that the data/ directory is intact.': 'このフォルダーを http:// で配信するか、data/ ディレクトリが揃っているか確認してください。',
+        'Source:': '出典:',
+        'checked': '確認',
+        'reviewed': '確認',
+        'Clear': 'クリア',
+        'Clear filters': '絞り込みを解除',
+        'Nothing matches these filters.': 'この条件に一致するものはありません。',
+        'Runs entirely in your browser. Every entry links to its source; checked {date}.': 'すべてブラウザー内で動作します。各項目は出典にリンクしています（{date} 確認）。',
+        'shown': '表示中',
+        'Runs in your browser. Nothing you add here is uploaded.': 'ブラウザー内で動作します。ここに追加したものはアップロードされません。',
+        'Software and install commands,': 'ソフトウェアとインストールコマンドを、',
+        'straight from the source.': '公式の出典から。',
+        'lists programs for Windows, macOS and Linux with a link to each one’s own site and a command you can copy to install it.': 'は Windows・macOS・Linux 向けのプログラムを、それぞれの公式サイトへのリンクとコピーできるインストールコマンド付きで紹介します。',
+        'Category': 'カテゴリー',
+        'Platform': 'プラットフォーム',
+        'Find': '検索',
+        'Find software': 'ソフトウェアを検索',
+        'Show more': 'さらに表示',
+        'programs': '本のプログラム',
+        'categories': 'カテゴリー',
     },
     ru: {
         'Late shift.': 'Ночная смена.',
@@ -507,6 +582,31 @@ const I18N = {
         'Open source only': 'Только открытый код',
         'Showing fully open source only — click for everything': 'Только открытый код — нажмите, чтобы показать всё',
         'Showing everything — click for fully open source only': 'Показано всё — нажмите, чтобы оставить открытый код',
+        // Hero, filter bar, source lines and footer
+        'Source': 'Исходный код',
+        'Report a dead link': 'Сообщить о битой ссылке',
+        'Legal & privacy': 'Правовая информация и конфиденциальность',
+        'Could not load': 'Не удалось загрузить',
+        'Serve this folder over http:// or check that the data/ directory is intact.': 'Откройте папку через http:// или проверьте, что каталог data/ на месте.',
+        'Source:': 'Источник:',
+        'checked': 'проверено',
+        'reviewed': 'проверено',
+        'Clear': 'Сбросить',
+        'Clear filters': 'Сбросить фильтры',
+        'Nothing matches these filters.': 'Ничего не подходит под эти фильтры.',
+        'Runs entirely in your browser. Every entry links to its source; checked {date}.': 'Работает целиком в браузере. У каждой записи есть ссылка на источник; проверено {date}.',
+        'shown': 'показано',
+        'Runs in your browser. Nothing you add here is uploaded.': 'Работает в браузере. Ничего из добавленного сюда не загружается.',
+        'Software and install commands,': 'Программы и команды установки —',
+        'straight from the source.': 'прямо из источника.',
+        'lists programs for Windows, macOS and Linux with a link to each one’s own site and a command you can copy to install it.': 'собирает программы для Windows, macOS и Linux со ссылкой на сайт каждой и командой установки, которую можно скопировать.',
+        'Category': 'Категория',
+        'Platform': 'Платформа',
+        'Find': 'Найти',
+        'Find software': 'Найти программу',
+        'Show more': 'Показать ещё',
+        'programs': 'программ',
+        'categories': 'категорий',
     },
 };
 
@@ -536,24 +636,12 @@ function applyStaticI18n() {
 
 // Prominent attributes, addressed explicitly (not via data-i18n).
 function applyAttrI18n() {
-    const search = document.getElementById('search-input');
-    if (search) search.placeholder = t('Search software...');
     const myList = document.getElementById('my-list-btn');
-    // The title carries the name at <=900px, where the visible label is hidden.
+    // The title carries the name on phones, where the visible label is hidden.
     if (myList) {
         myList.title = t('My List');
         myList.setAttribute('aria-label', t('My List'));
     }
-    const platform = document.getElementById('platform-btn');
-    if (platform) platform.setAttribute('aria-label', t('Platform filter'));
-    const openOnly = document.getElementById('open-only-btn');
-    if (openOnly) openOnly.setAttribute('aria-label', t('Open source only'));
-    // The slice rail truncates its label on narrow desktops and drops to a bare
-    // icon on mobile, so each cell carries its name as a title too.
-    document.querySelectorAll('.slice').forEach((el) => {
-        const label = el.querySelector('.slice-text-sm');
-        if (label && label.dataset.i18nKey) el.title = t(label.dataset.i18nKey);
-    });
 }
 
 function applyI18n() {

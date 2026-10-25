@@ -1,703 +1,143 @@
-/* ── 1. CSS VARIABLES ──────────────────────────────────────────
-   Single Carino Systems theme — mirrors carino-branding.css tokens.
-   Near-black surfaces, one gold accent. No alternate/off-brand themes. */
+/* ── Software Catalogue ────────────────────────────────────────
+   Tokens, base and the shared components (.landing-hero, .fchips,
+   .card.entry, .src-line, .site-foot, .alert, .kbd, .input) come from
+   carino-ui.css, linked first. Only the catalogue's own pieces are here,
+   and only under new token names. */
 
 :root {
-    --bg-main:          #050505;   /* near-black page background       */
-    --bg-card:          #0b0b0b;   /* card / panel background (was navy)*/
-    --bg-card-hover:    #17120a;   /* warm near-black on hover          */
-    --bg-input:         #0d0d0d;
-    --bg-btn:           #0d0d0d;
-
-    --text-main:        #ffffff;
-    --text-muted:       #a3a3a3;   /* kept readable on near-black       */
-    --accent:           #eab308;   /* Sharp Gold — the one accent       */
-
-    --success:          #22c55e;
-    --border-color:     #262626;
-
-    --border-hover-color: #eab308;
-    --icon-hover-bg:      rgba(234, 179, 8, 0.08);
-
-    --shadow-sm:  0 4px 6px rgba(0, 0, 0, 0.4);
-    --shadow-md:  0 14px 28px rgba(0, 0, 0, 0.6);
-    --radius-lg:  12px;
-    --radius-pill: 8px;            /* squared to match Branding inputs  */
-
-    --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
-    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-    --display: 'Red Hat Display', var(--sans);
+    --sc-hover-bg: rgba(234, 179, 8, 0.08);
+    --sc-wrap: 1240px;
 }
 
-/* ── 2. BASE & RESET ─────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+a { text-decoration: none; }
 
-html, body {
-    height: 100%;
-    overflow: hidden;
-}
+.wrap { max-width: var(--sc-wrap); margin: 0 auto; padding: 0 20px 24px; }
+.landing-hero { border-bottom: 1px solid var(--border); }
 
-body {
-    display: flex;
-    flex-direction: column;
-    font-family: var(--sans);
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    line-height: 1.5;
-}
+/* ── Filter bar: chips first, Find after them ──────────────── */
+.fchips { margin: 0 -20px 16px; padding: 10px 20px; min-height: 48px; }
+.fchip i { font-size: 0.75em; }
+.find-chip .kbd { margin-left: 4px; padding: 0 5px; font-size: var(--fs-micro); }
+.find-input { width: 220px; flex: none; padding: 5px 10px; font-size: var(--fs-label); }
+.find-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--sc-hover-bg); }
 
-a { text-decoration: none; color: inherit; }
-
-/* ── 3. TOP HEADER ───────────────────────────────────────────── */
-.sc-toolbar {
-    height: 60px;
-    flex-shrink: 0;
-    background: linear-gradient(180deg, #0f0f0f 0%, #050505 100%);
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    gap: 16px;
-    z-index: 100;
-    position: relative;
-}
-
-.header-search {
-    flex: 1;
-    max-width: 480px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.header-search input {
-    flex: 1;
-    padding: 8px 16px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-pill);
-    font-size: 0.875rem;
-    background: var(--bg-input);
-    color: var(--text-main);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    font-family: inherit;
-}
-
-.header-search input:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--icon-hover-bg);
-}
-
-.header-search input::placeholder { color: var(--text-muted); }
-
+/* ── My List button (moved into #carinoNav by carino-navbar.js) ──
+   The navbar injects `#carinoNav .icon-btn` rules, so these carry the id to win. */
 .icon-btn {
-    width: 32px; height: 32px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
+    height: 32px; min-width: 32px;
+    border: 1px solid var(--border); border-radius: 4px;
     display: flex; align-items: center; justify-content: center;
-    color: var(--text-muted);
-    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
-    text-decoration: none;
-    background: transparent;
-    cursor: pointer;
-    position: relative;
+    color: var(--text-sec); background: transparent; cursor: pointer; position: relative;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
-
-/* carino-navbar.js moves these buttons into #carinoNav and injects
-   `#carinoNav .icon-btn` and `#carinoNav .icon-btn:hover` at runtime — an id
-   selector, so a class-only rule here loses the cascade. That is why the
-   pressed state was never painted at all. Everything below carries the id so
-   it wins, and keeps a class-only twin in case the navbar fails to load.
-   Hover is deliberately an OUTLINE and pressed is the only FILLED state, so
-   the two can never be mistaken for each other. */
-#carinoNav .cn-actions .icon-btn:hover,
-.icon-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--icon-hover-bg);
-    box-shadow: none;
-    transform: translateY(-2px);
+#carinoNav .cn-actions .icon-btn:hover, .icon-btn:hover {
+    border-color: var(--accent); color: var(--accent); background: var(--sc-hover-bg); box-shadow: none;
 }
-
-#carinoNav .cn-actions .icon-btn[aria-pressed="true"],
-.icon-btn[aria-pressed="true"] {
-    border-color: var(--accent);
-    background: var(--accent);
-    color: var(--bg-main);
+/* hover is an outline, pressed is the only filled state */
+#carinoNav .cn-actions .icon-btn[aria-pressed="true"], .icon-btn[aria-pressed="true"] {
+    border-color: var(--accent); background: var(--accent); color: var(--bg);
 }
-
-#carinoNav .cn-actions .icon-btn[aria-pressed="true"]:hover,
-.icon-btn[aria-pressed="true"]:hover {
-    border-color: var(--accent);
-    background: #facc15;
-    color: var(--bg-main);
-    box-shadow: none;
-    transform: translateY(-2px);
-}
-
-/* A <button> does not inherit the body font size, so the glyph was falling
-   back to the UA's 13.33px — the smallest mark in the bar. */
 .icon-btn i { font-size: 14px; line-height: 1; }
-
-.icon-btn svg { width: 14px; height: 14px; }
-
-/* My List carries its name. A bare bookmark glyph names nothing, and the count
-   only appeared once the list was non-empty — so the button said least exactly
-   when a first-time visitor needed it to say most. */
-#carinoNav .cn-actions .my-list-btn,
-.my-list-btn {
-    width: auto;
-    padding: 0 11px;
-    gap: 7px;
-    color: var(--text-main);
-}
-
-.my-list-label {
-    font-family: var(--sans);
-    font-size: 0.78rem;
-    font-weight: 600;
-    white-space: nowrap;
-}
-
-/* Inline pill rather than a floating corner bubble: it can no longer land on
-   top of the button's own background. */
+#carinoNav .cn-actions .my-list-btn, .my-list-btn { width: auto; padding: 0 11px; gap: 7px; color: var(--text); }
+#carinoNav .cn-actions .my-list-btn[aria-pressed="true"], .my-list-btn[aria-pressed="true"] { color: var(--bg); }
+.my-list-label { font-family: var(--sans); font-size: var(--fs-sm); font-weight: 600; white-space: nowrap; }
 .my-list-count {
-    min-width: 17px; height: 17px;
-    padding: 0 5px;
-    border-radius: 9px;
-    background: var(--accent);
-    color: var(--bg-main);
-    font-family: var(--mono);
-    font-size: 0.62rem; font-weight: 700;
-    display: none;
-    align-items: center; justify-content: center;
-    pointer-events: none;
+    min-width: 17px; height: 17px; padding: 0 5px; border-radius: 9px;
+    background: var(--accent); color: var(--bg);
+    font-family: var(--mono); font-size: var(--fs-micro); font-weight: 700;
+    display: none; align-items: center; justify-content: center; pointer-events: none;
 }
-
 .my-list-count.visible { display: inline-flex; }
+.my-list-btn:hover .my-list-count, .my-list-btn[aria-pressed="true"] .my-list-count { background: var(--bg); color: var(--accent); }
 
-.my-list-btn:hover .my-list-count {
-    background: var(--bg-main);
-    color: var(--accent);
-}
+/* ── Results ───────────────────────────────────────────────── */
+.panel-title { margin: 6px 0 14px; font-size: var(--fs-h3); }
 
-/* ── 4. WORKSPACE ───────────────────────────────────────────── */
-.workspace {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-/* ── 5. SLICE MENU ──────────────────────────────────────────── */
-.slice-menu {
-    display: flex;
-    flex: 1 1 auto;
-    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
-    border-bottom: 1px solid transparent;
-    z-index: 10;
-}
-
-body.state-selected .slice-menu {
-    flex: 0 0 70px;
-    border-bottom-color: var(--border-color);
-}
-
-.slice {
-    flex: 1;
-    border-right: 1px solid var(--border-color);
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: flex 0.4s ease, background 0.3s ease;
-    background: var(--bg-card);
-}
-
-.slice:last-child { border-right: none; }
-
-body:not(.state-selected) .slice:hover { flex: 1.3; }
-body:not(.state-selected) .slice:hover .slice-bg { opacity: 1; transform: scale(1.05); }
-
-.slice-bg {
-    position: absolute; inset: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    background: radial-gradient(circle at center, var(--icon-hover-bg) 0%, transparent 65%);
-    pointer-events: none;
-}
-
-/* Large state — full height */
-.slice-large {
-    position: absolute;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    transition: opacity 0.3s ease;
-}
-
-.slice-num-lg {
-    font-family: var(--display);
-    font-size: 4rem; font-weight: 900;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
-    margin-bottom: 14px;
-    user-select: none;
-}
-
-.slice-text-lg {
-    writing-mode: vertical-rl;
-    font-family: var(--sans);
-    font-size: 1.7rem; font-weight: 900;
-    color: var(--text-main);
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    text-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
-}
-
-/* Icon — hidden on desktop, visible on mobile */
-.slice-icon { display: none; }
-
-/* Small state — thin bar */
-.slice-small {
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    display: flex; flex-direction: column; align-items: center; text-align: center;
-    transition: opacity 0.3s ease;
-    padding: 0 4px;
-}
-
-.slice-text-sm {
-    font-size: 0.7rem; font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    font-family: var(--sans);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-}
-
-/* State transitions */
-body.state-selected .slice-large { opacity: 0; pointer-events: none; }
-body.state-selected .slice-small { opacity: 1; pointer-events: auto; }
-
-body.state-selected .slice.active {
-    background: var(--bg-main);
-    border-top: 3px solid var(--accent);
-}
-
-body.state-selected .slice.active .slice-text-sm { color: var(--accent); }
-
-body.state-selected .slice:not(.active):hover { background: var(--bg-card-hover); }
-
-/* ── 6. STAGE ───────────────────────────────────────────────── */
-.stage {
-    flex: 0 0 0;
-    opacity: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
-}
-
-body.state-selected .stage {
-    flex: 1 1 auto;
-    opacity: 1;
-    padding: 32px 48px;
-}
-
-.stage::-webkit-scrollbar { width: 6px; }
-.stage::-webkit-scrollbar-track { background: transparent; }
-.stage::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 6px; }
-.stage::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-/* ── 7. PANELS ──────────────────────────────────────────────── */
-.panel { display: none; }
-.panel.active { display: block; animation: fadeUp 0.4s ease forwards; }
-
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-.panel-header {
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
-.panel-title {
-    font-family: var(--display);
-    font-size: 2rem; font-weight: 900;
-    color: var(--text-main);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 1;
-}
-
-.panel-num {
-    font-family: var(--display);
-    font-size: 3.5rem; font-weight: 900;
-    color: rgba(234, 179, 8, 0.12);
-    line-height: 0.8;
-    user-select: none;
-}
-
-/* ── 8. SUBCATEGORY DIVIDER ─────────────────────────────────── */
-/* Landmarks, not whispers: with 56 of them in one panel they have to be
-   scannable, so the icon labels the group and the count sets expectations. */
 .subcat-divider {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 5px;
-    margin: 32px 0 14px;
-    scroll-margin-top: 12px;
+    display: flex; align-items: center; gap: 10px;
+    margin: 28px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    font-family: var(--mono); font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-sec);
+    scroll-margin-top: 64px;
 }
+.subcat-divider:first-child { margin-top: 4px; }
+.subcat-divider > i { color: var(--accent); font-size: 0.9rem; }
+.subcat-count { margin-left: auto; color: var(--text-muted); }
 
-.subcat-divider > i {
-    color: var(--accent);
-    font-size: 0.85rem;
-    width: 1em;
-    text-align: center;
-    flex-shrink: 0;
-}
+.sub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; padding-bottom: 8px; }
 
-.subcat-count {
-    margin-left: auto;
-    font-size: 0.62rem;
-    color: var(--text-muted);
-    opacity: 0.7;
-    letter-spacing: 0.06em;
-    font-variant-numeric: tabular-nums;
-}
+/* a programme is a carino-ui.css .card.entry: icon + name + bookmark, two
+   lines of description, the install buttons, then the source line */
+.card.entry.sw { cursor: pointer; }
+.card.entry.sw:hover { border-color: var(--accent-dim); background: var(--bg-elev); }
+.sw-head { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.sw-icon { color: var(--accent); font-size: 1.15rem; width: 22px; text-align: center; flex: none; }
+.sw-head .e-title { color: var(--text); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sw-head .e-title:hover { color: var(--accent); }
+.card.entry.sw.in-list { border-color: rgba(234, 179, 8, 0.4); background: linear-gradient(135deg, rgba(234,179,8,0.10) 0%, rgba(234,179,8,0.03) 100%); }
 
-.subcat-divider:first-child { margin-top: 0; }
-
-/* ── 9. SOFTWARE GRID & CARDS ──────────────────────────────── */
-.sub-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 20px;
-    padding-bottom: 2rem;
-}
-
-.sub-grid-item {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    background-color: var(--bg-card);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: var(--shadow-sm);
-    cursor: pointer;
-    user-select: none;
-}
-
-/* Bookmarking is its own control so it can be reached with a keyboard. */
+/* bookmarking is its own control so it can be reached with a keyboard */
 .star-btn {
-    position: absolute;
-    top: 8px; right: 8px;
-    width: 26px; height: 26px;
+    width: 28px; height: 28px; flex: none; position: relative;
     display: flex; align-items: center; justify-content: center;
-    border: none;
-    border-radius: 6px;
-    background: transparent;
-    /* Light enough to clear 3:1 on the card, dark enough to stay quiet on a
-       grid of 900. It used to be transparent until hover, which made the one
-       control the empty-list message tells you to press invisible — and on
-       touch, where there is no hover, permanently so. */
-    color: #6a6a6a;
-    font-size: 0.8rem;
-    cursor: pointer;
-    padding: 0;
-    transition: opacity 0.2s, color 0.2s, background 0.2s;
+    border: none; border-radius: 6px; background: transparent; padding: 0; cursor: pointer;
+    color: var(--text-muted); font-size: 0.8rem; transition: color 0.2s, background 0.2s;
 }
-
-.sub-grid-item:hover .star-btn { color: var(--text-muted); }
-
-.star-btn:hover { color: var(--accent); background: var(--icon-hover-bg); }
+.star-btn:hover { color: var(--accent); background: var(--sc-hover-bg); }
 .star-btn[aria-pressed="true"] { color: var(--accent); }
+.star-btn:focus-visible, .os-icon:focus-visible, .sw-head .e-title:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 
-.star-btn:focus-visible,
-.os-icon:focus-visible,
-.sub-grid-item a:focus-visible,
-.slice:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-    border-radius: 4px;
-}
-
-.sub-grid-item.in-list {
-    background: linear-gradient(135deg, rgba(234, 179, 8, 0.14) 0%, rgba(234, 179, 8, 0.06) 100%);
-    border-color: rgba(234, 179, 8, 0.4);
-}
-
-.sub-grid-item.in-list:hover {
-    background: linear-gradient(135deg, rgba(234, 179, 8, 0.24) 0%, rgba(234, 179, 8, 0.12) 100%);
-}
-
-.sub-grid-item a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 6px;
-    color: var(--text-main);
-}
-
-.sub-grid-item:hover {
-    transform: translateY(-4px);
-    background-color: var(--bg-card-hover);
-    box-shadow: var(--shadow-md);
-    border-color: var(--border-hover-color);
-}
-
-.sub-grid-item > i {
-    font-size: 28px;
-    margin-bottom: 10px;
-    color: var(--accent);
-    transition: transform 0.3s ease;
-}
-
-.sub-grid-item:hover > i { transform: scale(1.1); }
-
-.sub-grid-item span {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    text-align: center;
-    margin-bottom: 12px;
-    flex-grow: 1;
-}
-
-/* ── 10. OS INSTALL ROW ────────────────────────────────────── */
-.sub-row {
-    margin-top: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border-color);
-    width: 100%;
-}
-
+.sub-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
 .os-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.8rem; height: 1.8rem;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    font-style: normal;
-    cursor: pointer;
-    text-decoration: none;
-    color: var(--text-muted);
-    background: transparent;
-    transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
-    user-select: none;
-    border: none;
-    padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.8rem; height: 1.8rem; border-radius: 6px; border: none; padding: 0;
+    font-size: 1rem; color: var(--text-sec); background: transparent; cursor: pointer;
+    transition: color 0.2s, background-color 0.2s;
 }
+.os-icon:hover { color: var(--accent); background-color: var(--sc-hover-bg); }
 
-.os-icon:hover {
-    transform: scale(1.2) translateY(-2px);
-    color: var(--accent);
-    background-color: var(--icon-hover-bg);
+.show-more { display: block; margin: 16px auto 0; }
+
+.empty-list-msg { color: var(--text-muted); text-align: center; padding: 3rem 1rem; font-size: var(--fs-sec); line-height: 1.6; }
+.empty-list-msg .fchip { margin-left: 10px; }
+
+.card.entry mark { background: var(--sc-hover-bg); color: var(--accent); border-radius: 2px; padding: 0 1px; }
+
+/* ── Tooltips on the install buttons and bookmark ──────────── */
+.sub-row [data-tooltip] { position: relative; }
+.sub-row [data-tooltip]::before, .star-btn[data-tooltip]::before {
+    content: attr(data-tooltip); position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);
+    background: #1a1a1a; color: #fff; padding: 5px 9px; border-radius: 6px;
+    font-family: var(--sans); font-size: var(--fs-btn); font-weight: 600; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 200; box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
+.star-btn[data-tooltip]::before { left: auto; right: 0; transform: none; }
+.sub-row [data-tooltip]:hover::before, .star-btn[data-tooltip]:hover::before { opacity: 1; }
 
-.os-icon.os-web { font-size: 1rem; }
-
-/* ── 10c. DENSE PANEL (Reviewing) ───────────────────────────── */
-/* Entries carry their own icon now rather than their domain's, so the glyph is
-   worth showing again — smaller than elsewhere, to keep the panel dense. */
-.panel.dense .sub-grid-item > i { font-size: 20px; margin-bottom: 7px; }
-.panel.dense .sub-grid-item { padding: 14px 16px; }
-.panel.dense .sub-grid-item a { font-size: 0.94rem; margin-bottom: 4px; }
-.panel.dense .sub-grid-item span { font-size: 0.82rem; margin-bottom: 10px; }
-.panel.dense .sub-grid { gap: 14px; }
-
-/* ── 11. TOOLTIPS (fixed colors — work on any theme) ────────── */
-/* .star-btn is left out on purpose: it is already position:absolute in the
-   card's corner, and this rule used to override that and drop it into the
-   flow — invisible while the button itself was invisible. */
-.sub-row [data-tooltip],
-.platform-btn[data-tooltip] { position: relative; }
-
-.sub-row [data-tooltip]::before,
-.star-btn[data-tooltip]::before,
-.platform-btn[data-tooltip]::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 130%; left: 50%;
-    transform: translateX(-50%);
-    background-color: #1a1a1a;
-    color: #ffffff;
-    padding: 5px 9px;
-    border-radius: 6px;
-    font-size: 11px; font-weight: 600;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease, bottom 0.2s ease;
-    z-index: 200;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.sub-row [data-tooltip]::after,
-.star-btn[data-tooltip]::after,
-.platform-btn[data-tooltip]::after {
-    content: '';
-    position: absolute;
-    bottom: 110%; left: 50%;
-    transform: translateX(-50%);
-    border-width: 5px; border-style: solid;
-    border-color: #1a1a1a transparent transparent transparent;
-    opacity: 0;
-    transition: opacity 0.2s ease, bottom 0.2s ease;
-    z-index: 200;
-}
-
-.sub-row [data-tooltip]:hover::before,
-.star-btn[data-tooltip]:hover::before,
-.platform-btn[data-tooltip]:hover::before { opacity: 1; bottom: 150%; }
-
-.sub-row [data-tooltip]:hover::after,
-.star-btn[data-tooltip]:hover::after,
-.platform-btn[data-tooltip]:hover::after { opacity: 1; bottom: 120%; }
-
-/* ── 12. PLATFORM BUTTON ────────────────────────────────────── */
-.platform-btn {
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--bg-btn);
-    border-radius: 50%;
-    border: 1px solid var(--border-color);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-    color: var(--text-muted);
-}
-
-.platform-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
-.platform-btn:disabled { cursor: default; opacity: 0.6; }
-
-.plat-win { color: #0078d4; border-color: rgba(0, 120, 212, 0.35); }
-.plat-mac { color: #888888; border-color: rgba(136, 136, 136, 0.35); }
-.plat-lnx { color: #e8820c; border-color: rgba(232, 130, 12, 0.35); }
-.plat-all { color: var(--text-muted); }
-
-/* ── 14. MISC: EMPTY MSG / NOTIFICATION ─────────────────────── */
-.empty-list-msg {
-    color: var(--text-muted);
-    text-align: center;
-    padding: 3rem 1rem;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
+/* ── Copy confirmation ─────────────────────────────────────── */
 .notification {
-    position: fixed;
-    bottom: 24px; right: 24px;
-    background-color: var(--success);
-    color: white;
-    padding: 10px 20px;
-    border-radius: var(--radius-pill);
-    z-index: 1000;
-    font-weight: 600;
-    font-size: 0.875rem;
-    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+    position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+    background: var(--ok); color: #fff; padding: 10px 20px; border-radius: 8px;
+    font-weight: 600; font-size: var(--fs-sm); box-shadow: 0 4px 15px rgba(34,197,94,0.4);
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
-
 .notification.fade-out { opacity: 0; transform: translateY(8px); }
 
-/* ── 15. MOBILE ─────────────────────────────────────────────── */
-@media (max-width: 900px) {
-    .sc-toolbar { padding: 0 14px; gap: 10px; height: 54px; }
-    .header-search { max-width: none; }
+.site-foot { max-width: var(--sc-wrap); margin: 16px auto 0; padding-left: 20px; padding-right: 20px; }
 
-    /* No hover on touch, so the label goes and the bookmark has to stay lit. */
+@media (max-width: 640px) {
+    .wrap { padding: 0 12px 20px; }
+    .fchips { margin: 0 -12px 12px; padding: 9px 12px; }
+    .find-input { width: 170px; }
     .my-list-label { display: none; }
-    /* min-width, not width: with a count pill the label's absence would leave
-       the glyph and the pill flush against both borders. */
-    #carinoNav .cn-actions .my-list-btn,
-    .my-list-btn { width: auto; min-width: 32px; padding: 0 6px; gap: 5px; }
+    #carinoNav .cn-actions .my-list-btn, .my-list-btn { padding: 0 7px; gap: 5px; }
+    .sub-grid { grid-template-columns: 1fr; gap: 10px; }
     .star-btn { width: 32px; height: 32px; }
-
-    body.state-selected .slice-menu { flex: 0 0 56px; }
-    body.state-selected .stage { padding: 20px 14px; }
-
-    /* Slices: hide text, show FA icons */
-    .slice-num-lg,
-    .slice-text-lg  { display: none; }
-    .slice-text-sm  { display: none; }
-
-    .slice-icon {
-        display: block;
-        color: var(--text-muted);
-        transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    body:not(.state-selected) .slice-large .slice-icon { font-size: 1.8rem; }
-    body:not(.state-selected) .slice:hover .slice-large .slice-icon {
-        color: var(--text-main);
-        transform: scale(1.1);
-    }
-
-    body.state-selected .slice-small .slice-icon { font-size: 1.1rem; }
-    body.state-selected .slice.active .slice-small .slice-icon { color: var(--accent); }
-
-    /* Cards: single column */
-    .sub-grid { grid-template-columns: 1fr; gap: 12px; }
-
-    /* Disable hover tooltips — the bookmark's would be clipped by the stage's
-       own overflow at this width, and every one of them has an aria-label. */
-    .sub-row [data-tooltip]::before,
-    .sub-row [data-tooltip]::after,
-    .star-btn[data-tooltip]::before,
-    .star-btn[data-tooltip]::after,
-    .platform-btn[data-tooltip]::before,
-    .platform-btn[data-tooltip]::after { display: none; }
-
+    /* every control carries an aria-label; hover tips only get in the way on touch */
+    .sub-row [data-tooltip]::before, .star-btn[data-tooltip]::before { display: none; }
     .notification { right: 12px; left: 12px; bottom: 16px; text-align: center; }
+    .site-foot { padding-left: 12px; padding-right: 12px; }
 }
 
-/* ── 15. SEARCH MATCH HIGHLIGHT ─────────────────────────────── */
-.sub-grid-item mark {
-    background: var(--icon-hover-bg);
-    color: var(--accent);
-    border-radius: 2px;
-    padding: 0 1px;
-}
-
-/* ── 16. REDUCED MOTION ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-    .sub-grid-item:hover { transform: none; }
+    *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }

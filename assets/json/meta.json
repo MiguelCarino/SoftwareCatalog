@@ -1,0 +1,4 @@
+{
+  "updated": "2026-10",
+  "note": "The month every link in software.json was last run through tools/linkcheck.py. Cards print it as \"checked YYYY-MM\"; an entry may carry its own \"updated\" to override it. Kept beside software.json, not inside it, because Offline/tools/sync-software.py reads that file as a bare array."
+}
