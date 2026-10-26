@@ -6,6 +6,8 @@
 
 const I18N = {
     es: {
+        // Translation sweep: strings that stayed in English
+        "More": "Más",
         'Late shift.': 'Turno nocturno.',
         'Good morning.': 'Buenos días.',
         'Good afternoon.': 'Buenas tardes.',
@@ -162,6 +164,8 @@ const I18N = {
         'categories': 'categorías',
     },
     'pt-BR': {
+        // Translation sweep: strings that stayed in English
+        "More": "Mais",
         'Late shift.': 'Turno da noite.',
         'Good morning.': 'Bom dia.',
         'Good afternoon.': 'Boa tarde.',
@@ -311,6 +315,8 @@ const I18N = {
         'categories': 'categorias',
     },
     ja: {
+        // Translation sweep: strings that stayed in English
+        "More": "その他",
         'Late shift.': '夜勤お疲れさま。',
         'Good morning.': 'おはようございます。',
         'Good afternoon.': 'こんにちは。',
@@ -460,6 +466,8 @@ const I18N = {
         'categories': 'カテゴリー',
     },
     ru: {
+        // Translation sweep: strings that stayed in English
+        "More": "Ещё",
         'Late shift.': 'Ночная смена.',
         'Good morning.': 'Доброе утро.',
         'Good afternoon.': 'Добрый день.',
