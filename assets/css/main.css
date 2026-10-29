@@ -102,8 +102,13 @@ a { text-decoration: none; color: var(--sc-primary); }
       CSS is injected later, so these carry `html body` to win) ──────── */
 html body #carinoNav {
     --cn-bg: var(--sc-bg); --cn-border: var(--sc-line); --cn-text: var(--sc-text); --cn-muted: var(--sc-text-3);
+    --cn-accent: var(--sc-primary);
     background: var(--sc-bg); border-bottom-color: transparent;
 }
+/* the clock's zone chip and the language menu's current row read the accent
+   too (gold in Gold & Black, the one blue in Colourful) */
+html body #carinoNav .clock-tz { color: var(--sc-on-primary); }
+html body #cnLangBox button.active, html body #cnLangBox button.active .code { color: var(--sc-primary); }
 /* the fleet's pale-gold "Carino" all but vanishes on the white Colourful
    bar (1.2:1); deepen the sweep there (>= 3.4:1 at its lightest) */
 html:root[data-carino-theme="color"] body #carinoNav .brand-name { background-image: linear-gradient(130deg, #c26a06 0%, #b45309 55%, #92400e 100%); }
@@ -120,6 +125,16 @@ html body #cnLangBtn:hover { background: var(--sc-hover); color: var(--sc-text);
 html body #cnLangBox { background: var(--sc-surface); border-color: var(--sc-line); box-shadow: var(--sc-shadow-2); border-radius: 12px; }
 html body #cnLangBox button { color: var(--sc-text); }
 html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc-text); }
+/* the About popup: carino-navbar.js draws it for a black page; Colourful
+   gives it this catalogue's own surfaces (Gold keeps the fleet's) */
+:root[data-carino-theme="color"] body #carinoNav .cn-help { background: rgba(0, 0, 0, .42); }
+:root[data-carino-theme="color"] body #carinoNav .cn-help-card { background: var(--sc-surface); border-color: var(--sc-line); box-shadow: var(--sc-shadow-2); }
+:root[data-carino-theme="color"] body #carinoNav .cn-way { background: var(--sc-cover); border-color: var(--sc-line); }
+:root[data-carino-theme="color"] body #carinoNav .cn-way:hover,
+:root[data-carino-theme="color"] body #carinoNav .cn-way:focus-visible { background: var(--sc-primary-tonal); border-color: var(--sc-primary); }
+:root[data-carino-theme="color"] body #carinoNav .cn-ab-page { background: color-mix(in srgb, var(--sc-primary) 12%, transparent); border-color: color-mix(in srgb, var(--sc-primary) 55%, transparent); }
+:root[data-carino-theme="color"] body #carinoNav .cn-pill:hover,
+:root[data-carino-theme="color"] body #carinoNav .cn-pill:focus-visible { background: var(--sc-hover); }
 
 /* My List — a tonal pill in the navbar, filled while it is open */
 #carinoNav .cn-actions .my-list-btn, .my-list-btn {
