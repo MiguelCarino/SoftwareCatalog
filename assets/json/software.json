@@ -14850,16 +14850,6 @@
     ]
   },
   {
-    "name": "MultiWeb",
-    "description": "Local wall of live iframes that refreshes each project as its files change",
-    "link": "https://github.com/MiguelCarino/MultiWeb",
-    "icon": "fas fa-table-cells",
-    "value": "MultiWeb Local wall of live iframes that refreshes each project as its files change Carino Systems fleet",
-    "categories": [
-      "Carino Systems"
-    ]
-  },
-  {
     "name": "Software Catalogue",
     "description": "This catalogue — system-agnostic app repository for fleet deployments",
     "link": "https://software.carino.systems/",

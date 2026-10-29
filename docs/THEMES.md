@@ -174,8 +174,8 @@ stylesheet; never inside the generated block):
 </script>
 ```
 
-Every read is wrapped in `try`, so sandboxed or opaque-origin frames (MultiWeb
-tiles) still get a theme.
+Every read is wrapped in `try`, so sandboxed or opaque-origin frames (a page
+embedded in an iframe) still get a theme.
 
 ## 7. Accessibility
 
