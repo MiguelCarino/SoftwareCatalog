@@ -55,6 +55,7 @@
 /* ── Category colours: c (fill), on (text on fill), t (tonal bg), tt (tonal text) ── */
 .c-all          { --c: #3c4043; --on: #fff;    --t: #eef0f2; --tt: #3c4043; }
 .c-highlights   { --c: #f9ab00; --on: #1f1f1f; --t: #fef3d0; --tt: #8a4b00; }
+.c-carino       { --c: #4f5bd5; --on: #fff;    --t: #e8eafb; --tt: #3a44a8; }
 .c-basic        { --c: #1a73e8; --on: #fff;    --t: #e3edfd; --tt: #1958b7; }
 .c-general      { --c: #d93025; --on: #fff;    --t: #fce8e6; --tt: #a50e0e; }
 .c-professional { --c: #188038; --on: #fff;    --t: #e2f3e7; --tt: #0d652d; }
@@ -80,6 +81,7 @@
     :root[data-carino-theme="color"]:not([data-theme="light"]) [class*="hue-"] { --art: var(--ta); }
     :root[data-carino-theme="color"]:not([data-theme="light"]) .c-all          { --c: #e3e3e3; --on: #1f1f1f; --t: rgba(227,227,227,.09); --tt: #e3e3e3; }
     :root[data-carino-theme="color"]:not([data-theme="light"]) .c-highlights   { --c: #fdd663; --on: #1f1f1f; --t: rgba(253,214,99,.14); --tt: #fdd663; }
+    :root[data-carino-theme="color"]:not([data-theme="light"]) .c-carino       { --c: #aab2f5; --on: #141a4a; --t: rgba(170,178,245,.15); --tt: #c3c9f8; }
     :root[data-carino-theme="color"]:not([data-theme="light"]) .c-basic        { --c: #8ab4f8; --on: #0b1f45; --t: rgba(138,180,248,.15); --tt: #a8c7fa; }
     :root[data-carino-theme="color"]:not([data-theme="light"]) .c-general      { --c: #f28b82; --on: #3b0907; --t: rgba(242,139,130,.15); --tt: #f6aea9; }
     :root[data-carino-theme="color"]:not([data-theme="light"]) .c-professional { --c: #81c995; --on: #072711; --t: rgba(129,201,149,.15); --tt: #a8dab5; }
@@ -419,16 +421,20 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
 .sub-row [data-tooltip]:hover::before, .sub-row [data-tooltip]:focus-visible::before { opacity: 1; transform: none; }
 .star-btn[data-tooltip]:hover::before { opacity: 1; transform: none; }
 
-/* ── Copy confirmation: a snackbar ─────────────────────────── */
-.notification {
-    position: fixed; bottom: 24px; left: 24px; z-index: 1000;
-    background: #303134; color: #f1f3f4; padding: 14px 20px; border-radius: 8px;
-    font-weight: 500; font-size: .88rem; box-shadow: 0 3px 10px rgba(0,0,0,.3);
-    display: flex; align-items: center; gap: 10px;
-    transition: opacity .3s ease, transform .3s ease;
+/* ── Copy confirmation: carino-ui.css .toast ─────────────────
+   Fixed top-right under the navbar, as across the fleet. carino-ui.css owns
+   the gold look; Colourful takes the status colours of carino-theme.css. */
+/* carino-ui.css tints the gold toast at 10% over nothing, so whatever it
+   floats over shows through the text; the same tint over a solid well. */
+:root:not([data-carino-theme="color"]) .toast.ok  { background: color-mix(in srgb, #22c55e 10%, #0d0d0d); }
+:root:not([data-carino-theme="color"]) .toast.err { background: color-mix(in srgb, #ef4444 10%, #0d0d0d); }
+:root[data-carino-theme="color"] .toast { box-shadow: var(--sc-shadow-2); }
+:root[data-carino-theme="color"] .toast.ok  { color: #0d652d; background: #e6f4ea; border-color: #a8dab5; }
+:root[data-carino-theme="color"] .toast.err { color: #a50e0e; background: #fce8e6; border-color: #f4b4ae; }
+@media (prefers-color-scheme: dark) {
+    :root[data-carino-theme="color"]:not([data-theme="light"]) .toast.ok  { color: #a8dab5; background: #1d3328; border-color: rgba(129, 201, 149, .42); }
+    :root[data-carino-theme="color"]:not([data-theme="light"]) .toast.err { color: #f6aea9; background: #3a2226; border-color: rgba(242, 139, 130, .45); }
 }
-.notification::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #34a853; flex: none; }
-.notification.fade-out { opacity: 0; transform: translateY(8px); }
 
 /* ── Load error + footer ───────────────────────────────────── */
 .alert.err { color: #b3261e; background: #fce8e6; border-color: #f4bfbb; font-family: var(--sans); border-radius: 12px; }
@@ -475,7 +481,6 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
     .subcat-divider { scroll-margin-top: 120px; }
     /* every control carries an aria-label; hover tips only get in the way on touch */
     .sub-row [data-tooltip]::before, .star-btn[data-tooltip]::before { display: none; }
-    .notification { right: 12px; left: 12px; bottom: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -562,7 +567,13 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
 
 .sf-cats { margin: 0 0 30px; }
 .sf-cats .sf-h { margin-bottom: 12px; }
-.sf-cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.sf-cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+/* wide: every category on one row, however many there are */
+@media (min-width: 1200px) {
+    .sf-cat-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+    .sf-cat-grid .sf-cat-name { font-size: .9rem; }
+    .sf-cat-grid .sf-cat > i { font-size: 2rem; }
+}
 .sf-cat {
     position: relative; overflow: hidden; height: 96px; padding: 14px 16px; border: 0; border-radius: 14px; cursor: pointer;
     display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; text-align: left;
@@ -588,6 +599,7 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
     .sf-hero > .sf-nav, .sf-shelf-head .sf-nav { display: none; }
     .sf-track { grid-auto-columns: 78%; margin: -4px -14px 0; padding: 4px 14px 12px; scroll-padding: 0 14px; }
     .sf-cat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .sf-cat:last-child:nth-child(odd) { grid-column: span 2; }   /* no lone tile */
     .sf-cat { height: 84px; padding: 12px; }
     .sf-cat > i { font-size: 1.9rem; right: 10px; top: 10px; }
     .sf-cat-name { font-size: .86rem; }
@@ -636,7 +648,8 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
 }
 /* category identity, muted toward gold: c = icon tint, t/tt = hover tonal */
 :root:not([data-carino-theme="color"]) .c-all,
-:root:not([data-carino-theme="color"]) .c-highlights   { --c: #eab308; }
+:root:not([data-carino-theme="color"]) .c-highlights,
+:root:not([data-carino-theme="color"]) .c-carino       { --c: #eab308; }
 :root:not([data-carino-theme="color"]) .c-basic        { --c: color-mix(in oklab, #8ab4f8 42%, #d9b45a); }
 :root:not([data-carino-theme="color"]) .c-general      { --c: color-mix(in oklab, #f28b82 42%, #d9b45a); }
 :root:not([data-carino-theme="color"]) .c-professional { --c: color-mix(in oklab, #81c995 42%, #d9b45a); }
@@ -749,8 +762,6 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
 :root:not([data-carino-theme="color"]) .star-btn[data-tooltip]::before { border: 1px solid rgba(234, 179, 8, .3); }
 :root:not([data-carino-theme="color"]) .sub-row [data-tooltip]::before { background: #050505; color: var(--sc-on-tonal); }
 :root:not([data-carino-theme="color"]) .sub-row .os-more[data-tooltip]::before { color: var(--sc-tip-fg); }
-:root:not([data-carino-theme="color"]) .notification { background: #121110; color: var(--sc-text); border: 1px solid rgba(234, 179, 8, .3); box-shadow: 0 10px 30px rgba(0, 0, 0, .7); }
-:root:not([data-carino-theme="color"]) .notification::before { background: var(--sc-primary); box-shadow: 0 0 8px rgba(234, 179, 8, .8); }
 :root:not([data-carino-theme="color"]) .alert.err { color: #f2b8b5; background: rgba(239, 68, 68, .1); border-color: rgba(239, 68, 68, .35); }
 
 /* storefront in gold: a black banner lit gold from the art side, black

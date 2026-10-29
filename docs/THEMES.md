@@ -38,7 +38,7 @@ means something (mark, picked tab, focus, glyphs, counts). Dark only
 | `--sc-badge` | `#eab308` | My List count (black text; flips to gold on black while open) |
 | `--sc-hover` / `--sc-focus` | `rgba(234,179,8,.06)` / `rgba(234,179,8,.45)` | hover wash, search focus halo; focus outlines are solid `#eab308` |
 | `--sc-tip-bg` / `-fg` | `#15130f` / `#f4f1ea` | tooltips (gold 30% border); install-command tooltip is `#f6d56e` mono on `#050505` |
-| snackbar | `#121110`, gold 30% border, gold dot | copy confirmation |
+| toast | carino-ui.css `.toast.ok` / `.err`, top-right under the navbar | copy confirmation |
 | install chips | `#14130f` / `#e2dbcb`, OS glyph in gold | all platforms |
 | `mark` (search hit) | `rgba(234,179,8,.9)` on `#050505` | highlights |
 

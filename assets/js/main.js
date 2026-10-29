@@ -194,42 +194,49 @@ const SLICES = [
         label: 'Highlights',
         icon: 'fa-solid fa-star',
         num: '01',
-        // The fleet's own tools lead, then the wider picks.
-        categories: ['Carino Systems', 'Curated Highlights']
+        // The wider picks; the fleet's own tools have their own category.
+        categories: ['Curated Highlights']
+    },
+    {
+        id: 'carino',
+        label: 'Carino Systems',
+        icon: 'fa-solid fa-c',
+        num: '02',
+        categories: ['Carino Systems']
     },
     {
         id: 'basic',
         label: 'Basic Software',
         icon: 'fa-solid fa-house',
-        num: '02',
+        num: '03',
         categories: ['Essentials', 'Web Browsers', 'Language and Culture']
     },
     {
         id: 'general',
         label: 'General Software',
         icon: 'fa-solid fa-layer-group',
-        num: '03',
+        num: '04',
         categories: ['Gaming and Entertainment', 'Multimedia and Design', 'AI / Machine learning']
     },
     {
         id: 'professional',
         label: 'Professional',
         icon: 'fa-solid fa-briefcase',
-        num: '04',
+        num: '05',
         categories: ['Development', 'Open Source related', 'STEM and Research']
     },
     {
         id: 'it-systems',
         label: 'IT & Systems',
         icon: 'fa-solid fa-server',
-        num: '05',
+        num: '06',
         categories: ['IT and DevOps', 'Operating Systems', 'Hardware', 'Monitoring and Status']
     },
     {
         id: 'security',
         label: 'Security',
         icon: 'fa-solid fa-shield-halved',
-        num: '06',
+        num: '07',
         categories: ['(Cyber)Security']
     },
     {
@@ -239,7 +246,7 @@ const SLICES = [
         id: 'reviewing',
         label: 'Reviewing',
         icon: 'fa-solid fa-flask',
-        num: '07',
+        num: '08',
         status: 'reviewing',
         dense: true
     }
@@ -446,23 +453,25 @@ function start(allServices, meta) {
         if (F.mylist) render();
     }
 
-    // ── Notification (Branding .toast) ────────────────────
-    function showNotification(msg) {
-        document.querySelectorAll('.notification').forEach(el => el.remove());
-        const n = document.createElement('div');
-        n.className = 'notification';
-        n.setAttribute('role', 'status');
-        n.textContent = msg;
-        document.body.appendChild(n);
-        setTimeout(() => {
-            n.classList.add('fade-out');
-            setTimeout(() => { if (n.parentNode) n.parentNode.removeChild(n); }, 400);
-        }, 2600);
+    // ── Notification (carino-ui.css .toast) ───────────────
+    // One toast, top-right under the navbar, as on Desk and Metadata.
+    let toast = null;
+    function showNotification(msg, err) {
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.setAttribute('role', 'status');
+            document.body.appendChild(toast);
+        }
+        toast.textContent = (err ? '✖ ' : '✔ ') + msg;
+        toast.className = 'toast show ' + (err ? 'err' : 'ok');
+        clearTimeout(toast._to);
+        toast._to = setTimeout(() => { toast.className = 'toast ' + (err ? 'err' : 'ok'); }, 2600);
     }
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(
             () => showNotification(tr('Install command copied! Paste it in your terminal.')),
-            () => showNotification(tr('Could not copy to clipboard.'))
+            () => showNotification(tr('Could not copy to clipboard.'), true)
         );
     }
 
@@ -621,8 +630,10 @@ function start(allServices, meta) {
     const FEATURED = 6;
     let heroTimer = null;
     function featuredList() {
-        // the fleet's own tools lead, then curated picks that install somewhere
-        const inCat = c => allServices.filter(s => (s.categories || []).includes(c) && passAll(s));
+        // the fleet's own tools lead, then curated picks that install somewhere;
+        // drawn from every category, since the banner sits on Highlights only
+        const inCat = c => allServices.filter(s => (s.categories || []).includes(c) &&
+            passPlatform(s) && passOpen(s) && passFind(s, F.find));
         const fleet = inCat('Carino Systems').slice(0, 2);
         const picks = inCat('Curated Highlights').filter(s => osDefs.some(d => s[d.key]));
         return dedupe(fleet.concat(picks)).slice(0, FEATURED);
