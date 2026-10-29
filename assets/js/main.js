@@ -607,7 +607,7 @@ function start(allServices, meta) {
     // Cards pop in on a fresh view, staggered by their place on the page and
     // capped so a long list does not keep the last ones waiting. Typing in
     // the search re-renders without it, or every keystroke would replay it.
-    // "Show more" sets popFrom, so only the newly added cards pop.
+    // Loading more sets popFrom, so only the newly added cards pop.
     let animate = true, popFrom = 0, cardNo = 0;
     function popCard(s, query) {
         const card = buildCard(s, query), n = cardNo++;
@@ -714,6 +714,8 @@ function start(allServices, meta) {
     function shelf(slice, catName, list) {
         const sec = document.createElement('section');
         sec.className = 'sf-shelf c-' + slice.id;
+        sec.dataset.label = tr(catName);
+        sec.dataset.n = list.length;
         sec.id = 'cat-' + slugify(catName);
         sec.innerHTML = '<div class="sf-shelf-head"><h2 class="sf-h">' + escapeHtml(tr(catName)) +
             ' <span class="subcat-count">' + list.length + '</span></h2>' +
@@ -813,6 +815,7 @@ function start(allServices, meta) {
         tabsEl.hidden = F.cat === DEFAULT_CAT && !F.find && !F.mylist;
         // the search ring follows the picked tab's colour
         searchEl.className = 'sc-search c-' + (F.mylist || !F.cat ? 'all' : F.cat);
+        widenTabs();
         markEdge(tabsEl);
         const act = tabsEl.querySelector('.active');
         // keep the picked tab in view where the row scrolls (phones)
@@ -824,13 +827,32 @@ function start(allServices, meta) {
         }
     }
 
+    // When the tabs outgrow the column, the row widens into the page's side
+    // margins (evenly, down to the 24px gutter); where those are too narrow
+    // it wraps onto a second line. Only a phone keeps the sideways scroll.
+    function widenTabs() {
+        tabsEl.style.marginLeft = tabsEl.style.marginRight = '';
+        tabsEl.classList.remove('wrap');
+        if (tabsEl.hidden || window.innerWidth <= 640) return;
+        const need = tabsEl.scrollWidth - tabsEl.clientWidth;
+        if (need <= 1) return;
+        const r = tabsEl.getBoundingClientRect();
+        const room = Math.min(r.left, window.innerWidth - r.right) - 24;
+        const half = Math.ceil(need / 2) + 2;
+        if (half <= room) tabsEl.style.marginLeft = tabsEl.style.marginRight = -half + 'px';
+        else tabsEl.classList.add('wrap');
+    }
+    // The height the sticky bars cover: the navbar (sticky above a phone's
+    // width, the head's CSS `top`) and the head itself.
+    const stickyH = () => (parseFloat(getComputedStyle(headEl).top) || 0) + headEl.offsetHeight;
+
     // A row that scrolls sideways (tabs, phone facets) fades its far edge.
     function markEdge(el) {
         el.classList.toggle('ovf', el.scrollWidth > el.clientWidth + 1);
         el.classList.toggle('at-end', el.scrollLeft + el.clientWidth >= el.scrollWidth - 2);
     }
     [tabsEl, chipsEl].forEach(el => el.addEventListener('scroll', () => markEdge(el), { passive: true }));
-    window.addEventListener('resize', () => { markEdge(tabsEl); markEdge(chipsEl); });
+    window.addEventListener('resize', () => { widenTabs(); markEdge(tabsEl); markEdge(chipsEl); });
 
     // Under the sticky head: the narrowing facets, the count and a how-to line.
     function renderChips(shown) {
@@ -880,8 +902,158 @@ function start(allServices, meta) {
         clearTimeout(findTimer); findEl.value = ''; F.find = ''; limit = PAGE; updateURL(); render(); findEl.focus();
     });
 
+    // ── Section scrubber ──────────────────────────────────
+    // A plain bar down the right edge, a minimap of the page: each section
+    // (the banner, the tiles, a shelf, a subcategory) is a segment sized to
+    // its share of the scroll, and a thumb marks the view. Drag it to scroll
+    // (a bubble names the section under the finger); a tap jumps to the start
+    // of the section it lands on. A pointer aid only: the tabs, dividers and
+    // native scrolling do the same for keyboards and screen readers.
+    const scrub = document.createElement('div');
+    scrub.className = 'sc-scrub';
+    scrub.setAttribute('aria-hidden', 'true');
+    scrub.innerHTML = '<div class="sc-scrub-track"><div class="sc-scrub-segs"></div><div class="sc-scrub-thumb"></div></div>';
+    const scrubTrack = scrub.firstChild, scrubSegs = scrubTrack.firstChild, scrubThumb = scrubTrack.lastChild;
+    const bubble = document.createElement('div');
+    bubble.className = 'sc-scrub-bubble';
+    bubble.setAttribute('aria-hidden', 'true');
+    document.body.append(scrub, bubble);
+    let sections = [], maxScroll = 0;
+
+    // the view's sections, read off the rendered page
+    function viewLabel() {
+        if (F.mylist) return tr('My List');
+        if (F.find) return '“' + F.find + '”';
+        const slice = F.cat && SLICES.find(x => x.id === F.cat);
+        return slice ? tr(slice.label) : tr('All');
+    }
+    function readSections() {
+        const out = [];
+        let lastDivider = false;
+        [...results.children].forEach(el => {
+            const c = el.classList;
+            if (c.contains('sf-hero')) out.push({ el, label: tr('Featured') });
+            else if (c.contains('sf-cats')) out.push({ el, label: tr('Browse by category') });
+            else if (c.contains('sf-shelf') || c.contains('subcat-divider')) { out.push({ el, label: el.dataset.label, n: +el.dataset.n }); lastDivider = true; return; }
+            else if (c.contains('sub-grid') && !lastDivider) out.push({ el, label: viewLabel(), n: el.children.length });
+            lastDivider = false;
+        });
+        return out;
+    }
+    // where the page sits when a section's top meets the sticky head
+    const stopOf = el => Math.max(0, Math.min(maxScroll, el.getBoundingClientRect().top + window.scrollY - stickyH() - 12));
+
+    function scrubLayout() {
+        const top = Math.max(0, headEl.getBoundingClientRect().bottom) + 8;
+        const h = window.innerHeight - top - 8;
+        maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        // only where there is a long way to go, and room to draw it
+        const on = h >= 260 && maxScroll > window.innerHeight * 1.5;
+        scrub.hidden = !on;
+        document.body.classList.toggle('has-scrub', on);
+        if (!on) return;
+        scrub.style.top = top + 'px';
+        scrub.style.height = h + 'px';
+        scrub.className = 'sc-scrub c-' + (F.mylist || !F.cat ? 'all' : F.cat);
+        sections = readSections();
+        sections.forEach((sec, i) => { sec.stop = stopOf(sec.el); });
+        scrubSegs.innerHTML = sections.map((sec, i) => {
+            const a = sec.stop / maxScroll, b = i + 1 < sections.length ? sections[i + 1].stop / maxScroll : 1;
+            return '<span class="seg' + (i % 2 ? ' alt' : '') + '" style="top:' + (a * 100).toFixed(2) + '%;height:' + (Math.max(0, b - a) * 100).toFixed(2) + '%"></span>';
+        }).join('');
+        scrubThumb.style.height = Math.max(26, h * window.innerHeight / document.documentElement.scrollHeight) + 'px';
+        scrubMove();
+    }
+    function scrubMove() {
+        if (scrub.hidden) return;
+        const room = scrubTrack.clientHeight - scrubThumb.offsetHeight;
+        scrubThumb.style.transform = 'translateY(' + (maxScroll ? window.scrollY / maxScroll * room : 0) + 'px)';
+    }
+    // a point on the bar → a scroll position, and the section holding it
+    function scrollAt(y) {
+        const r = scrubTrack.getBoundingClientRect(), t = scrubThumb.offsetHeight;
+        return Math.max(0, Math.min(1, (y - r.top - t / 2) / (r.height - t))) * maxScroll;
+    }
+    function sectionAt(pos) {
+        let hit = sections[0];
+        sections.forEach(sec => { if (sec.stop <= pos + 1) hit = sec; });
+        return hit;
+    }
+    function showBubble(y, sec) {
+        if (!sec) { bubble.classList.remove('show'); return; }
+        bubble.innerHTML = '<b>' + escapeHtml(sec.label || '') + '</b>' + (sec.n ? '<small>' + sec.n.toLocaleString() + '</small>' : '');
+        const r = scrubTrack.getBoundingClientRect();
+        bubble.style.top = Math.max(r.top + 16, Math.min(r.bottom - 16, y)) + 'px';
+        bubble.classList.add('show');
+    }
+    let drag = null;
+    scrub.addEventListener('pointerdown', e => {
+        if (e.button > 0) return;
+        e.preventDefault();
+        scrub.setPointerCapture(e.pointerId);
+        drag = { y0: e.clientY, moved: false };
+        scrub.classList.add('drag');
+        showBubble(e.clientY, sectionAt(scrollAt(e.clientY)));
+    });
+    scrub.addEventListener('pointermove', e => {
+        const pos = scrollAt(e.clientY);
+        if (!drag) {
+            // a mouse over the bar previews where a click would land
+            if (e.pointerType === 'mouse') showBubble(e.clientY, sectionAt(pos));
+            return;
+        }
+        if (Math.abs(e.clientY - drag.y0) > 5) drag.moved = true;
+        if (!drag.moved) return;
+        window.scrollTo({ top: pos, behavior: 'instant' });
+        showBubble(e.clientY, sectionAt(pos));
+    });
+    const endDrag = e => {
+        if (!drag) return;
+        const tap = !drag.moved && e.type === 'pointerup';
+        drag = null;
+        scrub.classList.remove('drag');
+        if (e.pointerType !== 'mouse' || !scrub.matches(':hover')) bubble.classList.remove('show');
+        if (tap) {
+            const sec = sectionAt(scrollAt(e.clientY));
+            if (!sec) return;
+            // glide over a short way; a long one (Reviewing runs past 150,000px
+            // on a phone) jumps, or the glide would take seconds
+            const near = Math.abs(sec.stop - window.scrollY) < window.innerHeight * 3;
+            window.scrollTo({ top: sec.stop, behavior: near && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'instant' });
+        }
+    };
+    scrub.addEventListener('pointerup', endDrag);
+    scrub.addEventListener('pointercancel', endDrag);
+    scrub.addEventListener('pointerleave', () => { if (!drag) bubble.classList.remove('show'); });
+    // a shelf opening, "Show more" or late fonts change the page's length
+    if (window.ResizeObserver) new ResizeObserver(() => scrubLayout()).observe(results);
+
     // ── Render ────────────────────────────────────────────
+    // The flat list draws PAGE cards, then the next PAGE each time the
+    // "Show more" button nears the screen, appended in place; the button
+    // stays as the way in for keyboards and browsers without the observer.
+    let flatList = null;
+    function loadMore() {
+        const more = results.querySelector('[data-more]');
+        if (!flatList || !more) return;
+        const g = more.previousElementSibling, from = limit;
+        limit += PAGE;
+        popFrom = cardNo;
+        flatList.slice(from, limit).forEach(s => g.appendChild(popCard(s, F.find)));
+        if (limit >= flatList.length) { if (moreIO) moreIO.unobserve(more); more.remove(); return; }
+        more.textContent = tr('Show more') + ' (' + (flatList.length - limit) + ')';
+        // still in reach (a tall window, a short batch): the observer will not
+        // fire again for a button that never left, so go on from here
+        requestAnimationFrame(() => {
+            if (more.isConnected && more.getBoundingClientRect().top < window.innerHeight + 800) loadMore();
+        });
+    }
+    const moreIO = window.IntersectionObserver &&
+        new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) loadMore(); }, { rootMargin: '0px 0px 800px 0px' });
+
     function render() {
+        flatList = null;
+        if (moreIO) moreIO.disconnect();
         clearInterval(heroTimer);
         results.innerHTML = '';
         cardNo = 0;
@@ -911,6 +1083,8 @@ function start(allServices, meta) {
                     const div = document.createElement('div');
                     div.className = 'subcat-divider c-' + slice.id;
                     div.id = 'cat-' + slugify(catName);
+                    div.dataset.label = tr(catName);
+                    div.dataset.n = list.length;
                     div.innerHTML = '<span class="subcat-ic"><i class="' + categoryIcon(catName) + '" aria-hidden="true"></i></span><span>' +
                         escapeHtml(tr(catName)) + '</span><span class="subcat-count">' + list.length + '</span>';
                     results.appendChild(div);
@@ -926,17 +1100,20 @@ function start(allServices, meta) {
             else {
                 results.appendChild(grid(list.slice(0, limit), F.find));
                 if (list.length > limit) {
+                    flatList = list;
                     const more = document.createElement('button');
                     more.type = 'button';
                     more.className = 'btn show-more';
                     more.dataset.more = '1';
                     more.textContent = tr('Show more') + ' (' + (list.length - limit) + ')';
                     results.appendChild(more);
+                    if (moreIO) moreIO.observe(more);
                 }
             }
         }
         renderChips(shown);
         refreshMyListCount();
+        scrubLayout();
         animate = true; popFrom = 0;
     }
 
@@ -974,7 +1151,7 @@ function start(allServices, meta) {
         if (k === 'cat') {
             history.replaceState({}, '', location.pathname + location.search + (F.cat ? '#' + F.cat : ''));
             // a picked tab starts its list at the top, under the sticky head
-            const top = chipsEl.getBoundingClientRect().top + window.scrollY - headEl.offsetHeight;
+            const top = chipsEl.getBoundingClientRect().top + window.scrollY - stickyH();
             if (window.scrollY > top) window.scrollTo(0, Math.max(0, top));
         }
     };
@@ -990,7 +1167,7 @@ function start(allServices, meta) {
             history.replaceState({}, '', location.pathname + location.search);
             limit = PAGE; updateURL(); render();
         } else if (e.target.closest('[data-more]')) {
-            popFrom = limit; limit += PAGE * 2; render();
+            loadMore();
         } else if (e.target.closest('[data-go]')) {
             // a storefront category tile: pick its tab and start at the top
             F.cat = e.target.closest('[data-go]').dataset.go; F.mylist = false;
@@ -1011,8 +1188,14 @@ function start(allServices, meta) {
     });
     window.addEventListener('carino:langchange', () => { render(); renderMeta(); });
     // The head lifts (shadow) once it is stuck over the cards.
-    const onScroll = () => headEl.classList.toggle('stuck', headEl.getBoundingClientRect().top <= 0 && window.scrollY > 0);
+    const onScroll = () => {
+        headEl.classList.toggle('stuck', headEl.getBoundingClientRect().top <= (parseFloat(getComputedStyle(headEl).top) || 0) && window.scrollY > 0);
+        // the bar hangs from the head, which only moves near the top
+        const t = Math.max(0, headEl.getBoundingClientRect().bottom) + 8;
+        if (t + 'px' !== scrub.style.top) scrubLayout(); else scrubMove();
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', scrubLayout);
     onScroll();
 
     // #<slice> picks a category; #cat-<slug> picks the slice owning that

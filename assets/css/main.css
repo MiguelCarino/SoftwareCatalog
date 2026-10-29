@@ -140,9 +140,17 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
 }
 .my-list-count.visible { display: inline-flex; }
 
-/* ── Sticky head: mark, the search pill, the category tabs ──── */
+/* ── Sticky navbar and head ─────────────────────────────────────
+   Above a phone's width the navbar stays on screen, with the head (search
+   pill, category tabs) sticking under it; on a phone only the head sticks,
+   so the cards keep the height. --nav-h is what the head sits under. */
+:root { --nav-h: 60px; }
+@media (min-width: 641px) {
+    html body #carinoNav { position: sticky; top: 0; z-index: 70; }
+}
+@media (max-width: 640px) { :root { --nav-h: 0px; } }
 .sc-head {
-    position: sticky; top: 0; z-index: 60;
+    position: sticky; top: var(--nav-h); z-index: 60;
     background: var(--sc-bg); transition: box-shadow .2s;
 }
 .sc-head.stuck { box-shadow: 0 1px 0 var(--sc-line), 0 4px 12px -6px rgba(60, 64, 67, .25); }
@@ -196,6 +204,7 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
 }
 .sc-tabs::-webkit-scrollbar { display: none; }
 .sc-tabs[hidden] { display: none; }
+.sc-tabs.wrap { flex-wrap: wrap; row-gap: 6px; overflow: visible; }
 /* without the tabs under it, the search row keeps the same breathing room */
 .sc-head-in:has(> .sc-tabs[hidden]) { padding-bottom: 12px; }
 /* when the row scrolls (narrow screens, long translations) its far edge fades */
@@ -272,7 +281,7 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
     display: flex; align-items: center; gap: 10px;
     margin: 26px 0 12px;
     font-family: var(--display); font-size: 1.12rem; font-weight: 700; color: var(--sc-text);
-    scroll-margin-top: 136px;
+    scroll-margin-top: calc(var(--nav-h) + 136px);
 }
 .subcat-divider:first-child { margin-top: 2px; }
 .subcat-ic {
@@ -542,7 +551,7 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
 .sf-dot.on { width: 36px; background-image: linear-gradient(var(--sc-primary), var(--sc-primary)); }
 .sf-dot:focus-visible { outline: 2px solid var(--sc-primary); outline-offset: 1px; }
 
-.sf-shelf { margin: 0 0 26px; scroll-margin-top: 136px; }
+.sf-shelf { margin: 0 0 26px; scroll-margin-top: calc(var(--nav-h) + 136px); }
 .sf-shelf-head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
 .sf-shelf-head .sf-h { flex: 1; min-width: 0; }
 .sf-all { height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: var(--sc-primary); font-family: var(--sans); font-size: .85rem; font-weight: 600; cursor: pointer; }
@@ -820,4 +829,73 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
 }
 @media (prefers-reduced-motion: reduce) {
     ::view-transition-new(root) { animation: none; }
+}
+
+/* ── Section scrubber (main.js) ─────────────────────────────────
+   A slim bar down the right edge, from under the sticky head to the foot of
+   the window (main.js sets top and height): one segment per section of the
+   page in the view's category colour (--c), alternating strength, and a
+   thumb for the view. The element is a 28px hit area around a 10px track. */
+:root { --scrub-r: max(4px, calc((100vw - var(--sc-wrap)) / 2 - 40px)); }
+.sc-scrub { position: fixed; z-index: 30; right: var(--scrub-r); top: 180px; height: 560px; width: 28px; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; }
+.sc-scrub[hidden] { display: none; }
+.sc-scrub-track { position: absolute; top: 0; bottom: 0; left: 9px; width: 10px; border-radius: 999px; background: var(--sc-pill); transition: width .15s, left .15s; }
+.sc-scrub:hover .sc-scrub-track, .sc-scrub.drag .sc-scrub-track { left: 7px; width: 14px; }
+.sc-scrub-segs { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; }
+.sc-scrub-segs .seg { position: absolute; left: 0; right: 0; background: color-mix(in srgb, var(--c, var(--sc-primary)) 42%, transparent); box-shadow: inset 0 -1px 0 var(--sc-bg); }
+.sc-scrub-segs .seg.alt { background: color-mix(in srgb, var(--c, var(--sc-primary)) 22%, transparent); }
+.sc-scrub-thumb {
+    position: absolute; top: 0; left: -3px; right: -3px; min-height: 26px; border-radius: 999px;
+    background: var(--sc-primary); box-shadow: 0 0 0 2px var(--sc-bg), var(--sc-shadow-1);
+}
+.sc-scrub.drag .sc-scrub-thumb { box-shadow: 0 0 0 2px var(--sc-bg), 0 0 0 5px color-mix(in srgb, var(--sc-primary) 30%, transparent); }
+.sc-scrub-bubble {
+    position: fixed; z-index: 31; right: calc(var(--scrub-r) + 36px); top: 0; transform: translateY(-50%) translateX(6px);
+    max-width: min(70vw, 320px); padding: 8px 12px; border-radius: 12px; pointer-events: none; opacity: 0;
+    display: flex; align-items: baseline; gap: 8px;
+    background: var(--sc-surface); color: var(--sc-text); border: 1px solid var(--sc-line-2); box-shadow: var(--sc-shadow-2);
+    font-family: var(--sans); font-size: .9rem; line-height: 1.25; transition: opacity .12s, transform .12s;
+}
+.sc-scrub-bubble b { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
+.sc-scrub-bubble small { flex: none; padding: 1px 7px; border-radius: 999px; background: var(--sc-primary-tonal); color: var(--sc-on-tonal); font-size: .72rem; font-weight: 700; }
+.sc-scrub-bubble.show { opacity: 1; transform: translateY(-50%); }
+/* keep the cards clear of the bar where the page has no side margin for it */
+@media (max-width: 1320px) { body.has-scrub .wrap { padding-right: 40px; } }
+:root:not([data-carino-theme="color"]) .sc-scrub-track { background: #15130f; }
+:root:not([data-carino-theme="color"]) .sc-scrub-segs .seg { background: rgba(234, 179, 8, .34); }
+:root:not([data-carino-theme="color"]) .sc-scrub-segs .seg.alt { background: rgba(234, 179, 8, .16); }
+:root:not([data-carino-theme="color"]) .sc-scrub-bubble { background: #0d0d0d; border-color: rgba(234, 179, 8, .35); }
+
+/* ── Phone: compact list cards ─────────────────────────────────
+   The grid's cards turn into list rows (icon left, text right, install chips
+   in one sideways row), about half the height of the cover card. The shelves
+   on the storefront keep their covers. */
+@media (max-width: 640px) {
+    body.has-scrub .wrap { padding-right: 34px; }
+    /* the sideways rows stop at the bar instead of bleeding under it */
+    body.has-scrub .sc-facets, body.has-scrub .sf-track { margin-right: 0; padding-right: 0; scroll-padding-right: 0; }
+    .sub-grid { gap: 8px; }
+    .sub-grid .card.entry.sw {
+        position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 12px; row-gap: 0;
+        grid-template-areas: "art title" "art src" "art badge" "art desc" "row row"; align-content: start;
+        padding: 12px 12px 12px 12px;
+    }
+    .sub-grid .sw-cover, .sub-grid .sw-body { display: contents; }
+    .sub-grid .sw-art { grid-area: art; align-self: start; justify-self: center; margin-top: 3px; font-size: 1.9rem; }
+    .sub-grid .sw-body .e-title { grid-area: title; padding-right: 30px; }
+    .sub-grid .card.entry.sw .src-line { grid-area: src; margin: 1px 0 0; }
+    .sub-grid .sw-badge { grid-area: badge; position: static; justify-self: start; margin-top: 6px; }
+    .sub-grid .card.entry.sw .e-desc {
+        grid-area: desc; margin-top: 5px; min-height: 0;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .sub-grid .sub-row { grid-area: row; margin-top: 10px; padding: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+    .sub-grid .sub-row::-webkit-scrollbar { display: none; }
+    .sub-grid .sub-row > * { flex: none; }
+    .sub-grid .sw-cover .star-btn { top: 4px; right: 4px; }
+    .sf-track .sw-cover { height: 84px; }
+}
+/* fingers: install chips at a tappable height */
+@media (pointer: coarse) {
+    .os-icon, .os-more { height: 34px; }
 }

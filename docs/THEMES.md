@@ -39,6 +39,7 @@ means something (mark, picked tab, focus, glyphs, counts). Dark only
 | `--sc-hover` / `--sc-focus` | `rgba(234,179,8,.06)` / `rgba(234,179,8,.45)` | hover wash, search focus halo; focus outlines are solid `#eab308` |
 | `--sc-tip-bg` / `-fg` | `#15130f` / `#f4f1ea` | tooltips (gold 30% border); install-command tooltip is `#f6d56e` mono on `#050505` |
 | toast | carino-ui.css `.toast.ok` / `.err`, top-right under the navbar | copy confirmation |
+| section scrubber | `#15130f` track, segments `rgba(234,179,8,.34)` / `.16` alternating, `#eab308` thumb; bubble `#0d0d0d`, gold 35% border | minimap bar down the right edge (Colourful: segments in the category's `--c`) |
 | install chips | `#14130f` / `#e2dbcb`, OS glyph in gold | all platforms |
 | `mark` (search hit) | `rgba(234,179,8,.9)` on `#050505` | highlights |
 
