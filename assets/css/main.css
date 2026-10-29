@@ -141,14 +141,10 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
 .my-list-count.visible { display: inline-flex; }
 
 /* ── Sticky navbar and head ─────────────────────────────────────
-   Above a phone's width the navbar stays on screen, with the head (search
-   pill, category tabs) sticking under it; on a phone only the head sticks,
-   so the cards keep the height. --nav-h is what the head sits under. */
+   The navbar stays on screen at every width (carino-navbar.js); the head
+   (search pill, category tabs) sticks under it. --nav-h is its height. */
 :root { --nav-h: 60px; }
-@media (min-width: 641px) {
-    html body #carinoNav { position: sticky; top: 0; z-index: 70; }
-}
-@media (max-width: 640px) { :root { --nav-h: 0px; } }
+html body #carinoNav { z-index: 70; }
 .sc-head {
     position: sticky; top: var(--nav-h); z-index: 60;
     background: var(--sc-bg); transition: box-shadow .2s;
