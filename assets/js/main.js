@@ -24,7 +24,7 @@ const Theme = (() => {
     }
 
     function paintMeta(t) {
-        const meta = document.getElementById('scThemeColor');
+        const meta = document.getElementById('carinoThemeColor');
         if (!meta) return;
         const dark = root.getAttribute('data-theme') !== 'light' && window.matchMedia &&
             matchMedia('(prefers-color-scheme: dark)').matches;
@@ -472,6 +472,21 @@ function start(allServices, meta) {
     function buildOsRow(service) {
         const row = document.createElement('div');
         row.className = 'sub-row';
+        // Nothing to install (a web app, a vendor page): the row's one button
+        // is the site itself, so the card still ends on an action.
+        if (!osDefs.some(d => service[d.key])) {
+            row.classList.add('web');
+            const a = document.createElement('a');
+            a.className = 'os-icon p-web';
+            a.href = service.link;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.innerHTML = '<i class="fa-solid fa-globe" aria-hidden="true"></i><span>' + escapeHtml(tr('Website')) + '</span>';
+            a.dataset.tooltip = domainOf(service.link);
+            a.setAttribute('aria-label', tr('Open website') + ' — ' + service.name);
+            row.appendChild(a);
+            return row;
+        }
         const lbl = document.createElement('span');
         lbl.className = 'sub-row-lbl';
         lbl.innerHTML = '<i class="fa-solid fa-download" aria-hidden="true"></i>' + escapeHtml(tr('Install'));
@@ -574,7 +589,7 @@ function start(allServices, meta) {
         desc.innerHTML = highlight(service.description, query);
         body.append(link, src, desc);
         const row = buildOsRow(service);
-        if (row.childNodes.length > 1) body.appendChild(row);
+        if (row.querySelector('.os-icon')) body.appendChild(row);
 
         item.append(cover, body);
         return item;
@@ -625,8 +640,9 @@ function start(allServices, meta) {
             '<div class="sf-actions"><a class="sf-cta" href="' + escapeHtml(s.link) + '" target="_blank" rel="noopener noreferrer">' +
             escapeHtml(tr('Visit site')) + ' <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div></div>' +
             '<div class="sf-art" aria-hidden="true"><i class="' + escapeHtml(s.icon) + '"></i></div>';
+        // the banner has its own "Visit site", so it takes install chips only
         const row = buildOsRow(s);
-        if (row.childNodes.length > 1) el.querySelector('.sf-actions').appendChild(row);
+        if (!row.classList.contains('web') && row.childNodes.length > 1) el.querySelector('.sf-actions').appendChild(row);
         el.addEventListener('click', e => {
             if (e.target.closest('a, button')) return;
             window.open(s.link, '_blank', 'noopener,noreferrer');

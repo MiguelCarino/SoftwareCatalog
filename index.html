@@ -29,7 +29,7 @@
     <!-- Theme before first paint, so neither theme flashes the other:
          ?theme=gold|color (review links; not stored) > carino-theme cookie
          (shared across *.carino.systems) > localStorage > Gold & Black. -->
-    <meta name="theme-color" content="#050505" id="scThemeColor">
+    <meta name="theme-color" content="#050505" id="carinoThemeColor">
     <script>
     (function () {
         var d = document.documentElement, t = null;
@@ -40,7 +40,7 @@
         t = t || 'gold';
         d.setAttribute('data-carino-theme', t);
         var dark = d.getAttribute('data-theme') !== 'light' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
-        var meta = document.getElementById('scThemeColor');
+        var meta = document.getElementById('carinoThemeColor');
         if (meta) meta.content = t === 'gold' ? '#050505' : (dark ? '#0e1420' : '#eef3fc');
     })();
     </script>

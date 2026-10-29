@@ -368,6 +368,8 @@ html body #cnLangBox button:hover { background: var(--sc-hover); color: var(--sc
 .os-icon.p-linux   { background: var(--p-linux-bg);   color: var(--p-linux-fg); }
 .os-icon i { font-size: .82rem; }
 .os-icon[hidden] { display: none; }
+/* a web-only entry's one button: the site itself, a link styled as a chip */
+.os-icon.p-web { text-decoration: none; }
 /* "+N": the other platforms' buttons, folded behind the visitor's own */
 .os-more {
     height: 28px; min-width: 32px; padding: 0 8px; border-radius: 8px;

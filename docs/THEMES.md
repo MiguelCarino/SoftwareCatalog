@@ -149,14 +149,14 @@ Precedence: `?theme=` > cookie > localStorage > `gold`.
   stored; clicking the switch drops it from the URL so a reload keeps the click.
 - **Event**: `window` gets `carino:themechange` with `detail.theme` on every
   switch.
-- **theme-color meta** (`#scThemeColor`): `#050505` gold, `#eef3fc` colourful
+- **theme-color meta** (`#carinoThemeColor`): `#050505` gold, `#eef3fc` colourful
   light, `#0e1420` colourful dark; repainted on scheme change.
 
 No-flash head snippet, verbatim (after `<!-- /carino:head -->`, before any
 stylesheet; never inside the generated block):
 
 ```html
-<meta name="theme-color" content="#050505" id="scThemeColor">
+<meta name="theme-color" content="#050505" id="carinoThemeColor">
 <script>
 (function () {
     var d = document.documentElement, t = null;
@@ -167,7 +167,7 @@ stylesheet; never inside the generated block):
     t = t || 'gold';
     d.setAttribute('data-carino-theme', t);
     var dark = d.getAttribute('data-theme') !== 'light' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
-    var meta = document.getElementById('scThemeColor');
+    var meta = document.getElementById('carinoThemeColor');
     if (meta) meta.content = t === 'gold' ? '#050505' : (dark ? '#0e1420' : '#eef3fc');
 })();
 </script>
