@@ -14701,10 +14701,10 @@
   },
   {
     "name": "Topo",
-    "description": "Draw network topologies with devices, links and addressing",
+    "description": "Document a network as you draw it, checked as you go, with a site report",
     "link": "https://topo.carino.systems/",
     "icon": "fas fa-diagram-project",
-    "value": "Topo Draw network topologies with devices, links and addressing Carino Systems fleet",
+    "value": "Topo Document a network as you draw it, checked as you go, with a site report Carino Systems fleet",
     "categories": [
       "Carino Systems"
     ]
