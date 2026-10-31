@@ -732,11 +732,11 @@
     ]
   },
   {
-    "name": "Media Suite",
-    "description": "PDF to image, OCR, signature cleanup, converters and an ffmpeg builder",
-    "link": "https://media.carino.systems/",
-    "icon": "fas fa-photo-film",
-    "value": "Media Suite PDF2IMG pdf image OCR signature convert audio ffmpeg Carino Systems",
+    "name": "Carino Files",
+    "description": "See what a file is, then convert, read or clean it up: PDF to image, OCR, signature cleanup, converters, an ffmpeg builder and metadata you can view, edit or strip",
+    "link": "https://files.carino.systems/",
+    "icon": "fas fa-folder-open",
+    "value": "Carino Files Media Suite Metadata PDF2IMG pdf image OCR signature convert audio ffmpeg metadata EXIF GPS strip extract edit file type Carino Systems fleet",
     "windows": "",
     "macos": "",
     "fedora": "",
@@ -14615,16 +14615,6 @@
     "link": "https://learn.carino.systems/",
     "icon": "fas fa-graduation-cap",
     "value": "Carino Learn Interactive courses and labs — assembly, Linux, networking, DICOM, HL7, ISO 27001 Carino Systems fleet",
-    "categories": [
-      "Carino Systems"
-    ]
-  },
-  {
-    "name": "Metadata",
-    "description": "Extract, edit and strip metadata from almost any file",
-    "link": "https://metadata.carino.systems/",
-    "icon": "fas fa-file",
-    "value": "Metadata Extract, edit and strip metadata from almost any file Carino Systems fleet",
     "categories": [
       "Carino Systems"
     ]
