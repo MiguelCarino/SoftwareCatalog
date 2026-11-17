@@ -1414,7 +1414,7 @@
     "value": "TigerVNC VNC viewer client remote screen",
     "tags": "remoteaccess vncclient",
     "windows": "TigerVNC.TigerVNC",
-    "macos": "--cask tigervnc-viewer",
+    "macos": "--cask tigervnc",
     "fedora": "tigervnc",
     "debian": "tigervnc-viewer",
     "rhel": "tigervnc",
