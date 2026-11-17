@@ -1350,6 +1350,120 @@
     ]
   },
   {
+    "name": "OpenSSH",
+    "description": "SSH client and server. Built into Windows 10 and later, macOS and most Linux systems.",
+    "link": "https://www.openssh.com/",
+    "icon": "fas fa-terminal",
+    "value": "OpenSSH SSH client secure shell remote terminal",
+    "tags": "remoteaccess sshclient",
+    "windows": "Microsoft.OpenSSH.Preview",
+    "macos": "",
+    "fedora": "openssh-clients",
+    "debian": "openssh-client",
+    "rhel": "openssh-clients",
+    "suse": "openssh-clients",
+    "flatpak": "",
+    "categories": [
+      "IT and DevOps"
+    ],
+    "licence": "BSD-2-Clause"
+  },
+  {
+    "name": "PuTTY",
+    "description": "SSH, Telnet and serial terminal for Windows, with ports to Linux and macOS.",
+    "link": "https://www.chiark.greenend.org.uk/~sgtatham/putty/",
+    "icon": "fas fa-terminal",
+    "value": "PuTTY SSH Telnet serial client terminal",
+    "tags": "remoteaccess sshclient telnetclient",
+    "windows": "PuTTY.PuTTY",
+    "macos": "putty",
+    "fedora": "putty",
+    "debian": "putty",
+    "rhel": "",
+    "suse": "putty",
+    "flatpak": "",
+    "categories": [
+      "IT and DevOps"
+    ],
+    "licence": "MIT"
+  },
+  {
+    "name": "Remmina",
+    "description": "Remote desktop client for Linux: RDP, VNC and SSH in one window.",
+    "link": "https://remmina.org/",
+    "icon": "fas fa-display",
+    "value": "Remmina remote desktop client RDP VNC SSH Linux",
+    "tags": "remoteaccess rdpclient vncclient sshclient",
+    "windows": "",
+    "macos": "",
+    "fedora": "remmina",
+    "debian": "remmina",
+    "rhel": "",
+    "suse": "remmina",
+    "flatpak": "org.remmina.Remmina",
+    "categories": [
+      "IT and DevOps"
+    ],
+    "licence": "GPL-2.0-or-later"
+  },
+  {
+    "name": "TigerVNC",
+    "description": "VNC viewer and server for Windows, macOS and Linux.",
+    "link": "https://tigervnc.org/",
+    "icon": "fas fa-display",
+    "value": "TigerVNC VNC viewer client remote screen",
+    "tags": "remoteaccess vncclient",
+    "windows": "TigerVNC.TigerVNC",
+    "macos": "--cask tigervnc-viewer",
+    "fedora": "tigervnc",
+    "debian": "tigervnc-viewer",
+    "rhel": "tigervnc",
+    "suse": "tigervnc",
+    "flatpak": "org.tigervnc.vncviewer",
+    "categories": [
+      "IT and DevOps"
+    ],
+    "licence": "GPL-2.0-or-later"
+  },
+  {
+    "name": "FreeRDP",
+    "description": "Remote Desktop Protocol client run from the command line.",
+    "link": "https://www.freerdp.com/",
+    "icon": "fas fa-display",
+    "value": "FreeRDP RDP remote desktop client xfreerdp",
+    "tags": "remoteaccess rdpclient",
+    "windows": "",
+    "macos": "freerdp",
+    "fedora": "freerdp",
+    "debian": "freerdp3-x11",
+    "rhel": "freerdp",
+    "suse": "freerdp",
+    "flatpak": "com.freerdp.FreeRDP",
+    "categories": [
+      "IT and DevOps"
+    ],
+    "licence": "Apache-2.0"
+  },
+  {
+    "name": "Windows App",
+    "description": "Microsoft's Remote Desktop client for macOS (the former Microsoft Remote Desktop). Opens .rdp files.",
+    "link": "https://learn.microsoft.com/windows-app/overview",
+    "icon": "fab fa-microsoft",
+    "value": "Windows App Microsoft Remote Desktop RDP client macOS",
+    "tags": "remoteaccess rdpclient",
+    "windows": "",
+    "macos": "--cask windows-app",
+    "fedora": "",
+    "debian": "",
+    "rhel": "",
+    "suse": "",
+    "flatpak": "",
+    "categories": [
+      "IT and DevOps"
+    ],
+    "licence": "proprietary"
+  },
+  {
     "name": "Podman",
     "description": "Manage OCI containers and pods",
     "link": "https://podman.io/",
